@@ -1,6 +1,6 @@
 # Projeto TCC e-commerce
 
-##Passos
+## Passos
 
-*Baixar o xampp
-*Fazer o clone do projeto.
+* Baixar o xampp
+* Fazer o clone do projeto.
