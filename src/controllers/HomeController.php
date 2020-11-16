@@ -2,11 +2,17 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \src\models\Home;
 
 class HomeController extends Controller {
 
     public function index() {
-        $this->render('home', ['nome' => 'Bonieky']);
+        $home = new Home();
+        $dominio = $_SERVER['HTTP_HOST'];
+        
+        $dados['lista'] = $home->get_tenant($dominio);
+       
+        $this->render('home', $dados);
     }
 
     public function sobre() {
