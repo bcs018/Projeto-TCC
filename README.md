@@ -4,6 +4,6 @@
 
 * Baixar o xampp
 * Baixar o composer
-* Fazer o clone do projeto.
+* Fazer o clone do projeto na pasta htdocs do xampp, geralmente em fica em C:/xampp/htdocs.
 * Ir na pasta do projeto pelo CMD e rodar o comando 
 'composer install'
