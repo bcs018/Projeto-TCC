@@ -18,7 +18,7 @@ composer install
 * Proximo passo é abrir o arquivo httpd.vhosts.conf que se encontra em C:\xampp\apache\conf\extra
 * No final do arquivo, voce criara um novo bloco como na imagem a baixo, um para cada endereço criado no hosts do windows: 
  <p></p>
- <img src="shot/shot2.jpg" width="600" heigth="600">
+ <img src="shot/shot2.jpg" width="800" heigth="800">
  
 
   
