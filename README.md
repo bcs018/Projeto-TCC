@@ -21,6 +21,10 @@ composer install
  <p></p>
  <img src="shot/shot2.jpg" width="800" heigth="800">
  
+* Caso o Xampp estiver aberto, parar o servidor do Apache e MySQL e iniciar novamente.
+ <p></p>
+ <img src="shot/shot3.jpg" width="600" heigth="600">
+ 
 
   
 
