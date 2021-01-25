@@ -14,6 +14,7 @@ composer install
   * Incluir as linhas no final do arquivo dos possiveis subdominos a usar no projeto, conforme exemplo abaixo:
   <p><p>
   ![Screenshot](shot/shot1.jpg width=300px heigth=300px)
+ <img src="shot/shot1.jpg" width="300" heigth="300">
   
 
 .
