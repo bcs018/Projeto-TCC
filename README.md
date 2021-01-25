@@ -20,15 +20,16 @@ composer install
 * No final do arquivo, voce criara um novo bloco como na imagem a baixo, um para cada endereço criado no hosts do windows: 
  <p></p>
  <img src="shot/shot2.jpg" width="800" heigth="800">
+ 
 * Caso o Xampp estiver aberto, voce deve parar o servidor do Apache e MySQL e iniciar novamente.
  <p></p>
  <img src="shot/shot3.jpg" width="600" heigth="600">
  
 * Agora pode abrir o projeto como se fosse um link real, simulando um multitanancy. Nas imagens abaixo foi acessado os tres endereços, não reparem nos erros no print pois está em ambiente de teste.
  <p></p>
- <img src="shot/shot4.jpg" width="600" heigth="600">
- <img src="shot/shot5.jpg" width="600" heigth="600"> 
- <img src="shot/shot6.jpg" width="600" heigth="600">
+ <img src="shot/shot4.jpg" width="800" heigth="800">
+ <img src="shot/shot5.jpg" width="800" heigth="800"> 
+ <img src="shot/shot6.jpg" width="800" heigth="800">
 
  
 
