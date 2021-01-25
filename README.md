@@ -54,7 +54,7 @@ default collate utf8_general_ci;
 
  * Clicar em SQL novamente e rodar o restante do script.
 
-
+<p>A base está devidamente criada e pronta para desenvolvimento</p>
  
 
   
