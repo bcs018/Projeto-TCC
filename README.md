@@ -30,6 +30,30 @@ composer install
  <img src="shot/shot4.jpg" width="800" heigth="800">
  <img src="shot/shot5.jpg" width="800" heigth="800"> 
  <img src="shot/shot6.jpg" width="800" heigth="800">
+ <p></p>
+
+* Abrir o PhpMyAdmin atraves do Xampp no botão "Admin" do MySQL para fazer a inclusão do banco de dados e tabelas.
+ <p></p>
+ <img src="shot/shot7.jpg" width="600" heigth="600">
+ 
+* Clicar no botão "SQL" conforme abaixo: 
+<p></p>
+<img src="shot/shot8.jpg" width="800" heigth="800">
+
+* E então executar o script para criação do banco de dados que se encontra na raiz do projeto com nome de "Script ecommerce.sql"
+ * Primeiro executar o seguinte comando.
+ ```sh
+create database if not exists ecommerce
+default character set utf8
+default collate utf8_general_ci;
+ ```
+ * Depois selecionar o banco de dados no lado esquerdo.
+ 
+<p></p>
+<img src="shot/shot9.jpg" width="800" heigth="800">
+
+ * Clicar em SQL novamente e rodar o restante do script.
+
 
  
 
