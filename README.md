@@ -27,9 +27,9 @@ composer install
  
 * Agora pode abrir o projeto como se fosse um link real, simulando um multitanancy. Nas imagens abaixo foi acessado os tres endereços, não reparem nos erros no print pois está em ambiente de teste.
  <p></p>
- <img src="shot/shot4.jpg" width="600" heigth="600">
- <img src="shot/shot5.jpg" width="600" heigth="600"> 
- <img src="shot/shot6.jpg" width="600" heigth="600">
+ <img src="shot/shot4.jpg" width="800" heigth="800">
+ <img src="shot/shot5.jpg" width="800" heigth="800"> 
+ <img src="shot/shot6.jpg" width="800" heigth="800">
 
  
 
