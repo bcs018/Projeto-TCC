@@ -9,7 +9,8 @@
 ```sh
 composer install
 ```
-* Ao concluir fazer configurações no arquivo de host do windows, pois para simular o mais proximo possivel de uma arquitetura real de multitenancy, criaremos hosts com subdominios.
+* Ao concluir fazer configurações no arquivo de host do windows, pois para simular o mais proximo possivel de uma arquitetura real de multitenancy, criaremos virtual hosts com subdominios.
+** fgfg
 .
 .
 .
