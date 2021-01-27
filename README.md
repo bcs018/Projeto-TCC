@@ -2,8 +2,8 @@
 
 ## Passos
 
-* Baixar o xampp
-* Baixar o composer
+* Baixar o xampp <a href="https://www.apachefriends.org/pt_br/download.html" target="_blank">https://www.apachefriends.org/pt_br/download.html</a>
+* Baixar o composer <a href="https://www.apachefriends.org/pt_br/download.html" target="_blank">https://getcomposer.org/download/</a> 
 * Fazer o clone do projeto na pasta htdocs do xampp, geralmente em fica em C:\xampp\htdocs.
 * Ir na pasta do projeto pelo CMD (prompt de comando), Exemplo: cd C:\xampp\htdocs\PastaDoProjeto e rodar o comando abaixo:
 ```sh
