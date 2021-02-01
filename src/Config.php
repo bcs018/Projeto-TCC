@@ -1,6 +1,8 @@
 <?php
 namespace src;
 
+define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
+
 class Config {
     const BASE_DIR = '/projeto-tcc';
 

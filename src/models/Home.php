@@ -5,8 +5,8 @@ use \core\Model;
 
 class Home extends Model{
 
-    public function get_tenant($dominio){
-        $sub_dominio = explode('.', $dominio);
+    public function get_tenant($dominio=0){
+        /*$sub_dominio = explode('.', $dominio);
         if($sub_dominio[0] == 'projetotcc'){
             echo "SITE PRINCIPAL";
         }else{
@@ -20,7 +20,7 @@ class Home extends Model{
             }
             return $array;
     
-        }
+        }*/
     }
 
 }

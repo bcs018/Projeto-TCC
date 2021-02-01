@@ -10,9 +10,9 @@ class HomeController extends Controller {
         $home = new Home();
         $dominio = $_SERVER['HTTP_HOST'];
         
-        $dados['lista'] = $home->get_tenant($dominio);
+        //$dados['lista'] = $home->get_tenant($dominio);
        
-        $this->render('home', $dados);
+        $this->render('sitePrincipal/home');
     }
 
     public function sobre() {
