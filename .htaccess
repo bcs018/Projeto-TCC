@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{HTTP_HOST} ^bw.com.br$ [NC,OR] RewriteCond %{HTTP_HOST} ^bw.com.br$
+RewriteCond %{REQUEST_URI} !home/
+RewriteRule (.*) /home/$1 [L]
