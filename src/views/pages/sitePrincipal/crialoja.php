@@ -1,11 +1,14 @@
 <?php $render('sitePrincipal/header', ['title'=>'BW Commerce | Criar Loja']); ?>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/bg_cads2.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/bg_cads2.jpg');"
+    data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end">
             <div class="col-md-9 ftco-animate pb-5">
-                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Crie sua Loja <i class="ion-ios-arrow-forward"></i></span></p>
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i
+                                class="ion-ios-arrow-forward"></i></a></span> <span>Crie sua Loja <i
+                            class="ion-ios-arrow-forward"></i></span></p>
                 <h1 class="mb-0 bread">Crie sua loja</h1>
             </div>
         </div>
@@ -28,22 +31,34 @@
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Pessoais</legend>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Nome completo</label>
-                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Nome completo">
+                                                        <label class="label" for="name">Nome</label>
+                                                        <input type="text" class="form-control" name="nome_usu" id="nome_usu" placeholder="Nome">
+                                                        <div id="error1"></div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="name">Sobrenome</label>
+                                                        <input type="text" class="form-control" name="sobrenome_usu" id="sobrenome_usu" placeholder="Sobrenome">
+                                                        <div id="error2"></div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">E-mail</label>
-                                                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
+                                                        <input type="email" class="form-control" name="email_usu" id="email"
+                                                            placeholder="E-mail">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">CPF</label>
-                                                        <input type="number" class="form-control" name="subject" id="subject" placeholder="CPF">
+                                                        <input type="number" class="form-control" name="cpf_usu"
+                                                            id="subject" placeholder="CPF">
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,44 +72,87 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="label" for="#">Rua</label>
-                                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Rua">
+                                                        <input type="text" class="form-control" name="rua_usu"
+                                                            id="subject" placeholder="Rua">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Bairro</label>
-                                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Bairro">
+                                                        <input type="text" class="form-control" name="bairro_usu"
+                                                            id="subject" placeholder="Bairro">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Número</label>
-                                                        <input type="number" class="form-control" name="subject" id="subject" placeholder="Número">
+                                                        <input type="number" class="form-control" name="num_usu"
+                                                            id="subject" placeholder="Número">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">CEP</label>
-                                                        <input type="number" class="form-control" name="subject" id="subject" placeholder="CEP">
+                                                        <input type="number" class="form-control" name="cep_usu"
+                                                            id="subject" placeholder="CEP">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Estado</label>
-                                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Estado">
+                                                        <input type="text" class="form-control" name="estado_usu"
+                                                            id="subject" placeholder="Estado">
                                                     </div>
                                                 </div>
                                             </div>
+                                        </fieldset>
+                                    </div>
+                                    <br>
+
+                                    <div class="col-md">
+                                        <fieldset class="border p-2">
+                                            <legend class="w-auto">Dados da Loja</legend>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="#">Informe seu subdomínio</label>
+                                                        <input type="text" class="form-control" name="subdominio"
+                                                            id="subject" placeholder="Subdomínio">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Nome Fantasia</label>
+                                                        <input type="text" class="form-control" name="nome_fan"
+                                                            id="subject" placeholder="Nome fantasia">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">CNPJ</label>
+
+                                                        <input type="number" class="form-control" name="cnpj"
+                                                            id="subject" placeholder="CNPJ">
+                                                        <span id="passwordHelpInline" class="form-text">
+                                                            (Opcional)
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </fieldset><br>
                                     </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="submit" value="Send Message" class="btn btn-primary">
-                                            <div class="submitting"></div>
+                                            <input type="submit" value="Cadastrar" class="btn btn-success">
                                         </div>
                                     </div>
                                 </form>
