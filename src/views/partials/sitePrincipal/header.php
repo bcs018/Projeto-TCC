@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-	<title>Accounting - Free Bootstrap 4 Template by Colorlib</title>
+	<title><?php echo $title; ?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/magnific-popup.css">
 
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/style.css">
+	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico" >
 </head>
 
 <body>
@@ -54,7 +55,9 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="210px" height="55px">
+			<a href="/">
+				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="210px" height="55px">
+			</a>
 			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
 				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +65,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav m-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">Sobre</a></li>
 					<li class="nav-item"><a href="services.html" class="nav-link">Serviços</a></li>
 					<li class="nav-item"><a href="cases.html" class="nav-link">Como funciona</a></li>

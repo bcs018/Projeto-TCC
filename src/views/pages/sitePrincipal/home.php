@@ -1,4 +1,4 @@
-<?php $render('sitePrincipal/header'); ?>
+<?php $render('sitePrincipal/header', ['title'=>'BW Commerce | Home']); ?>
 
     <div class="hero-wrap">
 		<div class="home-slider owl-carousel">
