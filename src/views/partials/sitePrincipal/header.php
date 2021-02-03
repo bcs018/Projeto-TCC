@@ -18,9 +18,8 @@
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/magnific-popup.css">
 
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/style.css">
-	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico" >
+	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
 	<script src="<?php echo BASE_ASS; ?>js/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -56,15 +55,16 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
+		<div class="container-fluid">
 			<a href="/">
 				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="210px" height="55px">
 			</a>
-			
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav"
+				aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fa fa-bars"></span> Menu
 			</button>
+
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav m-auto">
 					<li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
