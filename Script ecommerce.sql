@@ -2,6 +2,8 @@
 * Script para criação do banco de dados do ecommerce
 */
 
+drop database ecommerce;
+
 /* Executar separadamente primeiro */
 create database if not exists ecommerce
 default character set utf8
@@ -11,14 +13,27 @@ default collate utf8_general_ci;
 use ecommerce;
 
 /* Executar o restante selecionado tudo */
+
+create table estado(
+	estado_id int not null auto_increment,
+    nome_estado varchar(2) not null,
+    
+    primary key(estado_id)
+)default charset utf8;
+
 create table usuario(
 	usuario_id int not null auto_increment,
+    estado_id int not null,
     nome varchar(100) not null,
     cpf int not null,
     email varchar(100) not null,
-    endereco varchar(100),
+    rua varchar(100) not null,
+    bairro varchar(100) not null,
+    numero int not null,
+    cep int not null,
     
-    primary key(usuario_id)
+    primary key(usuario_id),
+    foreign key (estado_id) references estado(estado_id)
 )default charset utf8;
 
 create table ecommerce_usu(

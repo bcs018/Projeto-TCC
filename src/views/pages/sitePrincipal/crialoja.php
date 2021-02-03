@@ -50,15 +50,32 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="email">E-mail</label>
-                                                        <input type="email" class="form-control" name="email_usu" id="email"
-                                                            placeholder="E-mail">
+                                                        <input type="email" class="form-control" name="email_usu" id="email" placeholder="E-mail">
+                                                        <div id="error3"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="email">Celular</label>
+                                                        <input type="text" class="form-control" name="celular" id="celular" placeholder="Celular">
+                                                        <div id="error4"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">CPF</label>
+                                                        <input type="text" class="form-control" name="cpf_usu"
+                                                            id="cpf_usu" placeholder="CPF">
+                                                            <div id="error5"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="subject">CPF</label>
-                                                        <input type="number" class="form-control" name="cpf_usu"
-                                                            id="subject" placeholder="CPF">
+                                                        <label class="label" for="email">Data de nascimento</label>
+                                                        <input type="text" class="form-control" name="data_nasc" id="data_nasc" placeholder="Data de nascimento">
+                                                        <div id="error6"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,7 +90,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="#">Rua</label>
                                                         <input type="text" class="form-control" name="rua_usu"
-                                                            id="subject" placeholder="Rua">
+                                                            id="rua_usu" placeholder="Rua">
+                                                        <div id="error7"></div>
                                                     </div>
                                                 </div>
 
@@ -81,7 +99,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Bairro</label>
                                                         <input type="text" class="form-control" name="bairro_usu"
-                                                            id="subject" placeholder="Bairro">
+                                                            id="bairro_usu" placeholder="Bairro">
+                                                        <div id="error8"></div>
                                                     </div>
                                                 </div>
 
@@ -89,7 +108,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Número</label>
                                                         <input type="number" class="form-control" name="num_usu"
-                                                            id="subject" placeholder="Número">
+                                                            id="num_usu" placeholder="Número">
+                                                        <div id="error9"></div>
                                                     </div>
                                                 </div>
 
@@ -97,7 +117,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">CEP</label>
                                                         <input type="number" class="form-control" name="cep_usu"
-                                                            id="subject" placeholder="CEP">
+                                                            id="cep_usu" placeholder="CEP">
+                                                        <div id="error10"></div>
                                                     </div>
                                                 </div>
 
@@ -105,7 +126,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Estado</label>
                                                         <input type="text" class="form-control" name="estado_usu"
-                                                            id="subject" placeholder="Estado">
+                                                            id="estado_usu" placeholder="Estado">
+                                                        <div id="error11"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,7 +143,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="#">Informe seu subdomínio</label>
                                                         <input type="text" class="form-control" name="subdominio"
-                                                            id="subject" placeholder="Subdomínio">
+                                                            id="subdominio" placeholder="Subdomínio">
+                                                        <div id="error12"></div>
                                                     </div>
                                                 </div>
 
@@ -129,7 +152,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Nome Fantasia</label>
                                                         <input type="text" class="form-control" name="nome_fan"
-                                                            id="subject" placeholder="Nome fantasia">
+                                                            id="nome_fan" placeholder="Nome fantasia">
+                                                        <div id="error13"></div>
                                                     </div>
                                                 </div>
 
@@ -165,5 +189,19 @@
     </div>
 </section>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#cpf_usu').mask("000.000.000-00");
+    });
+
+    $(document).ready(function(){
+        $('#data_nasc').mask('00/00/0000')
+    });
+
+    $(document).ready(function(){
+        $('#celular').mask('(00)00000-0000')
+    });
+
+</script>
 
 <?php $render('sitePrincipal/footer'); ?>

@@ -19,6 +19,8 @@
 
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/style.css">
 	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico" >
+	<script src="<?php echo BASE_ASS; ?>js/jquery.min.js"></script>
+
 </head>
 
 <body>
