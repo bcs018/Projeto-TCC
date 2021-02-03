@@ -6,16 +6,16 @@ use \core\Database;
 class Model {
 
     //protected static $_h;
-    protected $connection;
+    protected $db;
     
     public function __construct() {
         $this->checkH();
     }
 
     public function checkH() {
-        if($this->connection == null) {
+        if($this->db == null) {
             $data = new Database();
-            $this->connection = $data->getInstance();
+            $this->db = $data->getInstance();
         }
         
     }

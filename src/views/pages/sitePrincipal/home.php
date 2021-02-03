@@ -10,7 +10,7 @@
 							<div class="text w-100 text-center">
 								<h1 class="mb-4"> Crie sua loja virtual para seu negócio sem ter conhecimento algum de
 									programação. </h1>
-								<p><a href="#" class="btn btn-white">Crie agora!</a></p>
+								<p><a href="/crie-sua-loja" class="btn btn-white">Crie agora!</a></p>
 							</div>
 						</div>
 					</div>
@@ -24,7 +24,7 @@
 						<div class="col-md-8 ftco-animate">
 							<div class="text w-100 text-center">
 								<h1 class="mb-4">Aumente seu faturamento sem investir muito.</h1>
-								<p><a href="#" class="btn btn-white">Crie agora!</a></p>
+								<p><a href="/crie-sua-loja" class="btn btn-white">Crie agora!</a></p>
 							</div>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 						<div class="col-md-8 ftco-animate">
 							<div class="text w-100 text-center">
 								<h1 class="mb-4">Coloque seu negócio para todo mundo ver.</h1>
-								<p><a href="#" class="btn btn-white">Crie agora!</a></p>
+								<p><a href="/crie-sua-loja" class="btn btn-white">Crie agora!</a></p>
 							</div>
 						</div>
 					</div>

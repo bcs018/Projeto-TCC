@@ -21,6 +21,9 @@ create table estado(
     primary key(estado_id)
 )default charset utf8;
 
+insert into estado (nome_estado)
+values('AC'),('AL'),('AP'),('AM'),('BA'),('CE'),('ES'),('GO'),('MA'),('MT'),('MS'),('MG'),('PA'),('PB'),('PR'),('PE'),('PI'),('RJ'),('RN'),('RS'),('RO'),('RR'),('SC'),('SP'),('SE'),('TO'),('DF');
+
 create table usuario(
 	usuario_id int not null auto_increment,
     estado_id int not null,
