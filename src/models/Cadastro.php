@@ -12,4 +12,8 @@ class Cadastro extends Model{
         return $sql;
     }
 
+    public function inserir_cad($POST){
+        
+    }
+
 }

@@ -27,8 +27,12 @@
                                 <h6 class="mb-4" style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
                                     (*) são obrigatórios.</h6>
                                 <div id="form-message-warning" class="mb-4"></div>
-                                <br><br>
-                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                <br>          
+                                <?php if(isset($_SESSION['error'])){
+                                    echo $_SESSION['error'][1];
+                                }?>  
+                                <br>
+                                <form method="POST" action="/crie-sua-loja/inserir" id="contactForm" name="cadastro" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Pessoais</legend>
@@ -36,10 +40,9 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="name">Nome</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
-                                                        </div>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
                                                         <input type="text" class="form-control" name="nome_usu"
-                                                            id="nome_usu" placeholder="Nome">
+                                                            id="nome_usu" placeholder="Nome" autofocus>
                                                         <div id="error1"></div>
                                                     </div>
                                                 </div>
@@ -143,7 +146,7 @@
                                                         <label class="label" for="subject">CEP</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="number" class="form-control" name="cep_usu"
+                                                        <input type="text" class="form-control" name="cep_usu"
                                                             id="cep_usu" placeholder="CEP">
                                                         <div id="error10"></div>
                                                     </div>
@@ -197,8 +200,8 @@
                                                     <div class="form-group">
                                                         <label class="label" for="subject">CNPJ</label>
 
-                                                        <input type="number" class="form-control" name="cnpj"
-                                                            id="subject" placeholder="CNPJ">
+                                                        <input type="text" class="form-control" name="cnpj"
+                                                            id="cnpj" placeholder="CNPJ">
                                                         <span id="passwordHelpInline" class="form-text">
                                                             (Opcional)
                                                         </span>
@@ -209,6 +212,16 @@
                                             </div>
                                         </fieldset><br>
                                     </div>
+
+                                    <?php if(isset($_SESSION['error'])): ?>
+                                        <?php echo $_SESSION['error'][1]; ?>
+                                        <script type="text/javascript">
+                                            $( document ).ready(function() {
+                                                <?php echo $_SESSION['error'][0]; ?>
+                                                <?php unset($_SESSION['error']); ?>
+                                            });
+                                        </script>
+                                    <?php endif; ?>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -224,19 +237,5 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#cpf_usu').mask("000.000.000-00");
-    });
-
-    $(document).ready(function () {
-        $('#data_nasc').mask('00/00/0000')
-    });
-
-    $(document).ready(function () {
-        $('#celular').mask('(00)00000-0000')
-    });
-</script>
 
 <?php $render('sitePrincipal/footer'); ?>

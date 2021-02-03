@@ -72,6 +72,7 @@
 <script src="<?php echo BASE_ASS; ?>js/owl.carousel.min.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/jquery.magnific-popup.min.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/scrollax.min.js"></script>
+<script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
 
 <script src="<?php echo BASE_ASS; ?>js/main.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/validaCadastro.js"></script>
