@@ -29,14 +29,9 @@
                                 <div id="form-message-warning" class="mb-4"></div>
                                 <br>      
 
-                                <?php if(isset($_SESSION['error'])): ?>
-                                        <?php foreach($_SESSION['error'] as $erro): ?>
-                                            <?php echo $erro; unset($_SESSION['error']); ?> 
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                <br>
+                                <div id="retorno"></div>
 
-                                <form method="POST" action="/crie-sua-loja/inserir" id="contactForm" name="cadastro" class="contactForm">
+                                <form method="POST" id="cadastro" name="cadastro" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Pessoais</legend>
@@ -68,7 +63,7 @@
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="email" class="form-control" name="email_usu"
-                                                            id="email" placeholder="E-mail">
+                                                            id="email_usu" placeholder="E-mail">
                                                         <div id="error3"></div>
                                                     </div>
                                                 </div>
@@ -162,7 +157,7 @@
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                      
-                                                        <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado_usu">
+                                                        <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado_usu" id="estado_usu">
                                                             <?php foreach($estados as $estado): ?>
                                                                 <option value="<?php echo $estado['estado_id']; ?>"><?php echo $estado['nome_estado']; ?></option>
                                                             <?php endforeach; ?>
@@ -222,6 +217,8 @@
                                             <input type="submit" value="Cadastrar" class="btn btn-success">
                                         </div>
                                     </div>
+
+                                    <div id="loading"></div>
                                 </form>
                             </div>
                         </div>

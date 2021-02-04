@@ -1,3 +1,47 @@
+$(function(){
+    $('#cadastro').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: '/crie-sua-loja/inserir',
+            type: 'POST',
+            data: {
+                nome_usu: $('#nome_usu').val(),
+                celular: $('#celular').val(),
+                rua_usu: $('#rua_usu').val(),
+                cep_usu: $('#cep_usu').val(),
+                sobrenome_usu: $('#sobrenome_usu').val(),
+                cpf_usu: $('#cpf_usu').val(),
+                bairro_usu: $('#bairro_usu').val(),
+                estado_usu: $('#estado_usu').val(),
+                email_usu: $('#email_usu').val(),
+                data_nasc: $('#data_nasc').val(),
+                num_usu: $('#num_usu').val(),
+                subdominio: $('#subdominio').val(),
+                nome_fan: $('#nome_fan').val(),
+                cnpj: $('#cnpj').val()
+            },
+            dataType: 'JSON',
+            beforeSend: function(){
+                $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Carregando...</span></div>');
+            },
+            success:function(dados){
+                if(dados.message == 1){
+                    $('#retorno').html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso! clique em "Próximo" para proseguir &nbsp <a href="/crie-sua-loja/pagamento"> <strong> Próximo </strong> </a> </div>');
+                    $('#cadastro input').val("");
+                    $('#cadastro input[type = submit]').val("CADASTRAR")
+                    $('#loading').html('');
+                    $('html, body').animate({scrollTop:500}, 'slow');
+                }else{
+                    $('#loading').html('');
+                    $('#retorno').html(dados.message);
+                    $('html, body').animate({scrollTop:500}, 'slow');
+                }
+            }
+        });
+    });
+});
+
 $('#nome_usu').blur(function(){
     var nome = $('#nome_usu').val();
     var padrao = /[^a-zà-ú]/gi;
@@ -6,7 +50,7 @@ $('#nome_usu').blur(function(){
 
     if(valida_nome || !nome){
         $('#error1').html('<p style="color: #fa3200;font-weight: bolder;">Nome em branco ou com caracteres inválidos!</p>');
-        toastr.error ('Nome em branco!');
+        toastr.error ('Nome em branco ou com caracteres inválidos!');
         return;
     }else{
         $('#error1').html('');
@@ -22,7 +66,7 @@ $('#sobrenome_usu').blur(function(){
 
     if(valida_nome || !nome){
         $('#error2').html('<p style="color: #fa3200;font-weight: bolder;">Sobrenome em branco ou com caracteres inválidos!</p>');
-        toastr.error ('Sobrenome em branco!');
+        toastr.error ('Sobrenome em branco ou com caracteres inválidos!');
         return;
     }else{
         $('#error2').html('');
