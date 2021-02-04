@@ -64,6 +64,13 @@ $('#cpf_usu').blur(function(){
         $('#error5').html('');
     }
 
+    if(!TestaCPF($('#cpf_usu').val())){
+        $('#error5').html('<p style="color: #fa3200;font-weight: bolder;">CPF inválido!</p>');
+        toastr.error ('CPF inválido!');
+        return;
+    }else{
+        $('#error5').html('');
+    }
 });
 
 $('#data_nasc').blur(function(){
@@ -151,7 +158,7 @@ $('#nome_fan').blur(function(){
 });
 
 $(document).ready(function () {
-    $('#cpf_usu').mask("000.000.000-00");
+    $('#cpf_usu').mask("00000000000");
 });
 
 $(document).ready(function () {
@@ -163,10 +170,30 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#cnpj').mask('00.000.000/0000-00')
+    $('#cnpj').mask('00000000000000')
 });   
 
 $(document).ready(function () {
     $('#cep_usu').mask('00000-000')
 });  
 
+function TestaCPF(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+  if (strCPF == "00000000000") return false;
+
+  for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+  Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+
+  Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
+}

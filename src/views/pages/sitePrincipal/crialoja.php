@@ -27,11 +27,15 @@
                                 <h6 class="mb-4" style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
                                     (*) são obrigatórios.</h6>
                                 <div id="form-message-warning" class="mb-4"></div>
-                                <br>          
-                                <?php if(isset($_SESSION['error'])){
-                                    echo $_SESSION['error'][1];
-                                }?>  
+                                <br>      
+
+                                <?php if(isset($_SESSION['error'])): ?>
+                                        <?php foreach($_SESSION['error'] as $erro): ?>
+                                            <?php echo $erro; unset($_SESSION['error']); ?> 
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 <br>
+
                                 <form method="POST" action="/crie-sua-loja/inserir" id="contactForm" name="cadastro" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
@@ -212,16 +216,6 @@
                                             </div>
                                         </fieldset><br>
                                     </div>
-
-                                    <?php if(isset($_SESSION['error'])): ?>
-                                        <?php echo $_SESSION['error'][1]; ?>
-                                        <script type="text/javascript">
-                                            $( document ).ready(function() {
-                                                <?php echo $_SESSION['error'][0]; ?>
-                                                <?php unset($_SESSION['error']); ?>
-                                            });
-                                        </script>
-                                    <?php endif; ?>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
