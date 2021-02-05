@@ -6,9 +6,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-end">
             <div class="col-md-9 ftco-animate pb-5">
-                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i
-                                class="ion-ios-arrow-forward"></i></a></span> <span>Crie sua Loja <i
-                            class="ion-ios-arrow-forward"></i></span></p>
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Crie sua Loja <i class="ion-ios-arrow-forward"></i></span></p>
                 <h1 class="mb-0 bread">Crie sua loja</h1>
             </div>
         </div>
@@ -23,16 +21,37 @@
                     <div class="row no-gutters justify-content-center">
                         <div class="col-lg col-md-7 order-md-last d-flex align-items-stretch">
                             <div class="contact-wrap w-100 p-md-5 p-4">
-                                <h2 class="mb-4">Cadastre-se para criar sua loja</h2>
+                                <h1 class="mb-4">Cadastre-se para criar sua loja</h1>
                                 <h6 class="mb-4" style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
                                     (*) são obrigatórios.</h6>
                                 <div id="form-message-warning" class="mb-4"></div>
                                 <br>      
-
                                 <div id="retorno"></div>
+                                <br>
+                                <form method="POST" id="acha_cadastro" name="acha_cadastro" class="contactForm">
+                                    <div class="col-md">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h2>Continuar com o pagamento</h2>
+                                                <div class="form-group">
+                                                    <label class="label" for="cpf_cad">Se você se cadastrou mas ainda não finalizou o pagamento, informe seu CPF abaixo para continuar:</label>
+                                                    <input type="text" class="form-control" name="cpf_cad" id="cpf_cad" placeholder="Informe aqui o CPF cadastrado">
+                                                </div>
+                                            </div>
 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Continuar" class="btn btn-success">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                <br><br>
                                 <form method="POST" id="cadastro" name="cadastro" class="contactForm">
                                     <div class="col-md">
+                                        <h2>Novo cadastro</h2>
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Pessoais</legend>
                                             <div class="row">

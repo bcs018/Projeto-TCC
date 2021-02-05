@@ -42,6 +42,42 @@ $(function(){
     });
 });
 
+$(function(){
+    $('#acha_cadastro').on('submit', function(e){
+        e.preventDefault();
+
+        if(!TestaCPF( $('#cpf_cad').val())){
+            toastr.error ('CPF inválido!');
+            return;
+        }else{
+            $('#error5').html('');
+        }
+
+        $.ajax({
+            url: '/crie-sua-loja/verifica-cpf',
+            type: 'POST',
+            data: {
+                cpf_cad: $('#cpf_cad').val()
+            },
+            dataType: 'JSON',
+            beforeSend: function(){
+                $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Carregando...</span></div>');
+            },
+            success:function(dados){
+                if(dados.message == 1){
+                   $('#loading').html('');
+                   window.location.href = '/crie-sua-loja/pagamento';
+                }else{
+                    $('#loading').html('');
+                    $('#retorno').html(dados.message);
+                    $('html, body').animate({scrollTop:500}, 'slow');
+                }
+            }
+        });
+
+    });
+});
+
 $('#nome_usu').blur(function(){
     var nome = $('#nome_usu').val();
     var padrao = /[^a-zà-ú]/gi;
@@ -206,6 +242,10 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#cpf_cad').mask("00000000000");
+});
+
+$(document).ready(function () {
     $('#data_nasc').mask('00/00/0000')
 });
 
@@ -226,6 +266,21 @@ function TestaCPF(strCPF) {
     var Resto;
     Soma = 0;
   if (strCPF == "00000000000") return false;
+
+  if(
+     strCPF == "00000000000" ||
+     strCPF == "11111111111" ||
+     strCPF == "22222222222" ||
+     strCPF == "33333333333" ||
+     strCPF == "44444444444" ||
+     strCPF == "55555555555" ||
+     strCPF == "66666666666" ||
+     strCPF == "77777777777" ||
+     strCPF == "88888888888" ||
+     strCPF == "99999999999" 
+){
+    return false;
+  }
 
   for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
   Resto = (Soma * 10) % 11;

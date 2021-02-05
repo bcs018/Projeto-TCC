@@ -31,12 +31,13 @@ create table usuario(
     sobrenome varchar(100) not null,
     celular varchar(30) not null,
     dt_nascimento varchar(11) not null,
-    cpf int not null,
+    cpf varchar(11) not null,
     email varchar(100) not null,
     rua varchar(100) not null,
     bairro varchar(100) not null,
     numero int not null,
     cep int not null,
+    ativo tinyint not null,
     
     primary key(usuario_id),
     foreign key (estado_id) references estado(estado_id)

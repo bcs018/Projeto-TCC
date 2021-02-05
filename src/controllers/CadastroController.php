@@ -13,6 +13,10 @@ class CadastroController extends Controller {
         $this->render('sitePrincipal/crialoja', ['estados'=>$estados]);
     }
 
+    public function pagamento(){
+        $this->render('sitePrincipal/pagamento');        
+    }
+
     public function inserir(){
         $message['message']='';
         if (!$_POST['nome_usu'] || !$_POST['sobrenome_usu'] || !$_POST['email_usu']  || 
@@ -33,9 +37,6 @@ class CadastroController extends Controller {
         $dados = $cadastro->inserir_cad($_POST);
 
         if($dados == ''){
-            /*$message['message'] = '<div class="alert alert-success" role="alert">
-                                        Cadastro efetuado com sucesso! clique em "Próximo" para proseguir <a href="/crie-sua-loja/pagamento"> <strong> Próximo </strong> </a>
-                                   </div>';*/
             echo json_encode( ['message'=>1] );
             exit;
         }else{
@@ -49,6 +50,28 @@ class CadastroController extends Controller {
         header("Location: ". $_SERVER['HTTP_REFERER']);
         exit;
 
+    }
+
+    public function verifica_cpf_cadastrado(){
+        if(!$_POST['cpf_cad']){
+            $message['message'] = '<div class="alert alert-danger" role="alert">
+                                            CPF não preenchido!
+                                    </div>';
+
+            echo json_encode( $message );
+            exit;     
+        }
+
+        $cadastro = new Cadastro;
+        $dados = $cadastro->ver_cpf_cadastrado($_POST['cpf_cad']);
+
+        if($dados == ''){
+            echo json_encode( ['message'=>1] );
+            exit;
+        }else{
+            echo json_encode( $dados );
+            exit;
+        }
     }
 
 }

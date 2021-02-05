@@ -82,6 +82,18 @@ class Cadastro extends Model{
             }
         }
 
+        $sql = "SELECT * FROM usuario WHERE cpf = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $POST['cpf_usu']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            CPF já existe na base de dados!
+                                                        </div>';
+            $flag = true;
+        }
+
         /**
          * Fim da validação
          */
@@ -91,8 +103,8 @@ class Cadastro extends Model{
             return $message;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, ativo)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['estado_usu']);
         $sql->bindValue(2, $POST['nome_usu']);
@@ -105,9 +117,43 @@ class Cadastro extends Model{
         $sql->bindValue(9, $POST['bairro_usu']);
         $sql->bindValue(10, $POST['num_usu']);
         $sql->bindValue(11, $POST['cep_usu']);
+        $sql->bindValue(12, 0);
         $sql->execute();
     }
 
+    public function ver_cpf_cadastrado($cpf){
+        $message['message']='';
+
+        if(!$this->validaCpf($cpf)){
+            $message['message'] = '<div class="alert alert-danger" role="alert">
+                                    CPF inválido!
+                                  </div>';
+            return $message;
+        }
+
+        $sql = "SELECT * FROM usuario WHERE cpf = ? AND ativo = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $cpf);
+        $sql->bindValue(2, 0);
+        $sql->execute();
+
+        if($sql->rowCount() == 0){
+            $message['message'] = '<div class="alert alert-danger" role="alert">
+                                        CPF não cadastrado ou você já possui uma conta ativa!
+                                    </div>';
+            return $message;
+        }
+        $id_person = $sql->fetch();
+
+        $_SESSION['person']['id']   = $id_person['usuario_id'];
+        $_SESSION['person']['name'] = $id_person['nome'];
+    }
+
+
+
+
+
+    
     private function validaCpf($cpf){
         // Extrai somente os números
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
