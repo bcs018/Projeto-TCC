@@ -119,6 +119,13 @@ class Cadastro extends Model{
         $sql->bindValue(11, $POST['cep_usu']);
         $sql->bindValue(12, 0);
         $sql->execute();
+
+        $sql = "SELECT last_insert_id() as 'ult'";
+        $id_person = $this->db->query($sql)->fetch();
+
+        $_SESSION['person']['id']   = $id_person;
+        $_SESSION['person']['name'] = $POST['nome_usu'];
+
     }
 
     public function ver_cpf_cadastrado($cpf){
