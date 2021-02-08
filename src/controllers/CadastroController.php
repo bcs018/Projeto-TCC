@@ -3,6 +3,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\models\Cadastro;
+use \src\models\Plano;
 
 class CadastroController extends Controller {
 
@@ -14,7 +15,10 @@ class CadastroController extends Controller {
     }
 
     public function pagamento(){
-        $this->render('sitePrincipal/pagamento');        
+        $plano = new Plano;
+        $planos = $plano->listarPlano();
+
+        $this->render('sitePrincipal/pagamento', ['planos'=>$planos]);        
     }
 
     public function inserir(){

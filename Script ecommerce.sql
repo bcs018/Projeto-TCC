@@ -43,15 +43,31 @@ create table usuario(
     foreign key (estado_id) references estado(estado_id)
 )default charset utf8;
 
+create table plano(
+    plano_id int not null auto_increment,
+    nome_plano varchar(50),
+    descricao_plano varchar(100),
+    preco int,
+
+    primary key(plano_id)
+)default charset utf8;
+
+insert into plano (nome_plano, descricao_plano, preco)
+values ('Free', '5 produtos;Relatórios somente do mês;Suporte;Acesso a um template padrão', 0),
+	   ('Pro', '15 produtos;Relatórios até 6 meses atrás;Suporte;Acesso a todos template', 60),
+       ('Super Pro', 'Produtos ilimitados;Relatórios desde o dia da criação da loja;Suporte;Acesso a todos templates', 100);
+
 create table ecommerce_usu(
 	ecommerce_id int not null auto_increment,
     usuario_id int not null,
+    plano_id int,
     sub_dominio varchar(50) not null,
     nome_fantasia varchar(50) not null,
     cnpj int,
     
     primary key(ecommerce_id),
-    foreign key(usuario_id) references usuario(usuario_id)
+    foreign key(usuario_id) references usuario(usuario_id),
+    foreign key(plano_id) references plano(plano_id)
 )default charset utf8;
 
 create table usuario_ecommerce(

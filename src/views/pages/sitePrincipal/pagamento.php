@@ -42,60 +42,29 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
+
+				<?php foreach($planos as $plano): ?>
 				<div class="col-md-6 col-lg-3 ftco-animate" id="margin_exp">
 					<div class="block-7">
 						<div class="text-center">
-							<span class="excerpt d-block">Gratis</span>
-							<span class="price"><sup>R$</sup> <span class="number">0</span> <sub>/mês</sub></span>
-
-							<ul class="pricing-text mb-5">
-								<li><span class="fa fa-check mr-2"></span>5 produtos</li>
-								<li><span class="fa fa-check mr-2"></span>Relatótios somente do mês</li>
-								<li><span class="fa fa-check mr-2"></span>Suporte</li>
-								<li><span class="fa fa-check mr-2"></span>Acesso a um template padrão</li>
+							<span class="excerpt d-block"><?php echo $plano['nome_plano']; ?></span>
+							<span class="price"><sup>R$</sup> <span class="number"><?php echo $plano['preco']; ?></span> <sub>/mês</sub></span>
+							
+							<?php $descricoes = explode(";", $plano['descricao_plano']); 
+								echo '<ul class="pricing-text mb-5">';
+								foreach($descricoes as $descricao): ?>
+									<li><span class="fa fa-check mr-2"></span><?php echo $descricao; ?></li>
+								<?php endforeach; ?>
 							</ul>
-
 							<a href="#" class="btn btn-primary d-block px-2 py-3">Comprar</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate" id="margin_exp">
-					<div class="block-7">
-						<div class="text-center">
-							<span class="excerpt d-block">Pro</span>
-							<span class="price"><sup>R$</sup> <span class="number">60</span> <sub>/mês</sub></span>
+				<?php endforeach; ?>
 
-							<ul class="pricing-text mb-5">
-								<li><span class="fa fa-check mr-2"></span>15 produtos</li>
-								<li><span class="fa fa-check mr-2"></span>Relatórios até 6 meses atrás</li>
-								<li><span class="fa fa-check mr-2"></span>Suporte</li>
-								<li><span class="fa fa-check mr-2"></span>Acesso a todos templates</li>
-							</ul>
-
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Comprar</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="block-7">
-						<div class="text-center">
-							<span class="excerpt d-block">Super Pro</span>
-							<span class="price"><sup>R$</sup> <span class="number">100</span> <sub>/mês</sub></span>
-
-							<ul class="pricing-text mb-5">
-								<li><span class="fa fa-check mr-2"></span>Produtos Ilimitados</li>
-								<li><span class="fa fa-check mr-2"></span>Relatórios desde o dia da criação da loja</li>
-								<li><span class="fa fa-check mr-2"></span>Suporte</li>
-								<li><span class="fa fa-check mr-2"></span>Acesso a todos templates</li>
-							</ul>
-
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Comprar</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
-    <br><br><br>
+    <br><br><br><br>
 <?php $render('sitePrincipal/footer')?>
 
