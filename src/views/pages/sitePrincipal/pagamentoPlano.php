@@ -1,5 +1,16 @@
 <?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Pagamento']); ?>
 
+<?php 
+if(!isset($_SESSION['person'])){
+    header('Location: /crie-sua-loja');
+}
+
+if($plano == false){
+    $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">Plano inexistente, escolha outro.</div><br>';
+    header('Location: /crie-sua-loja/pagamento');
+}
+?>
+
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -112,34 +123,31 @@
                                 <form method="POST" id="cadastro" name="cadastro" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
-                                            <legend class="w-auto">Dados do plano</legend>
+                                            <legend class="w-auto">Informações do plano</legend>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Nome do plano</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
-                                                        <input type="text" class="form-control" name="nome_usu" id="nome_usu" placeholder="Nome" autofocus>
-                                                        <div id="error1"></div>
+                                                        <label class="label">Nome do plano:</label>
+                                                        <p><?php echo $plano['nome_plano']; ?></p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Direitos</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
-                                                        </div>
-                                                        <input type="text" class="form-control" name="sobrenome_usu" id="sobrenome_usu" placeholder="Sobrenome">
-                                                        <div id="error2"></div>
+                                                        <label class="label" for="name">Direitos:</label>
+                                                        <?php $direitos = explode(";", $plano['descricao_plano']); ?>
+                                                        <p>
+                                                            <?php foreach($direitos as $direito): ?>
+                                                            <?php echo $direito; ?>. <br>
+                                                            <?php endforeach; ?>
+                                                        </p>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Preço</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
-                                                        </div>
-                                                        <input type="email" class="form-control" name="email_usu" id="email_usu" placeholder="E-mail">
-                                                        <div id="error3"></div>
+                                                        <label class="label" for="email">Preço:</label>
+                                                        <p></p>
                                                     </div>
                                                 </div>
 

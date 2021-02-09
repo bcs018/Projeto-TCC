@@ -1,5 +1,11 @@
 <?php $render('sitePrincipal/header', ['title'=>'BW Commerce | Pagamento']); ?>
 
+<?php 
+if(!isset($_SESSION['person'])){
+    header('Location: /crie-sua-loja');
+}
+?>
+
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');"
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -21,6 +27,12 @@
                     <div class="row no-gutters justify-content-center">
                         <div class="col-lg col-md-7 order-md-last d-flex align-items-stretch">
                             <div class="contact-wrap w-100 p-md-5 p-4">
+                                <?php
+                                if(isset($_SESSION['message'])){
+                                    echo $_SESSION['message'];
+                                    unset($_SESSION['message']);
+                                }
+                                ?>
                                 <h1 class="mb-4">Será uma honra ter você como cliente <?php echo $_SESSION['person']['name']; ?></h1>
                                 <br>
                                 <h3 class="mb-4">Escolha um de nossos planos que mais lhe agrada!</h3>

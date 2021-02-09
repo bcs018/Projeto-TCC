@@ -13,4 +13,18 @@ class Plano extends Model {
         return $sql;
     }
 
+    public function pegarItem($pl){
+        $sql = "SELECT * FROM plano WHERE plano_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $pl['pl']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return false;
+   
+    }
+
 }

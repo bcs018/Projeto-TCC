@@ -22,7 +22,10 @@ class CadastroController extends Controller {
     }
 
     public function pagamentoPlano($pl){
-        $this->render('sitePrincipal/pagamentoPlano');        
+        $plano = new Plano;
+        $pl = $plano->pegarItem($pl);
+        
+        $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl]);        
     }
 
     public function inserir(){
