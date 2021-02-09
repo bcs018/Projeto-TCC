@@ -21,6 +21,10 @@ class CadastroController extends Controller {
         $this->render('sitePrincipal/pagamento', ['planos'=>$planos]);        
     }
 
+    public function pagamentoPlano($pl){
+        $this->render('sitePrincipal/pagamentoPlano');        
+    }
+
     public function inserir(){
         $message['message']='';
         if (!$_POST['nome_usu'] || !$_POST['sobrenome_usu'] || !$_POST['email_usu']  || 

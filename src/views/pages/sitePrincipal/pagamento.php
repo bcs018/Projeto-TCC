@@ -56,7 +56,7 @@
 									<li><span class="fa fa-check mr-2"></span><?php echo $descricao; ?></li>
 								<?php endforeach; ?>
 							</ul>
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Comprar</a>
+							<a href="/crie-sua-loja/pagamento/<?php echo $plano['plano_id']; ?>" class="btn btn-primary d-block px-2 py-3">Comprar</a>
 						</div>
 					</div>
 				</div>
