@@ -69,10 +69,11 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav m-auto">
-					<li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">Sobre</a></li>
 					<li class="nav-item"><a href="services.html" class="nav-link">Serviços</a></li>
 					<li class="nav-item"><a href="cases.html" class="nav-link">Como funciona</a></li>
+					<li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 					<li class="nav-item" id="cria_loj"><a href="/crie-sua-loja" class="nav-link">Crie sua loja</a></li>
 				</ul>
 			</div>

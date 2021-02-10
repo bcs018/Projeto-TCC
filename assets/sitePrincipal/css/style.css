@@ -8142,10 +8142,10 @@ h1, h2, h3, h4, h5,
 		color: #fff;
 	}
 	#cria_loj:hover{
-		background-color: #b0d5fb;
+		background-color: #007cff;
 	}
 	#cria_loj > a:hover{
-		color: black;
+		color: #ffffff;
 	}
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:before {
       content: "";

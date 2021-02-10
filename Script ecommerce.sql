@@ -37,7 +37,7 @@ create table usuario(
     bairro varchar(100) not null,
     numero int not null,
     cep int not null,
-    ativo tinyint not null,
+    ativo tinyint not null default 0,
     
     primary key(usuario_id),
     foreign key (estado_id) references estado(estado_id)
