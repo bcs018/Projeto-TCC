@@ -25,10 +25,9 @@ if($plano == false){
 
 <br><br><br>
 <center>
-<h2><?php echo $_SESSION['person']['name']; ?>, estamos quase lá, preencha os dados para pagamento.</h2>
+    <h2><?php echo $_SESSION['person']['name']; ?>, estamos quase lá, preencha os dados para pagamento.</h2>
+    <h6 class="mb-4" style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco (*) são obrigatórios.</h6>
 </center>
-
-
 
 <section class="ftco-section bg-light">
     <div class="container">
@@ -40,7 +39,7 @@ if($plano == false){
                             <div>
                                 <div id="retorno"></div>
                                 <br>
-                                <form method="POST" id="cadastro" name="cadastro" class="contactForm">
+                                <form method="POST" id="final_pagamento" name="final_pagamento" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Dados para pagamento</legend>
@@ -49,7 +48,7 @@ if($plano == false){
                                                     <div class="form-group">
                                                         <label class="label" for="name">Número do cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
-                                                        <input type="text" class="form-control" name="nome_usu" id="nome_usu" placeholder="Nome" autofocus>
+                                                        <input type="text" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão" autofocus>
                                                         <div id="error1"></div>
                                                     </div>
                                                 </div>
@@ -59,7 +58,7 @@ if($plano == false){
                                                         <label class="label" for="name">Nome completo</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="sobrenome_usu" id="sobrenome_usu" placeholder="Sobrenome">
+                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome completo">
                                                         <div id="error2"></div>
                                                     </div>
                                                 </div>
@@ -69,7 +68,7 @@ if($plano == false){
                                                         <label class="label" for="email">Data de vencimento</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="email" class="form-control" name="email_usu" id="email_usu" placeholder="E-mail">
+                                                        <input type="email" class="form-control" name="dt_ven" id="dt_ven" placeholder="Data de vencimento">
                                                         <div id="error3"></div>
                                                     </div>
                                                 </div>
@@ -79,7 +78,7 @@ if($plano == false){
                                                         <label class="label" for="email">Código de segurnça</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="celular" id="celular" placeholder="Celular">
+                                                        <input type="text" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
                                                         <div id="error4"></div>
                                                     </div>
                                                 </div>
@@ -89,7 +88,7 @@ if($plano == false){
                                                         <label class="label" for="subject">CPF do titular do cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="cpf_usu" id="cpf_usu" placeholder="CPF">
+                                                        <input type="text" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
                                                         <div id="error5"></div>
                                                     </div>
                                                 </div>
@@ -147,27 +146,14 @@ if($plano == false){
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="label" for="email">Preço:</label>
-                                                        <p></p>
+                                                        <p>R$<?php echo number_format($plano['preco'], 2, ',', '.'); ?></p>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="label" for="email">Celular</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
-                                                        </div>
-                                                        <input type="text" class="form-control" name="celular" id="celular" placeholder="Celular">
-                                                        <div id="error4"></div>
-                                                    </div>
-                                                </div>
-
-                                                
                                             </div>
                                         </fieldset>
                                     </div>
                                     <br>
-                                    
-
+                                
                                     <div id="loading"></div>
                                 </form>
                             </div>

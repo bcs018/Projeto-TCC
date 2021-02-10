@@ -76,6 +76,7 @@
 
 <script src="<?php echo BASE_ASS; ?>js/main.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/validaCadastro.js"></script>
+<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/validaPgm.js"></script>
 <script src=" https://kit.fontawesome.com/2ebeb81d35.js"></script>
 
 </body>
