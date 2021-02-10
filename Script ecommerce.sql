@@ -47,7 +47,7 @@ create table plano(
     plano_id int not null auto_increment,
     nome_plano varchar(50),
     descricao_plano varchar(100),
-    preco int,
+    preco decimal(10,2),
 
     primary key(plano_id)
 )default charset utf8;
@@ -112,8 +112,8 @@ create table produto(
     nome_pro varchar(50) not null,
     descricao varchar(100),
     estoque int not null,
-    preco int not null,
-    preco_antigo int not null default 0,
+    preco decimal(10,2) not null,
+    preco_antigo decimal(10,2) not null default 0,
     media_avaliacao int,
     promocao tinyint default 0,
     novo_produto tinyint default 0,
@@ -151,7 +151,7 @@ create table cupom(
 	cupom_id int not null auto_increment,
     nome_cupom varchar(10) not null,
     tipo_cupom int not null,
-    valor_cupom int not null,
+    valor_cupom decimal(10,2) not null,
     
     primary key(cupom_id)
 )default charset utf8;
@@ -161,7 +161,7 @@ create table compra(
     usuario_id int not null,
     cupom_id int not null,
     ecommerce_id int not null,
-    total_compra int not null,
+    total_compra decimal(10,2) not null,
     tipo_pagamento int not null,
     status_pagamanto int not null,
     
@@ -174,7 +174,7 @@ create table compra(
 create table transacao_compra(
 	tc_id int not null auto_increment,
     compra_id int not null,
-    valor_pago int not null,
+    valor_pago decimal(10,2) not null,
     cod_transacao varchar(100),
     
     primary key(tc_id),
