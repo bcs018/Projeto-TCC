@@ -6,7 +6,7 @@
                     <div class="col-md-4 mb-md-0 mb-4">
                         <h2 class="footer-heading">Sobre nós</h2>
                         <p>Somos uma pequena startup pensando em solucionar a dificuldade em criação de lojas virtuais
-                            para pequenos empreendedores e micro empresas.</p>
+                            para pequenos empreendedores e micro empresas.</p><br>
                         <ul class="ftco-footer-social p-0">
                             <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
                                     title="Twitter"><span class="fa fa-twitter"></span></a></li>

@@ -57,7 +57,7 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container-fluid">
+		<div class="container">
 			<a href="/">
 				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="210px" height="55px">
 			</a>

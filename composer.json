@@ -1,6 +1,7 @@
 {
     "require": {
-        "clancats/hydrahon": "^1.1"
+        "clancats/hydrahon": "^1.1",
+        "pagseguro/pagseguro-php-sdk": "^6.0"
     },
     "autoload": {
         "psr-4": {
