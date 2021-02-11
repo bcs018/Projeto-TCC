@@ -60,7 +60,7 @@ if(!isset($_SESSION['person'])){
 					<div class="block-7">
 						<div class="text-center">
 							<span class="excerpt d-block"><?php echo $plano['nome_plano']; ?></span>
-							<span class="price"><sup>R$</sup> <span class="number"><?php echo $plano['preco']; ?></span> <sub>/mês</sub></span>
+							<span class="price"><sup>R$</sup> <span class="number"><?php echo number_format($plano['preco'],0,',','.'); ?></span> <sub>/mês</sub></span>
 							
 							<?php $descricoes = explode(";", $plano['descricao_plano']); 
 								echo '<ul class="pricing-text mb-5">';

@@ -29,6 +29,8 @@ class Cadastro extends Model{
         $POST['cep_usu']        = $POST['cep_usu'][0].$POST['cep_usu'][1];
         $POST['subdominio']     = strip_tags($POST['subdominio']);
         $POST['nome_fan']       = filter_var($POST['nome_fan'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $POST['senha']          = $POST['senha'];
+        $POST['rep_senha']      = $POST['rep_senha'];
         
         if(!$this->validaCpf($POST['cpf_usu'])){
             $message['message'] = '<div class="alert alert-danger" role="alert">
@@ -82,6 +84,21 @@ class Cadastro extends Model{
             }
         }
 
+        if($POST['senha'] != $POST['rep_senha']){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Senhas não batem!
+                                                        </div>';
+            $flag = true;
+
+        }
+
+        if(strlen($POST['senha']) < 6 || strlen($POST['rep_senha']) < 6){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Senhas menor que seis caracteres!
+                                                        </div>';
+            $flag = true;
+        }
+
         $sql = "SELECT * FROM usuario WHERE cpf = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['cpf_usu']);
@@ -103,8 +120,8 @@ class Cadastro extends Model{
             return $message;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, ativo)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, ativo, senha)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['estado_usu']);
         $sql->bindValue(2, $POST['nome_usu']);
@@ -118,6 +135,7 @@ class Cadastro extends Model{
         $sql->bindValue(10, $POST['num_usu']);
         $sql->bindValue(11, $POST['cep_usu']);
         $sql->bindValue(12, 0);
+        $sql->bindValue(13, md5($POST['cep_usu']));
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";

@@ -12,6 +12,6 @@
     </div>
 </section>
 
-<center> <h1 style="margin: 15%;">A página que você solicitou não foi encontrada.</h1></center>
+<center> <h1 style="margin: 15%;">A página que você solicitou não foi encontrada :(</h1></center>
 
 <?php $render('sitePrincipal/footer'); ?>

@@ -38,6 +38,7 @@ create table usuario(
     numero int not null,
     cep int not null,
     ativo tinyint not null default 0,
+    senha varchar(32) not null,
     
     primary key(usuario_id),
     foreign key (estado_id) references estado(estado_id)

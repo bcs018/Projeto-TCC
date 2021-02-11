@@ -11,14 +11,14 @@
 						<b>Login</b>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="email" placeholder="Informe seu CPF">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Senha">
+					<div class="wrap-input100 rs1 validate-input">
+						<input class="input100" type="password" name="pass" placeholder="Informe sua senha">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -42,6 +42,25 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+
+		var times = "<?php echo time()+300; ?>";
+		times = parseInt(times);
+		var newTimes = "<?php echo time(); ?>";
+		newTimes = parseInt(newTimes);
+
+		setInterval(function(){
+			newTimes += 1;
+
+			console.log("Times: "+times+ " NewTimes: "+newTimes);
+
+			if(times < newTimes){
+				alert('Sua sessão sera encerrada');
+			}
+		
+		}, 1000);		
+	</script>
 
 <?php $render('sitePrincipal/footer'); ?>
 

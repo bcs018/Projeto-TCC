@@ -169,4 +169,4 @@ if($plano == false){
 
 
 <br><br><br><br>
-<?php $render('sitePrincipal/footer') ?>
+<?php $render('sitePrincipal/footer') ?>rgb(255, 255, 255)rgb(255, 255, 255)rgb(253, 253, 253)

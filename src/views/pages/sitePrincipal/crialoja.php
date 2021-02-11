@@ -57,7 +57,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Nome</label>
+                                                        <label class="label" for="nome_usu">Nome</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
                                                         <input type="text" class="form-control" name="nome_usu"
                                                             id="nome_usu" placeholder="Nome" autofocus>
@@ -67,7 +67,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Sobrenome</label>
+                                                        <label class="label" for="sobrenome_usu">Sobrenome</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="text" class="form-control" name="sobrenome_usu"
@@ -78,7 +78,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">E-mail</label>
+                                                        <label class="label" for="email_usu">E-mail</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="email" class="form-control" name="email_usu"
@@ -89,7 +89,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Celular</label>
+                                                        <label class="label" for="celular">Celular</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="text" class="form-control" name="celular"
@@ -100,7 +100,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="subject">CPF</label>
+                                                        <label class="label" for="cpf_usu">CPF</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="text" class="form-control" name="cpf_usu"
@@ -110,12 +110,31 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Data de nascimento</label>
+                                                        <label class="label" for="data_nasc">Data de nascimento</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
                                                         <input type="text" class="form-control" name="data_nasc"
                                                             id="data_nasc" placeholder="Data de nascimento">
                                                         <div id="error6"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="senha">Senha</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
+                                                        </div>
+                                                        <input type="password" class="form-control" name="senha"
+                                                            id="senha" placeholder="Senha">
+                                                        <div id="error14"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="label" for="rep_senha">Repita a senha</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
+                                                        </div>
+                                                        <input type="password" class="form-control" name="rep_senha"
+                                                            id="rep_senha" placeholder="Repita a senha">
                                                     </div>
                                                 </div>
                                             </div>

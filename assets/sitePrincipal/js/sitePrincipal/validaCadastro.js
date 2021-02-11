@@ -19,7 +19,9 @@ $(function(){
                 num_usu: $('#num_usu').val(),
                 subdominio: $('#subdominio').val(),
                 nome_fan: $('#nome_fan').val(),
-                cnpj: $('#cnpj').val()
+                cnpj: $('#cnpj').val(),
+                senha: $('#senha').val(),
+                rep_senha: $('#rep_senha').val()
             },
             dataType: 'JSON',
             beforeSend: function(){
@@ -92,6 +94,24 @@ $('#nome_usu').blur(function(){
         $('#error1').html('');
     }
 
+});
+
+$('#rep_senha').blur(function(){
+    if( $('#senha').val().length < 6 || $('#rep_senha').val().length < 6 ){
+        $('#error14').html('<p style="color: #fa3200;font-weight: bolder;">Senhas menor que seis caracteres!</p>');
+        toastr.error ('Senhas menor que seis caracteres!!');
+        return;
+    }else{
+        $('#error14').html('');
+    }
+
+    if( $('#senha').val() != $('#rep_senha').val() ){
+        $('#error14').html('<p style="color: #fa3200;font-weight: bolder;">Senhas não batem!</p>');
+        toastr.error ('Senhas não batem!');
+        return;
+    }else{
+        $('#error14').html('');
+    }
 });
 
 $('#sobrenome_usu').blur(function(){
