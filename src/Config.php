@@ -10,7 +10,7 @@ define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
 //Ambiente de produção = sandbox(pgm de teste)
 \PagSeguro\Configuration\Configure::setEnvironment('sandbox');
 //O token voce pega na url sandbox.pagseguro.uol.com.br, faz login, em Perfis de integração clica em Vendedor, la vai ter o token
-\PagSeguro\Configuration\Configure::setAccountCredentials('email da conta pagseguro', 'token');
+\PagSeguro\Configuration\Configure::setAccountCredentials('bwcommerce@outlook.com', '23E3EEF82A4046C5826279C0A3D2A541');
 \PagSeguro\Configuration\Configure::setCharset('UTF-8');
 \PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
 

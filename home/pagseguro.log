@@ -1,0 +1,10 @@
+
+12/02/2021 17:45:16 PagSeguro.Session[info]: Begin
+12/02/2021 17:45:18 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+12/02/2021 17:45:25 PagSeguro.Session[error]: <html><head><title>JBossWeb/2.0.1.GA - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 404 - /pagseguro-api/v2/sessions</h1><HR size="1" noshade="noshade"><p><b>type</b> Status report</p><p><b>message</b> <u>/pagseguro-api/v2/sessions</u></p><p><b>description</b> <u>The requested resource (/pagseguro-api/v2/sessions) is not available.</u></p><HR size="1" noshade="noshade"><h3>JBossWeb/2.0.1.GA</h3></body></html>
+12/02/2021 17:46:54 PagSeguro.Session[info]: Begin
+12/02/2021 17:46:54 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+12/02/2021 17:47:00 PagSeguro.Session[info]: Session ID: a1d1f66443954a628810596af8bfa732
+12/02/2021 17:47:12 PagSeguro.Session[info]: Begin
+12/02/2021 17:47:12 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+12/02/2021 17:47:18 PagSeguro.Session[info]: Session ID: 89875e1e10874bce85e150d19637ebfe

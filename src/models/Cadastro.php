@@ -29,8 +29,8 @@ class Cadastro extends Model{
         $POST['cep_usu']        = $POST['cep_usu'][0].$POST['cep_usu'][1];
         $POST['subdominio']     = strip_tags($POST['subdominio']);
         $POST['nome_fan']       = filter_var($POST['nome_fan'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $POST['senha']          = $POST['senha'];
-        $POST['rep_senha']      = $POST['rep_senha'];
+        $POST['senha']          = filter_var($POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $POST['rep_senha']      = filter_var($POST['rep_senha'], FILTER_SANITIZE_SPECIAL_CHARS);
         
         if(!$this->validaCpf($POST['cpf_usu'])){
             $message['message'] = '<div class="alert alert-danger" role="alert">
@@ -135,7 +135,7 @@ class Cadastro extends Model{
         $sql->bindValue(10, $POST['num_usu']);
         $sql->bindValue(11, $POST['cep_usu']);
         $sql->bindValue(12, 0);
-        $sql->bindValue(13, md5($POST['cep_usu']));
+        $sql->bindValue(13, md5($POST['senha']));
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";
@@ -174,11 +174,6 @@ class Cadastro extends Model{
         $_SESSION['person']['name'] = $id_person['nome'];
     }
 
-
-
-
-
-    
     private function validaCpf($cpf){
         // Extrai somente os números
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );

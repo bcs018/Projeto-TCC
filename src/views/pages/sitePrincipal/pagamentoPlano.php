@@ -10,6 +10,12 @@ if($plano == false){
     header('Location: /crie-sua-loja/pagamento');
 }
 ?>
+<!-- Puxando o script do pagseguro -->
+<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script type="text/javascript">
+    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
+</script>
+
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -39,7 +45,7 @@ if($plano == false){
                             <div>
                                 <div id="retorno"></div>
                                 <br>
-                                <form method="POST" id="final_pagamento" name="final_pagamento" class="contactForm">
+                                <form method="POST" action="/" id="final_pagamento" name="final_pagamento" class="contactForm">
                                     <div class="col-md">
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Dados para pagamento</legend>
@@ -103,6 +109,8 @@ if($plano == false){
                                             <input type="submit" value="Finalizar" class="btn btn-success">
                                         </div>
                                     </div>
+
+                                    <?php echo 'Sessão: '.$sessionCode; ?>
 
                                     <div id="loading"></div>
                                 </form>
