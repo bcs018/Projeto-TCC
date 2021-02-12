@@ -6,7 +6,7 @@ if(!isset($_SESSION['person'])){
 }
 
 if($plano == false){
-    $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">Plano inexistente, escolha outro.</div><br>';
+    $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Plano inexistente, escolha outro.</div><br>';
     header('Location: /crie-sua-loja/pagamento');
 }
 ?>
