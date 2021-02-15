@@ -82,6 +82,8 @@ class Cadastro extends Model{
                                                             </div>';
                 $flag = true;
             }
+        }else{
+            $POST['cnpj'] = 0;
         }
 
         if($POST['senha'] != $POST['rep_senha']){
@@ -140,6 +142,15 @@ class Cadastro extends Model{
 
         $sql = "SELECT last_insert_id() as 'ult'";
         $id_person = $this->db->query($sql)->fetch();
+
+        $sql = "INSERT INTO ecommerce_usu (usuario_id, sub_dominio, nome_fantasia, cnpj)
+                VALUES(?,?,?,?)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id_person['ult']);
+        $sql->bindValue(2, $POST['subdominio']);
+        $sql->bindValue(3, $POST['nome_fan']);
+        $sql->bindValue(4, $POST['cnpj']);
+        $sql->execute();
 
         $_SESSION['person']['id']   = $id_person;
         $_SESSION['person']['name'] = $POST['nome_usu'];
