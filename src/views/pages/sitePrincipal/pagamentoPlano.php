@@ -50,7 +50,16 @@ if($plano == false){
                                                         <label class="label" for="name">Número do cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
                                                         <input type="text" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão" autofocus>
-                                                        <div id="error1"></div>
+                                                        <div id="error1"> </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="name">Número de parcelas</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
+                                                        <select name="parc" id="parc" class="form-control"></select>
+                                                        <div id="error1"> </div>
                                                     </div>
                                                 </div>
 
@@ -66,10 +75,27 @@ if($plano == false){
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Data de vencimento</label>
+                                                        <label class="label" for="email">Mês e ano do vencimento</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="email" class="form-control" name="dt_ven" id="dt_ven" placeholder="Data de vencimento">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="cartao_mes" id="cartao_mes" class="form-control">
+                                                                    <?php for($q=1; $q<=12; $q++): ?>
+                                                                        <option value=""><?php echo ($q<10)?'0'.$q:$q; ?></option>
+                                                                    <?php endfor; ?>
+                                                                </select>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-6">
+                                                                <select name="cartao_ano" id="cartao_ano" class="form-control">
+                                                                    <?php $ano = intval(date('Y')); ?>
+                                                                    <?php for($q=$ano; $q<=($ano+30); $q++): ?>
+                                                                        <option value=""><?php echo $q; ?></option>
+                                                                    <?php endfor; ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                         <div id="error3"></div>
                                                     </div>
                                                 </div>
@@ -101,7 +127,7 @@ if($plano == false){
                                     
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="submit" value="Finalizar" class="btn btn-success">
+                                            <input type="submit" value="Finalizar" class="btn btn-success finalizar">
                                         </div>
                                     </div>
 
@@ -179,4 +205,4 @@ if($plano == false){
 
 
 <br><br><br><br>
-<?php $render('sitePrincipal/footer') ?>rgb(255, 255, 255)rgb(255, 255, 255)rgb(253, 253, 253)
+<?php $render('sitePrincipal/footer') ?>
