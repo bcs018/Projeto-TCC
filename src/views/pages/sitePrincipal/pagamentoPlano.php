@@ -10,11 +10,6 @@ if($plano == false){
     header('Location: /crie-sua-loja/pagamento');
 }
 ?>
-<!-- Puxando o script do pagseguro -->
-<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-<script type="text/javascript">
-    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-</script>
 
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
@@ -61,11 +56,11 @@ if($plano == false){
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Nome completo</label>
+                                                        <label class="label" for="email">Código de segurança</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome completo">
-                                                        <div id="error2"></div>
+                                                        <input type="text" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
+                                                        <div id="error4"></div>
                                                     </div>
                                                 </div>
 
@@ -81,11 +76,11 @@ if($plano == false){
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="email">Código de segurnça</label>
+                                                        <label class="label" for="name">Nome completo</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
-                                                        <div id="error4"></div>
+                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome completo">
+                                                        <div id="error2"></div>
                                                     </div>
                                                 </div>
 
@@ -174,6 +169,13 @@ if($plano == false){
 </section>
 
 
+<!-- Puxando o script do pagseguro -->
+<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script type="text/javascript" src="<?php echo BASE_ASS; ?>js/sitePrincipal/psckttransparente.js"></script>
+
+<script type="text/javascript">
+    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
+</script>
 
 
 <br><br><br><br>
