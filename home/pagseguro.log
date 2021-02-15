@@ -305,3 +305,12 @@
 15/02/2021 18:07:03 PagSeguro.Session[info]: Begin
 15/02/2021 18:07:04 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
 15/02/2021 18:07:10 PagSeguro.Session[info]: Session ID: 96253580f6c14b9bba9856b8bde17575
+15/02/2021 18:30:21 PagSeguro.Session[info]: Begin
+15/02/2021 18:30:22 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+15/02/2021 18:30:28 PagSeguro.Session[info]: Session ID: 29059ec8729b458d91699e5296d91c12
+15/02/2021 18:30:49 PagSeguro.Session[info]: Begin
+15/02/2021 18:30:49 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+15/02/2021 18:30:55 PagSeguro.Session[info]: Session ID: 5529f5031abd493d8f01f7dc0226002e
+15/02/2021 18:31:57 PagSeguro.Session[info]: Begin
+15/02/2021 18:31:57 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+15/02/2021 18:32:03 PagSeguro.Session[info]: Session ID: c3adc4154349496bbafc38a44ec92278

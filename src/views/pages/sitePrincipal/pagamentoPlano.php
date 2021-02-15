@@ -131,8 +131,6 @@ if($plano == false){
                                         </div>
                                     </div>
 
-                                    <?php echo 'Sessão: '.$sessionCode; ?>
-
                                     <div id="loading"></div>
                                 </form>
                             </div>

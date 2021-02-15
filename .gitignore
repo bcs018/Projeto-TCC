@@ -2,3 +2,4 @@ composer.phar
 /vendor/
 /home/pagseguro.log
 .DS_Store
+home/pagseguro.log
