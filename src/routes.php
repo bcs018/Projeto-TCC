@@ -20,5 +20,7 @@ $router->get('/sair', 'LoginController@sair');
 
 $router->get('/painel', 'PainelController@index');
 
+$router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
+
 //$router->get('/crie-sua-loja/pagamento/{pl}/transacao', 'PgCheckTransPrincipalController@index');
 

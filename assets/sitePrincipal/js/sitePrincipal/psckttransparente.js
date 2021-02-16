@@ -1,21 +1,52 @@
 $(function(){
     $('.finalizar').on('click', function(){
+        //Pega o id da transação
+        var id = PagSeguroDirectPayment.getSenderHash();
+
         var numero = $('#n_card').val();
         var cvv = $('#cd_seg').val();
         var v_mes = $('#cartao_mes').val();
         var v_ano = $('#cartao_ano').val();
 
+        var nome_tit = $('#nome_card').val();
+        var cpf_tit = $('#cpf_card').val();
+
         if(numero != '' && cvv != '' && v_mes != '' && v_ano != ''){
+            alert("OLA");
             PagSeguroDirectPayment.createCardToken({
                 cardNumber:numero,
-                brand:window.cardBrand,
+                brand:window.bandeira,
+                cvv:cvv,
                 expirationMonth:v_mes,
                 expirationYear:v_ano,
                 success:function(r){
+                    window.cardToken = r.card.token;
 
+                    //Finalizar o pagamento via ajax
+                    $.ajax({
+                        url: '/checkout',
+                        type: 'POST',
+                        data:{
+                            id:id,
+                            name:nome_tit,
+                            cpf:cpf_tit,
+                            numero_card:numero,
+                            cvv:cvv,
+                            v_mes:v_mes,
+                            v_ano:v_ano,
+                            cartao_token:window.cardToken
+                        },
+                        dataType:'json',
+                        success:function(json){
+
+                        },
+                        error:function(json){
+
+                        }
+                    });
                 },
                 error:function(r){
-
+                    console.log(r);
                 },
                 complete:function(r){}
             });
@@ -36,7 +67,7 @@ $(function(){
                         //valor total
                         amount:100,
                         //bandeira cartao
-                        brand:window.cardBrand,
+                        brand:window.bandeira,
                         //max de parcelas sem juros
                         maxInstallmentNoInterest:12,
                         success:function(r){

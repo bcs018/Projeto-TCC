@@ -157,6 +157,20 @@ create table cupom(
     primary key(cupom_id)
 )default charset utf8;
 
+create table assinatura(
+	assinatura_id int not null auto_increment,
+    usuario_id int not null,
+    cupom_id int,
+    valor_total decimal(10,2),
+    tipo_pagamento int,
+    status_pagamento int,
+    cod_transacao varchar(100),
+    
+    primary key(assinatura_id),
+    foreign key(usuario_id) references usuario(usuario_id),
+    foreign key(cupom_id) references cupom(cupom_id)
+)default charset utf8;
+
 create table compra(
 	compra_id int not null auto_increment,
     usuario_id int not null,

@@ -24,4 +24,8 @@ class PgCheckTransPrincipalController extends Controller {
         
         $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl, 'sessionCode'=>$session]);
     }
+
+    public function checkout(){
+        
+    }
 }

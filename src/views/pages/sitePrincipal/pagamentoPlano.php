@@ -40,7 +40,7 @@ if($plano == false){
                             <div>
                                 <div id="retorno"></div>
                                 <br>
-                                <form method="POST" action="/" id="final_pagamento" name="final_pagamento" class="contactForm">
+                                <!--<form id="final_pagamento" name="final_pagamento" class="contactForm">-->
                                     <div class="col-md">
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Dados para pagamento</legend>
@@ -82,7 +82,7 @@ if($plano == false){
                                                             <div class="col-md-6">
                                                                 <select name="cartao_mes" id="cartao_mes" class="form-control">
                                                                     <?php for($q=1; $q<=12; $q++): ?>
-                                                                        <option value=""><?php echo ($q<10)?'0'.$q:$q; ?></option>
+                                                                        <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
                                                                     <?php endfor; ?>
                                                                 </select>
                                                             </div>
@@ -91,7 +91,7 @@ if($plano == false){
                                                                 <select name="cartao_ano" id="cartao_ano" class="form-control">
                                                                     <?php $ano = intval(date('Y')); ?>
                                                                     <?php for($q=$ano; $q<=($ano+30); $q++): ?>
-                                                                        <option value=""><?php echo $q; ?></option>
+                                                                        <option><?php echo $q; ?></option>
                                                                     <?php endfor; ?>
                                                                 </select>
                                                             </div>
@@ -102,10 +102,10 @@ if($plano == false){
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Nome completo</label>
+                                                        <label class="label" for="name">Nome impresso no cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome completo">
+                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
                                                         <div id="error2"></div>
                                                     </div>
                                                 </div>
@@ -127,12 +127,12 @@ if($plano == false){
                                     
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="submit" value="Finalizar" class="btn btn-success finalizar">
+                                            <button class="btn btn-success finalizar">Finalizar</button>
                                         </div>
                                     </div>
 
                                     <div id="loading"></div>
-                                </form>
+                                <!--</form>-->
                             </div>
                         </div>
                     </div>
