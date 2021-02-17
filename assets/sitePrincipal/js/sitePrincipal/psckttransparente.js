@@ -28,7 +28,7 @@ $(function(){
                         type: 'POST',
                         data:{
                             id:id,
-                            name:nome_tit,
+                            nome_tit:nome_tit,
                             cpf:cpf_tit,
                             numero_card:numero,
                             cvv:cvv,

@@ -130,10 +130,6 @@ if($plano == false){
                                                 <div class="col-md-6">
                                                     <button type="button" class="btn btn-primary">Validar Cupom</button>
                                                 </div>
-                                               
-
-                                                
-        
                                             </div>
                                         </fieldset>
                                     </div>
