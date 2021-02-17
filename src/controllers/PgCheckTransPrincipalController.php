@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use Exception;
 use \src\models\Plano;
 use \src\models\Assinatura;
 
@@ -22,8 +23,8 @@ class PgCheckTransPrincipalController extends Controller {
 
         $plano = new Plano;
         
-        $pl = $plano->pegarItem($idpl);
-        $plano->inserirPlano($idpl);
+        $pl = $plano->pegarItem($idpl['pl']);
+        $plano->inserirPlano($idpl['pl']);
         
         $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl, 'sessionCode'=>$session]);
     }
@@ -33,31 +34,35 @@ class PgCheckTransPrincipalController extends Controller {
 
         $parc = explode(';', $_POST['parc']);
 
-        $id_compra = $assinatura->inserirAss($_POST);
+        $dados = $assinatura->inserirAss($_POST);
+
+        $nome_tit = addslashes($_POST['nome_tit']);
+        $cpf = addslashes($_POST['cpf']);
 
         global $config;
+
         $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
         $creditCard->setReceiverEmail($config['pagseguro_seller']);
         //Referenciação da compra do seu site com o pagseguro
-        $creditCard->setReference($id_compra);
+        $creditCard->setReference($dados['id_assinatura']);
         $creditCard->setCurrency("BRL");
         $creditCard->addItems()->withParameters(
-            //Id do produto
-            //Nome do produto
-            //Quantidade
-            //Preço
+            $dados['id_plano'],
+            $dados['nome_plano'],
+            1,
+            floatval($dados['preco'])
 
         );
-        $creditCard->setSender()->setName(//Nome do cara que comprou);
-        $creditCard->setSender()->setEmail(//Email do comprador);
-        $creditCard->setSender()->setDocument()->withParameters('CPF', //CPF do comprador);
+        $creditCard->setSender()->setName($dados['nome_cli']);
+        $creditCard->setSender()->setEmail($dados['email']);
+        $creditCard->setSender()->setDocument()->withParameters('CPF', $dados['cpf']);
         $creditCard->setSender()->setPhone()->withParameters(
-            //DDD
-            //Telefone
+            $dados['ddd'],
+            $dados['celular']
         );
         $creditCard->setSender()->setHash($_POST['id']);
         
-        //No ip como esta em localhost, tem que enviar um ip invalido
+        //No ip como esta em localhost, tem que enviar um ip valido
         $ip = $_SERVER['REMOTE_ADDR'];
         if(strlen($ip) < 9){
             $ip = '127.0.0.1';
@@ -65,31 +70,31 @@ class PgCheckTransPrincipalController extends Controller {
         $creditCard->setSender()->setIp($ip);
         
         $creditCard->setShipping()->setAddress()->withParameters(
-            //Rua
-            //Numero
-            //Bairro
-            //CEP
-            //Cidade
-            //Estado
-            'BRA'
-            //Complemento
+            $dados['rua'],
+            $dados['numero'],
+            $dados['bairro'],
+            $dados['cep'],
+            $dados['cidade'],
+            $dados['estado'],
+            'BRA',
+            $dados['complemento']
         );
 
         $creditCard->setBilling()->setAddress()->withParameters(
-            //Rua
-            //Numero
-            //Bairro
-            //CEP
-            //Cidade
-            //Estado
-            'BRA'
-            //Complemento
+            $dados['rua'],
+            $dados['numero'],
+            $dados['bairro'],
+            $dados['cep'],
+            $dados['cidade'],
+            $dados['estado'],
+            'BRA',
+            $dados['complemento']
         );
 
         $creditCard->setToken($_POST['cartao_token']);
         $creditCard->setInstallment()->withParameters($parc[0], $parc[1], $parc[2]);
-        $creditCard->setHolder()->setName(//Nome da pessoa do cartao);
-        $creditCard->setHolder()->setDocument()->withParameters('CPF', //CPF do titular);
+        $creditCard->setHolder()->setName($nome_tit);
+        $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
         
         $creditCard->setMode('DEFAULT');
 
@@ -102,6 +107,7 @@ class PgCheckTransPrincipalController extends Controller {
             exit;
         }catch(Exception $e){
             echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
+            exit;
         }
 
     }

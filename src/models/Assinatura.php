@@ -2,13 +2,18 @@
 
 namespace src\models;
 use \core\Model;
+use \src\models\Plano;
 
 class Assinatura extends Model{
 
     public function inserirAss($POST){
         $id_transacao = filter_var($POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
         $id_usu = $_SESSION['person']['id'];
-        $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
+        if(isset($POST['cupom'])){
+            $cupom = '';
+        }else{
+            $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
+        }
         $tp_pgm = 'pagsegurockttransparente';
         $statusPgm = 0;
 
@@ -20,22 +25,17 @@ class Assinatura extends Model{
 
         $idPlano = $sql->fetch();
 
-        //Fazendo consulta no plano para saber o valor
-        $sql = "SELECT preco FROM plano WHERE plano_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $idPlano['plano_id']);
-        $sql->execute();
+        $pl  = new Plano;
+        $usu = new Cadastro;
 
-        if($sql->rowCount() == 0){
+        $plano   = $pl->pegarItem($idPlano['plano_id']);
+        $usuario = $usu->pegarItem($_SESSION['person']['id']);
+
+        if(empty($plano)){
             echo json_encode(['error'=>1, 'message'=>'Existe dados inválidos, atualize a página e tente novamente!']);
             exit;
         }
 
-        $valor_tot = $sql->fetch();
-
-        if(!isset($cupom)){
-            $cupom = '';
-        }
         //VALIDAR O CUPOM DE DESCONTO POSTERIORMENTE
 
         //Inserindo os dados na tabela de assinaturas
@@ -44,14 +44,44 @@ class Assinatura extends Model{
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id_usu);
         $sql->bindValue(2, $cupom);
-        $sql->bindValue(3, $valor_tot['preco']);
+        $sql->bindValue(3, $plano['preco']);
         $sql->bindValue(4, $tp_pgm);
         $sql->bindValue(5, $statusPgm);
         $sql->bindValue(6, $id_transacao);
         $sql->execute();
 
-        echo json_encode(['error'=>0, 'message'=>'Pagamento realizado com secesso!']);
-        exit;
+        $ddd = substr($usuario['celular'], 1, 2);
+        $celular = substr($usuario['celular'], 4, 5);
+        $celular .= substr($usuario['celular'], 10, 4);
+
+        $sql = "SELECT * FROM estado WHERE estado_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $usuario['estado_id']);
+        $sql->execute();
+
+        $estado = $sql->fetch();
+        
+        $dados = [
+                    'id_plano'     => $idPlano['plano_id'], 
+                    'nome_plano'   => $plano['nome_plano'],
+                    'id_assinatura'=> $this->db->lastInsertId(),
+                    'preco'        => $plano['preco'],
+
+                    'nome_cli'     => $usuario['nome']." ".$usuario['sobrenome'],
+                    'email'        => $usuario['email'],
+                    'cpf'          => $usuario['cpf'],
+                    'ddd'          => $ddd,
+                    'celular'      => $celular,
+                    'rua'          => $usuario['rua']  ,
+                    'numero'       => $usuario['numero'],
+                    'bairro'       => $usuario['bairro'],
+                    'cep'          => $usuario['cep'],
+                    'cidade'       => $usuario['cidade'],
+                    'estado'       => $estado['nome_estado'], 
+                    'complemento'  => $usuario['complemento']
+                ];
+
+        return $dados;
     }
 
 }

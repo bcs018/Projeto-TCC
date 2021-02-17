@@ -202,6 +202,25 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Cidade</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
+                                                        </div>
+                                                        <input type="text" class="form-control" name="cidade_usu"
+                                                            id="cidade_usu" placeholder="Cidade">
+                                                        <div id="error15"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Complemento</label>
+                                                        <input type="text" class="form-control" name="complemento"
+                                                            id="complemento" placeholder="Complemento">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </fieldset>
                                     </div>

@@ -37,6 +37,8 @@ create table usuario(
     bairro varchar(100) not null,
     numero int not null,
     cep int not null,
+    cidade varchar(100) not null,
+    complemento varchar(100),
     ativo tinyint not null default 0,
     senha varchar(32) not null,
     

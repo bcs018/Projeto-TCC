@@ -12,6 +12,7 @@ $(function(){
         var cpf_tit = $('#cpf_card').val();
 
         var parc = $('#parc').val();
+        var cupom = $('#cupom').val();
 
         if(numero != '' && cvv != '' && v_mes != '' && v_ano != ''){
             alert("OLA");
@@ -37,7 +38,8 @@ $(function(){
                             v_mes:v_mes,
                             v_ano:v_ano,
                             cartao_token:window.cardToken,
-                            parc:parc
+                            parc:parc,
+                            cupom:cupom
                         },
                         dataType:'json',
                         success:function(json){

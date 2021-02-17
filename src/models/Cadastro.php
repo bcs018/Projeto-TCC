@@ -12,6 +12,15 @@ class Cadastro extends Model{
         return $sql;
     }
 
+    public function pegarItem($id){
+        $sql = "SELECT * FROM usuario WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        return $sql->fetch();
+    }
+
     public function inserir_cad($POST){
         /**
          * Validação dos dados enviado do usuário
@@ -25,6 +34,8 @@ class Cadastro extends Model{
         $POST['data_nasc']      = filter_var($POST['data_nasc'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['rua_usu']        = filter_var($POST['rua_usu'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['bairro_usu']     = filter_var($POST['bairro_usu'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $POST['cidade']         = filter_var($POST['cidade'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $POST['complemento']    = filter_var($POST['complemento'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['cep_usu']        = explode("-", $POST['cep_usu']); 
         $POST['cep_usu']        = $POST['cep_usu'][0].$POST['cep_usu'][1];
         $POST['subdominio']     = strip_tags($POST['subdominio']);
@@ -122,8 +133,8 @@ class Cadastro extends Model{
             return $message;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, ativo, senha)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['estado_usu']);
         $sql->bindValue(2, $POST['nome_usu']);
@@ -136,8 +147,10 @@ class Cadastro extends Model{
         $sql->bindValue(9, $POST['bairro_usu']);
         $sql->bindValue(10, $POST['num_usu']);
         $sql->bindValue(11, $POST['cep_usu']);
-        $sql->bindValue(12, 0);
-        $sql->bindValue(13, md5($POST['senha']));
+        $sql->bindValue(12, $POST['cidade']);
+        $sql->bindValue(13, $POST['complemento']);
+        $sql->bindValue(14, 0);
+        $sql->bindValue(15, md5($POST['senha']));
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";

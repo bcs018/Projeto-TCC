@@ -16,7 +16,7 @@ class Plano extends Model {
     public function pegarItem($pl){
         $sql = "SELECT * FROM plano WHERE plano_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $pl['pl']);
+        $sql->bindValue(1, $pl);
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -30,7 +30,7 @@ class Plano extends Model {
     public function inserirPlano($pl){
         $sql = "UPDATE ecommerce_usu SET plano_id = ? WHERE usuario_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $pl['pl']);
+        $sql->bindValue(1, $pl);
         $sql->bindValue(2, $_SESSION['person']['id']);
         $sql->execute();
     }

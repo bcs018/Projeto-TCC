@@ -23,14 +23,14 @@ class CadastroController extends Controller {
 
     public function pagamentoPlano($pl){
         $plano = new Plano;
-        $pl = $plano->pegarItem($pl);
+        $pl = $plano->pegarItem($pl['pl']);
         
         $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl]);        
     }
 
     public function inserir(){
         $message['message']='';
-        if (!$_POST['nome_usu'] || !$_POST['sobrenome_usu'] || !$_POST['email_usu']  || 
+        if (!$_POST['nome_usu'] || !$_POST['sobrenome_usu'] || !$_POST['email_usu']  || !$_POST['cidade']    ||
             !$_POST['celular']  || !$_POST['cpf_usu']       || !$_POST['data_nasc']  || !$_POST['rep_senha'] ||
             !$_POST['rua_usu']  || !$_POST['bairro_usu']    || !$_POST['num_usu']    || !$_POST['senha']     ||
             !$_POST['cep_usu']  || !$_POST['estado_usu']    || !$_POST['subdominio'] || !$_POST['nome_fan']) 

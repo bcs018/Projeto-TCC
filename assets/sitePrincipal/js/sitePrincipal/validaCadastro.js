@@ -21,7 +21,9 @@ $(function(){
                 nome_fan: $('#nome_fan').val(),
                 cnpj: $('#cnpj').val(),
                 senha: $('#senha').val(),
-                rep_senha: $('#rep_senha').val()
+                rep_senha: $('#rep_senha').val(),
+                cidade: $('#cidade_usu').val(),
+                complemento:$('#complemento').val()
             },
             dataType: 'JSON',
             beforeSend: function(){
@@ -130,9 +132,9 @@ $('#sobrenome_usu').blur(function(){
 
 });
 
-$('#email').blur(function(){
+$('#email_usu').blur(function(){
 
-    if( $('#sobrenome_usu').val() == '' ){
+    if( $('#email_usu').val() == '' ){
         $('#error3').html('<p style="color: #fa3200;font-weight: bolder;">E-mail em branco!</p>');
         toastr.error ('E-mail em branco!');
         return;
@@ -229,6 +231,18 @@ $('#cep_usu').blur(function(){
         return;
     }else{
         $('#error10').html('');
+    }
+
+});
+
+$('#cidade_usu').blur(function(){
+
+    if( $('#cidade_usu').val() == '' ){
+        $('#error15').html('<p style="color: #fa3200;font-weight: bolder;">Cidade em branco!</p>');
+        toastr.error ('Cidade em branco!');
+        return;
+    }else{
+        $('#error15').html('');
     }
 
 });
