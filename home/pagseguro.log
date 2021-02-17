@@ -479,3 +479,48 @@
 17/02/2021 01:20:36 PagSeguro.Session[info]: Begin
 17/02/2021 01:20:36 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
 17/02/2021 01:20:42 PagSeguro.Session[info]: Session ID: b01d10952455428198dca3e57f27ed08
+17/02/2021 13:52:46 PagSeguro.Session[info]: Begin
+17/02/2021 13:52:47 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 13:52:55 PagSeguro.Session[info]: Session ID: 118d29016c8e43108af60ebc5da8665f
+17/02/2021 13:53:16 PagSeguro.Session[info]: Begin
+17/02/2021 13:53:16 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 13:53:21 PagSeguro.Session[error]: <html><head><title>JBossWeb/2.0.1.GA - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 404 - /pagseguro-api/v2/sessions</h1><HR size="1" noshade="noshade"><p><b>type</b> Status report</p><p><b>message</b> <u>/pagseguro-api/v2/sessions</u></p><p><b>description</b> <u>The requested resource (/pagseguro-api/v2/sessions) is not available.</u></p><HR size="1" noshade="noshade"><h3>JBossWeb/2.0.1.GA</h3></body></html>
+17/02/2021 13:53:26 PagSeguro.Session[info]: Begin
+17/02/2021 13:53:26 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 13:53:32 PagSeguro.Session[info]: Session ID: 3add7ee4bc424301b856285fef93020d
+17/02/2021 14:04:20 PagSeguro.Session[info]: Begin
+17/02/2021 14:04:20 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 14:04:26 PagSeguro.Session[info]: Session ID: da95c533488b4757a90a010fdc86fbff
+17/02/2021 14:04:32 PagSeguro.Session[info]: Begin
+17/02/2021 14:04:32 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 14:04:38 PagSeguro.Session[info]: Session ID: 3c29c82f5a0a4eeea550569bc4f10bde
+17/02/2021 14:05:00 PagSeguro.Session[info]: Begin
+17/02/2021 14:05:00 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 14:05:06 PagSeguro.Session[error]: <html><head><title>JBossWeb/2.0.1.GA - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 404 - /pagseguro-api/v2/sessions</h1><HR size="1" noshade="noshade"><p><b>type</b> Status report</p><p><b>message</b> <u>/pagseguro-api/v2/sessions</u></p><p><b>description</b> <u>The requested resource (/pagseguro-api/v2/sessions) is not available.</u></p><HR size="1" noshade="noshade"><h3>JBossWeb/2.0.1.GA</h3></body></html>
+17/02/2021 14:05:08 PagSeguro.Session[info]: Begin
+17/02/2021 14:05:08 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 14:05:14 PagSeguro.Session[info]: Session ID: 825d8feda3e84e81a948d4b03f617754
+17/02/2021 14:05:34 PagSeguro.Session[info]: Begin
+17/02/2021 14:05:34 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 14:05:40 PagSeguro.Session[info]: Session ID: 8d37a0e4a8b746a09532611ff9e5d676
+17/02/2021 15:25:26 PagSeguro.Session[info]: Begin
+17/02/2021 15:25:26 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:25:33 PagSeguro.Session[info]: Session ID: 0fa3f4da702a4605ac82449f1fd73585
+17/02/2021 15:39:00 PagSeguro.Session[info]: Begin
+17/02/2021 15:39:00 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:39:06 PagSeguro.Session[info]: Session ID: 690915c3be3c42ea840d0ae14e1638fa
+17/02/2021 15:40:40 PagSeguro.Session[info]: Begin
+17/02/2021 15:40:41 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:40:46 PagSeguro.Session[info]: Session ID: a1cdcd6c2f284ed490ecf9eda36e2991
+17/02/2021 15:42:00 PagSeguro.Session[info]: Begin
+17/02/2021 15:42:00 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:42:06 PagSeguro.Session[error]: <html><head><title>JBossWeb/2.0.1.GA - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 404 - /pagseguro-api/v2/sessions</h1><HR size="1" noshade="noshade"><p><b>type</b> Status report</p><p><b>message</b> <u>/pagseguro-api/v2/sessions</u></p><p><b>description</b> <u>The requested resource (/pagseguro-api/v2/sessions) is not available.</u></p><HR size="1" noshade="noshade"><h3>JBossWeb/2.0.1.GA</h3></body></html>
+17/02/2021 15:43:09 PagSeguro.Session[info]: Begin
+17/02/2021 15:43:09 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:43:14 PagSeguro.Session[info]: Session ID: 2cf9c36de1654242b87bc9bed9e9100a
+17/02/2021 15:43:27 PagSeguro.Session[info]: Begin
+17/02/2021 15:43:28 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:43:33 PagSeguro.Session[info]: Session ID: aa77acd6d5374e3992f136136f2fb654
+17/02/2021 15:49:04 PagSeguro.Session[info]: Begin
+17/02/2021 15:49:04 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=bwcommerce%40outlook.com&token=23E3EEF82A4046C5826279C0A3D2A541
+17/02/2021 15:49:11 PagSeguro.Session[info]: Session ID: 46b95be0ca064177898f6d9ad63795ca

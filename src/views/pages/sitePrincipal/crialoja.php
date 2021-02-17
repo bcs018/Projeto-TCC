@@ -28,7 +28,7 @@
                                 <br>      
                                 <div id="retorno"></div>
                                 <br>
-                                <form method="POST" id="acha_cadastro" name="acha_cadastro" class="contactForm">
+                                <form method="POST" id="acha_cadastro" name="acha_cadastro">
                                     <div class="col-md">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -49,7 +49,7 @@
                                     </div>
                                 </form>
                                 <br><br>
-                                <form method="POST" id="cadastro" name="cadastro" class="contactForm">
+                                <form method="POST" id="cadastro" name="cadastro">
                                     <div class="col-md">
                                         <h2>Novo cadastro</h2>
                                         <fieldset class="border p-2">

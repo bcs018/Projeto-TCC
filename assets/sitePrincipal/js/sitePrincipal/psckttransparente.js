@@ -11,6 +11,8 @@ $(function(){
         var nome_tit = $('#nome_card').val();
         var cpf_tit = $('#cpf_card').val();
 
+        var parc = $('#parc').val();
+
         if(numero != '' && cvv != '' && v_mes != '' && v_ano != ''){
             alert("OLA");
             PagSeguroDirectPayment.createCardToken({
@@ -34,7 +36,8 @@ $(function(){
                             cvv:cvv,
                             v_mes:v_mes,
                             v_ano:v_ano,
-                            cartao_token:window.cardToken
+                            cartao_token:window.cardToken,
+                            parc:parc
                         },
                         dataType:'json',
                         success:function(json){
@@ -50,6 +53,8 @@ $(function(){
                 },
                 complete:function(r){}
             });
+        }else{
+            toastr.error ('Preencha todos os campos!');
         }
     });
 

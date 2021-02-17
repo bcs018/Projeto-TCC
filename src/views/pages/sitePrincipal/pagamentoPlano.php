@@ -10,6 +10,13 @@ if($plano == false){
     header('Location: /crie-sua-loja/pagamento');
 }
 ?>
+<!-- Puxando o script do pagseguro -->
+<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script type="text/javascript" src="<?php echo BASE_ASS; ?>js/sitePrincipal/psckttransparente.js"></script>
+
+<script type="text/javascript">
+    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
+</script>
 
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
@@ -50,7 +57,7 @@ if($plano == false){
                                                         <label class="label" for="name">Número do cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp</div>
                                                         <input type="text" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão" autofocus>
-                                                        <div id="error1"> </div>
+                                                        <div id="error1"> </div> 
                                                     </div>
                                                 </div>
 
@@ -201,16 +208,6 @@ if($plano == false){
         </div>
     </div>
 </section>
-
-
-<!-- Puxando o script do pagseguro -->
-<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-<script type="text/javascript" src="<?php echo BASE_ASS; ?>js/sitePrincipal/psckttransparente.js"></script>
-
-<script type="text/javascript">
-    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-</script>
-
 
 <br><br><br><br>
 <?php $render('sitePrincipal/footer') ?>

@@ -3,6 +3,8 @@ namespace src;
 
 define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
 
+$config['pagseguro_seller'] = 'bwcommerce@outlook.com';
+
 \PagSeguro\Library::initialize();
 \PagSeguro\Library::cmsVersion()->setName("BW Commerce")->setRelease("1.0.0");
 \PagSeguro\Library::moduleVersion()->setName("BW Commerce")->setRelease("1.0.0");
