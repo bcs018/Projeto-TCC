@@ -27,4 +27,12 @@ class Plano extends Model {
    
     }
 
+    public function inserirPlano($pl){
+        $sql = "UPDATE ecommerce_usu SET plano_id = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $pl['pl']);
+        $sql->bindValue(2, $_SESSION['person']['id']);
+        $sql->execute();
+    }
+
 }

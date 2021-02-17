@@ -152,7 +152,7 @@ class Cadastro extends Model{
         $sql->bindValue(4, $POST['cnpj']);
         $sql->execute();
 
-        $_SESSION['person']['id']   = $id_person;
+        $_SESSION['person']['id']   = $id_person['ult'];
         $_SESSION['person']['name'] = $POST['nome_usu'];
 
     }

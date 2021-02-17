@@ -119,6 +119,20 @@ if($plano == false){
                                                         <div id="error5"></div>
                                                     </div>
                                                 </div>
+                                              
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="subject">Cupom de desconto</label>                                                      
+                                                        <input type="text" class="form-control" name="cupom" id="cupom" placeholder="Cupom de desconto">
+                                                        <div id="error5"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button type="button" class="btn btn-primary">Validar Cupom</button>
+                                                </div>
+                                               
+
+                                                
         
                                             </div>
                                         </fieldset>

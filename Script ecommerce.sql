@@ -162,7 +162,7 @@ create table assinatura(
     usuario_id int not null,
     cupom_id int,
     valor_total decimal(10,2),
-    tipo_pagamento int,
+    tipo_pagamento varchar(100),
     status_pagamento int,
     cod_transacao varchar(100),
     

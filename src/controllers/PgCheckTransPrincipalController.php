@@ -3,9 +3,10 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\models\Plano;
+use \src\models\Assinatura;
 
 class PgCheckTransPrincipalController extends Controller {
-    public function pagamentoPlano($pl){
+    public function pagamentoPlano($idpl){
 
         //Pegando a sessão do pagseguro
         try {
@@ -20,12 +21,17 @@ class PgCheckTransPrincipalController extends Controller {
         }
 
         $plano = new Plano;
-        $pl = $plano->pegarItem($pl);
+        
+        $pl = $plano->pegarItem($idpl);
+        $plano->inserirPlano($idpl);
         
         $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl, 'sessionCode'=>$session]);
     }
 
     public function checkout(){
-        
+        $assinatura = new Assinatura;
+
+        $assinatura->inserirAss($_POST);
+
     }
 }
