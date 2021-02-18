@@ -112,7 +112,7 @@ if($plano == false){
                                                         <label class="label" for="name">Nome impresso no cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
+                                                        <input type="text" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão" value="Bruno Cesar da Silva">
                                                         <div id="error2"></div>
                                                     </div>
                                                 </div>
@@ -122,7 +122,7 @@ if($plano == false){
                                                         <label class="label" for="subject">CPF do titular do cartão</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
+                                                        <input type="text" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão" value="38606845825">
                                                         <div id="error5"></div>
                                                     </div>
                                                 </div>
@@ -191,13 +191,13 @@ if($plano == false){
                                                     <div class="form-group">
                                                         <label class="label" for="email">Preço:</label>
                                                         <p>R$<?php echo number_format($plano['preco'], 2, ',', '.'); ?></p>
+                                                        <input type="hidden" id="plan" value="<?php echo number_format($plano['preco'], 2, '.', ','); ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                     <br>
-                                
                                     <div id="loading"></div>
                                 </form>
                             </div>

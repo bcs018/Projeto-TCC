@@ -14,16 +14,15 @@ class Painel extends Model{
     }
 
     public function listaDadosPlano($id){
-        $sql = "SELECT * FROM ecommerce_usu WHERE usuario_id = ?";
+        $sql = "SELECT e.ecommerce_id, e.usuario_id, e.plano_id, e.sub_dominio, e.nome_fantasia, p.nome_plano, p.descricao_plano, p.preco 
+                FROM ecommerce_usu  e
+                LEFT JOIN plano p 
+                ON e.plano_id = p.plano_id
+                WHERE e.usuario_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
 
-        'select e.ecommerce_id, e.usuario_id, e.plano_id, e.sub_dominio, e.nome_fantasia, p.nome_plano, p.descricao_plano, p.preco 
-        from ecommerce_usu  e
-        left join plano p 
-        on e.plano_id = p.plano_id;'
-
-        return $sql->fetch();
+        return $sql->fetch(); 
     }
 }

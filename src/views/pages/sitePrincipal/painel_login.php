@@ -1,18 +1,15 @@
 <?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Painel']); ?>
 
-<?php 
-if(!isset($_SESSION['log'])){
-    $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">Faça login para continuar!</div>';
-    header("Location: /login");
-}
-?>
-
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h2>Informações do cadastro</h2><br>
+                <a style="float:right;font-size:18px;color:red;margin-top:16px;" href="/sair">Sair</a>
+
+                <h2>Informações do cadastro</h2>
+                <br>
                 <fieldset class="border p-2">
+                   <legend class="w-auto">Dados gerais</legend>
                    <div class="row">
                         <div class="col-md-6">
                             <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Nome do usuário:</label>
@@ -20,20 +17,78 @@ if(!isset($_SESSION['log'])){
                         </div>
                         
                         <div class="col-md-6">
-                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Plano contratado:</label>
-                            <p>Teste</p>
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Plano escolhido:</label>
+                            <p><?php echo $plano['nome_plano']; ?></p>
                         </div>
                         
                         <div class="col-md-6">
                             <label style="color: #525252;font-weight: bold;margin-bottom: 0;">E-mail:</label>
                             <p><?php echo $usuario['email']; ?></p>
                         </div>
+
+                        <div class="col-md-6">
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Nome fantasia:</label>
+                            <p><?php echo $plano['nome_fantasia']; ?></p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Subdominio:</label>
+                            <p><?php echo $plano['sub_dominio']; ?></p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Usuário ativo?</label>
+                            <p><?php echo ($usuario['ativo']==0)?'Não':'Sim'; ?></p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Direitos:</label>
+                            <?php $planos = explode(';', $plano['descricao_plano']); ?>
+                            <?php foreach($planos as $item): ?>
+                                <p style="margin-bottom:0;"> <?php echo $item ?> <br></p>
+                            <?php endforeach; ?>
+                        </div>
                    </div>
                 </fieldset>
+                <br>
+
+                <?php if($assinatura != false): ?>
+                    <fieldset class="border p-2">
+                    <legend class="w-auto">Dados do pagamento</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Número da compra:</label>
+                                <p><?php echo $assinatura['assinatura_id']; ?></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Valor:</label>
+                                <p><?php echo 'R$'.number_format($assinatura['valor_total'],2,',','.'); ?></p>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Tipo de pagamento:</label>
+                                <p><?php echo ($assinatura['tipo_pagamento']=='pagsegurockttransparente')?'Cartão de crédito':'Boleto'; ?></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Status pagamento:</label>
+                                <p><?php echo ($assinatura['status_pagamento']==0)?'Pendente':'Pago'; ?></p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Código transação:</label>
+                                <p style="word-wrap: break-word;"><?php echo $assinatura['cod_transacao']; ?></p>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
+<br><br><br><br>
 
 
 

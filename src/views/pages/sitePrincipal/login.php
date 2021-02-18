@@ -1,5 +1,11 @@
 <?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Login']); ?>
 
+<?php 
+if(isset($_SESSION['log'])){
+	header("Location: /painel");
+}
+?>
+
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css/util.css">
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css//main.css">
 
@@ -40,9 +46,7 @@
 							Não tem uma conta?
 						</span>
 
-						<a href="/crie-sua-loja" class="txt2 hov1">
-							Cadastre-se
-						</a>
+						<a href="/crie-sua-loja" class="txt2 hov1">Cadastre-se</a>
 					</div>
 				</form>
 			</div>

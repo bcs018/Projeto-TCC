@@ -42,11 +42,7 @@ class PgCheckTransPrincipalController extends Controller {
         //Variavel global defineda no Config.php = email do vendedor
         global $pagseguro_seller;
 
-        //echo gettype($dados['preco']) . '<br>';
         $preco = floatval($dados['preco']);
-        //echo gettype($preco);
-        //echo 
-       // exit;
 
         $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
         $creditCard->setReceiverEmail($pagseguro_seller);
@@ -57,7 +53,7 @@ class PgCheckTransPrincipalController extends Controller {
             $dados['id_plano'],
             $dados['nome_plano'],
             1,
-            100.00
+            $preco
 
         );
         $creditCard->setSender()->setName($dados['nome_cli']);
@@ -113,6 +109,9 @@ class PgCheckTransPrincipalController extends Controller {
             echo json_encode($result);
             exit;
         }catch(Exception $e){
+            //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
+            $assinatura->excluirItem($dados['id_assinatura']);
+
             echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
             exit;
         }

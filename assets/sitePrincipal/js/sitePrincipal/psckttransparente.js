@@ -42,11 +42,19 @@ $(function(){
                             cupom:cupom
                         },
                         dataType:'json',
+                        beforeSend: function(){
+                            $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Finalizando pagamento...</span></div>');
+                        },
                         success:function(json){
+                            if(json.error == true){
+                                $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
+                                return;
+                            }
+                            $('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
 
                         },
                         error:function(json){
-
+                            $('#loading').html('<div class="alert alert-danger" role="alert">002 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
                         }
                     });
                 },
@@ -72,7 +80,7 @@ $(function(){
                     //Pegando parcelamento
                     PagSeguroDirectPayment.getInstallments({
                         //valor total
-                        amount:10, //PEGAR O PREÇO DA VIEW
+                        amount:$('#plan').val(),
                         //bandeira cartao
                         brand:window.bandeira,
                         //max de parcelas sem juros

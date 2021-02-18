@@ -86,4 +86,24 @@ class Assinatura extends Model{
         return $dados;
     }
 
+    public function pegarItem($id){
+        $sql = "SELECT * FROM assinatura WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        if($sql->rowCount() == 0){
+            return false;
+        }
+
+        return $sql->fetch();
+    }
+
+    public function excluirItem($id){
+        $sql = "DELETE FROM assinatura WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+    }
+
 }
