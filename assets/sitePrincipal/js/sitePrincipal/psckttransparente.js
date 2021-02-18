@@ -15,7 +15,7 @@ $(function(){
         var cupom = $('#cupom').val();
 
         if(numero != '' && cvv != '' && v_mes != '' && v_ano != ''){
-            alert("OLA");
+
             PagSeguroDirectPayment.createCardToken({
                 cardNumber:numero,
                 brand:window.bandeira,
@@ -72,7 +72,7 @@ $(function(){
                     //Pegando parcelamento
                     PagSeguroDirectPayment.getInstallments({
                         //valor total
-                        amount:100,
+                        amount:10, //PEGAR O PREÇO DA VIEW
                         //bandeira cartao
                         brand:window.bandeira,
                         //max de parcelas sem juros
@@ -83,14 +83,16 @@ $(function(){
                                 var html = '';
 
                                 for(var i in parc){
-                                    var optionValue = parc[i].quantity+';'+parc[i].installmentAmount;
+                                    var optionValue = parc[i].quantity+';'+parc[i].installmentAmount+';';
                                     if(parc[i].interestFree == true){
-                                        optionValue += ';true';
+                                        optionValue += 'true';
                                     }else{
-                                        optionValue += ';false';
+                                        optionValue += 'false';
                                     }
                                     html += '<option value="'+optionValue+'">'+parc[i].quantity+'x de R$'+parc[i].installmentAmount+'</option>';
                                 }
+
+                                console.log(r);
 
                                 $('select[name=parc]').html(html);
                             }

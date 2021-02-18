@@ -10,7 +10,7 @@ class Assinatura extends Model{
         $id_transacao = filter_var($POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
         $id_usu = $_SESSION['person']['id'];
         if(isset($POST['cupom'])){
-            $cupom = '';
+            $cupom = null;
         }else{
             $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
         }
@@ -36,6 +36,17 @@ class Assinatura extends Model{
             exit;
         }
 
+        $ddd = substr($usuario['celular'], 1, 2);
+        $celular = substr($usuario['celular'], 4, 5);
+        $celular .= substr($usuario['celular'], 10, 4);
+
+        $sql = "SELECT * FROM estado WHERE estado_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $usuario['estado_id']);
+        $sql->execute();
+
+        $estado = $sql->fetch();
+
         //VALIDAR O CUPOM DE DESCONTO POSTERIORMENTE
 
         //Inserindo os dados na tabela de assinaturas
@@ -50,16 +61,7 @@ class Assinatura extends Model{
         $sql->bindValue(6, $id_transacao);
         $sql->execute();
 
-        $ddd = substr($usuario['celular'], 1, 2);
-        $celular = substr($usuario['celular'], 4, 5);
-        $celular .= substr($usuario['celular'], 10, 4);
-
-        $sql = "SELECT * FROM estado WHERE estado_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $usuario['estado_id']);
-        $sql->execute();
-
-        $estado = $sql->fetch();
+        //echo "Id_usu: ".$id_usu. " Cupom: ". $cupom. " Preco plano: ".$plano['preco']. " Tp pgm: ".$tp_pgm. " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
         
         $dados = [
                     'id_plano'     => $idPlano['plano_id'], 

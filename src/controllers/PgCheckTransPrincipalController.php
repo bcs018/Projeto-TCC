@@ -39,10 +39,17 @@ class PgCheckTransPrincipalController extends Controller {
         $nome_tit = addslashes($_POST['nome_tit']);
         $cpf = addslashes($_POST['cpf']);
 
-        global $config;
+        //Variavel global defineda no Config.php = email do vendedor
+        global $pagseguro_seller;
+
+        //echo gettype($dados['preco']) . '<br>';
+        $preco = floatval($dados['preco']);
+        //echo gettype($preco);
+        //echo 
+       // exit;
 
         $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
-        $creditCard->setReceiverEmail($config['pagseguro_seller']);
+        $creditCard->setReceiverEmail($pagseguro_seller);
         //Referenciação da compra do seu site com o pagseguro
         $creditCard->setReference($dados['id_assinatura']);
         $creditCard->setCurrency("BRL");
@@ -50,7 +57,7 @@ class PgCheckTransPrincipalController extends Controller {
             $dados['id_plano'],
             $dados['nome_plano'],
             1,
-            floatval($dados['preco'])
+            100.00
 
         );
         $creditCard->setSender()->setName($dados['nome_cli']);
@@ -92,7 +99,7 @@ class PgCheckTransPrincipalController extends Controller {
         );
 
         $creditCard->setToken($_POST['cartao_token']);
-        $creditCard->setInstallment()->withParameters($parc[0], $parc[1], $parc[2]);
+        $creditCard->setInstallment()->withParameters($parc[0], $parc[1], 12);
         $creditCard->setHolder()->setName($nome_tit);
         $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
         
