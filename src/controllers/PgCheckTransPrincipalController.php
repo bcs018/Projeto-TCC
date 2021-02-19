@@ -101,6 +101,11 @@ class PgCheckTransPrincipalController extends Controller {
         
         $creditCard->setMode('DEFAULT');
 
+        //Url para o pagseguro notificar que o pagamento foi aprovado
+        //$creditCard->setNotificationUrl('/notification');
+
+        //$creditCard->setNotificationUrl();
+
         try{
             $result = $creditCard->register(
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
@@ -115,6 +120,39 @@ class PgCheckTransPrincipalController extends Controller {
             echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
             exit;
         }
+    }
 
+    public function notification(){
+        $assinatura = new Assinatura;
+        try {
+            //Verifica se foi enviada as informações do retorno da compra
+            if(\PagSeguro\Helpers\Xhr::hasPost()){
+                $r = \PagSeguro\Services\Transactions\Notification::check(
+                    \PagSeguro\Configuration\Configure::getAccountCredentials()
+                );
+
+                $ref = $r->getReference();
+                /**
+                 * Status
+                 * 1 - Aguardando pagamento
+                 * 2 - Em analise - Paga mas n foi aprovado de cara
+                 * 3 - Paga
+                 * 4 - Disponivel - Disponivel para saque
+                 * 5 - Em disputa
+                 * 6 - Dinheiro foi devolvido
+                 * 7 - Compra cancelada
+                 * 8 - Debitado - Dinheiro daquela compra foi devolvida na disputa
+                 * 9 - Retenção temporaria - Quando o cara liga para o cartão e fala que nao reconhece a compra
+                 */
+                $status = $r->getStatus();
+
+                if($status == 3){
+                    $assinatura->aprovarCompra($ref);
+                }
+
+            }
+        } catch (Exception $e) {
+            //throw $th;
+        }    
     }
 }

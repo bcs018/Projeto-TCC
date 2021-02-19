@@ -2,6 +2,7 @@
 namespace src;
 
 define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
+define('BASE_URL', 'http://bw.com.br');
 
 $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 
