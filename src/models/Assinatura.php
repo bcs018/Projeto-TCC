@@ -125,7 +125,7 @@ class Assinatura extends Model{
         $sql->bindValue(2, $id);
         $sql->execute();
 
-        $sql = "SELECT * FROM usuario WHERE usuario_id = ?";
+        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
@@ -135,6 +135,48 @@ class Assinatura extends Model{
         $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, 1);
+        $sql->bindValue(2, $idUsu['usuario_id']);
+        $sql->execute();
+    }
+
+    public function bloquearCompra($id){
+        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 0);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        $idUsu = $sql->fetch();
+
+        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 0);
+        $sql->bindValue(2, $idUsu['usuario_id']);
+        $sql->execute();
+    }
+
+    public function analiseCompra($id){
+        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 2);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        $idUsu = $sql->fetch();
+
+        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 0);
         $sql->bindValue(2, $idUsu['usuario_id']);
         $sql->execute();
     }

@@ -9,6 +9,8 @@ if($plano == false){
     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Plano inexistente, escolha outro.</div><br>';
     header('Location: /crie-sua-loja/pagamento');
 }
+
+header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
 ?>
 <!-- Puxando o script do pagseguro -->
 <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>

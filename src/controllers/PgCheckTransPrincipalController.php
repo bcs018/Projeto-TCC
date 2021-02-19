@@ -123,6 +123,7 @@ class PgCheckTransPrincipalController extends Controller {
     }
 
     public function notification(){
+        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         $assinatura = new Assinatura;
         try {
             //Verifica se foi enviada as informações do retorno da compra
@@ -146,8 +147,13 @@ class PgCheckTransPrincipalController extends Controller {
                  */
                 $status = $r->getStatus();
 
+                //Dependendo do retorno no PS, faz alguma coisa no sistema (FAZER UMA TRATATIVA MELHOR POSTERIORMENTE)
                 if($status == 3){
                     $assinatura->aprovarCompra($ref);
+                }elseif($status == 5 || $status == 6 || $status == 7 || $status == 8 || $status == 9){
+                    $assinatura->bloquearCompra($ref);
+                }else{
+                    $assinatura->analiseCompra($ref);
                 }
 
             }
