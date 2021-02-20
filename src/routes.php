@@ -11,7 +11,7 @@ $router->get('/crie-sua-loja', 'CadastroController@index');
 $router->post('/crie-sua-loja/inserir', 'CadastroController@inserir');
 $router->post('/crie-sua-loja/verifica-cpf', 'CadastroController@verifica_cpf_cadastrado');
 $router->get('/crie-sua-loja/pagamento', 'CadastroController@pagamento');
-$router->get('/crie-sua-loja/pagamento/{pl}', 'PgCheckTransPrincipalController@pagamentoPlano');
+$router->get('/crie-sua-loja/opcao-pagamento/{pl}', 'OpcaoPgmController@index');
 
 
 $router->get('/login', 'LoginController@index');

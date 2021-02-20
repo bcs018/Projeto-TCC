@@ -65,17 +65,52 @@ if(!isset($_SESSION['person'])){
 							<?php $descricoes = explode(";", $plano['descricao_plano']); 
 								echo '<ul class="pricing-text mb-5">';
 								foreach($descricoes as $descricao): ?>
-									<li><span class="fa fa-check mr-2"></span><?php echo $descricao; ?></li>
+									<li><span class="fa fa-check mr-2"></span><?php echo utf8_encode($descricao); ?></li>
 								<?php endforeach; ?>
 							</ul>
-							<a href="/crie-sua-loja/pagamento/<?php echo $plano['plano_id']; ?>" class="btn btn-primary d-block px-2 py-3">Comprar</a>
+							<a href="/crie-sua-loja/opcao-pagamento/<?php echo $plano['plano_id']; ?>" class="btn btn-primary d-block px-2 py-3">Comprar</a>
 						</div>
 					</div>
 				</div>
 				<?php endforeach; ?>
 
 			</div>
+        </div>
+        
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		Launch demo modal
+	</button>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Escolha a opção de pagamento</h5>
+					<a data-bs-dismiss="modal" aria-label="Close" style="font-weight:bolder;color:red;font-size:20px;" href="#">X</a>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" id="cartao" value="cartao" checked>
+							<label class="form-check-label" for="cartao">
+								Boleto
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" id="boleto" value="boleto">
+							<label class="form-check-label" for="boleto">
+								Cartão de crédito
+							</label>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-success">OK</button>
+				</div>
+			</div>
 		</div>
+	</div>
 	</section>
     <br><br><br><br>
 <?php $render('sitePrincipal/footer')?>

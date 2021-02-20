@@ -183,7 +183,7 @@ header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
                                                         <?php $direitos = explode(";", $plano['descricao_plano']); ?>
                                                         <p>
                                                             <?php foreach($direitos as $direito): ?>
-                                                            <?php echo $direito; ?>. <br>
+                                                            <?php echo utf8_encode($direito); ?>. <br>
                                                             <?php endforeach; ?>
                                                         </p>
                                                     </div>

@@ -4,6 +4,7 @@ namespace src;
 define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
 define('BASE_URL', 'http://bw.com.br');
 
+//Configurações do paypal
 $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 
 \PagSeguro\Library::initialize();
@@ -16,6 +17,11 @@ $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 \PagSeguro\Configuration\Configure::setAccountCredentials('bwcommerce@outlook.com', '23E3EEF82A4046C5826279C0A3D2A541');
 \PagSeguro\Configuration\Configure::setCharset('UTF-8');
 \PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
+
+//Configurações do Gerencianet - Boleto
+$GLOBALS['gerencianet_clientid'] = '';
+$GLOBALS['gerencianet_clientsecret'] = '';
+$GLOBALS['gerencianet_sandbox'] = true;
 
 class Config {
     const BASE_DIR = '/projeto-tcc';
