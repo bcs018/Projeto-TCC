@@ -26,7 +26,7 @@ class PgCheckTransPrincipalController extends Controller {
         $pl = $plano->pegarItem($idpl['pl']);
         $plano->inserirPlano($idpl['pl']);
         
-        $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl, 'sessionCode'=>$session]);
+        $this->render('sitePrincipal/cartaoPgm',  ['plano'=>$pl, 'sessionCode'=>$session]);
     }
 
     public function checkout(){

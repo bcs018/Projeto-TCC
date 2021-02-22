@@ -63,6 +63,16 @@ class CadastroController extends Controller {
 
     }
 
+    public function inserirCadastroFree(){
+        $pl = new Plano;
+        $cd = new Cadastro;
+
+        $pl->inserirPlano(1);
+        $cd->ativarUsuario();
+
+        $this->render('sitePrincipal/obrigado');        
+    }
+
     public function verifica_cpf_cadastrado(){
         if(!$_POST['cpf_cad']){
             $message['message'] = '<div class="alert alert-danger" role="alert">

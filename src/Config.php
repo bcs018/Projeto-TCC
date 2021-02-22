@@ -19,8 +19,8 @@ $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 \PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
 
 //Configurações do Gerencianet - Boleto
-$GLOBALS['gerencianet_clientid'] = '';
-$GLOBALS['gerencianet_clientsecret'] = '';
+$GLOBALS['gerencianet_clientid'] = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59';
+$GLOBALS['gerencianet_clientsecret'] = 'Client_Secret_6d7692cf8197942b09eceea1b155981c39825d29';
 $GLOBALS['gerencianet_sandbox'] = true;
 
 class Config {

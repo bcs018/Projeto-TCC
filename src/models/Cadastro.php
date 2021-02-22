@@ -170,6 +170,14 @@ class Cadastro extends Model{
 
     }
 
+    public function ativarUsuario(){
+        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $_SESSION['person']['id']);
+        $sql->execute();
+    }
+
     public function ver_cpf_cadastrado($cpf){
         $message['message']='';
 

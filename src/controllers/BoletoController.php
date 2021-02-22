@@ -8,25 +8,12 @@ use \src\models\Assinatura;
 
 class BoletoController extends Controller {
     public function pagamentoPlano($idpl){
-
-        //Pegando a sessão do pagseguro
-        try {
-            $sessionCode = \PagSeguro\Services\Session::create(
-                \PagSeguro\Configuration\Configure::getAccountCredentials()
-            );
-
-            $session = $sessionCode->getResult();
-        } catch (\Exception $e) {
-            echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
-            exit;
-        }
-
         $plano = new Plano;
         
         $pl = $plano->pegarItem($idpl['pl']);
         $plano->inserirPlano($idpl['pl']);
         
-        $this->render('sitePrincipal/pagamentoPlano',  ['plano'=>$pl, 'sessionCode'=>$session]);
+        $this->render('sitePrincipal/boletoPgm',  ['plano'=>$pl]);
     }
 
     public function checkout(){
