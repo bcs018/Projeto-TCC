@@ -12,7 +12,7 @@ $router->post('/crie-sua-loja/inserir', 'CadastroController@inserir');
 $router->post('/crie-sua-loja/verifica-cpf', 'CadastroController@verifica_cpf_cadastrado');
 $router->get('/crie-sua-loja/pagamento', 'CadastroController@pagamento');
 $router->get('/crie-sua-loja/pagamento/cartao/{pl}', 'PgCheckTransPrincipalController@pagamentoPlano');
-$router->get('/crie-sua-loja/pagamento/boleto/{pl}', 'BoletoController@pagamentoPlano');
+$router->get('/crie-sua-loja/pagamento/boleto/checkout/{pl}', 'BoletoController@checkout');
 $router->post('/crie-sua-loja/escolha-pagamento', 'OpcaoPgmController@escolhaPagamento');
 $router->get('/crie-sua-loja/obrigado', 'CadastroController@inserirCadastroFree');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');

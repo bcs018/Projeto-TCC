@@ -14,7 +14,7 @@ class Painel extends Model{
     }
 
     public function listaDadosPlano($id){
-        $sql = "SELECT e.ecommerce_id, e.usuario_id, e.plano_id, e.sub_dominio, e.nome_fantasia, p.nome_plano, p.descricao_plano, p.preco 
+        $sql = "SELECT e.ecommerce_id, e.usuario_id, e.plano_id, e.sub_dominio, e.nome_fantasia, p.nome_plano, p.descricao_plano, p.preco, p.plano_id 
                 FROM ecommerce_usu  e
                 LEFT JOIN plano p 
                 ON e.plano_id = p.plano_id

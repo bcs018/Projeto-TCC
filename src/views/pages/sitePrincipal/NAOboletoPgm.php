@@ -1,14 +1,14 @@
 <?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Opção de pagamento']); ?>
 
 <?php
-if (!isset($_SESSION['person'])) {
+/*if (!isset($_SESSION['person'])) {
     header('Location: /crie-sua-loja');
 }
 
 if ($plano == false) {
     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Plano inexistente, escolha outro.</div><br>';
     header('Location: /crie-sua-loja/pagamento');
-}
+}*/
 ?>
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">

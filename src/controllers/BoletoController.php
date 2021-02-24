@@ -16,95 +16,115 @@ class BoletoController extends Controller {
         $this->render('sitePrincipal/boletoPgm',  ['plano'=>$pl]);
     }
 
-    public function checkout(){
+    public function checkout($idpl){
         $assinatura = new Assinatura;
-
-        $parc = explode(';', $_POST['parc']);
+        $plano = new Plano;
 
         $dados = $assinatura->inserirAss($_POST);
+        $pl = $plano->pegarItem($idpl['pl']);
+        $plano->inserirPlano($idpl['pl']);
 
-        $nome_tit = addslashes($_POST['nome_tit']);
-        $cpf = addslashes($_POST['cpf']);
+        //$preco = explode(".", $dados['preco']);
+        //$preco = intval($preco[0].$preco[1]);
 
-        //Variavel global defineda no Config.php = email do vendedor
-        global $pagseguro_seller;
+        global $gerencianet_clientid;
+        global $gerencianet_clientsecret;
+        global $gerencianet_sandbox;
 
-        $preco = floatval($dados['preco']);
+        //Opções padrao
+        $options = [
+            'client_id'=>$gerencianet_clientid,
+            'client_secret'=>$gerencianet_clientsecret,
+            'sandbox'=>$gerencianet_sandbox
+        ];
 
-        $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
-        $creditCard->setReceiverEmail($pagseguro_seller);
-        //Referenciação da compra do seu site com o pagseguro
-        $creditCard->setReference($dados['id_assinatura']);
-        $creditCard->setCurrency("BRL");
-        $creditCard->addItems()->withParameters(
-            $dados['id_plano'],
-            $dados['nome_plano'],
-            1,
-            $preco
+        //Itens do plano
+        $items = [
+            'name' => $dados['nome_plano'],
+            'amount' => 1,
+            'value' => ($dados['preco'] * 100)
+        ];
 
-        );
-        $creditCard->setSender()->setName($dados['nome_cli']);
-        $creditCard->setSender()->setEmail($dados['email']);
-        $creditCard->setSender()->setDocument()->withParameters('CPF', $dados['cpf']);
-        $creditCard->setSender()->setPhone()->withParameters(
-            $dados['ddd'],
-            $dados['celular']
-        );
-        $creditCard->setSender()->setHash($_POST['id']);
-        
-        //No ip como esta em localhost, tem que enviar um ip valido
-        $ip = $_SERVER['REMOTE_ADDR'];
-        if(strlen($ip) < 9){
-            $ip = '127.0.0.1';
-        }    
-        $creditCard->setSender()->setIp($ip);
-        
-        $creditCard->setShipping()->setAddress()->withParameters(
-            $dados['rua'],
-            $dados['numero'],
-            $dados['bairro'],
-            $dados['cep'],
-            $dados['cidade'],
-            $dados['estado'],
-            'BRA',
-            $dados['complemento']
-        );
+        //Id da compra no seu site e o endereço para notificação
+        $metadata = [
+            'custom_id' => $dados['id_assinatura'],
+            'notification_url' => BASE_URL.'boleto/notificacao'
+        ];
 
-        $creditCard->setBilling()->setAddress()->withParameters(
-            $dados['rua'],
-            $dados['numero'],
-            $dados['bairro'],
-            $dados['cep'],
-            $dados['cidade'],
-            $dados['estado'],
-            'BRA',
-            $dados['complemento']
-        );
+        //Caso for uma compra com frete, colocar isso abaixo para sair no boleto
+        /*$shipping = [
+            'name'=> 'FRETE',
+            'value'=> //Valor do frete
+        ]*/
 
-        $creditCard->setToken($_POST['cartao_token']);
-        $creditCard->setInstallment()->withParameters($parc[0], $parc[1], 12);
-        $creditCard->setHolder()->setName($nome_tit);
-        $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
-        
-        $creditCard->setMode('DEFAULT');
-
-        //Url para o pagseguro notificar que o pagamento foi aprovado
-        //$creditCard->setNotificationUrl('/notification');
-
-        //$creditCard->setNotificationUrl();
+        //Corpo da reuisição
+        $body = [
+            'metadata'=>$metadata,
+            'items'=>$items
+        ];
 
         try{
-            $result = $creditCard->register(
-                \PagSeguro\Configuration\Configure::getAccountCredentials()
-            );
+            $api = new \Gerencianet\Gerencianet($options);
+            $charge = $api->createCharge(array(), $body);
 
-            echo json_encode($result);
-            exit;
+            if($charge['code']=='200'){
+                $charge_id = $charge['data']['charge_id'];
+
+                $params = [
+                    'id'=>$charge_id
+                ];
+
+                $customer = [
+                    //Dados do cliente
+                    'name' => $dados['nome_cli'],
+                    'cpf' => $dados['cpf'],
+                    'phone_number' => $dados['ddd'].$dados['celular']
+                ];
+
+                $bankingBillet = [
+                    //Data de vencimento 4 dias após a compra
+                    'expire_at' => date('Y-m-d', strtotime('+4 days')),
+                    'customer'=> $customer,
+                    //Opcional
+                    //'message'=>''
+                ];
+
+                $payment = [
+                    'banking_billet'=>$bankingBillet
+                ];
+
+                $body = [
+                    'payment'=> $payment
+                ];
+
+                try{
+                    $charge = $api->payCharge($params, $body);
+
+                    if($charge['code'] == '200'){
+                        //Pegando o link do boleto
+                        $link = $charge['data']['link'];
+
+                        //Salvar o link do boleto em algum lugar do banco de dados
+                        //header("Location: ".$link);
+
+                        $assinatura->salvarLinkBoleto($link, $dados['id_assinatura']);
+
+                        $this->render('sitePrincipal/obrigado',  ['plano'=>$pl, 'link'=>$link]);
+
+                    }
+                }catch(Exception $e){
+                    //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
+                    $assinatura->excluirItem($dados['id_assinatura']);
+
+                    echo "ERRO ". $e->getMessage();
+                    exit;
+                }
+            }
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
             $assinatura->excluirItem($dados['id_assinatura']);
 
-            echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
+            echo 'ERRO AO EMITIR BOLETO'. $e->getMessage();
             exit;
         }
     }

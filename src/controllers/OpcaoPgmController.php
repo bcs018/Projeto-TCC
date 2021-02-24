@@ -12,7 +12,7 @@ class OpcaoPgmController extends Controller {
         if($opcao == 'cartao'){
             header("Location: /crie-sua-loja/pagamento/cartao/". $_POST['plan']);
         }elseif($opcao == 'boleto'){
-            header("Location: /crie-sua-loja/pagamento/boleto/". $_POST['plan']);
+            header("Location: /crie-sua-loja/pagamento/boleto/checkout/". $_POST['plan']);
         }else{
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Opção inexistente, escolha entre "Cartão de crédito" ou "Boleto".</div><br>';
             header('Location: /crie-sua-loja/pagamento');        

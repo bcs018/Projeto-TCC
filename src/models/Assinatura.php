@@ -181,4 +181,13 @@ class Assinatura extends Model{
         $sql->execute();
     }
 
+    public function salvarLinkBoleto($link, $id){
+        $sql = "UPDATE assinatura SET link_bol = ? WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $link);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+    }
+
 }

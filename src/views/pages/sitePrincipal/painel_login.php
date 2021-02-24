@@ -52,7 +52,7 @@
                 </fieldset>
                 <br>
 
-                <?php if($assinatura != false): ?>
+                <?php if($assinatura != false && $plano['plano_id'] != 1): ?>
                     <fieldset class="border p-2">
                     <legend class="w-auto">Dados do pagamento</legend>
                         <div class="row">
