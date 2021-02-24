@@ -3,30 +3,19 @@ namespace src\controllers;
 
 use \core\Controller;
 use Exception;
+use Gerencianet\Exception\GerencianetException;
 use \src\models\Plano;
 use \src\models\Assinatura;
 
 class BoletoController extends Controller {
-    public function pagamentoPlano($idpl){
-        $plano = new Plano;
-        
-        $pl = $plano->pegarItem($idpl['pl']);
-        $plano->inserirPlano($idpl['pl']);
-        
-        $this->render('sitePrincipal/boletoPgm',  ['plano'=>$pl]);
-    }
 
     public function checkout($idpl){
         $assinatura = new Assinatura;
         $plano = new Plano;
 
-        $dados = $assinatura->inserirAss($_POST);
-        $pl = $plano->pegarItem($idpl['pl']);
         $plano->inserirPlano($idpl['pl']);
-
-        //$preco = explode(".", $dados['preco']);
-        //$preco = intval($preco[0].$preco[1]);
-
+        $dados = $assinatura->inserirAss();
+        
         global $gerencianet_clientid;
         global $gerencianet_clientsecret;
         global $gerencianet_sandbox;
@@ -39,37 +28,37 @@ class BoletoController extends Controller {
         ];
 
         //Itens do plano
-        $items = [
-            'name' => $dados['nome_plano'],
+        $item[] = array(
+            'name' => 'Plano '.$dados['nome_plano'],
             'amount' => 1,
-            'value' => ($dados['preco'] * 100)
-        ];
+            'value' => intval($dados['preco'] * 100)
+        );
 
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
             'custom_id' => $dados['id_assinatura'],
-            'notification_url' => BASE_URL.'boleto/notificacao'
+            'notification_url' => BASE_URL.'/boleto/notificacao'
         ];
 
         //Caso for uma compra com frete, colocar isso abaixo para sair no boleto
-        /*$shipping = [
+        /*$shipping[] = [
             'name'=> 'FRETE',
             'value'=> //Valor do frete
         ]*/
 
         //Corpo da reuisição
         $body = [
-            'metadata'=>$metadata,
-            'items'=>$items
+            'items'=> $item,
+            'metadata'=> $metadata
         ];
 
         try{
             $api = new \Gerencianet\Gerencianet($options);
-            $charge = $api->createCharge(array(), $body);
-
+            $charge = $api->createCharge([], $body);
+            
             if($charge['code']=='200'){
                 $charge_id = $charge['data']['charge_id'];
-
+                
                 $params = [
                     'id'=>$charge_id
                 ];
@@ -104,13 +93,10 @@ class BoletoController extends Controller {
                         //Pegando o link do boleto
                         $link = $charge['data']['link'];
 
-                        //Salvar o link do boleto em algum lugar do banco de dados
-                        //header("Location: ".$link);
-
+                        //Salvar o link do boleto no banco de dados
                         $assinatura->salvarLinkBoleto($link, $dados['id_assinatura']);
 
-                        $this->render('sitePrincipal/obrigado',  ['plano'=>$pl, 'link'=>$link]);
-
+                        header("Location: /crie-sua-loja/pagamento/obrigado/".$dados['id_assinatura']);
                     }
                 }catch(Exception $e){
                     //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
@@ -120,52 +106,62 @@ class BoletoController extends Controller {
                     exit;
                 }
             }
+        }catch(GerencianetException $e){
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
             $assinatura->excluirItem($dados['id_assinatura']);
 
-            echo 'ERRO AO EMITIR BOLETO'. $e->getMessage();
+            echo 'ERRO AO EMITIR BOLETO ';
+            print_r($e->getMessage());
             exit;
         }
     }
 
-    public function notification(){
-        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+    public function obrigado($id){
         $assinatura = new Assinatura;
+
+        $link = $assinatura->pegarItemAss($id['id']);
+
+        $this->render('sitePrincipal/obrigado', ['link'=>$link['link_bol']]);
+    }
+
+    public function notification(){
+        global $gerencianet_clientid;
+        global $gerencianet_clientsecret;
+        global $gerencianet_sandbox;
+
+        $options = [
+            'client_id'=>$gerencianet_clientid,
+            'client_secret'=>$gerencianet_clientsecret,
+            'sandbox'=>$gerencianet_sandbox
+        ];
+
+        $token = $_POST['notification'];
+        $params = [
+            'token' => $token,
+        ];
+
         try {
-            //Verifica se foi enviada as informações do retorno da compra
-            if(\PagSeguro\Helpers\Xhr::hasPost()){
-                $r = \PagSeguro\Services\Transactions\Notification::check(
-                    \PagSeguro\Configuration\Configure::getAccountCredentials()
-                );
+            $api = new \Gerencianet\Gerencianet($options);
+            $c = $api->getNotification($params, []);
 
-                $ref = $r->getReference();
-                /**
-                 * Status
-                 * 1 - Aguardando pagamento
-                 * 2 - Em analise - Paga mas n foi aprovado de cara
-                 * 3 - Paga
-                 * 4 - Disponivel - Disponivel para saque
-                 * 5 - Em disputa
-                 * 6 - Dinheiro foi devolvido
-                 * 7 - Compra cancelada
-                 * 8 - Debitado - Dinheiro daquela compra foi devolvida na disputa
-                 * 9 - Retenção temporaria - Quando o cara liga para o cartão e fala que nao reconhece a compra
-                 */
-                $status = $r->getStatus();
+            //Pega a ultima chave do array
+            $ultimoIte = end($c['data']);
 
-                //Dependendo do retorno no PS, faz alguma coisa no sistema (FAZER UMA TRATATIVA MELHOR POSTERIORMENTE)
-                if($status == 3){
-                    $assinatura->aprovarCompra($ref);
-                }elseif($status == 5 || $status == 6 || $status == 7 || $status == 8 || $status == 9){
-                    $assinatura->bloquearCompra($ref);
-                }else{
-                    $assinatura->analiseCompra($ref);
-                }
+            $custo_id = $ultimoIte['custom_id'];
 
+            $status = $ultimoIte['status']['current'];
+
+            //Se foi pago o boleto
+            if($status == 'paid'){
+                //Alterar as tabelas para deixar o usuario ativo e assinatura paga
             }
+
         } catch (Exception $e) {
-            //throw $th;
-        }    
+            echo "Erro" . $e->getMessage();
+        }
     }
 }

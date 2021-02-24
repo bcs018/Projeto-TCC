@@ -167,6 +167,7 @@ create table assinatura(
     tipo_pagamento varchar(100),
     status_pagamento int,
     cod_transacao varchar(100),
+    link_bol varchar(200),
     
     primary key(assinatura_id),
     foreign key(usuario_id) references usuario(usuario_id),

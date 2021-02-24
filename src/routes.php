@@ -13,10 +13,13 @@ $router->post('/crie-sua-loja/verifica-cpf', 'CadastroController@verifica_cpf_ca
 $router->get('/crie-sua-loja/pagamento', 'CadastroController@pagamento');
 $router->get('/crie-sua-loja/pagamento/cartao/{pl}', 'PgCheckTransPrincipalController@pagamentoPlano');
 $router->get('/crie-sua-loja/pagamento/boleto/checkout/{pl}', 'BoletoController@checkout');
+$router->get('/crie-sua-loja/pagamento/obrigado/{id}', 'BoletoController@obrigado');
+
 $router->post('/crie-sua-loja/escolha-pagamento', 'OpcaoPgmController@escolhaPagamento');
 $router->get('/crie-sua-loja/obrigado', 'CadastroController@inserirCadastroFree');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
-$router->post('/notification', 'PgCheckTransPrincipalController@notification');
+$router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
+$router->post('/boleto/notification', 'BoletoController@notification');
 
 
 

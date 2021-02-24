@@ -90,7 +90,6 @@ $('#nome_usu').blur(function(){
 
     if(valida_nome || !nome){
         $('#error1').html('<p style="color: #fa3200;font-weight: bolder;">Nome em branco ou com caracteres inválidos!</p>');
-        toastr.error ('Nome em branco ou com caracteres inválidos!');
         return;
     }else{
         $('#error1').html('');
@@ -101,7 +100,6 @@ $('#nome_usu').blur(function(){
 $('#rep_senha').blur(function(){
     if( $('#senha').val().length < 6 || $('#rep_senha').val().length < 6 ){
         $('#error14').html('<p style="color: #fa3200;font-weight: bolder;">Senhas menor que seis caracteres!</p>');
-        toastr.error ('Senhas menor que seis caracteres!!');
         return;
     }else{
         $('#error14').html('');
@@ -109,7 +107,6 @@ $('#rep_senha').blur(function(){
 
     if( $('#senha').val() != $('#rep_senha').val() ){
         $('#error14').html('<p style="color: #fa3200;font-weight: bolder;">Senhas não batem!</p>');
-        toastr.error ('Senhas não batem!');
         return;
     }else{
         $('#error14').html('');
@@ -124,7 +121,6 @@ $('#sobrenome_usu').blur(function(){
 
     if(valida_nome || !nome){
         $('#error2').html('<p style="color: #fa3200;font-weight: bolder;">Sobrenome em branco ou com caracteres inválidos!</p>');
-        toastr.error ('Sobrenome em branco ou com caracteres inválidos!');
         return;
     }else{
         $('#error2').html('');
@@ -136,7 +132,6 @@ $('#email_usu').blur(function(){
 
     if( $('#email_usu').val() == '' ){
         $('#error3').html('<p style="color: #fa3200;font-weight: bolder;">E-mail em branco!</p>');
-        toastr.error ('E-mail em branco!');
         return;
     }else{
         $('#error3').html('');
@@ -148,7 +143,6 @@ $('#celular').blur(function(){
 
     if( $('#celular').val() == '' ){
         $('#error4').html('<p style="color: #fa3200;font-weight: bolder;">Celular em branco!</p>');
-        toastr.error ('Celular em branco!');
         return;
     }else{
         $('#error4').html('');
@@ -160,7 +154,6 @@ $('#cpf_usu').blur(function(){
 
     if( $('#cpf_usu').val() == '' ){
         $('#error5').html('<p style="color: #fa3200;font-weight: bolder;">CPF em branco!</p>');
-        toastr.error ('CPF em branco!');
         return;
     }else{
         $('#error5').html('');
@@ -168,7 +161,6 @@ $('#cpf_usu').blur(function(){
 
     if(!TestaCPF($('#cpf_usu').val())){
         $('#error5').html('<p style="color: #fa3200;font-weight: bolder;">CPF inválido!</p>');
-        toastr.error ('CPF inválido!');
         return;
     }else{
         $('#error5').html('');
@@ -179,7 +171,6 @@ $('#data_nasc').blur(function(){
 
     if( $('#data_nasc').val() == '' ){
         $('#error6').html('<p style="color: #fa3200;font-weight: bolder;">Data de nascimento em branco!</p>');
-        toastr.error ('Data de nascimento em branco!');
         return;
     }else{
         $('#error6').html('');
@@ -191,7 +182,6 @@ $('#rua_usu').blur(function(){
 
     if( $('#rua_usu').val() == '' ){
         $('#error7').html('<p style="color: #fa3200;font-weight: bolder;">Rua em branco!</p>');
-        toastr.error ('Rua em branco!');
         return;
     }else{
         $('#error7').html('');
@@ -203,7 +193,6 @@ $('#bairro_usu').blur(function(){
 
     if( $('#bairro_usu').val() == '' ){
         $('#error8').html('<p style="color: #fa3200;font-weight: bolder;">Bairro em branco!</p>');
-        toastr.error ('Bairro em branco!');
         return;
     }else{
         $('#error8').html('');
@@ -215,7 +204,6 @@ $('#num_usu').blur(function(){
 
     if( $('#num_usu').val() == '' ){
         $('#error9').html('<p style="color: #fa3200;font-weight: bolder;">Número em branco!</p>');
-        toastr.error ('Número em branco!');
         return;
     }else{
         $('#error9').html('');
@@ -227,7 +215,6 @@ $('#cep_usu').blur(function(){
 
     if( $('#cep_usu').val() == '' ){
         $('#error10').html('<p style="color: #fa3200;font-weight: bolder;">CEP em branco!</p>');
-        toastr.error ('CEP em branco!');
         return;
     }else{
         $('#error10').html('');
@@ -239,7 +226,6 @@ $('#cidade_usu').blur(function(){
 
     if( $('#cidade_usu').val() == '' ){
         $('#error15').html('<p style="color: #fa3200;font-weight: bolder;">Cidade em branco!</p>');
-        toastr.error ('Cidade em branco!');
         return;
     }else{
         $('#error15').html('');
@@ -251,7 +237,6 @@ $('#subdominio').blur(function(){
 
     if( $('#subdominio').val() == '' ){
         $('#error12').html('<p style="color: #fa3200;font-weight: bolder;">Subdominio em branco!</p>');
-        toastr.error ('Subdominio em branco!');
         return;
     }else{
         $('#error12').html('');
@@ -263,7 +248,6 @@ $('#nome_fan').blur(function(){
 
     if( $('#nome_fan').val() == '' ){
         $('#error13').html('<p style="color: #fa3200;font-weight: bolder;">Nome fantasia em branco!</p>');
-        toastr.error ('Nome fantasia em branco!');
         return;
     }else{
         $('#error13').html('');

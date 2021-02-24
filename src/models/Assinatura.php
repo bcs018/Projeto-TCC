@@ -6,16 +6,23 @@ use \src\models\Plano;
 
 class Assinatura extends Model{
 
-    public function inserirAss($POST){
-        $id_transacao = filter_var($POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $id_usu = $_SESSION['person']['id'];
-        if(isset($POST['cupom'])){
-            $cupom = null;
+    public function inserirAss($POST=null){
+        if(isset($POST['id'])){
+            $id_transacao = filter_var($POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $tp_pgm = 'pagsegurockttransparente';
         }else{
-            $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_transacao = null;
+            $tp_pgm = 'boleto';
         }
-        $tp_pgm = 'pagsegurockttransparente';
-        $statusPgm = 0;
+
+        $id_usu = $_SESSION['person']['id'];
+
+        if(isset($POST['cupom'])){
+            $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
+        }else{
+            $cupom = null;
+        }
+        $statusPgm = 1;
 
         //Pegar o valor do plano fazendo select na tabela de ecommerce
         $sql = "SELECT * FROM ecommerce_usu WHERE usuario_id = ?";
@@ -88,6 +95,33 @@ class Assinatura extends Model{
 
     public function pegarItem($id){
         $sql = "SELECT * FROM assinatura WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        if($sql->rowCount() == 0){
+            return false;
+        }
+
+        return $sql->fetch();
+    }
+
+    public function pegarItensValidos($id){
+        $sql = "SELECT * FROM assinatura WHERE usuario_id = ?
+                AND status_pagamento IN(1,2,3,4)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function pegarItemAss($id){
+        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
@@ -187,7 +221,6 @@ class Assinatura extends Model{
         $sql->bindValue(1, $link);
         $sql->bindValue(2, $id);
         $sql->execute();
-
     }
 
 }
