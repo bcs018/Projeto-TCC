@@ -57,7 +57,7 @@ create table plano(
 
 insert into plano (nome_plano, descricao_plano, preco)
 values ('Free', '5 produtos;Relatórios somente do mês;Suporte;Acesso a um template padrão', 0),
-	   ('Pro', '15 produtos;Relatórios até 6 meses atrás;Suporte;Acesso a todos template', 60),
+	   ('Pro', '15 produtos;Relatórios até 6 meses atrás;Suporte;Acesso a todos templates', 60),
        ('Super Pro', 'Produtos ilimitados;Relatórios desde o dia da criação da loja;Suporte;Acesso a todos templates', 100);
 
 create table ecommerce_usu(
