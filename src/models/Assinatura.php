@@ -17,7 +17,7 @@ class Assinatura extends Model{
 
         $id_usu = $_SESSION['person']['id'];
 
-        if(isset($POST['cupom'])){
+        if(isset($POST['cupom']) && !empty($POST['cupom'])){
             $cupom = filter_var($POST['cupom'], FILTER_SANITIZE_SPECIAL_CHARS);
         }else{
             $cupom = null;
@@ -68,8 +68,7 @@ class Assinatura extends Model{
         $sql->bindValue(6, $id_transacao);
         $sql->execute();
 
-        echo $this->db->lastInsertId();exit;
-        //echo "Id_usu: ".$id_usu. " Cupom: ". $cupom. " Preco plano: ".$plano['preco']. " Tp pgm: ".$tp_pgm. " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
+        //echo "Id_usu: ".gettype($id_usu). " Cupom: ". $cupom. " Preco plano: ".gettype(floatval($plano['preco'])). " Tp pgm: ".gettype($tp_pgm). " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
         
         $dados = [
                     'id_plano'     => $idPlano['plano_id'], 
