@@ -6,8 +6,8 @@ use \src\models\Plano;
 
 class Assinatura extends Model{
 
-    public function inserirAss($POST=null){
-        if(isset($POST['id'])){
+    public function inserirAss($POST = 0){
+        if($POST != 0){
             $id_transacao = filter_var($POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
             $tp_pgm = 'pagsegurockttransparente';
         }else{
@@ -68,6 +68,7 @@ class Assinatura extends Model{
         $sql->bindValue(6, $id_transacao);
         $sql->execute();
 
+        echo $this->db->lastInsertId();exit;
         //echo "Id_usu: ".$id_usu. " Cupom: ". $cupom. " Preco plano: ".$plano['preco']. " Tp pgm: ".$tp_pgm. " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
         
         $dados = [
