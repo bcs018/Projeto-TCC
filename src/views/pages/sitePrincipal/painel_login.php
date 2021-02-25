@@ -73,13 +73,24 @@
 
                             <div class="col-md-6">
                                 <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Status pagamento:</label>
-                                <p><?php echo ($assinatura['status_pagamento']==0)?'Pendente':'Pago'; ?></p>
+                                <p><?php echo ($assinatura['status_pagamento']==1)?'Pendente':'Pago'; ?></p>
                             </div>
 
+                            <?php 
+                            if(!empty( $assinatura['link_bol'])): ?>
+                                <div class="col-md-6">
+                                    <label style="color: #525252;font-weight: bold;margin-bottom: 0;">2º via boleto:</label> <br>
+                                    <a target="_blank" href="<?php echo $assinatura['link_bol']; ?>">Clique aqui para abrir seu boleto</a>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php 
+                            if(!empty( $assinatura['cod_transacao'])): ?>
                             <div class="col-md-6">
                                 <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Código transação:</label>
                                 <p style="word-wrap: break-word;"><?php echo $assinatura['cod_transacao']; ?></p>
                             </div>
+                            <?php endif; ?>
 
                         </div>
                     </fieldset>

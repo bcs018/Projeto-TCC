@@ -94,7 +94,8 @@ class Assinatura extends Model{
     }
 
     public function pegarItem($id){
-        $sql = "SELECT * FROM assinatura WHERE usuario_id = ?";
+        $sql = "SELECT * FROM assinatura WHERE usuario_id = ? 
+                ORDER BY assinatura_id DESC LIMIT 1";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();

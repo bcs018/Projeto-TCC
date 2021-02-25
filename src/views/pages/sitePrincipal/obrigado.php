@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h5>Geramos seu boleto para pagamento, lembrando que o pagamento pode ser confirmado em até 3 dias úteis.</h5> <br>
+                <h5>Geramos seu boleto para pagamento, lembrando que o após o pagamento a confirmação é em até 3 dias úteis.</h5> <br>
                 <h5>Para acessar seu boleto clique <a target="_blank" href="<?php echo $link; ?>">aqui</a> ou faça login para emitir a segunda via.</h5><br>
                 <h5>A data do vencimento é após 4 dias a partir da data de compra.</h5>
                 <br><br>
