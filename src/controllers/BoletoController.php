@@ -79,7 +79,6 @@ class BoletoController extends Controller {
         ];
 
         try{
-            $api = new Gerencianet($options);
             $subscription = $api->createSubscription($params, $body);
         }catch(GerencianetException $e){
             print_r($e->code);
@@ -103,7 +102,7 @@ class BoletoController extends Controller {
             'cpf' => $dados['cpf'],
             'phone_number' => $dados['ddd'].$dados['celular']
         ];
-
+        
         $body = [
             'payment' => [
                 'banking_billet' => [
@@ -114,7 +113,6 @@ class BoletoController extends Controller {
         ];
 
         try{
-            $api = new Gerencianet($options);
             $subscription = $api->paySubscription($params, $body);
 
             print_r($subscription);
@@ -164,6 +162,32 @@ class BoletoController extends Controller {
             if($status == 'paid'){
                 //Alterar as tabelas para deixar o usuario ativo e assinatura paga
             }
+
+        } catch (Exception $e) {
+            echo "Erro" . $e->getMessage();
+        }
+    }
+
+    public function retornaInfo(){
+        global $gerencianet_clientid;
+        global $gerencianet_clientsecret;
+        global $gerencianet_sandbox;
+
+        $options = [
+            'client_id'=>$gerencianet_clientid,
+            'client_secret'=>$gerencianet_clientsecret,
+            'sandbox'=>$gerencianet_sandbox
+        ];
+
+        $params = ['limit' => 20, 'offset' => 0];
+
+
+        try {
+            $api = new \Gerencianet\Gerencianet($options);
+            $subscription = $api->getPlans($params, []);
+
+            echo "<pre>";
+            print_r($subscription);
 
         } catch (Exception $e) {
             echo "Erro" . $e->getMessage();
