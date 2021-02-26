@@ -4,6 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use Exception;
 use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
 use \src\models\Plano;
 use \src\models\Assinatura;
 
@@ -27,12 +28,33 @@ class BoletoController extends Controller {
             'sandbox'=>$gerencianet_sandbox
         ];
 
+        $body = [
+            'name' => 'Plano '.$dados['nome_plano'],
+            'interval' => 1,
+            'repeats' => null
+        ];
+
+        try{
+            $api = new Gerencianet($options);
+            $plan = $api->createPlan([], $body);
+        }catch(GerencianetException $e){
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
+        }catch(Exception $e){
+            print_r($e->getMessage());
+        }
+
         //Itens do plano
         $item[] = array(
             'name' => 'Plano '.$dados['nome_plano'],
             'amount' => 1,
             'value' => intval($dados['preco'] * 100)
         );
+
+        $items = [
+            $item
+        ];
 
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
@@ -52,60 +74,13 @@ class BoletoController extends Controller {
             'metadata'=> $metadata
         ];
 
+        $params = [
+            'id' => $plan['data']['plan_id']
+        ];
+
         try{
-            $api = new \Gerencianet\Gerencianet($options);
-            $charge = $api->createCharge([], $body);
-            
-            if($charge['code']=='200'){
-                $charge_id = $charge['data']['charge_id'];
-                
-                $params = [
-                    'id'=>$charge_id
-                ];
-
-                $customer = [
-                    //Dados do cliente
-                    'name' => $dados['nome_cli'],
-                    'cpf' => $dados['cpf'],
-                    'phone_number' => $dados['ddd'].$dados['celular']
-                ];
-
-                $bankingBillet = [
-                    //Data de vencimento 4 dias após a compra
-                    'expire_at' => date('Y-m-d', strtotime('+4 days')),
-                    'customer'=> $customer,
-                    //Opcional
-                    //'message'=>''
-                ];
-
-                $payment = [
-                    'banking_billet'=>$bankingBillet
-                ];
-
-                $body = [
-                    'payment'=> $payment
-                ];
-
-                try{
-                    $charge = $api->payCharge($params, $body);
-
-                    if($charge['code'] == '200'){
-                        //Pegando o link do boleto
-                        $link = $charge['data']['link'];
-
-                        //Salvar o link do boleto no banco de dados
-                        $assinatura->salvarLinkBoleto($link, $dados['id_assinatura']);
-
-                        header("Location: /crie-sua-loja/pagamento/obrigado/".$dados['id_assinatura']);
-                    }
-                }catch(Exception $e){
-                    //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
-                    $assinatura->excluirItem($dados['id_assinatura']);
-
-                    echo "ERRO ". $e->getMessage();
-                    exit;
-                }
-            }
+            $api = new Gerencianet($options);
+            $subscription = $api->createSubscription($params, $body);
         }catch(GerencianetException $e){
             print_r($e->code);
             print_r($e->error);
@@ -117,6 +92,36 @@ class BoletoController extends Controller {
             echo 'ERRO AO EMITIR BOLETO ';
             print_r($e->getMessage());
             exit;
+        }
+
+        $params = [
+            'id' => $subscription['data']['subscription_id']
+        ];
+
+        $customer = [
+            'name' => $dados['nome_cli'],
+            'cpf' => $dados['cpf'],
+            'phone_number' => $dados['ddd'].$dados['celular']
+        ];
+
+        $body = [
+            'payment' => [
+                'banking_billet' => [
+                    'expire_at' => date("Y-m-d", strtotime("+5 days")),
+                    'customer' => $customer
+                ]
+            ]
+        ];
+
+        try{
+            $api = new Gerencianet($options);
+            $subscription = $api->paySubscription($params, $body);
+
+            print_r($subscription);
+        }catch(GerencianetException $e){
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
         }
     }
 
