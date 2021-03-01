@@ -145,14 +145,14 @@
                                         <fieldset class="border p-2">
                                             <legend class="w-auto">Endereço</legend>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="#">Rua</label>
+                                                        <label class="label" for="subject">CEP</label>
                                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp
                                                         </div>
-                                                        <input type="text" class="form-control" name="rua_usu"
-                                                            id="rua_usu" placeholder="Rua">
-                                                        <div id="error7"></div>
+                                                        <input type="text" class="form-control" name="cep_usu"
+                                                            id="cep_usu" placeholder="CEP">
+                                                        <div id="error10"></div>
                                                     </div>
                                                 </div>
 
@@ -167,6 +167,17 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="#">Rua</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
+                                                        </div>
+                                                        <input type="text" class="form-control" name="rua_usu"
+                                                            id="rua_usu" placeholder="Rua">
+                                                        <div id="error7"></div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="subject">Número</label>
@@ -175,17 +186,6 @@
                                                         <input type="number" class="form-control" name="num_usu"
                                                             id="num_usu" placeholder="Número">
                                                         <div id="error9"></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="label" for="subject">CEP</label>
-                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
-                                                        </div>
-                                                        <input type="text" class="form-control" name="cep_usu"
-                                                            id="cep_usu" placeholder="CEP">
-                                                        <div id="error10"></div>
                                                     </div>
                                                 </div>
 
