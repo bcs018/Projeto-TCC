@@ -1,5 +1,6 @@
 <?php
 use core\Router;
+use src\controllers\CadastroController;
 
 $router = new Router();
 
@@ -15,6 +16,8 @@ $router->get('/crie-sua-loja/pagamento/cartao/{pl}', 'PgCheckTransPrincipalContr
 $router->get('/crie-sua-loja/pagamento/boleto/checkout/{pl}', 'BoletoController@checkout');
 $router->get('/crie-sua-loja/pagamento/obrigado/{id}', 'BoletoController@obrigado');
 $router->get('/retornar-info', 'BoletoController@retornaInfo');
+
+$router->post('/consulta-cep', 'CadastroController@consultarCep');
 
 $router->post('/crie-sua-loja/escolha-pagamento', 'OpcaoPgmController@escolhaPagamento');
 $router->get('/crie-sua-loja/obrigado', 'CadastroController@inserirCadastroFree');

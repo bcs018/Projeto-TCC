@@ -95,4 +95,21 @@ class CadastroController extends Controller {
         }
     }
 
+    public function consultarCep(){
+        $cep = addslashes($_POST['cep']);
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://viacep.com.br/ws/'.$cep.'/json/');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $dados = curl_exec($ch);
+
+        curl_close($ch);
+
+        echo $dados;
+
+        exit;
+    }
+
 }
