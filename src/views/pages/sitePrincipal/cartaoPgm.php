@@ -182,7 +182,7 @@ if($plano == false){
                                                         <?php $direitos = explode(";", $plano['descricao_plano']); ?>
                                                         <p>
                                                             <?php foreach($direitos as $direito): ?>
-                                                            <?php echo utf8_encode($direito); ?>. <br>
+                                                            <?php echo $direito; ?>. <br>
                                                             <?php endforeach; ?>
                                                         </p>
                                                     </div>

@@ -97,7 +97,9 @@ $(function(){
                                     }else{
                                         optionValue += 'false';
                                     }
-                                    html += '<option value="'+optionValue+'">'+parc[i].quantity+'x de R$'+parc[i].installmentAmount+'</option>';
+                                    var total = parc[i].installmentAmount;
+                                    var number = total.toFixed(2).replace(".",",");
+                                    html += '<option value="'+optionValue+'">'+parc[i].quantity+'x de R$'+number+'</option>';
                                 }
 
                                 console.log(r);

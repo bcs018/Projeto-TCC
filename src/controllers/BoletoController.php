@@ -167,30 +167,4 @@ class BoletoController extends Controller {
             echo "Erro" . $e->getMessage();
         }
     }
-
-    public function retornaInfo(){
-        global $gerencianet_clientid;
-        global $gerencianet_clientsecret;
-        global $gerencianet_sandbox;
-
-        $options = [
-            'client_id'=>$gerencianet_clientid,
-            'client_secret'=>$gerencianet_clientsecret,
-            'sandbox'=>$gerencianet_sandbox
-        ];
-
-        $params = ['limit' => 20, 'offset' => 0];
-
-
-        try {
-            $api = new \Gerencianet\Gerencianet($options);
-            $subscription = $api->getPlans($params, []);
-
-            echo "<pre>";
-            print_r($subscription);
-
-        } catch (Exception $e) {
-            echo "Erro" . $e->getMessage();
-        }
-    }
 }
