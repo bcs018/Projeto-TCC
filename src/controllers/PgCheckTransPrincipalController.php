@@ -44,6 +44,23 @@ class PgCheckTransPrincipalController extends Controller {
 
         $preco = floatval($dados['preco']);
 
+        $dados['email'] = 'bwcommerce@outlook.com';
+        $dados['token'] = '23E3EEF82A4046C5826279C0A3D2A541';
+        $dados['reference'] = $dados['id_assinatura'];
+        $dados['name'] = $dados['nome_plano'];
+        $dados['charge'] = 'AUTO';
+        $dados['period'] = 'MONTHLY';
+        $dados['amountPerPayment'] = $dados['preco'];
+        $dados['membershipFee'] = 0.00;
+        $dados['trialPeriodDuration'] = 0;  
+        $dados['trialPeriodDuration'] = 0;  
+        $dados['trialPeriodDuration'] = 0;  
+        $dados['trialPeriodDuration'] = 0;  
+        $dados['trialPeriodDuration'] = 0;  
+
+
+        $url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request';
+
         $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
         $creditCard->setReceiverEmail($pagseguro_seller);
         //Referenciação da compra do seu site com o pagseguro
