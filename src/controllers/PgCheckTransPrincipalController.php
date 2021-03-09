@@ -44,6 +44,15 @@ class PgCheckTransPrincipalController extends Controller {
 
         $preco = floatval($dados['preco']);
 
+        $plan = new \PagSeguro\Domains\Requests\DirectPreApproval\Plan;
+        $plan->setReference($dados['id_assinatura']);
+        $plan->setPreApproval()->setName($dados['nome_plano']);
+        $plan->setPreApproval()->setCharge('AUTO');
+        $plan->setPreApproval()->setPeriod('MONTHLY');
+        $plan->setPreApproval()->setAmountPerPayment($dados['preco']);
+        $plan->setPreApproval()->setTrialPeriodDuration(0);
+        $plan->setPreApproval()->setDetails('');
+
         $dados['email'] = 'bwcommerce@outlook.com';
         $dados['token'] = '23E3EEF82A4046C5826279C0A3D2A541';
         $dados['reference'] = $dados['id_assinatura'];
@@ -60,6 +69,8 @@ class PgCheckTransPrincipalController extends Controller {
 
 
         $url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request';
+
+        $a = new \PagSeguro\Domains\Requests\Adapter\
 
         $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
         $creditCard->setReceiverEmail($pagseguro_seller);
