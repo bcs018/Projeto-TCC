@@ -51,7 +51,7 @@ class PgCheckTransPrincipalController extends Controller {
         $plan->setPreApproval()->setPeriod('MONTHLY');
         $plan->setPreApproval()->setAmountPerPayment($dados['preco']);
         $plan->setPreApproval()->setTrialPeriodDuration(0);
-        $plan->setPreApproval()->setDetails('');
+        $plan->setPreApproval()->setDetails('Plano '.$dados['nome_plano'].' com pagamento de R$'.$dados['preco'].' mensais');
 
         $dados['email'] = 'bwcommerce@outlook.com';
         $dados['token'] = '23E3EEF82A4046C5826279C0A3D2A541';
