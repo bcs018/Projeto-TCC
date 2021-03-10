@@ -44,25 +44,47 @@ class PgCheckTransPrincipalController extends Controller {
 
         $preco = floatval($dados['preco']);
 
-        $plan = new \PagSeguro\Domains\Requests\DirectPreApproval\Plan;
-        $plan->setReference($dados['id_assinatura']);
-        $plan->setPreApproval()->setName($dados['nome_plano']);
-        $plan->setPreApproval()->setCharge('AUTO');
-        $plan->setPreApproval()->setPeriod('MONTHLY');
-        $plan->setPreApproval()->setAmountPerPayment($dados['preco']);
-        $plan->setPreApproval()->setDetails('Plano '.$dados['nome_plano'].' com pagamento de R$'.$dados['preco'].' mensais');
-        $plan->setReceiver()->withParameters($pagseguro_seller);
+        $status = new \PagSeguro\Domains\Requests\DirectPreApproval\Cancel();
+        $status->setPreApprovalCode('61EB374E0202EA0BB40EFFA6D7AB1F5F');
 
         try {
-            $response = $plan->register(
+            $response = $status->register(
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
             echo '<pre>';
             print_r($response);
-        } catch ( Exception $e) {
-            echo 'ERRO: '. $e->getMessage();
+        } catch (Exception $e) {
+            echo "ERRO: ".$e->getMessage();
         }
+
+
+        /**
+         * Começo de criação de plano -----------------------------
+         */
+        // $plan = new \PagSeguro\Domains\Requests\DirectPreApproval\Plan;
+        // $plan->setReference($dados['id_assinatura']);
+        // $plan->setPreApproval()->setName($dados['nome_plano']);
+        // $plan->setPreApproval()->setCharge('AUTO');
+        // $plan->setPreApproval()->setPeriod('MONTHLY');
+        // $plan->setPreApproval()->setAmountPerPayment($dados['preco']);
+        // $plan->setPreApproval()->setDetails('Plano '.$dados['nome_plano'].' com pagamento de R$'.$dados['preco'].' mensais');
+        // $plan->setReceiver()->withParameters($pagseguro_seller);
+
+        // try {
+        //     $response = $plan->register(
+        //         \PagSeguro\Configuration\Configure::getAccountCredentials()
+        //     );
+
+        //     echo '<pre>';
+        //     print_r($response);
+        // } catch ( Exception $e) {
+        //     echo 'ERRO: '. $e->getMessage();
+        // }
+
+        /**
+         * Fim da criação de pano -----------------------
+         */
 
 
         
