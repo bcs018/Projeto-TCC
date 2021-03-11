@@ -44,19 +44,40 @@ class PgCheckTransPrincipalController extends Controller {
 
         $preco = floatval($dados['preco']);
 
-        $status = new \PagSeguro\Domains\Requests\DirectPreApproval\Cancel();
-        $status->setPreApprovalCode('61EB374E0202EA0BB40EFFA6D7AB1F5F');
+
+        $code = "61EB374E0202EA0BB40EFFA6D7AB1F5F";
 
         try {
-            $response = $status->register(
-                \PagSeguro\Configuration\Configure::getAccountCredentials()
+            $response = \PagSeguro\Services\PreApproval\Cancel::create(
+                \PagSeguro\Configuration\Configure::getAccountCredentials(),
+                $code
             );
 
-            echo '<pre>';
+            echo "<pre>";
             print_r($response);
         } catch (Exception $e) {
             echo "ERRO: ".$e->getMessage();
         }
+
+        /**
+         * Cancelamento de adesão -----------------------------
+         */
+        // $status = new \PagSeguro\Domains\Requests\DirectPreApproval\Cancel();
+        // $status->setPreApprovalCode('8');
+
+        // try {
+        //     $response = $status->register(
+        //         \PagSeguro\Configuration\Configure::getAccountCredentials()
+        //     );
+
+        //     echo '<pre>';
+        //     print_r($response);
+        // } catch (Exception $e) {
+        //     echo "ERRO: ".$e->getMessage();
+        // }
+        /**
+         * Fim de cancelamento de adesão -----------------------------
+         */
 
 
         /**

@@ -7,7 +7,7 @@ use \src\models\Login;
 class LoginController extends Controller {
 
     public function index(){
-        $this->render('sitePrincipal/login');
+        $this->render('sitePrincipal/login', ['tpLogin'=>'Informe seu CPF']);
     }
 
     public function validar(){

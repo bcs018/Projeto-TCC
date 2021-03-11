@@ -25,7 +25,7 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
 $router->post('/boleto/notification', 'BoletoController@notification');
 
-$router->get('/admin-bwcommerce', 'Admin@index');
+$router->get('/admin-bwcommerce', 'AdminController@index');
 
 
 

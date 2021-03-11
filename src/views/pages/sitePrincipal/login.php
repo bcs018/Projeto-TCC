@@ -18,7 +18,7 @@ if(isset($_SESSION['log'])){
 					</span>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="number" name="cpf" placeholder="Informe seu CPF">
+						<input class="input100" type="number" name="cpf" placeholder="<?php echo $tpLogin; ?>" >
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>

@@ -22,4 +22,8 @@ class Login extends Model{
 
         return false;
     }
+
+    public function validarLoginAdmin($senha, $login){
+        
+    }
 }
