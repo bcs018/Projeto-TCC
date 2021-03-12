@@ -28,4 +28,14 @@ class PainelController extends Controller {
 
         $this->render('sitePrincipal/painel_login', $dados);
     }
+
+    public function admin(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /login");
+            exit;
+        }
+
+        $this->render('sitePrincipal/painel_admin');
+
+    }
 }

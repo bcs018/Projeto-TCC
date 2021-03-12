@@ -225,3 +225,12 @@ create table produto_opcao(
     foreign key (opcao_id) references opcao(opcao_id),
     foreign key (produto_id) references produto(produto_id)
 )default charset utf8;
+
+create table usuario_admin(
+	usuarioadm_id int not null auto_increment,
+    nome_user varchar(100) not null,
+    login varchar(50) not null,
+    senha varchar(32) not null,
+    
+    primary key(usuarioadm_id)
+)default charset utf8;

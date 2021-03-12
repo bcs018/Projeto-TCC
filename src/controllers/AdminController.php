@@ -8,12 +8,8 @@ use \src\models\Assinatura;
 
 class AdminController extends Controller {
 
-    public function index(){
-        $this->render('sitePrincipal\login', ['tpLogin'=>'Informe seu login']);    
-    }
+    
 
-    public function validarLogin(){
-        
-    }
+    
 
 }

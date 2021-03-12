@@ -25,12 +25,11 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
 $router->post('/boleto/notification', 'BoletoController@notification');
 
-$router->get('/admin-bwcommerce', 'AdminController@index');
 
-
-
-
+$router->get('/admin-bwcommerce', 'LoginController@admin');
 $router->get('/login', 'LoginController@index');
-$router->post('/login/validar', 'LoginController@validar');
+$router->post('/login/validar/user', 'LoginController@validarUser');
+$router->post('/login/validar/admin', 'LoginController@validarAdmin');
 $router->get('/painel', 'PainelController@index');
+$router->get('/painel/admin', 'PainelController@admin');
 $router->get('/sair', 'LoginController@sair');
