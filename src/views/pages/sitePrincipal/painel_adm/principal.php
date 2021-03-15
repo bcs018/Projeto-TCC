@@ -1,3 +1,5 @@
+<?php $render("sitePrincipal/header_paineladm", ['title'=>'Painel administrativo']); ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -84,3 +86,5 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<?php $render("sitePrincipal/footer_paineladm"); ?>
