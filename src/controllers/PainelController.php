@@ -35,7 +35,7 @@ class PainelController extends Controller {
             exit;
         }
 
-        $this->render('sitePrincipal/painel_admin');
+        $this->render('sitePrincipal/painel_adm/principal');
 
     }
 }
