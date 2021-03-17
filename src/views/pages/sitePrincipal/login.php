@@ -2,8 +2,9 @@
 
 <?php 
 if(isset($_SESSION['log'])){
-	header("Location: /painel");
+	header("Location: /info-cadastro");
 }
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css/util.css">

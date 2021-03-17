@@ -34,6 +34,7 @@ class Login extends Model{
             $sql = $sql->fetch();
             $_SESSION['log_admin']['id']   = $sql['usuarioadm_id'];
             $_SESSION['log_admin']['nome'] = $sql['nome_user'];
+            $_SESSION['log_admin']['url_foto'] = $sql['url_foto'];
 
             return true;
         }

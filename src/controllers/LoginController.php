@@ -18,7 +18,7 @@ class LoginController extends Controller {
         $login = new Login;
 
         if($login->validarLoginUser($_POST['pass'], $_POST['user'])){            
-            header("Location: /painel");
+            header("Location: /info-cadastro");
             exit;
         }
 
@@ -45,4 +45,8 @@ class LoginController extends Controller {
         header("Location: /login");
     }
 
+    public function sairAdmin(){
+        unset( $_SESSION['log_admin']);
+        header("Location: /admin-bwcommerce");
+    }
 }

@@ -37,17 +37,7 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
-            <div class="media">
-              <img src="<?php echo BASE_ASS; ?>adminlte/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
+            
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
@@ -119,8 +109,8 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+        <a href="/sair/admin" class="nav-link" style="color:red;">
+          Sair
         </a>
       </li>
     </ul>
@@ -140,7 +130,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo BASE_ASS; ?>adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php if($_SESSION['log_admin']['url_foto'] != null): ?>
+            <img src="<?php echo BASE_ASS.$_SESSION['log_admin']['url_foto']; ?>" class="img-circle elevation-2" alt="User Image">
+          <?php else: ?>
+            <img src="<?php echo BASE_ASS; ?>images/user_photo/user_default.png" class="img-circle elevation-2" alt="User Image">
+          <?php endif;  ?>
         </div>
         <div class="info">
           <a href="" class="d-block"><?php echo $_SESSION['log_admin']['nome']; ?></a>
@@ -149,7 +143,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           
           <!-- Menu Ecommerce -->
           <li class="nav-item">
@@ -196,19 +190,13 @@
               <li class="nav-item">
                 <a href="../UI/general.html" class="nav-link">
                 <i class="fas fa-file-signature nav-icon"></i>
-                  <p>Alterar Nome</p>
+                  <p>Alterar dados pessoais</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../UI/icons.html" class="nav-link">
-                <i class="fas fa-key nav-icon"></i>
-                  <p>Alterar Senha</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
-                <i class="fas fa-key nav-icon"></i>
-                  <p>Alterar Foto</p>
+                <i class="fas fa-plus nav-icon"></i>
+                  <p>Adicionar novo usuário</p>
                 </a>
               </li>
             </ul>

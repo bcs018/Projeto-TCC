@@ -1,0 +1,31 @@
+<?php
+namespace src\controllers;
+
+use \core\Controller;
+use \src\models\Painel;
+use \src\models\Assinatura;
+
+
+class InfoCadastroController extends Controller {
+    public function index(){
+        if(!isset($_SESSION['log'])){
+            header("Location: /login");
+            exit;
+        }
+
+        $painel = new Painel;
+        $ass = new Assinatura;
+        
+        $usu = $painel->listaDadosUsuario($_SESSION['log']['id']);
+        $plano = $painel->listaDadosPlano($_SESSION['log']['id']);
+        $assinatura = $ass->pegarItem($_SESSION['log']['id']);
+
+        $dados = [
+                  'usuario'    =>$usu, 
+                  'plano'      =>$plano,
+                  'assinatura' =>$assinatura                  
+                 ];
+
+        $this->render('sitePrincipal/infoCadastro', $dados);
+    }
+}

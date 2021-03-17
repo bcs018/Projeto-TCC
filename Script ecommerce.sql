@@ -231,6 +231,7 @@ create table usuario_admin(
     nome_user varchar(100) not null,
     login varchar(50) not null,
     senha varchar(32) not null,
+    url_foto varchar(200),
     
     primary key(usuarioadm_id)
 )default charset utf8;
