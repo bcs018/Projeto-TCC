@@ -205,6 +205,12 @@
                   <p>Alterar Senha</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../UI/icons.html" class="nav-link">
+                <i class="fas fa-key nav-icon"></i>
+                  <p>Alterar Foto</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
