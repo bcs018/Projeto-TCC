@@ -3,16 +3,12 @@
 namespace src\models;
 use \core\Model;
 
-class Painel extends Model{
-    public function alterarUsuario($id, $nome, $senha_atu, $senha_nov, $senha_rep, $foto){
-        $sql = "SELECT * FROM usuario_admin WHERE usuarioadm_id = ?";
+class InfoCadastro extends Model{
+    public function listaDadosUsuario($id){
+        $sql = "SELECT * FROM usuario WHERE usuario_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
-
-        if($sql->rowCount() > 0){
-            $sql = "UPDATE usuario_admin SET (nome_user, senha, url_foto)"
-        }
 
         return $sql->fetch();
     }

@@ -4,7 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\models\Painel;
 use \src\models\Assinatura;
-
+use src\models\InfoCadastro;
 
 class InfoCadastroController extends Controller {
     public function index(){
@@ -13,11 +13,11 @@ class InfoCadastroController extends Controller {
             exit;
         }
 
-        $painel = new Painel;
+        $info = new InfoCadastro;
         $ass = new Assinatura;
         
-        $usu = $painel->listaDadosUsuario($_SESSION['log']['id']);
-        $plano = $painel->listaDadosPlano($_SESSION['log']['id']);
+        $usu = $info->listaDadosUsuario($_SESSION['log']['id']);
+        $plano = $info->listaDadosPlano($_SESSION['log']['id']);
         $assinatura = $ass->pegarItem($_SESSION['log']['id']);
 
         $dados = [

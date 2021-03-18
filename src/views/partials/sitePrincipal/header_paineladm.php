@@ -11,6 +11,26 @@
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/dist/css/adminlte.min.css">
+  <!-- Ion Icons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- daterangepicker -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.css">
+	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
+
   <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
 
 </head>
@@ -188,7 +208,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="../UI/general.html" class="nav-link">
+                <a href="/painel/alterar-dados-pessoais" class="nav-link">
                 <i class="fas fa-file-signature nav-icon"></i>
                   <p>Alterar dados pessoais</p>
                 </a>
