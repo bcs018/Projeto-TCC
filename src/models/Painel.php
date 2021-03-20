@@ -5,16 +5,47 @@ use \core\Model;
 
 class Painel extends Model{
     public function alterarUsuario($id, $nome, $senha_atu, $senha_nov, $senha_rep, $foto){
+        if($nome == '' || empty($nome)){
+            return ['error'=>'Nome em branco'];
+        }
+        
+        if($senha_nov != $senha_rep){
+            return ['error'=>'Novas senhas não conferem'];
+        }
+
         $sql = "SELECT * FROM usuario_admin WHERE usuarioadm_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
 
-        if($sql->rowCount() > 0){
-            $sql = "UPDATE usuario_admin SET (nome_user, senha, url_foto)"
+        $dados = $sql->fetch();
+        
+        if($dados['senha'] != md5($senha_atu)){
+            return ['error'=>'Senha atual não bate com a cadastrada no sistema'];
         }
 
-        return $sql->fetch();
+        if(isset($foto['tmp_name']) && empty($foto['tmp_name'] == false )){
+            $tpFoto = explode('/', $foto['type']);
+            $nomeFoto = md5(time().rand(1,999)).'.'.$tpFoto[1];
+            move_uploaded_file($foto['tmp_name'], '../assets/sitePrincipal/images/user_photo/'.$nomeFoto);
+        }else{
+            $nomeFoto = null;
+        }
+
+        if($sql->rowCount() > 0 && $senha_nov == ''){
+            $sql = "UPDATE usuario_admin SET (nome_user, url_foto) VALUES (?,?)";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $nome);
+            $sql->bindValue(3, $nomeFoto);
+        }else{
+            $sql = "UPDATE usuario_admin SET (nome_user, senha, url_foto) VALUES (?,?,?)";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $nome);
+            $sql->bindValue(2, md5($senha_nov));
+            $sql->bindValue(3, $nomeFoto);
+        }
+
+        return 0;
     }
 
     public function listaDadosPlano($id){

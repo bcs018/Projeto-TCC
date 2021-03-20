@@ -29,19 +29,21 @@ class PainelController extends Controller {
 
     public function alterarDadosPessoais(){
         $nome      = addslashes($_POST['nome']);
-        $senha_atu = addslashes($_POST['senha']);
+        $senha_atu = addslashes($_POST['senha_atu']);
         $senha_nov = addslashes($_POST['senha_nov']);
         $senha_rep = addslashes($_POST['senha_rep']);
-        $foto      = addslashes($_FILES['foto']);
 
-        if($nome == '' || empty($nome)){
-            echo json_encode(['error'=>1]);
-            exit;
+        if(isset($_FILES['photo'])){
+            $foto = $_FILES['photo'];
+        }else{
+            $foto = null;
         }
 
         $painel = new Painel;
-        $painel->alterarUsuario($_SESSION['log_admin']['id'], $nome, $senha_atu, $senha_nov, $senha_rep, $foto);
+        $ret = $painel->alterarUsuario($_SESSION['log_admin']['id'], $nome, $senha_atu, $senha_nov, $senha_rep, $foto);
 
+        echo json_encode($ret);
+        exit;
     }
 
     public function inserirUsu(){
