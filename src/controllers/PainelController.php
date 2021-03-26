@@ -24,7 +24,16 @@ class PainelController extends Controller {
             exit;
         }
 
-        $this->render('sitePrincipal/painel_adm/alterarDadosPessoais', ['title'=>'Alterar dados pessoais']);
+        $this->render('sitePrincipal/painel_adm/alterarDadosPessoais', ['titleView'=>'Alterar dados pessoais']);
+    }
+
+    public function novoPlano(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-bwcommerce");
+            exit;
+        }
+
+        $this->render('sitePrincipal/painel_adm/novoPlano', ['titleView'=>'Criar novo plano']);
     }
 
     public function alterarDadosPessoais(){

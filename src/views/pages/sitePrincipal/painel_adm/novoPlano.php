@@ -1,4 +1,4 @@
-<?php $render("sitePrincipal/header_paineladm", ['title'=>'Painel administrativo - Alterar dados pessoais']); ?>
+<?php $render("sitePrincipal/header_paineladm", ['title'=>'Painel administrativo - Criar novo plano']); ?>
 
 <div class="content-wrapper">
     <div class="content-header">
@@ -16,7 +16,7 @@
             <div class="col-md">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Preencha somente os campos que necessite alterar</h3>
+                <h3 class="card-title">Preencha os campos</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

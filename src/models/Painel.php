@@ -4,6 +4,7 @@ namespace src\models;
 use \core\Model;
 
 class Painel extends Model{
+
     public function alterarUsuario($id, $nome, $senha_atu, $senha_nov, $senha_rep, $foto){
         if($nome == '' || empty($nome)){
             return ['error'=>'Nome em branco'];
@@ -20,29 +21,47 @@ class Painel extends Model{
 
         $dados = $sql->fetch();
         
-        if($dados['senha'] != md5($senha_atu)){
-            return ['error'=>'Senha atual não bate com a cadastrada no sistema'];
-        }
+        // if($dados['senha'] != md5($senha_atu)){
+        //     return ['error'=>'Senha atual não bate com a cadastrada no sistema'];
+        // }
 
         if(isset($foto['tmp_name']) && empty($foto['tmp_name'] == false )){
             $tpFoto = explode('/', $foto['type']);
             $nomeFoto = md5(time().rand(1,999)).'.'.$tpFoto[1];
             move_uploaded_file($foto['tmp_name'], '../assets/sitePrincipal/images/user_photo/'.$nomeFoto);
+
+            $_SESSION['log_admin']['url_foto'] = $nomeFoto;
         }else{
             $nomeFoto = null;
         }
 
-        if($sql->rowCount() > 0 && $senha_nov == ''){
-            $sql = "UPDATE usuario_admin SET (nome_user, url_foto) VALUES (?,?)";
+        if($sql->rowCount() > 0 && $senha_nov == '' && empty($foto['tmp_name'] )){
+            $sql = "UPDATE usuario_admin SET nome_user = ? WHERE usuarioadm_id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $nome);
-            $sql->bindValue(3, $nomeFoto);
+            $sql->bindValue(2, $id);
+            $sql->execute();
+
+            $_SESSION['log_admin']['nome'] = $nome;
+        }elseif($sql->rowCount() > 0 && $senha_nov == ''){
+            $sql = "UPDATE usuario_admin SET nome_user = ?, url_foto = ? WHERE usuarioadm_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $nome);
+            $sql->bindValue(2, $nomeFoto);
+            $sql->bindValue(3, $id);
+            $sql->execute();
+
+            $_SESSION['log_admin']['nome'] = $nome;
+
         }else{
             $sql = "UPDATE usuario_admin SET (nome_user, senha, url_foto) VALUES (?,?,?)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $nome);
             $sql->bindValue(2, md5($senha_nov));
             $sql->bindValue(3, $nomeFoto);
+            $sql->execute();
+
+            $_SESSION['log_admin']['nome'] = $nome;
         }
 
         return 0;

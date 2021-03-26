@@ -151,7 +151,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php if($_SESSION['log_admin']['url_foto'] != null): ?>
-            <img src="<?php echo BASE_ASS.$_SESSION['log_admin']['url_foto']; ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="<?php echo BASE_ASS.'images/user_photo/'.$_SESSION['log_admin']['url_foto']; ?>" class="img-circle elevation-2" alt="User Image">
           <?php else: ?>
             <img src="<?php echo BASE_ASS; ?>images/user_photo/user_default.png" class="img-circle elevation-2" alt="User Image">
           <?php endif;  ?>
@@ -176,7 +176,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="../UI/general.html" class="nav-link">
+                <a href="/painel/novo-plano" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
                   <p>Criar um novo plano</p>
                 </a>
