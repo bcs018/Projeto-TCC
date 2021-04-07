@@ -5,11 +5,29 @@ $('#1').on('click',function(){
 });
 
 $('#2').on('click',function(){
-    $('#plan').val(2);
-    $("#exampleModal").modal('show');
+    //$('#plan').val(2);
+    //$("#exampleModal").modal('show');
+    //window.location.href = '/crie-sua-loja/pagamento/boleto/checkout/2';
+
+    $.ajax({
+        url: '/crie-sua-loja/pagamento/boleto/checkout/2',
+        type: 'POST',
+        dataType: 'JSON',
+
+        success:function(json){
+            if(json.retorno){
+                window.location.href = '/crie-sua-loja/obrigado/'.json.idAss;
+            }
+        }
+    });
+    
+
+    
 });
 
 $('#3').on('click',function(){
     $('#plan').val(3);
-    $("#exampleModal").modal('show');
+    //$("#exampleModal").modal('show');
+    window.location.href = '/crie-sua-loja/pagamento/boleto/checkout/3';
+
 });
