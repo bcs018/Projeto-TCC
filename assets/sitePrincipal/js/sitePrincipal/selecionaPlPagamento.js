@@ -11,13 +11,14 @@ $('#2').on('click',function(){
 
     $.ajax({
         url: '/crie-sua-loja/pagamento/boleto/checkout/2',
-        type: 'POST',
+        type: 'GET',
         dataType: 'JSON',
 
         success:function(json){
-            if(json.retorno){
-                window.location.href = '/crie-sua-loja/obrigado/'.json.idAss;
-            }
+            console.log(json.retorno)
+                //console.log("TESTE");
+                //window.location.href = '/crie-sua-loja/obrigado/'.json.idAss;
+            
         }
     });
     
