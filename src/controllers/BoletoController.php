@@ -14,11 +14,9 @@ class BoletoController extends Controller {
         $assinatura = new Assinatura;
         $plano = new Plano;
 
-        
-
         if($assinatura->pegarItensValidos($_SESSION['person']['id'])){
-            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago ou emitiu um boleto que está dentro da data de vencimento!</div><br>';
-            header('Location: /crie-sua-loja/pagamento');
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago, ou emitiu um boleto que está dentro da data de vencimento, faça seu LOGIN e verifique!</div><br>';
+            echo json_encode(['retorno'=>0]);
             exit;        
         }
 
@@ -123,8 +121,10 @@ class BoletoController extends Controller {
         try{
             $subscription = $api->paySubscription($params, $body);
             
+            $assinatura->salvarLinkBoleto($subscription['data']['pdf']['charge'], $dados['id_assinatura']);
+
             echo json_encode(['retorno'=>1, 'idAss'=>$dados['id_assinatura']]);
-            exit;
+            exit; 
         }catch(GerencianetException $e){
             print_r($e->code);
             print_r($e->error);

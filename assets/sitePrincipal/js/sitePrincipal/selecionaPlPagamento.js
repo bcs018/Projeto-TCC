@@ -13,14 +13,21 @@ $('#2').on('click',function(){
         url: '/crie-sua-loja/pagamento/boleto/checkout/2',
         type: 'GET',
         dataType: 'JSON',
+        beforeSend: function(){
+            $('#loading2').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Aguarde...</span></div><br>');
+        },
 
         success:function(json){
-            console.log(json.retorno)
+            if(json.retorno == 1){
+                window.location.href = '/crie-sua-loja/obrigado/'+json.idAss;
+            }else{
+                window.location.href = '/crie-sua-loja/pagamento';
+            }
                 //console.log("TESTE");
                 //window.location.href = '/crie-sua-loja/obrigado/'.json.idAss;
             
         }
-    });
+    }); 
     
 
     

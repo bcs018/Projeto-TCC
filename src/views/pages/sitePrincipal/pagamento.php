@@ -39,7 +39,7 @@ if(!isset($_SESSION['person'])){
 								<br>
 								<h3 class="mb-4">Escolha um de nossos planos que mais lhe agrada!</h3>
 								<br>
-								<h6 class="mb-4" style="color: #fa3200;font-weight: bold;">ATENÇÃO! <br>O pagamento só será através de boleto bancário! <br> O prazo para compensação é de até três dias úteis</h6>
+								<h6 class="mb-4" style="color: #fa3200;font-weight: bold;">ATENÇÃO! <br>O pagamento só será através de boleto bancário! <br> O prazo para compensação será de até três dias úteis</h6>
 							</div>
 						</div>
 					</div>
@@ -76,6 +76,7 @@ if(!isset($_SESSION['person'])){
 								</ul>
 						<!--<a href="/crie-sua-loja/opcao-pagamento/<?php //echo $plano['plano_id']; ?>" class="btn btn-primary d-block px-2 py-3">Comprar</a>-->
 						<button id="<?php echo $plano['plano_id']; ?>" class="btn btn-primary d-block px-2 py-3">Gerar Boleto</button>
+						<div id='loading<?php echo $plano['plano_id'];?>'></div>
 					</div>
 				</div>
 			</div>
