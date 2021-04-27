@@ -65,7 +65,7 @@ class BoletoController extends Controller {
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
             'custom_id' => $dados['id_assinatura'],
-            'notification_url' => 'http://127.0.0.1/boleto/notificacao'
+            'notification_url' => 'http://api.webhookinbox.com/i/vfs2N8GO/in/'
         ];
 
         //Caso for uma compra com frete, colocar isso abaixo para sair no boleto

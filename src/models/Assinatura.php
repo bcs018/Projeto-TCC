@@ -57,8 +57,8 @@ class Assinatura extends Model{
         //VALIDAR O CUPOM DE DESCONTO POSTERIORMENTE
 
         //Inserindo os dados na tabela de assinaturas
-        $sql = "INSERT INTO assinatura (usuario_id, cupom_id, valor_total, tipo_pagamento, status_pagamento, cod_transacao)
-                VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO assinatura (usuario_id, cupom_id, valor_total, tipo_pagamento, status_pagamento, cod_transacao, data_transacao, hora_transacao)
+                VALUES (?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id_usu);
         $sql->bindValue(2, $cupom);
@@ -66,7 +66,10 @@ class Assinatura extends Model{
         $sql->bindValue(4, $tp_pgm);
         $sql->bindValue(5, $statusPgm);
         $sql->bindValue(6, $id_transacao);
+        $sql->bindValue(7, date("Y/m/d"));
+        $sql->bindValue(8, date("H:i:s"));
         $sql->execute();
+
 
         //echo "Id_usu: ".gettype($id_usu). " Cupom: ". $cupom. " Preco plano: ".gettype(floatval($plano['preco'])). " Tp pgm: ".gettype($tp_pgm). " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
         
