@@ -171,7 +171,7 @@ create table assinatura(
     data_transacao date not null,
     hora_transacao time not null,
     data_pagamento date,
-    hora_pagamento time;
+    hora_pagamento time,
     
     primary key(assinatura_id),
     foreign key(usuario_id) references usuario(usuario_id),

@@ -26,11 +26,17 @@ $GLOBALS['gerencianet_sandbox'] = true;
 class Config {
     const BASE_DIR = '/projeto-tcc';
 
+    // const DB_DRIVER = 'mysql';
+    // const DB_HOST = 'localhost';
+    // const DB_DATABASE = 'ecommerce';
+    // CONST DB_USER = 'root';
+    // const DB_PASS = '';
+
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
-    const DB_DATABASE = 'ecommerce';
-    CONST DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_DATABASE = 'id8436199_bwcommerce';
+    CONST DB_USER = 'id8436199_bw';
+    const DB_PASS = '9ygmlc]\@o2DdSXJ';
 
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';    
