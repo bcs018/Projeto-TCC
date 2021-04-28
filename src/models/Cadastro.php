@@ -112,6 +112,13 @@ class Cadastro extends Model{
             $flag = true;
         }
 
+        if($this->consultaSub($POST['subdominio'])){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Subdomínio já existe, informe outro!
+                                                        </div>';
+            $flag = true;
+        }
+
         $sql = "SELECT * FROM usuario WHERE cpf = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['cpf_usu']);
@@ -204,6 +211,19 @@ class Cadastro extends Model{
 
         $_SESSION['person']['id']   = $id_person['usuario_id'];
         $_SESSION['person']['name'] = $id_person['nome'];
+    }
+
+    public function consultaSub($sub){
+        $sql = "SELECT * FROM ecommerce_usu WHERE sub_dominio = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $sub);
+        $sql->execute();
+
+        if($sql->rowCount() > 1){
+            return true;
+        }
+
+        return false;
     }
 
     private function validaCpf($cpf){

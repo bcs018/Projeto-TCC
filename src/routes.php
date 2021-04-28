@@ -2,13 +2,14 @@
 use core\Router;
 use src\controllers\CadastroController;
 
-$router = new Router();
+$router = new Router(); 
 
 $router->get('/', 'HomeController@index');
 
 $router->get('/crie-sua-loja', 'CadastroController@index');
 $router->post('/crie-sua-loja/inserir', 'CadastroController@inserir');
 $router->post('/crie-sua-loja/verifica-cpf', 'CadastroController@verifica_cpf_cadastrado');
+$router->post('/crie-sua-loja/consulta-sub', 'CadastroController@consultaSubDominio');
 $router->get('/crie-sua-loja/pagamento', 'CadastroController@pagamento');
 $router->get('/crie-sua-loja/pagamento/cartao/{pl}', 'PgCheckTransPrincipalController@pagamentoPlano');
 $router->get('/crie-sua-loja/pagamento/boleto/checkout/{pl}', 'BoletoController@checkout');

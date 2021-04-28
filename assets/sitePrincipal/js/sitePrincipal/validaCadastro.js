@@ -31,7 +31,7 @@ $(function(){
             },
             success:function(dados){
                 if(dados.message == 1){
-                    $('#retorno').html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso! clique em "Próximo" para proseguir &nbsp <a href="/crie-sua-loja/pagamento"> <strong> Próximo </strong> </a> </div>');
+                    $('#retorno').html('<div class="alert alert-success" role="alert">Cadastro efetuado com sucesso! Clique em "Próximo" para proseguir &nbsp <a href="/crie-sua-loja/pagamento"> <strong> Próximo </strong> </a> </div>');
                     $('#cadastro input').val("");
                     $('#cadastro input[type = submit]').val("CADASTRAR")
                     $('#loading').html('');
@@ -236,11 +236,28 @@ $('#cidade_usu').blur(function(){
 $('#subdominio').blur(function(){
 
     if( $('#subdominio').val() == '' ){
-        $('#error12').html('<p style="color: #fa3200;font-weight: bolder;">Subdominio em branco!</p>');
+        $('#error12').html('<p style="color: #fa3200;font-weight: bolder;">Subdomínio em branco!</p>');
         return;
     }else{
         $('#error12').html('');
     }
+
+    $.ajax({
+        url: '/crie-sua-loja/consulta-sub',
+        type: 'POST',
+        data:{
+            sub: $('#subdominio').val()
+        },
+        dataType: 'JSON',
+        success:function(json){
+            if(json.message){
+                $('#error12').html('<p style="color: #fa3200;font-weight: bolder;">Subdomínio já existe, informe outro!</p>');
+                return;        
+            }else{
+                $('#error12').html('');
+            }
+        }
+    })
 
 });
 

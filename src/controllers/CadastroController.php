@@ -112,4 +112,18 @@ class CadastroController extends Controller {
         exit;
     }
 
+    public function consultaSubDominio(){
+        $sub = addslashes($_POST['sub']);
+
+        $s = new Cadastro;
+
+        if($s->consultaSub($sub)){
+            echo json_encode(['message'=>true]);
+            exit;
+        }
+        
+        echo json_encode(['message'=>false]);
+        exit;
+    }
+
 }

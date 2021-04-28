@@ -2,6 +2,7 @@
 namespace core;
 
 use \src\Config;
+use \src\models\SelecionaSite;
 
 class RouterBase {
 
@@ -48,10 +49,49 @@ class RouterBase {
             }
         }
 
-        $controller = "\src\controllers\\$controller";
-        $definedController = new $controller();
+        if($_SERVER['HTTP_HOST'] == 'bw.com.br'){
+            $controller = "\src\controllers\\$controller";
+            $definedController = new $controller();
+    
+            $definedController->$action($args);
+        }else{
+            $sub = explode('.', $_SERVER['HTTP_HOST']);
 
-        $definedController->$action($args);
+            $site = new SelecionaSite;
+            $subBd = $site->listaSubDominio($sub[0]);
+
+            if(isset($subBd['sub_dominio'])){
+                if($subBd['sub_dominio'] == $sub['0']){
+                    echo "<br>OK<br>";
+                    exit;
+                }
+            }
+            else{
+                $controller = Config::ERROR_CONTROLLER;
+                $action = Config::DEFAULT_ACTION;
+            }
+            $controller = "\src\controllers\\$controller";
+            $definedController = new $controller();
+
+            $definedController->$action($args);
+        }
+
+        // $sub = explode('.', $_SERVER['HTTP_HOST']);
+
+        // $site = new SelecionaSite;
+        // $subBd = $site->listaSubDominio($sub[0]);
+
+        // if($subBd['sub_dominio'] == $sub['0']){
+        //     echo "<br>OK<br>";
+        //     exit;
+        // }else{
+        //     echo "<br>NAO OK<br>";
+        //     exit;
+        // }
+        // $controller = "\src\controllers\\$controller";
+        // $definedController = new $controller();
+
+        // $definedController->$action($args);
     }
     
 }
