@@ -165,7 +165,7 @@ create table assinatura(
     cupom_id int,
     valor_total decimal(10,2),
     tipo_pagamento varchar(100),
-    status_pagamento int,
+    status_pagamento varchar(50),
     cod_transacao varchar(100),
     link_bol varchar(200),
     data_transacao date not null,

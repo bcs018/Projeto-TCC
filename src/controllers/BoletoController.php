@@ -14,11 +14,11 @@ class BoletoController extends Controller {
         $assinatura = new Assinatura;
         $plano = new Plano;
 
-        if($assinatura->pegarItensValidos($_SESSION['person']['id'])){
-            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago, ou emitiu um boleto que está dentro da data de vencimento, faça seu LOGIN e verifique!</div><br>';
-            echo json_encode(['retorno'=>0]);
-            exit;        
-        }
+        // if($assinatura->pegarItensValidos($_SESSION['person']['id'])){
+        //     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago, ou emitiu um boleto que está dentro da data de vencimento, faça seu LOGIN e verifique!</div><br>';
+        //     echo json_encode(['retorno'=>0]);
+        //     exit;        
+        // }
 
         $plano->inserirPlano($idpl['pl']);
         $dados = $assinatura->inserirAss();
@@ -65,7 +65,7 @@ class BoletoController extends Controller {
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
             'custom_id' => $dados['id_assinatura'],
-            'notification_url' => 'http://api.webhookinbox.com/i/vfs2N8GO/in/'
+            'notification_url' => 'http://api.webhookinbox.com/i/t4zIoUvj/in/'
         ];
 
         //Caso for uma compra com frete, colocar isso abaixo para sair no boleto
@@ -112,7 +112,7 @@ class BoletoController extends Controller {
         $body = [
             'payment' => [
                 'banking_billet' => [
-                    'expire_at' => date("Y-m-d", strtotime("+6 days")),
+                    'expire_at' => '2021-04-30', //date("Y-m-d", strtotime("-1 days")),
                     'customer' => $customer
                 ]
             ]
@@ -151,7 +151,8 @@ class BoletoController extends Controller {
             'sandbox'=>$gerencianet_sandbox
         ];
 
-        $token = $_POST['notification'];
+        // $token = $_POST['notification'];
+        $token = '6bfb0b38-f8d1-44a9-bc57-636fd963e12a';
         $params = [
             'token' => $token,
         ];
@@ -159,6 +160,8 @@ class BoletoController extends Controller {
         try {
             $api = new \Gerencianet\Gerencianet($options);
             $c = $api->getNotification($params, []);
+            echo '<pre>';
+            print_r($c);exit;
 
             //Pega a ultima chave do array
             $ultimoIte = end($c['data']);
@@ -167,7 +170,59 @@ class BoletoController extends Controller {
 
             $status = $ultimoIte['status']['current'];
 
-            //Se foi pago o boleto
+            echo print_r($status);
+            exit;
+
+            switch ($status) {
+                // Assinatura criada, porém nenhuma cobrança foi paga
+                case 'new': 
+                    
+                    break;
+                
+                // Forma de pagamento selecionada, aguardando a confirmação do pagamento
+                case 'waiting':
+                    
+                    break;
+
+                // Assinatura ativa. Todas as cobranças estão sendo geradas
+                case 'active': 
+
+                    break;
+                
+                // Pagamento confirmado
+                case 'paid':
+                    # code...
+                    break;
+                
+                // Não foi possível confirmar o pagamento da cobrança
+                case 'unpaid': 
+
+                    break;
+
+                // Assinatura foi cancelada pelo vendedor ou pelo pagador
+                case 'canceled': 
+
+                    break;
+
+                // Pagamento devolvido pelo lojista ou pelo intermediador Gerencianet
+                case 'refunded': 
+
+                    break;
+
+                // Pagamento em processo de contestação
+                case 'contested': 
+
+                    break;
+
+                // Cobrança foi confirmada manualmente
+                case 'settled': 
+
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
             if($status == 'paid'){
                 //Alterar as tabelas para deixar o usuario ativo e assinatura paga
             }
