@@ -144,6 +144,27 @@ class Assinatura extends Model{
         $sql->execute();
     }
 
+    public function atualizaStutus($idCompra, $status){
+        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 3);
+        $sql->bindValue(2, $idCompra);
+        $sql->execute();
+
+        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $idCompra);
+        $sql->execute();
+
+        $idUsu = $sql->fetch();
+
+        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $idUsu['usuario_id']);
+        $sql->execute();
+    }
+
     public function aprovarCompra($id){
         /**
         * Status

@@ -173,6 +173,8 @@ class BoletoController extends Controller {
             echo print_r($status);
             exit;
 
+            $assinatura = new Assinatura;
+
             switch ($status) {
                 // Assinatura criada, porém nenhuma cobrança foi paga
                 case 'new': 
@@ -196,7 +198,7 @@ class BoletoController extends Controller {
                 
                 // Não foi possível confirmar o pagamento da cobrança
                 case 'unpaid': 
-
+                    $assinatura->atualizaStutus($custo_id, $status);
                     break;
 
                 // Assinatura foi cancelada pelo vendedor ou pelo pagador
