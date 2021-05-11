@@ -144,10 +144,10 @@ class Assinatura extends Model{
         $sql->execute();
     }
 
-    public function atualizaStutus($idCompra, $status){
+    public function atualizaStatus($idCompra, $status, $ativo){
         $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 3);
+        $sql->bindValue(1, $status);
         $sql->bindValue(2, $idCompra);
         $sql->execute();
 
@@ -160,91 +160,91 @@ class Assinatura extends Model{
 
         $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 1);
+        $sql->bindValue(1, $ativo);
         $sql->bindValue(2, $idUsu['usuario_id']);
         $sql->execute();
     }
 
-    public function aprovarCompra($id){
-        /**
-        * Status
-        * 1 - Aguardando pagamento
-        * 2 - Em analise - Paga mas n foi aprovado de cara
-        * 3 - Paga
-        * 4 - Disponivel - Disponivel para saque
-        * 5 - Em disputa
-        * 6 - Dinheiro foi devolvido
-        * 7 - Compra cancelada
-        * 8 - Debitado - Dinheiro daquela compra foi devolvida na disputa
-        * 9 - Retenção temporaria - Quando o cara liga para o cartão e fala que nao reconhece a compra
-        */
-        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 3);
-        $sql->bindValue(2, $id);
-        $sql->execute();
+    // public function aprovarCompra($id){
+    //     /**
+    //     * Status
+    //     * 1 - Aguardando pagamento
+    //     * 2 - Em analise - Paga mas n foi aprovado de cara
+    //     * 3 - Paga
+    //     * 4 - Disponivel - Disponivel para saque
+    //     * 5 - Em disputa
+    //     * 6 - Dinheiro foi devolvido
+    //     * 7 - Compra cancelada
+    //     * 8 - Debitado - Dinheiro daquela compra foi devolvida na disputa
+    //     * 9 - Retenção temporaria - Quando o cara liga para o cartão e fala que nao reconhece a compra
+    //     */
+    //     $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 3);
+    //     $sql->bindValue(2, $id);
+    //     $sql->execute();
 
-        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $id);
-        $sql->execute();
+    //     $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $id);
+    //     $sql->execute();
 
-        $idUsu = $sql->fetch();
+    //     $idUsu = $sql->fetch();
 
-        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 1);
-        $sql->bindValue(2, $idUsu['usuario_id']);
-        $sql->execute();
-    }
+    //     $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 1);
+    //     $sql->bindValue(2, $idUsu['usuario_id']);
+    //     $sql->execute();
+    // }
 
-    public function bloquearCompra($id){
-        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 0);
-        $sql->bindValue(2, $id);
-        $sql->execute();
+    // public function bloquearCompra($id){
+    //     $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 0);
+    //     $sql->bindValue(2, $id);
+    //     $sql->execute();
 
-        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $id);
-        $sql->execute();
+    //     $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $id);
+    //     $sql->execute();
 
-        $idUsu = $sql->fetch();
+    //     $idUsu = $sql->fetch();
 
-        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 0);
-        $sql->bindValue(2, $idUsu['usuario_id']);
-        $sql->execute();
-    }
+    //     $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 0);
+    //     $sql->bindValue(2, $idUsu['usuario_id']);
+    //     $sql->execute();
+    // }
 
-    public function analiseCompra($id){
-        $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 2);
-        $sql->bindValue(2, $id);
-        $sql->execute();
+    // public function analiseCompra($id){
+    //     $sql = "UPDATE assinatura SET status_pagamento = ? WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 2);
+    //     $sql->bindValue(2, $id);
+    //     $sql->execute();
 
-        $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $id);
-        $sql->execute();
+    //     $sql = "SELECT * FROM assinatura WHERE assinatura_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $id);
+    //     $sql->execute();
 
-        $idUsu = $sql->fetch();
+    //     $idUsu = $sql->fetch();
 
-        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 0);
-        $sql->bindValue(2, $idUsu['usuario_id']);
-        $sql->execute();
-    }
+    //     $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, 0);
+    //     $sql->bindValue(2, $idUsu['usuario_id']);
+    //     $sql->execute();
+    // }
 
     public function salvarLinkBoleto($link, $id){
-        $sql = "UPDATE assinatura SET link_bol = ? WHERE assinatura_id = ?";
+        $sql = "INSERT INTO boleto (assinatura_id, link_boleto) VALUES (?,?)";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $link);
-        $sql->bindValue(2, $id);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $link);
         $sql->execute();
     }
 

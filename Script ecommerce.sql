@@ -39,7 +39,7 @@ create table usuario(
     cep int not null,
     cidade varchar(100) not null,
     complemento varchar(100),
-    ativo tinyint not null default 0,
+    ativo int not null default 0,
     senha varchar(32) not null,
     
     primary key(usuario_id),
@@ -167,7 +167,7 @@ create table assinatura(
     tipo_pagamento varchar(100),
     status_pagamento varchar(50),
     cod_transacao varchar(100),
-    link_bol varchar(200),
+    /*link_bol varchar(200),*/
     data_transacao date not null,
     hora_transacao time not null,
     data_pagamento date,
@@ -176,6 +176,15 @@ create table assinatura(
     primary key(assinatura_id),
     foreign key(usuario_id) references usuario(usuario_id),
     foreign key(cupom_id) references cupom(cupom_id)
+)default charset utf8;
+
+create table boleto(
+	id int not null auto_increment,
+    assinatura_id int,
+    link_boleto varchar(200),
+	
+    primary key(id),
+    foreign key(assinatura_id) references assinatura(assinatura_id)
 )default charset utf8;
 
 create table compra(
