@@ -1,11 +1,10 @@
-<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Login']); ?>
-
 <?php 
 if(isset($_SESSION['log'])){
 	header("Location: /info-cadastro");
 }
-
 ?>
+
+<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Login']); ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css/util.css">
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css//main.css">

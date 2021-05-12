@@ -73,14 +73,69 @@
 
                             <div class="col-md-6">
                                 <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Status pagamento:</label>
-                                <p><?php echo ($assinatura['status_pagamento']==1)?'Pendente':'Pago'; ?></p>
+                                <p>
+                                <?php switch ($assinatura['status_pagamento']) {
+                                    case 'new': 
+                                        echo 'Plano criado';
+                                        break;
+                                    
+                                    // Forma de pagamento selecionada, aguardando a confirmação do pagamento
+                                    case 'waiting':
+                                        echo 'Aguardando pagamento';
+                                        break;
+                    
+                                    // Assinatura ativa. Todas as cobranças estão sendo geradas
+                                    case 'active': 
+                                        echo 'Pago, aguardando proximo boleto';
+                                        break;
+                                    
+                                    // Pagamento confirmado
+                                    case 'paid':
+                                        echo 'Pago';
+                                        break;
+                                    
+                                    // Não foi possível confirmar o pagamento da cobrança
+                                    case 'unpaid': 
+                                        echo 'Não pago';
+                                        break;
+                    
+                                    // Assinatura foi cancelada pelo vendedor ou pelo pagador
+                                    case 'canceled': 
+                                        echo 'Não pago';
+                                        break;
+                    
+                                    // Pagamento devolvido pelo lojista ou pelo intermediador Gerencianet
+                                    case 'refunded': 
+                                        echo 'Pagamento devolvido';
+                                        break;
+                    
+                                    // Pagamento em processo de contestação
+                                    case 'contested': 
+                                        echo 'Em contestação';
+                                        break;
+                    
+                                    // Cobrança foi confirmada manualmente
+                                    case 'settled': 
+                                        echo 'Pago manualmente';
+                                        break;
+                    
+                                    // Assinatura expirada. Todas as cobranças configuradas para a assinatura já foram emitidas
+                                    case 'expired': 
+                                        echo 'Expirada';
+                                        break;
+                                    
+                                    default:
+                                        echo 'Inativo';
+                                        break;
+                                } ?>
+                                </p>
                             </div>
 
                             <?php 
-                            if(!empty( $assinatura['link_bol'])): ?>
+                            if(!empty( $link_bol['link_boleto'])): ?>
                                 <div class="col-md-6">
                                     <label style="color: #525252;font-weight: bold;margin-bottom: 0;">2º via boleto:</label> <br>
-                                    <a target="_blank" href="<?php echo $assinatura['link_bol']; ?>">Clique aqui para abrir seu boleto</a>
+                                    <a target="_blank" href="<?php echo $link_bol['link_boleto']; ?>">Clique aqui para abrir seu boleto</a>
                                 </div>
                             <?php endif; ?>
                             

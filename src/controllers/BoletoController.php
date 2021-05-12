@@ -65,7 +65,7 @@ class BoletoController extends Controller {
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
             'custom_id' => $dados['id_assinatura'],
-            'notification_url' => 'http://api.webhookinbox.com/i/t4zIoUvj/in/'
+            'notification_url' => 'http://bcnoticias.000webhostapp.com/boleto/notification'
         ];
 
         //Caso for uma compra com frete, colocar isso abaixo para sair no boleto
@@ -112,7 +112,8 @@ class BoletoController extends Controller {
         $body = [
             'payment' => [
                 'banking_billet' => [
-                    'expire_at' => '2021-04-30', //date("Y-m-d", strtotime("-1 days")),
+                    //'expire_at' => date("Y-m-d", strtotime('+5 days')),
+                    'expire_at' => date("Y-m-d"),
                     'customer' => $customer
                 ]
             ]
@@ -133,11 +134,11 @@ class BoletoController extends Controller {
     }
 
     public function obrigado($id){
-        $assinatura = new Assinatura;
+        $boleto = new Assinatura;
 
-        $link = $assinatura->pegarItemAss($id['id']);
+        $link = $boleto->pegarBoleto($id['id']);
 
-        $this->render('sitePrincipal/obrigado', ['link'=>$link['link_bol']]);
+        $this->render('sitePrincipal/obrigado', ['link'=>$link['link_boleto']]);
     }
 
     public function notification(){
