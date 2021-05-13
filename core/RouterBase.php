@@ -6,7 +6,7 @@ use \src\models\SelecionaSite;
 
 class RouterBase {
 
-    public function run($routes) {
+    public function run($routes, $setFolder) {
         $method = Request::getMethod();
         $url = Request::getUrl();
 
@@ -49,49 +49,41 @@ class RouterBase {
             }
         }
 
-        if($_SERVER['HTTP_HOST'] == 'bw.com.br'){
-            $controller = "\src\controllers\\$controller";
+        // Se o folder for prin significa que é o site principal
+        if($setFolder == 'prin'){
+            // Seto o controller para a pasta do site principal
+            $controller = "\src\controllers\sitePrincipal\\$controller";
             $definedController = new $controller();
     
             $definedController->$action($args);
         }else{
+            // Senão eu pego a pasta do ecommerce
+
+            //Pego o HTTP_HOST para validar se existe no banco de dados na tabela ecommerce_usu
             $sub = explode('.', $_SERVER['HTTP_HOST']);
 
             $site = new SelecionaSite;
             $subBd = $site->listaSubDominio($sub[0]);
 
+            // Se retornar resultado, é pq existe no banco o subdominio, então chama o controller
             if(isset($subBd['sub_dominio'])){
                 if($subBd['sub_dominio'] == $sub['0']){
-                    echo "<br>OK<br>";
-                    exit;
+                    $controller = "\src\controllers\commerce\\$controller";
+                    $definedController = new $controller();
+
+                    $definedController->$action($args);
                 }
-            }
-            else{
-                $controller = Config::ERROR_CONTROLLER;
+            }else{
+                // Senão chama o ErroController para dar 404
+                $controller = "\src\controllers\sitePrincipal\\".Config::ERROR_CONTROLLER;
                 $action = Config::DEFAULT_ACTION;
+
+                $definedController = new $controller();
+
+                $definedController->$action($args);
             }
-            $controller = "\src\controllers\\$controller";
-            $definedController = new $controller();
-
-            $definedController->$action($args);
+            
         }
-
-        // $sub = explode('.', $_SERVER['HTTP_HOST']);
-
-        // $site = new SelecionaSite;
-        // $subBd = $site->listaSubDominio($sub[0]);
-
-        // if($subBd['sub_dominio'] == $sub['0']){
-        //     echo "<br>OK<br>";
-        //     exit;
-        // }else{
-        //     echo "<br>NAO OK<br>";
-        //     exit;
-        // }
-        // $controller = "\src\controllers\\$controller";
-        // $definedController = new $controller();
-
-        // $definedController->$action($args);
     }
     
 }

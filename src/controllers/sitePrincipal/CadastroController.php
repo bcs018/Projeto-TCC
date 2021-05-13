@@ -1,5 +1,5 @@
 <?php
-namespace src\controllers;
+namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
 use \src\models\Cadastro;

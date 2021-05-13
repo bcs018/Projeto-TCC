@@ -4,6 +4,8 @@ use src\controllers\CadastroController;
 
 $router = new Router(); 
 
+/************************  ROTAS SITE PRINCIPAL ************************/
+
 $router->get('/', 'HomeController@index');
 
 $router->get('/crie-sua-loja', 'CadastroController@index');
@@ -38,6 +40,3 @@ $router->get('/painel/admin', 'PainelController@index');
 $router->get('/painel/alterar-dados-pessoais', 'PainelController@alterarDadosPessoaisView');
 $router->post('/painel/alterar-dados-pessoais/update', 'PainelController@alterarDadosPessoais');
 $router->get('/painel/novo-plano', 'PainelController@novoPlano');
-
-
-
