@@ -2,8 +2,8 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Cadastro;
-use \src\models\Plano;
+use \src\models\sitePrincipal\Cadastro;
+use \src\models\sitePrincipal\Plano;
 
 class CadastroController extends Controller {
 

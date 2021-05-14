@@ -2,7 +2,7 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Assinatura;
+use \src\models\sitePrincipal\Assinatura;
 
 class OpcaoPgmController extends Controller {
 

@@ -2,8 +2,8 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Painel;
-use \src\models\Assinatura;
+use \src\models\sitePrincipal\Painel;
+use \src\models\sitePrincipal\Assinatura;
 
 
 class PainelController extends Controller {

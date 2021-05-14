@@ -2,7 +2,7 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Plano;
+use \src\models\sitePrincipal\Plano;
 
 class HomeController extends Controller {
 

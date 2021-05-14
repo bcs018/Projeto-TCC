@@ -2,9 +2,9 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Painel;
-use \src\models\Assinatura;
-use src\models\InfoCadastro;
+use \src\models\sitePrincipal\Painel;
+use \src\models\sitePrincipal\Assinatura;
+use src\models\sitePrincipal\InfoCadastro;
 
 class InfoCadastroController extends Controller {
     public function index(){

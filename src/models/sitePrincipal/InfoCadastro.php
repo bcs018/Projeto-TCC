@@ -1,6 +1,6 @@
 <?php 
 
-namespace src\models;
+namespace src\models\sitePrincipal;
 use \core\Model;
 
 class InfoCadastro extends Model{

@@ -2,7 +2,7 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\Login;
+use \src\models\sitePrincipal\Login;
 
 class LoginController extends Controller {
 

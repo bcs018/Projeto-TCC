@@ -1,5 +1,5 @@
 <?php
-namespace src\models;
+namespace src\models\sitePrincipal;
 use \core\Model;
 
 class Plano extends Model {

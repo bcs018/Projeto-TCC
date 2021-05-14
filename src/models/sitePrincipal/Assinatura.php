@@ -1,8 +1,8 @@
 <?php 
 
-namespace src\models;
+namespace src\models\sitePrincipal;
 use \core\Model;
-use \src\models\Plano;
+use \src\models\sitePrincipal\Plano;
 
 class Assinatura extends Model{
 

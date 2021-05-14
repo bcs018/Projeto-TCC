@@ -64,9 +64,10 @@ create table ecommerce_usu(
 	ecommerce_id int not null auto_increment,
     usuario_id int not null,
     plano_id int,
-    sub_dominio varchar(50) not null,
+    sub_dominio varchar(50) not null unique,
     nome_fantasia varchar(50) not null,
     cnpj int,
+    layout varchar(50) not null,
     
     primary key(ecommerce_id),
     foreign key(usuario_id) references usuario(usuario_id),

@@ -5,8 +5,8 @@ use \core\Controller;
 use Exception;
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
-use \src\models\Plano;
-use \src\models\Assinatura;
+use \src\models\sitePrincipal\Plano;
+use \src\models\sitePrincipal\Assinatura;
 
 class BoletoController extends Controller {
 
