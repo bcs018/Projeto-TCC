@@ -90,18 +90,18 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- jQuery sticky menu -->
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/owl.carousel.min.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/jquery.sticky.js"></script>
 
     <!-- jQuery easing -->
-    <script src="js/jquery.easing.1.3.min.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/jquery.easing.1.3.min.js"></script>
 
     <!-- Main Script -->
-    <script src="js/main.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/main.js"></script>
 
     <!-- Slider -->
-    <script type="text/javascript" src="js/bxslider.min.js"></script>
-    <script type="text/javascript" src="js/script.slider.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_ASS_C; ?>lay01/js/bxslider.min.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_ASS_C; ?>lay01/js/script.slider.js"></script>
 </body>
 
 </html>

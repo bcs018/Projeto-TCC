@@ -7,7 +7,9 @@ use \src\models\Plano;
 class HomeController extends Controller {
 
     public function index() {   
-        echo "ENTREI NO HOME CONTROLLER";
+        $this->render('commerce/lay01/home');
+
+        //echo "ENTREI NO HOME CONTROLLER";
     }
 
     public function sobre() {

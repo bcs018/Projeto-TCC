@@ -2,6 +2,7 @@
 namespace src;
 
 define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
+define('BASE_ASS_C', 'http://bw.com.br/assets/commerce/');
 define('BASE_URL', 'http://bw.com.br');
 
 //Configurações do paypal

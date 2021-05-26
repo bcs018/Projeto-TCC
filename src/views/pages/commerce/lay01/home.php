@@ -1,3 +1,5 @@
+<?php $render('commerce/lay01/header', ['title' => 'BW Commerce | Login']); ?>
+
 <div class="slider-area">
         <!-- Slider -->
         <div class="block-slider block-slider4">
@@ -341,3 +343,5 @@
             </div>
         </div>
     </div> <!-- End product widget area -->
+
+<?php $render('commerce/lay01/footer'); ?>
