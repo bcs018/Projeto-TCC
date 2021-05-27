@@ -126,7 +126,7 @@ class Cadastro extends Model{
 
         if($sql->rowCount() > 0){
             $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
-                                                            CPF já existe na base de dados!
+                                                            CPF já existe, informe outro!
                                                         </div>';
             $flag = true;
         }
@@ -220,7 +220,7 @@ class Cadastro extends Model{
         $sql->bindValue(1, $sub);
         $sql->execute();
 
-        if($sql->rowCount() > 1){
+        if($sql->rowCount() > 0){
             return true;
         }
 

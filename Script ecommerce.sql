@@ -74,6 +74,16 @@ create table ecommerce_usu(
     foreign key(plano_id) references plano(plano_id)
 )default charset utf8;
 
+create table layout_imagem(
+    li_id int not null auto_increment,
+    ecommerce_usu_id int not null,
+    url varchar(150) not null,
+    local_imagem varchar(50) not null,
+
+    primary key(li_id),
+    foreign key(ecommerce_usu_id) references ecommerce_usu(ecommerce_id)
+)default charset utf8;
+
 create table usuario_ecommerce(
 	ue_id int not null auto_increment,
     nome_usu_ue varchar(100) not null,

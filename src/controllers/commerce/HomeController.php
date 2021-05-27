@@ -2,14 +2,15 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use \src\models\Plano;
+use \src\models\commerce\Info;
 
 class HomeController extends Controller {
 
-    public function index() {   
-        $this->render('commerce/lay01/home');
+    public function index() {
+        $info = new Info;
 
-        //echo "ENTREI NO HOME CONTROLLER";
+        $this->render('commerce/lay01/home', ['dados'=>$info->pegaDadosCommerce($_SESSION['sub_dom'])]);
+
     }
 
     public function sobre() {

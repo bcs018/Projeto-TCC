@@ -68,6 +68,7 @@ class RouterBase {
             // Se retornar resultado, é pq existe no banco o subdominio, então chama o controller
             if(isset($subBd['sub_dominio'])){
                 if($subBd['sub_dominio'] == $sub['0']){
+                    $_SESSION['sub_dom'] = $sub['0'];
                     $controller = "\src\controllers\commerce\\$controller";
                     $definedController = new $controller();
 

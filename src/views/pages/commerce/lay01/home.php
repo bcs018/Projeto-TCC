@@ -1,4 +1,4 @@
-<?php $render('commerce/lay01/header', ['title' => 'BW Commerce | Login']); ?>
+<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'].' | Home']); ?>
 
 <div class="slider-area">
         <!-- Slider -->
