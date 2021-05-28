@@ -42,6 +42,7 @@ class LoginController extends Controller {
 
     public function sair(){
         unset($_SESSION['log']);
+        unset($_SESSION['log']);
         header("Location: /login");
     }
 

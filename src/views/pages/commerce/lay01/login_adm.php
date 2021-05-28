@@ -32,7 +32,7 @@
 
         <form action="/admin/logar" method="POST">
           <div class="input-group mb-3">
-            <input type="number" class="form-control" placeholder="CPF" name="login">
+            <input type="number" class="form-control" placeholder="CPF" name="login" value="<?php if(isset($_SESSION['credencial'])){ echo $_SESSION['credencial'];unset($_SESSION['credencial']); }?>">
             <div class="input-group-append">
               <div class="input-group-text">
               </div>
@@ -54,13 +54,19 @@
             </div>
             <!-- /.col -->
           </div>
+          <?php 
+          if(isset($_SESSION['message'])){
+            echo '<br>'.$_SESSION['message'];
+            unset($_SESSION['message']);
+          }
+          ?>
         </form>
 
         <p class="mb-1">
           <a href="forgot-password.html">Esqueci minha senha</a>
         </p>
         <p class="mb-0">
-          <a href="register.html" class="text-center">Cadastra-se</a>
+          <a href="register.html" class="text-center">Cadastre-se</a>
         </p>
       </div>
       <!-- /.login-card-body -->
