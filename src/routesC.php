@@ -11,3 +11,4 @@ $router->get('/', 'HomeController@index');
 $router->get('/admin', 'AdminController@index');
 $router->post('/admin/logar', 'AdminController@logar');
 $router->get('/admin/painel', 'AdminController@painel');
+$router->get('/admin/sair', 'AdminController@sair');

@@ -41,4 +41,10 @@ class AdminController extends Controller {
         $this->render('commerce/principal_painel', ['dados'=>$dados]);
     }
 
+    
+    public function sair(){
+        unset($_SESSION['log_admin_c']);
+        header("Location: /admin");
+    }
+
 }

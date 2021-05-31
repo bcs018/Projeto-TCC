@@ -42,7 +42,7 @@ class Admin extends Model{
                 WHERE eu.sub_dominio = ? AND u.cpf = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $sub);
-        $sql->bindValue(1, $_SESSION['credencial']);
+        $sql->bindValue(2, $_SESSION['credencial']);
         $sql->execute();
 
         if($sql->rowCount() == 0){

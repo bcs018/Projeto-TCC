@@ -131,7 +131,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/sair/admin" class="nav-link" style="color:red;">
+        <a href="/admin/sair" class="nav-link" style="color:red;">
           Sair
         </a>
       </li>

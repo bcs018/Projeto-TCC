@@ -1,6 +1,10 @@
+<?php
+if(!isset($_SESSION['log_admin_c'])){
+  header("Location: /admin");
+}
+?>
+
 <?php $render("commerce/header_painel", ['title'=>'Painel administrativop']); ?>
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
