@@ -172,21 +172,21 @@
             <a href="#" class="nav-link active">
             <i class="nav-icon fas fas fa-bars"></i>
               <p>
-                Menu Ecommerce's
+                Menu
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="/painel/novo-plano" class="nav-link">
+                <a href="/admin/painel/adicionar-produto" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
-                  <p>Criar um novo plano</p>
+                  <p>Adicionar produto</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../UI/icons.html" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                  <p>Clientes</p>
+                <i class="fas fa-cog nav-icon"></i>
+                  <p>Criar categorias</p>
                 </a>
               </li>
               <li class="nav-item">

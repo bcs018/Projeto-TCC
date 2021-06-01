@@ -30,21 +30,31 @@ class AdminController extends Controller {
         $dados = $login->listaDados($_SESSION['sub_dom']);
 
         if($dados == false){
-            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Algo deu errado, faça login novamente!
-                                    </div>';
             header("Location: /admin");
         }
 
         $_SESSION['log_admin_c']['nome'] = $dados['nome'];
 
-        $this->render('commerce/principal_painel', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/principal', ['dados'=>$dados]);
     }
 
     
     public function sair(){
         unset($_SESSION['log_admin_c']);
         header("Location: /admin");
+    }
+
+    public function addProduto(){
+        $login = new Admin;
+        $dados = $login->listaDados($_SESSION['sub_dom']);
+
+        if($dados == false){
+            header("Location: /admin");
+        }
+
+        $_SESSION['log_admin_c']['nome'] = $dados['nome'];
+
+        $this->render('commerce/painel_adm/add_produto', ['dados'=>$dados]);
     }
 
 }

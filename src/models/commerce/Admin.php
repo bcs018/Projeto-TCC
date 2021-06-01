@@ -46,6 +46,9 @@ class Admin extends Model{
         $sql->execute();
 
         if($sql->rowCount() == 0){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Algo deu errado, faça login novamente!
+                                    </div>';
             return false;
         }
 
