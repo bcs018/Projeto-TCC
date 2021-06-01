@@ -168,7 +168,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
           
           <!-- Menu Ecommerce -->
-          <li class="nav-item">
+          <li class="nav-item menu-is-opening menu-open">
             <a href="#" class="nav-link active">
             <i class="nav-icon fas fas fa-bars"></i>
               <p>
@@ -177,10 +177,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
-              <li class="nav-item">
-                <a href="/admin/painel/adicionar-produto" class="nav-link">
+            <li class="nav-item">
+                <a href="/admin/painel/categorias" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
-                  <p>Adicionar produto</p>
+                  <p>Cadastrar categoria</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/painel/marcas" class="nav-link">
+                <i class="fas fa-plus nav-icon"></i>
+                  <p>Cadastrar marca</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/painel/cadastrar-produto" class="nav-link">
+                <i class="fas fa-cart-plus nav-icon"></i>
+                  <p>Cadastrar produto</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -200,7 +212,7 @@
 
           <!-- Dados pessoais -->
 
-          <li class="nav-item">
+          <li class="nav-item menu-is-opening menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fas fa-user"></i>
               <p>

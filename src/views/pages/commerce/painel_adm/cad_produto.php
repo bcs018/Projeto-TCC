@@ -290,3 +290,5 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar P
     </section>
     <!-- /.content -->
 </div>
+
+<?php $render("commerce/footer_painel"); ?>

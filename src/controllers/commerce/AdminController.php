@@ -44,7 +44,7 @@ class AdminController extends Controller {
         header("Location: /admin");
     }
 
-    public function addProduto(){
+    public function cadProduto(){
         $login = new Admin;
         $dados = $login->listaDados($_SESSION['sub_dom']);
 
@@ -55,6 +55,42 @@ class AdminController extends Controller {
         $_SESSION['log_admin_c']['nome'] = $dados['nome'];
 
         $this->render('commerce/painel_adm/add_produto', ['dados'=>$dados]);
+    }
+
+    public function conMarca(){
+        $login = new Admin;
+        $dados = $login->listaDados($_SESSION['sub_dom']);
+
+        if($dados == false){
+            header("Location: /admin");
+        }
+
+        $_SESSION['log_admin_c']['nome'] = $dados['nome'];
+
+        $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados]);
+    }
+
+    public function cadMarca(){
+        $login = new Admin;
+        $dados = $login->listaDados($_SESSION['sub_dom']);
+    
+        if($dados == false){
+            header("Location: /admin");
+        }
+
+        $this->render('commerce/painel_adm/cad_marca', ['dados'=>$dados]);
+    }
+
+    public function conCategoria(){
+        $login = new Admin;
+        $dados = $login->listaDados($_SESSION['sub_dom']);
+    
+        if($dados == false){
+            header("Location: /admin");
+        }
+
+        $this->render('commerce/painel_adm/con_categoria', ['dados'=>$dados]);
+
     }
 
 }
