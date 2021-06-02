@@ -16,7 +16,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
             <h1>Categorias</h1>
           </div>
           <div class="col-sm-8 text-right">
-              <a class="btn btn-success" href="/admin/painel/cadastrar-marcas"><i class="fas fa-plus"></i>&nbsp; Cadastrar Categoria</a>
+              <a class="btn btn-success" href="/admin/painel/cadastrar-categorias"><i class="fas fa-plus"></i>&nbsp; Cadastrar Categoria</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->

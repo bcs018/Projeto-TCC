@@ -190,7 +190,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin/painel/cadastrar-produto" class="nav-link">
+                <a href="/admin/painel/produtos" class="nav-link">
                 <i class="fas fa-cart-plus nav-icon"></i>
                   <p>Cadastrar produto</p>
                 </a>
