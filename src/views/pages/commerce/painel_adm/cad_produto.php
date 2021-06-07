@@ -35,14 +35,20 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         <form role="form">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter email">
+                                    <label for="exampleInputEmail1">Nome produto</label>
+                                    <input type="text" class="form-control" id="nomeProd" name="nomeProd" placeholder="Insira o nome do produto">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="descProd">Descrição do produto</label>
+                                    <textarea name="descProd" id="descProd" rows="6" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Estoque</label>
+                                    <input type="number" class="form-control" id="estoque" name="estoque" placeholder="Insira o nome do produto">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Preço</label>
+                                    <input type="text" class="form-control" id="preco" name="preco" placeholder="Insira o preço do produto">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
@@ -76,5 +82,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     </section>
     <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+    $('#preco').mask("#.##0,00", {reverse: true});
+</script>  
 
 <?php $render("commerce/footer_painel"); ?>

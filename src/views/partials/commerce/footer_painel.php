@@ -11,9 +11,8 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
-<script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
+<!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script> -->
 <!-- AdminLTE App -->
 <script src="<?php echo BASE_ASS; ?>adminlte/dist/js/adminlte.min.js"></script>
 <!-- daterangepicker -->
@@ -36,6 +35,7 @@
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/altDadosPessoaisPainel.js"></script>
+<script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
 
 </body>
