@@ -95,13 +95,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <label for="promo">Produto em promoção?</label>
 
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="promoSim"
-                                            name="promo">
+                                        <input class="custom-control-input" type="radio" id="promoSim" name="promo">
                                         <label for="promoSim" class="custom-control-label">Sim</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="promoNao"
-                                            name="promo" checked="">
+                                        <input class="custom-control-input" type="radio" id="promoNao" name="promo"
+                                            checked="">
                                         <label for="promoNao" class="custom-control-label">Não</label>
                                     </div>
                                 </div>
@@ -112,34 +111,45 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     </div>
                                     <div class="card-body">
                                         <h6>
-                                            Quando marcado <b>SIM</b>, o produto terá um destaque na loja e será um dos primeiros a aparecer na página principal, e terá um emblemano anuncio como "Promoção".
+                                            Quando marcado <b>SIM</b>, o produto terá um destaque na loja e será um dos
+                                            primeiros a aparecer na página principal, e terá um emblema no anuncio como
+                                            "Promoção".
                                         </h6>
+                                        <h6>Ele pode ser usado em combinação com o campo Preço antigo.</h6>
                                     </div>
                                 </div>
-
-
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="">Upload</span>
-                                        </div>
+                                    <label for="promo">Produto novo?</label>
+
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input" type="radio" id="novoSim" name="novo"
+                                            checked="">
+                                        <label for="novoSim" class="custom-control-label">Sim</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input" type="radio" id="novoNao" name="novo">
+                                        <label for="novoNao" class="custom-control-label">Não</label>
                                     </div>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                                <div class="card card-lightblue">
+                                    <div class="card-header">
+                                        <h3 class="card-title"><b>O que é Produto novo?</b></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6>
+                                            Quando marcado <b>SIM</b>, o produto terá um destaque na loja e será um dos
+                                            primeiros a aparecer na página principal, e terá um emblema no anuncio como
+                                            "Novo".
+                                        </h6>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-success">Proximo <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </form>
                     </div>
