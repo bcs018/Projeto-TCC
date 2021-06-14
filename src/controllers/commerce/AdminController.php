@@ -112,16 +112,14 @@ class AdminController extends Controller {
         $promo    = addslashes($_POST['promo']);
         $novo     = addslashes($_POST['novo']);
 
+        
         $cad = new Admin;
         $cad->cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo);
 
 
-            header("Location: /admin/painel/cadastrar-produtos");
+        //header("Location: /admin/painel/cadastrar-produtos");
+        exit;
 
-            exit;
-        }
-
-        if($_POST[''])
 
 
     }

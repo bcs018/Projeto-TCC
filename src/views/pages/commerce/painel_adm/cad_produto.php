@@ -32,7 +32,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" type="POST" action="/ca">
+                        <form role="form" method="POST" action="/admin/painel/cadastrar-produtos/first-part">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nomeProd">Nome produto</label>
@@ -161,7 +161,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
 </div>
 
 <script type="text/javascript">
-    $('#preco').mask("#.##0,00", {
+    $('#preco').mask("# ##0,00", {
         reverse: true
     });
 </script>

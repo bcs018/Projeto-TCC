@@ -56,19 +56,40 @@ class Admin extends Model{
     }
 
     public function cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo){
-        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($precoAnt) || empty($promo) || empty($novo)){
+        // echo $nomeProd.'<br>'; 
+        // echo $descProd.'<br>'; 
+        // echo $estoque .'<br>'; 
+        // echo $preco   .'<br>'; 
+        // echo $precoAnt.'<br>'; 
+        // echo $promo   .'<br>'; 
+        // echo $novo    .'<br>'; exit;
+
+        $preco = str_replace(',','.',$preco);
+        $preco = str_replace(' ','',$preco);
+        $preco = floatval($preco);
+        
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($precoAnt)){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
-            return 1;
+
+            echo "Entrei aqui 1if";
+            return false;
         }
 
         if(!is_numeric($estoque) || $estoque <= 0){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Estoque não numérico ou menor ou igual a ZERO!
                                     </div>';
-            return 1;
+            echo "Entrei aqui 2if";
+            return false;
         }
+
+        if($promo != 1 || $promo != 0 || $novo != 1 || $novo != 0){
+            
+        }
+
+        echo $preco;exit;
     }
 
 }
