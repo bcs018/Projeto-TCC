@@ -32,21 +32,21 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" type="POST" action="/ca">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nomeProd">Nome produto</label>
                                     <input type="text" class="form-control" id="nomeProd" name="nomeProd"
-                                        placeholder="Insira o nome do produto">
+                                        placeholder="Insira o nome do produto" value="<?php if(isset($_POST['nomeProd'])){ echo $_POST['nomeProd']; } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="descProd">Descrição do produto</label>
-                                    <textarea name="descProd" id="descProd" rows="6" class="form-control"></textarea>
+                                    <textarea name="descProd" id="descProd" rows="6" class="form-control" value="<?php if(isset($_POST['descProd'])){ echo $_POST['descProd']; } ?>"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="estoque">Estoque</label>
                                     <input type="number" class="form-control" id="estoque" name="estoque"
-                                        placeholder="Insira o nome do produto">
+                                        placeholder="Insira o nome do produto" value="<?php if(isset($_POST['estoque'])){ echo $_POST['estoque']; } ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="preco">Preço</label>
@@ -55,7 +55,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                             <span class="input-group-text" id="">R$</span>
                                         </div>
                                         <input type="text" class="form-control" id="preco" name="preco"
-                                            placeholder="Insira o preço do produto">
+                                            placeholder="Insira o preço do produto" value="<?php if(isset($_POST['preco'])){ echo $_POST['preco']; } ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -65,7 +65,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                             <span class="input-group-text" id="">R$</span>
                                         </div>
                                         <input type="text" class="form-control" id="precoAnt" name="precoAnt"
-                                            placeholder="Insira o preço antigo do produto">
+                                            placeholder="Insira o preço antigo do produto" value="<?php if(isset($_POST['precoAnt'])){ echo $_POST['precoAnt']; } ?>">
                                     </div>
                                 </div>
 
@@ -95,12 +95,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <label for="promo">Produto em promoção?</label>
 
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="promoSim" name="promo">
+                                        <input class="custom-control-input" type="radio" id="promoSim" name="promo" value="1">
                                         <label for="promoSim" class="custom-control-label">Sim</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="promoNao" name="promo"
-                                            checked="">
+                                        <input class="custom-control-input" type="radio" id="promoNao" name="promo" checked="" value="0">
                                         <label for="promoNao" class="custom-control-label">Não</label>
                                     </div>
                                 </div>
@@ -123,12 +122,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <label for="promo">Produto novo?</label>
 
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="novoSim" name="novo"
-                                            checked="">
+                                        <input class="custom-control-input" type="radio" id="novoSim" name="novo" checked="" value="1">
                                         <label for="novoSim" class="custom-control-label">Sim</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="novoNao" name="novo">
+                                        <input class="custom-control-input" type="radio" id="novoNao" name="novo" value="0">
                                         <label for="novoNao" class="custom-control-label">Não</label>
                                     </div>
                                 </div>

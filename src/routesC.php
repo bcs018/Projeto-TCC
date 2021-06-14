@@ -21,4 +21,5 @@ $router->get('/admin/painel/cadastrar-categorias', 'AdminController@cadCategoria
 
 $router->get('/admin/painel/produtos', 'AdminController@conProduto');
 $router->get('/admin/painel/cadastrar-produtos', 'AdminController@cadProduto');
+$router->post('/admin/painel/cadastrar-produtos/first-part', 'AdminController@cadProdutoActionFirst');
 

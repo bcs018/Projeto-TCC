@@ -55,4 +55,20 @@ class Admin extends Model{
         return $sql->fetch();
     }
 
+    public function cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo){
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($precoAnt) || empty($promo) || empty($novo)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Existem campos não preenchidos!
+                                    </div>';
+            return 1;
+        }
+
+        if(!is_numeric($estoque) || $estoque <= 0){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Estoque não numérico ou menor ou igual a ZERO!
+                                    </div>';
+            return 1;
+        }
+    }
+
 }

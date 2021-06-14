@@ -6,6 +6,10 @@ use \src\models\commerce\Admin;
 
 class AdminController extends Controller {
 
+    /**
+     * Rotas de GET
+     */
+
     public function index() {
         $this->render('commerce/lay01/login_adm');
     }
@@ -92,6 +96,33 @@ class AdminController extends Controller {
         }
 
         $this->render('commerce/painel_adm/cad_produto', ['dados'=>$dados]);
+
+    }
+
+    /**
+     * Rotas de POST
+     */
+
+    public function cadProdutoActionFirst(){
+        $nomeProd = addslashes($_POST['nomeProd']);
+        $descProd = addslashes($_POST['descProd']);
+        $estoque  = addslashes($_POST['estoque']);
+        $preco    = addslashes($_POST['preco']);
+        $precoAnt = addslashes($_POST['precoAnt']);
+        $promo    = addslashes($_POST['promo']);
+        $novo     = addslashes($_POST['novo']);
+
+        $cad = new Admin;
+        $cad->cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo);
+
+
+            header("Location: /admin/painel/cadastrar-produtos");
+
+            exit;
+        }
+
+        if($_POST[''])
+
 
     }
 
