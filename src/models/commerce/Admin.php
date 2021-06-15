@@ -67,6 +67,12 @@ class Admin extends Model{
         $preco = str_replace(',','.',$preco);
         $preco = str_replace(' ','',$preco);
         $preco = floatval($preco);
+
+        $precoAnt = str_replace(',','.',$precoAnt);
+        $precoAnt = str_replace(' ','',$precoAnt);
+        $precoAnt = floatval($precoAnt);
+
+        $promo = intval($promo);
         
         if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($precoAnt)){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -85,11 +91,31 @@ class Admin extends Model{
             return false;
         }
 
-        if($promo != 1 || $promo != 0 || $novo != 1 || $novo != 0){
-            
+
+        if(($promo < 0 || $promo > 1) || ($novo < 0 || $novo > 1)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Houve um problema ao adicionar o produto, atualize a página e tente novamente!
+                                    </div>';
+            return false;
         }
 
-        echo $preco;exit;
+        $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
+                VALUES (?,?,?,?,?,?,?,?,?,?)';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $ );
+        $sql->bindValue(2, $ );
+        $sql->bindValue(3, $ );
+        $sql->bindValue(4, $ );
+        $sql->bindValue(5, $ );
+        $sql->bindValue(6, $ );
+        $sql->bindValue(7, $ );
+        $sql->bindValue(8, $ );
+        $sql->bindValue(9, $ );
+        $sql->bindValue(10,$ );
+        $sql->execute();
+
+        exit;
+
     }
 
 }

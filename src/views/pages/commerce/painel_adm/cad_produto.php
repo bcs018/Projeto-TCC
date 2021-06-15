@@ -164,6 +164,10 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     $('#preco').mask("# ##0,00", {
         reverse: true
     });
+    $('#precoAnt').mask("# ##0,00", {
+        reverse: true
+    });
+
 </script>
 
 <?php $render("commerce/footer_painel"); ?>

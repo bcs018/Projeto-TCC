@@ -112,7 +112,6 @@ class AdminController extends Controller {
         $promo    = addslashes($_POST['promo']);
         $novo     = addslashes($_POST['novo']);
 
-        
         $cad = new Admin;
         $cad->cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo);
 
