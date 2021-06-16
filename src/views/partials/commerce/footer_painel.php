@@ -20,6 +20,8 @@
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/chart.js/Chart.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo BASE_ASS; ?>adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->

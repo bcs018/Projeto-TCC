@@ -36,9 +36,9 @@
   <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery Mask -->
   <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
-
-
-  <!-- <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico"> -->
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/select2/css/select2.min.css">
+  <!-- <link rel="shortcut icon" href="<?php //echo BASE_ASS; ?>/images/ico.ico"> -->
 
 </head>
 <body class="hold-transition sidebar-mini">

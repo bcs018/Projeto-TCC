@@ -43,6 +43,20 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <label for="descProd">Descrição do produto</label>
                                     <textarea name="descProd" id="descProd" rows="6" class="form-control" value="<?php if(isset($_POST['descProd'])){ echo $_POST['descProd']; } ?>"></textarea>
                                 </div>
+                        
+                                <div class="form-group">
+                                    <label>Minimal</label>
+                                    <select class="form-control select2" style="width: 100%; height: calc(2.25rem + 2px)">
+                                        <option>Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="estoque">Estoque</label>
                                     <input type="number" class="form-control" id="estoque" name="estoque"
@@ -160,6 +174,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     <!-- /.content -->
 </div>
 
+
 <script type="text/javascript">
     $('#preco').mask("# ##0,00", {
         reverse: true
@@ -167,7 +182,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     $('#precoAnt').mask("# ##0,00", {
         reverse: true
     });
+</script>
 
+<script>
+  $(function () {
+    $('.select2').select2()
+  })
 </script>
 
 <?php $render("commerce/footer_painel"); ?>
