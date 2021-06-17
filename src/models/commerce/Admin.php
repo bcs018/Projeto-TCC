@@ -55,6 +55,29 @@ class Admin extends Model{
         return $sql->fetch();
     }
 
+    public function cadCategoria($nomeCategoria, $subCategoira){
+        if($subCategoira == 0){
+            $sql = 'INSERT INTO categoria (nome_cat) VALUES (?)';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $nomeCategoria);
+
+            if($sql->execute())
+                return true;
+    
+            return false;
+        }
+
+        $sql = 'SELECT * FROM categoria WHERE categoria_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $subCategoira);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            
+        }
+
+    }
+
     public function cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo){
         // echo $nomeProd.'<br>'; 
         // echo $descProd.'<br>'; 
@@ -99,20 +122,20 @@ class Admin extends Model{
             return false;
         }
 
-        $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
-                VALUES (?,?,?,?,?,?,?,?,?,?)';
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $ );
-        $sql->bindValue(2, $ );
-        $sql->bindValue(3, $ );
-        $sql->bindValue(4, $ );
-        $sql->bindValue(5, $ );
-        $sql->bindValue(6, $ );
-        $sql->bindValue(7, $ );
-        $sql->bindValue(8, $ );
-        $sql->bindValue(9, $ );
-        $sql->bindValue(10,$ );
-        $sql->execute();
+        // $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
+        //         VALUES (?,?,?,?,?,?,?,?,?,?)';
+        // $sql = $this->db->prepare($sql);
+        // $sql->bindValue(1, $ );
+        // $sql->bindValue(2, $ );
+        // $sql->bindValue(3, $ );
+        // $sql->bindValue(4, $ );
+        // $sql->bindValue(5, $ );
+        // $sql->bindValue(6, $ );
+        // $sql->bindValue(7, $ );
+        // $sql->bindValue(8, $ );
+        // $sql->bindValue(9, $ );
+        // $sql->bindValue(10,$ );
+        // $sql->execute();
 
         exit;
 

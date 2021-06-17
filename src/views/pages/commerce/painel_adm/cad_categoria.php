@@ -26,17 +26,18 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form">
+                        <form role="form" action="/admin/painel/cadastrar-categorias/action" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nome categoria</label>
-                                    <input type="text" class="form-control" id="nomeCategoria"
+                                    <input type="text" class="form-control" id="nomeCategoria" name="nomeCategoria"
                                         placeholder="Insira o nome da categoria">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Selecione a subcategoria</label>
-                                    <select class="custom-select">
-                                        <option>option 1</option>
+                                    <select class="custom-select" name="subCategoria" id="subCategoria">
+                                        <option value="0">option 1</option>
                                         <option>option 2</option>
                                         <option>option 3</option>
                                         <option>option 4</option>
@@ -68,17 +69,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                 estrutura de arvores com as categorias, como exemplo:
                             </h6>
                             <h6>
-                                --- Camisetas <br>
+                                <b>-- Camisetas</b> <br>
                                 ----- Manga Curta <br>
                                 ----- Manga Longa <br>
-                                --- Tênis <br>
+                                <b>-- Tênis</b> <br>
                                 ----- Com Cardaço <br>
                                 ----- Sem Cardaço
                             </h6>
                             <h6>
                                 No exemplo acima a categoria Manga Curta e Manga Longa possui a subcategoria Camisetas e
-                                Com cardaço e Sem Cardaço
-                                possui a subcategoria Tênis.
+                                Com cardaço e Sem Cardaço possui a subcategoria Tênis.
+                            </h6>
+                            <h6>
+                                Para criar uma categoria <b>PAI</b> como Camisetas e Tênis, deixar o campo "Subcateria" vazio (em branco).
                             </h6>
                         </div>
                     </div>

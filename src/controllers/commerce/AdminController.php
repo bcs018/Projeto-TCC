@@ -103,6 +103,23 @@ class AdminController extends Controller {
      * Rotas de POST
      */
 
+     public function cadCategoriaAction(){
+        // if(!isset($_POST['nomeCategoria']) || empty($_POST['nomeCategoria']) || !isset($_POST['subCategoria']) || empty($_POST['subCategoria'])){
+        //     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+        //                                 Algo deu errado, recarregue a página novamente!
+        //                             </div>';
+        //     header("Location: /admin/painel/cadastrar-categorias");
+        //     exit;
+        // }
+
+        $nomeCategoria = addslashes($_POST['nomeCategoria']);
+        $subCategoria  = addslashes($_POST['subCategoria']);
+
+        $cadCat = new Admin;
+        $cadCat->cadCategoria($nomeCategoria, $subCategoria);
+        exit;
+     }
+
     public function cadProdutoActionFirst(){
         $nomeProd = addslashes($_POST['nomeProd']);
         $descProd = addslashes($_POST['descProd']);

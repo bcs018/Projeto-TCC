@@ -12,7 +12,9 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script> -->
+<script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- AdminLTE App -->
 <script src="<?php echo BASE_ASS; ?>adminlte/dist/js/adminlte.min.js"></script>
 <!-- daterangepicker -->

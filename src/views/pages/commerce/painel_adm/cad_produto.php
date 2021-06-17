@@ -45,15 +45,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                 </div>
                         
                                 <div class="form-group">
-                                    <label>Minimal</label>
-                                    <select class="form-control select2" style="width: 100%; height: calc(2.25rem + 2px)">
-                                        <option>Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                    <label>Categoria do produto</label>
+                                    <select class="form-control select2" style="width: 100%;">
+                                        <option>Camiseta</option>
+                                        <option>Calça</option>
+                                        <option>Moleton</option>
+                                        <option>Tenis</option>
+                                        <option>Meia</option>
+                                        <option>Oculos</option>
+                                        <option>Regatas</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Marca do produto</label>
+                                    <select class="form-control select2" style="width: 100%;">
+                                        <option>Nike</option>
+                                        <option>Adidas</option>
+                                        <option>Puma</option>
+                                        <option>Jordan</option>
+                                        <option>Fila</option>
+                                        <option>Everest</option>
+                                        <option>Penalty</option>
                                     </select>
                                 </div>
 
@@ -184,10 +197,10 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     });
 </script>
 
+<?php $render("commerce/footer_painel"); ?>
+
 <script>
   $(function () {
     $('.select2').select2()
   })
 </script>
-
-<?php $render("commerce/footer_painel"); ?>
