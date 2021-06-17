@@ -116,7 +116,13 @@ class AdminController extends Controller {
         $subCategoria  = addslashes($_POST['subCategoria']);
 
         $cadCat = new Admin;
-        $cadCat->cadCategoria($nomeCategoria, $subCategoria);
+        $dados = $cadCat->cadCategoria($nomeCategoria, $subCategoria);
+
+        if(!$dados){
+            header("Location: /admin/painel/cadastrar-categorias");
+            exit;
+        }
+        
         exit;
      }
 

@@ -105,17 +105,22 @@ create table eco_usu(
 
 create table categoria(
 	categoria_id int not null auto_increment,
+    ecommerce_id int not null,
     sub_cat int,
     nome_cat varchar(50) not null,
     
-    primary key(categoria_id)
+    primary key(categoria_id),
+    foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
 )default charset utf8;
 
 create table marca(
 	marca_id int not null auto_increment,
+    ecommerce_id int not null,
     nome_mar varchar(50) not null,
     
-    primary key(marca_id)
+    primary key(marca_id),
+    foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
+
 )default charset utf8;
 
 create table produto(

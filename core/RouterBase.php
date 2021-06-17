@@ -69,6 +69,7 @@ class RouterBase {
             if(isset($subBd['sub_dominio'])){
                 if($subBd['sub_dominio'] == $sub['0']){
                     $_SESSION['sub_dom'] = $sub['0'];
+                    $_SESSION['id_sub_dom'] = $subBd['ecommerce_id'];
                     $controller = "\src\controllers\commerce\\$controller";
                     $definedController = new $controller();
 
