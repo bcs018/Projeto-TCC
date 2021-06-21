@@ -154,6 +154,12 @@ class AdminController extends Controller {
         header("Location: /admin/painel/cadastrar-marcas");
     }
 
+    public function excMarcaAction(){
+        if(!isset($_GET['id']) || empty($_GET['id'])){
+            
+        }
+    }
+
     public function logar() {
         $login = new Admin;
         $dados = $login->verificarLogin($_SESSION['sub_dom'], $_POST['login'], $_POST['pass']);

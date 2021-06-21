@@ -26,3 +26,5 @@ $router->post('/admin/painel/cadastrar-produtos/first-part', 'AdminController@ca
 $router->post('/admin/painel/cadastrar-categorias/action', 'AdminController@cadCategoriaAction');
 $router->post('/admin/painel/cadastrar-marcas/action', 'AdminController@cadMarcaAction');
 
+$router->get('/admin/painel/excluir-marca/action/{id}', 'AdminController@excMarcaAction');
+
