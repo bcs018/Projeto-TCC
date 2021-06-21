@@ -14,17 +14,26 @@ class AdminController extends Controller {
         $this->render('commerce/lay01/login_adm');
     }
 
-    public function painel() {
+    // -- Função para pegar informações do ecommerce de cada cliente
+    public function listaDadosEcommerce(){
         $login = new Admin;
         $dados = $login->listaDados($_SESSION['sub_dom']);
 
         if($dados == false){
             header("Location: /admin");
+            exit;
         }
 
         $_SESSION['log_admin_c']['nome'] = $dados['nome'];
 
-        $this->render('commerce/painel_adm/principal', ['dados'=>$dados]);
+        return $dados;
+    }
+    // -- Fim função para pegar informação do ecommerce de cada cliente
+
+    public function painel() {
+        $dados = $this->listaDadosEcommerce();
+
+    $this->render('commerce/painel_adm/principal'/*, ['dados'=>$dados]*/);
     }
 
     public function conMarca(){
@@ -154,10 +163,19 @@ class AdminController extends Controller {
         header("Location: /admin/painel/cadastrar-marcas");
     }
 
-    public function excMarcaAction(){
-        if(!isset($_GET['id']) || empty($_GET['id'])){
-            
+    public function excMarcaAction($id){
+        if(!isset($id) || empty($id)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro ao excluir marca, atualize a página e tente novamente!
+                                    </div>';
+            header("Location: /admin/painel/marcas");
+            exit;
         }
+
+        $mar = new Admin;
+        $mar->excMarca(addslashes($id['id']));
+
+        header("Location: /admin/painel/marcas");
     }
 
     public function logar() {

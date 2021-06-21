@@ -29,6 +29,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas']);
         <!-- /.row -->
         <div class="row">
           <div class="col-12">
+              <?php 
+              if(isset($_SESSION['message'])){
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+              }
+              ?>
             <div class="card">
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
@@ -51,7 +57,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas']);
                       <tr>
                         <td><?php echo $dado['marca_id']; ?></td>
                         <td><?php echo $dado['nome_mar']; ?></td>
-                        <td> <a href="">Excluir</a> | <a href="">Editar</a> </td>
+                        <td> <a href="/admin/painel/excluir-marca/action/<?php echo $dado['marca_id']; ?>">Excluir</a> | <a href="">Editar</a> </td>
                       </tr>
                       <?php endforeach; ?>
                     <?php endif; ?>

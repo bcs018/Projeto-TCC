@@ -47,7 +47,7 @@ class Admin extends Model{
 
         if($sql->rowCount() == 0){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Algo deu errado, faça login novamente!
+                                        Faça login para continuar!
                                     </div>';
             return false;
         }
@@ -75,6 +75,35 @@ class Admin extends Model{
         if($sql->rowCount() > 0){
             return $sql->fetchAll();
         }
+    }
+
+    public function excMarca($id){
+        $sql = "SELECT * FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $sql = "DELETE FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            
+            if($sql->execute()){
+                $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                            Marca excluida com sucesso!
+                                        </div>';
+
+                return true;
+            }
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro 001 ao excluir marca, atualize a página e tente novamente!
+                                </div>';
+
+        return false;
     }
 
     public function cadCategoria($nomeCategoria, $subCategoria){
