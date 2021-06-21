@@ -40,11 +40,21 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas']);
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td> <a href="">Excluir</a> | <a href="">Editar</a> </td>
-                    </tr>
+                    <?php if (!isset($dados)): ?>
+                      <tr>
+                        <td>Nenhuma marca cadastrada</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    <?php else: ?>
+                      <?php foreach ($dados as $dado): ?>
+                      <tr>
+                        <td><?php echo $dado['marca_id']; ?></td>
+                        <td><?php echo $dado['nome_mar']; ?></td>
+                        <td> <a href="">Excluir</a> | <a href="">Editar</a> </td>
+                      </tr>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>

@@ -29,6 +29,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                         <form role="form" action="/admin/painel/cadastrar-categorias/action" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <?php 
+                                    if(isset($_SESSION['message'])){
+                                        echo $_SESSION['message'];
+                                        unset($_SESSION['message']);
+                                    }
+                                    ?>
                                     <label for="exampleInputEmail1">Nome categoria</label>
                                     <input type="text" class="form-control" id="nomeCategoria" name="nomeCategoria"
                                         placeholder="Insira o nome da categoria">
@@ -37,11 +43,14 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                 <div class="form-group">
                                     <label>Selecione a subcategoria</label>
                                     <select class="custom-select" name="subCategoria" id="subCategoria">
-                                        <option value="0">option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                        <?php if(!isset($dados)): ?>
+                                            <option value="0"></option>
+                                        <?php else: ?>
+                                            <option value="0" selected></option>
+                                            <?php foreach ($dados as $dado): ?>
+                                            <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
 

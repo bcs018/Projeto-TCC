@@ -26,11 +26,17 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar P
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form">
+                        <form role="form" method="POST" action="/admin/painel/cadastrar-marcas/action">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <?php 
+                                    if(isset($_SESSION['message'])){
+                                        echo $_SESSION['message'];
+                                        unset($_SESSION['message']);
+                                    } 
+                                    ?>
                                     <label for="exampleInputEmail1">Nome marca</label>
-                                    <input type="text" class="form-control" id="nomeMarca" placeholder="Insira o nome da marca">
+                                    <input type="text" class="form-control" name="nomeMarca" id="nomeMarca" placeholder="Insira o nome da marca">
                                 </div>
                                 
                             </div>

@@ -55,6 +55,28 @@ class Admin extends Model{
         return $sql->fetch();
     }
 
+    public function listaCategorias(){
+        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+    }
+
+    public function listaMarcas(){
+        $sql = "SELECT * FROM marca WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+    }
+
     public function cadCategoria($nomeCategoria, $subCategoria){
         // Incluindo categoria se for uma categoria PAI
         if($subCategoria == 0){
@@ -63,8 +85,17 @@ class Admin extends Model{
             $sql->bindValue(1, $nomeCategoria);
             $sql->bindValue(2, $_SESSION['id_sub_dom']);
 
-            if($sql->execute())
+            if($sql->execute()){
+                $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                            Categoria adicionada com sucesso!
+                                        </div>';
+
                 return true;
+            }
+
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Ocorreu erro 001 ao cadastrar uma categoria, recarregue a página e tente novamente!
+                                    </div>';
             
             return false;
         }
@@ -78,7 +109,7 @@ class Admin extends Model{
 
         // Se existir, insere a nova categoria
         if($sql->rowCount() > 0){
-            $sql = 'INSERT INTO categoria (ecommerce_id, sub_cat, nome_cat) VALUES (?,?)';
+            $sql = 'INSERT INTO categoria (ecommerce_id, sub_cat, nome_cat) VALUES (?,?,?)';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $_SESSION['id_sub_dom']);
             $sql->bindValue(2, $subCategoria);
@@ -86,20 +117,41 @@ class Admin extends Model{
 
             if(!$sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                            Ocorreu erro ao cadastrar uma categoria, recarregue a página e tente novamente!
+                                            Ocorreu erro 002 ao cadastrar uma categoria, recarregue a página e tente novamente!
                                         </div>';
                 return false;
             }
 
-            return true;
-        }
+            $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                        Categoria adicionada com sucesso!
+                                    </div>';
 
-        /**
-         *  ----- COLOCAR MENSAGEM DE ERRO NO MESSAGE PARA LISTAR NA TELA AO INCLUIR -----
-         */
+            return false;
+        }
 
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                     Não foi encontrado categoria selecionada no campo Subcategoria, recarregue a página e tente novamente!
+                                </div>';
+
+        return false;
+
+    }
+
+    public function cadMarca($nomeMarca){
+        $sql = "INSERT INTO marca (ecommerce_id, nome_mar) VALUES (?,?)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $nomeMarca);
+
+        if($sql->execute()){
+            $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                        Marca adicionada com sucesso!
+                                    </div>';
+            return true;
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro ao cadastrar marca, recarregue a página e tente novamente!
                                 </div>';
 
         return false;
