@@ -6,9 +6,9 @@ use \src\models\commerce\Admin;
 
 class AdminController extends Controller {
 
-    /**
-     * Rotas de GET
-     */
+                        /**
+                         * ---------------- Rotas de GET ----------------
+                         */
 
     public function index() {
         $this->render('commerce/lay01/login_adm');
@@ -28,84 +28,103 @@ class AdminController extends Controller {
 
         return $dados;
     }
-    // -- Fim função para pegar informação do ecommerce de cada cliente
 
+    // -- Pagina principal do painel de controle
     public function painel() {
         $dados = $this->listaDadosEcommerce();
 
-    $this->render('commerce/painel_adm/principal'/*, ['dados'=>$dados]*/);
+        $this->render('commerce/painel_adm/principal'/*, ['dados'=>$dados]*/);
     }
 
+    /**
+     * --- MARCAS
+     */
+
+     // Lista todas as marcas
     public function conMarca(){
+        $this->listaDadosEcommerce();
+
         $mar = new Admin;
         $dados = $mar->listaMarcas($_SESSION['sub_dom']);
 
         $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados]);
     }
 
+    // View para cadastrar marca
     public function cadMarca(){
-        $login = new Admin;
-        $dados = $login->listaDados($_SESSION['sub_dom']);
+        $this->listaDadosEcommerce();
     
-        if($dados == false){
-            header("Location: /admin");
-        }
-
-        $this->render('commerce/painel_adm/cad_marca', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/cad_marca'/*, ['dados'=>$dados]*/);
     }
 
-    public function conCategoria(){
-        $login = new Admin;
-        $dados = $login->listaDados($_SESSION['sub_dom']);
-    
-        if($dados == false){
-            header("Location: /admin");
+    // View para editar marca
+    public function ediMarca($id){
+        $this->listaDadosEcommerce();
+        
+        $edit = new Admin;
+        $dados = $edit->listaMarca(addslashes($id['id']));
+
+        if (!$dados){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Marca não encontrada!
+                                    </div>';
+            header("Location: /admin/painel/marcas");
+            exit;
         }
 
-        $this->render('commerce/painel_adm/con_categoria', ['dados'=>$dados]);
-
-    }
-
-    public function cadCategoria(){
-        $cat = new Admin;
-        $dados = $cat->listaCategorias();
-    
-        // if($dados == false){
-        //     header("Location: /admin");
-        // }
-
-        $this->render('commerce/painel_adm/cad_categoria', ['dados'=>$dados]);
-
-    }
-
-    public function conProduto(){
-        $login = new Admin;
-        $dados = $login->listaDados($_SESSION['sub_dom']);
-    
-        if($dados == false){
-            header("Location: /admin");
-        }
-
-        $this->render('commerce/painel_adm/con_produto', ['dados'=>$dados]);
-
-    }
-
-    public function cadProduto(){
-        $login = new Admin;
-        $dados = $login->listaDados($_SESSION['sub_dom']);
-    
-        if($dados == false){
-            header("Location: /admin");
-        }
-
-        $this->render('commerce/painel_adm/cad_produto', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/edi_marca', ['dados'=>$dados]);
 
     }
 
     /**
-     * Rotas de POST
+     * --- CATEGORIA
      */
 
+    // View para consulta de categorias 
+    public function conCategoria(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/con_categoria'/*, ['dados'=>$dados]*/);
+
+    }
+
+    // View para cadastro de categorias
+    public function cadCategoria(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/cad_categoria'/*, ['dados'=>$dados]*/);
+
+    }
+
+    /**
+     * --- PRODUTO
+     */
+
+    // View para consulta de produtos
+    public function conProduto(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/con_produto'/*, ['dados'=>$dados]*/);
+
+    }
+
+    // View para cadastro de produtos
+    public function cadProduto(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/cad_produto'/*, ['dados'=>$dados]*/);
+
+    }
+
+                        /**
+                         * ---------------- Rotas de POST ----------------
+                         */
+
+     /**
+      * --- CATEGORIAS
+      */
+
+     // Cadastro de categoria
      public function cadCategoriaAction(){
         if(!isset($_POST['nomeCategoria']) || empty($_POST['nomeCategoria']) || !isset($_POST['subCategoria']) ){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -126,6 +145,12 @@ class AdminController extends Controller {
         exit;
      }
 
+
+    /**
+    * --- PRODUTOS
+    */
+
+    // Cadastro de produtos
     public function cadProdutoActionFirst(){
         $nomeProd = addslashes($_POST['nomeProd']);
         $descProd = addslashes($_POST['descProd']);
@@ -141,11 +166,13 @@ class AdminController extends Controller {
 
         //header("Location: /admin/painel/cadastrar-produtos");
         exit;
-
-
-
     }
 
+    /**
+     * --- MARCAS
+     */
+
+    // Cadastro de marca
     public function cadMarcaAction(){
         if(!isset($_POST['nomeMarca']) || empty($_POST['nomeMarca'])){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -163,6 +190,7 @@ class AdminController extends Controller {
         header("Location: /admin/painel/cadastrar-marcas");
     }
 
+    // Excluir marca
     public function excMarcaAction($id){
         if(!isset($id) || empty($id)){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -176,6 +204,26 @@ class AdminController extends Controller {
         $mar->excMarca(addslashes($id['id']));
 
         header("Location: /admin/painel/marcas");
+    }
+
+    // Editar marca
+    public function ediMarcaAction(){
+        $nomeMarca = addslashes($_POST['nomeMarca']);
+        $id        = addslashes($_POST['id']);
+        
+        if(!isset($id) || empty($id) || !isset($nomeMarca) || empty($nomeMarca)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Marca não preenchido, atualize a página e tente novamente!
+                                    </div>';
+            header("Location: /admin/painel/editar-marca/".$id);
+            exit;
+        }
+
+        $edit = new Admin;
+        $edit->ediMarca($id, $nomeMarca);
+
+        header("Location: /admin/painel/marcas");
+        exit;
     }
 
     public function logar() {

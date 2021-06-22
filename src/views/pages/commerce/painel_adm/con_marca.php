@@ -57,7 +57,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas']);
                       <tr>
                         <td><?php echo $dado['marca_id']; ?></td>
                         <td><?php echo $dado['nome_mar']; ?></td>
-                        <td> <a href="/admin/painel/excluir-marca/action/<?php echo $dado['marca_id']; ?>">Excluir</a> | <a href="">Editar</a> </td>
+                        <td> <a href="/admin/painel/excluir-marca/action/<?php echo $dado['marca_id']; ?>">Excluir</a> | <a href="/admin/painel/editar-marca/<?php echo $dado['marca_id']; ?>">Editar</a> </td>
                       </tr>
                       <?php endforeach; ?>
                     <?php endif; ?>

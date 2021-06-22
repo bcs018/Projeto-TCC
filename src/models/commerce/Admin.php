@@ -35,6 +35,7 @@ class Admin extends Model{
         return false;
     }
 
+    // Valida para que o usuario não acesso os dados de outros usuarios
     public function listaDados($sub){
         $sql = "SELECT eu.ecommerce_id, eu.sub_dominio, eu.nome_fantasia, u.usuario_id, u.nome, u.cpf, u.senha FROM ecommerce_usu eu
                 JOIN usuario u 
@@ -55,6 +56,11 @@ class Admin extends Model{
         return $sql->fetch();
     }
 
+    /**
+     * --- CATEGORIAS
+     */
+
+    // Lista todas as categorias
     public function listaCategorias(){
         $sql = "SELECT * FROM categoria WHERE ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
@@ -66,46 +72,7 @@ class Admin extends Model{
         }
     }
 
-    public function listaMarcas(){
-        $sql = "SELECT * FROM marca WHERE ecommerce_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->execute();
-
-        if($sql->rowCount() > 0){
-            return $sql->fetchAll();
-        }
-    }
-
-    public function excMarca($id){
-        $sql = "SELECT * FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $id);
-        $sql->bindValue(2, $_SESSION['id_sub_dom']);
-        $sql->execute();
-
-        if($sql->rowCount() > 0){
-            $sql = "DELETE FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $id);
-            $sql->bindValue(2, $_SESSION['id_sub_dom']);
-            
-            if($sql->execute()){
-                $_SESSION['message'] = '<div class="alert alert-success" role="alert">
-                                            Marca excluida com sucesso!
-                                        </div>';
-
-                return true;
-            }
-        }
-
-        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                    Erro 001 ao excluir marca, atualize a página e tente novamente!
-                                </div>';
-
-        return false;
-    }
-
+    // Cadastra categoria
     public function cadCategoria($nomeCategoria, $subCategoria){
         // Incluindo categoria se for uma categoria PAI
         if($subCategoria == 0){
@@ -155,7 +122,7 @@ class Admin extends Model{
                                         Categoria adicionada com sucesso!
                                     </div>';
 
-            return false;
+            return true;
         }
 
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -166,6 +133,38 @@ class Admin extends Model{
 
     }
 
+    /**
+     * --- MARCAS
+     */
+
+    // Lista todas as marcas
+    public function listaMarcas(){
+        $sql = "SELECT * FROM marca WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+    }
+
+    // Lista uma marca
+    public function listaMarca($id){
+        $sql = "SELECT * FROM marca WHERE ecommerce_id = ? AND marca_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return false;
+    }
+
+    // Cadastra marca
     public function cadMarca($nomeMarca){
         $sql = "INSERT INTO marca (ecommerce_id, nome_mar) VALUES (?,?)";
         $sql = $this->db->prepare($sql);
@@ -187,6 +186,72 @@ class Admin extends Model{
 
     }
 
+    // Exclui marca
+    public function excMarca($id){
+        $sql = "SELECT * FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $sql = "DELETE FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            
+            if($sql->execute()){
+                $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                            Marca excluida com sucesso!
+                                        </div>';
+
+                return true;
+            }
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro 001 ao excluir marca, atualize a página e tente novamente!
+                                </div>';
+
+        return false;
+    }
+
+    // Edita marca
+    public function ediMarca($id, $nomeMarca){
+        if(!$this->listaMarca($id)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro 001 ao editar marca, atualize a página e tente novamente!
+                                    </div>';
+            return false;
+        }
+
+        $sql = "UPDATE marca SET nome_mar = ? WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeMarca);
+        $sql->bindValue(2, $id);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+
+        if($sql->execute()){
+            $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                        Marca editada com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro 002 ao editar marca, atualize a página e tente novamente!
+                                </div>';
+
+        return false;
+    }
+
+
+    /**
+     * --- PRODUTOS
+     */
+
+    // Cadastra produto
     public function cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo){
         // echo $nomeProd.'<br>'; 
         // echo $descProd.'<br>'; 
