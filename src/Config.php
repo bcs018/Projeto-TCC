@@ -2,6 +2,7 @@
 namespace src;
 
 define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
+define('BASE_ASS_C', 'http://bw.com.br/assets/commerce/');
 define('BASE_URL', 'http://bw.com.br');
 
 //Configurações do paypal
@@ -19,18 +20,18 @@ $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 \PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
 
 //Configurações do Gerencianet - Boleto
-$GLOBALS['gerencianet_clientid'] = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59';
+$GLOBALS['gerencianet_clientid']     = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59';
 $GLOBALS['gerencianet_clientsecret'] = 'Client_Secret_6d7692cf8197942b09eceea1b155981c39825d29';
-$GLOBALS['gerencianet_sandbox'] = true;
+$GLOBALS['gerencianet_sandbox']      = true;
 
 class Config {
     const BASE_DIR = '/projeto-tcc';
 
-    const DB_DRIVER = 'mysql';
-    const DB_HOST = 'localhost';
+    const DB_DRIVER   = 'mysql';
+    const DB_HOST     = 'localhost';
     const DB_DATABASE = 'ecommerce';
-    const DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_USER     = 'root';
+    const DB_PASS     = '';
 
     // const DB_DRIVER = 'mysql';
     // const DB_HOST = 'localhost';
@@ -39,6 +40,7 @@ class Config {
     // const DB_PASS = '9ygmlc]\@o2DdSXJ';
 
     const ERROR_CONTROLLER = 'ErrorController';
-    const DEFAULT_ACTION = 'index';    
+    const DEFAULT_ACTION   = 'index';    
+    const URL_DEFAULT      = 'bw.com.br';
 }
 

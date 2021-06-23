@@ -64,13 +64,24 @@ create table ecommerce_usu(
 	ecommerce_id int not null auto_increment,
     usuario_id int not null,
     plano_id int,
-    sub_dominio varchar(50) not null,
+    sub_dominio varchar(50) not null unique,
     nome_fantasia varchar(50) not null,
     cnpj int,
+    layout varchar(50) not null,
     
     primary key(ecommerce_id),
     foreign key(usuario_id) references usuario(usuario_id),
     foreign key(plano_id) references plano(plano_id)
+)default charset utf8;
+
+create table layout_imagem(
+    li_id int not null auto_increment,
+    ecommerce_usu_id int not null,
+    url varchar(150) not null,
+    local_imagem varchar(50) not null,
+
+    primary key(li_id),
+    foreign key(ecommerce_usu_id) references ecommerce_usu(ecommerce_id)
 )default charset utf8;
 
 create table usuario_ecommerce(
@@ -94,17 +105,22 @@ create table eco_usu(
 
 create table categoria(
 	categoria_id int not null auto_increment,
+    ecommerce_id int not null,
     sub_cat int,
     nome_cat varchar(50) not null,
     
-    primary key(categoria_id)
+    primary key(categoria_id),
+    foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
 )default charset utf8;
 
 create table marca(
 	marca_id int not null auto_increment,
+    ecommerce_id int not null,
     nome_mar varchar(50) not null,
     
-    primary key(marca_id)
+    primary key(marca_id),
+    foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
+
 )default charset utf8;
 
 create table produto(
