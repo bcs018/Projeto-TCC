@@ -55,7 +55,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                         <option>Oculos</option>
                                         <option>Regatas</option>
                                     </select>
-                                </div>
+                                </div> 
 
                                 <div class="form-group">
                                     <label>Marca do produto</label>

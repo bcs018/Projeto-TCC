@@ -92,7 +92,10 @@ class AdminController extends Controller {
     public function cadCategoria(){
         $this->listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/cad_categoria'/*, ['dados'=>$dados]*/);
+        $cate = new Admin;
+        $dados = $cate->listaCategorias();
+
+        $this->render('commerce/painel_adm/cad_categoria', ['dados'=>$dados]);
 
     }
 

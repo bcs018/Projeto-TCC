@@ -42,7 +42,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
 
                                 <div class="form-group">
                                     <label>Selecione a subcategoria</label>
-                                    <select class="custom-select" name="subCategoria" id="subCategoria">
+                                    <select class="form-control select2" style="width: 100%;" name="subCategoria" id="subCategoria">
                                         <?php if(!isset($dados)): ?>
                                             <option value="0"></option>
                                         <?php else: ?>
@@ -102,3 +102,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
 </div>
 
 <?php $render("commerce/footer_painel"); ?>
+
+<script>
+  $(function () {
+    $('.select2').select2()
+  })
+</script>
