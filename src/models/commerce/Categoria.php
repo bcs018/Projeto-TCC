@@ -12,14 +12,46 @@ class Categoria extends Model{
 
     // Lista todas as categorias
     public function listaCategorias(){
-        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ?";
+        $array = array();
+
+        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ? ORDER BY sub_cat DESC";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            return $sql->fetchAll();
+            foreach($sql-fetchAll() as $item){
+                $item['subs'] = array();
+                $array[$item['id']] = $item;
+            }
+
+            while($this->organizaArray($array)){
+                $this->organizaCategoria($array);
+            }
+
         }
+
+        return $array;
+    }
+
+    private function organizaCategoria(&$array){
+        foreach ($array as $id => $item) {
+            if(isset($array[$item['sub_cat']])){
+                $array[$item['sub_cat']]['subs'][$item['id']] = $item;
+                unset($array[$id]);
+                break;
+            }
+        }
+    }
+
+    private function organizaArray($array){
+        foreach ($array as $item) {
+            if(!empty($item['sub_cat'])){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Cadastra categoria
