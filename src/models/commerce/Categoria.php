@@ -20,9 +20,9 @@ class Categoria extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            foreach($sql-fetchAll() as $item){
+            foreach($sql->fetchAll() as $item){
                 $item['subs'] = array();
-                $array[$item['id']] = $item;
+                $array[$item['categoria_id']] = $item;
             }
 
             while($this->organizaArray($array)){
@@ -37,7 +37,7 @@ class Categoria extends Model{
     private function organizaCategoria(&$array){
         foreach ($array as $id => $item) {
             if(isset($array[$item['sub_cat']])){
-                $array[$item['sub_cat']]['subs'][$item['id']] = $item;
+                $array[$item['sub_cat']]['subs'][$item['categoria_id']] = $item;
                 unset($array[$id]);
                 break;
             }
