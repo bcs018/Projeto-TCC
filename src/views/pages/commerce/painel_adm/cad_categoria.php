@@ -53,6 +53,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                         <?php endif; ?>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                     <?php foreach($dados as $dado): ?>                               
+                                     <a href=""><?php echo $dado['nome_cat']; ?></a> 
+                                        <?php 
+                                        if(count($dado['subs'])>0){
+                                            $render("commerce/subcategoria", array(
+                                                'subs' => $dado['subs'],
+                                                'level' => 1
+                                            ));
+                                        }
+                                        ?>
+                                     <?php endforeach; ?>
+                                </div>
 
                             </div>
                             <div class="card-footer">
