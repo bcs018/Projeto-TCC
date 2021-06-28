@@ -22,39 +22,27 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- /.row -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nome categoria</th>
-                      <th>Ação</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td> <a href="">Excluir</a> | <a href="">Editar</a> </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                  <?php foreach($dados as $dado): ?>                               
+                  <?php echo '<br>- '.$dado['nome_cat']; ?> &nbsp; &nbsp; [<a href="">Editar</a> | <a href="">Excluir</a>]
+                    <?php 
+                    if(count($dado['subs'])>0){
+                        $render("commerce/subcategoria", array(
+                            'subs' => $dado['subs'],
+                            'level' => 1
+                        ));
+                    }
+                    ?>
+                    <br>
+                  <?php endforeach; ?>
+                </div>
             </div>
-            <!-- /.card -->
-          </div>
         </div>
-      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-  </div>
+    <br><br><br>
+</div>
 
   <?php $render("commerce/footer_painel"); ?>

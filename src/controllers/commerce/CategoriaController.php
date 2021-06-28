@@ -13,8 +13,9 @@ class CategoriaController extends Controller {
     // View para consulta de categorias 
     public function conCategoria(){
         AdminController::listaDadosEcommerce();
+        $cate = new Categoria;
 
-        $this->render('commerce/painel_adm/con_categoria'/*, ['dados'=>$dados]*/);
+        $this->render('commerce/painel_adm/con_categoria', ['dados'=>$cate->listaCategoriasOrganizadas()]);
 
     }
 
@@ -23,9 +24,8 @@ class CategoriaController extends Controller {
         AdminController::listaDadosEcommerce();
 
         $cate = new Categoria;
-        $dados = $cate->listaCategorias();
 
-        $this->render('commerce/painel_adm/cad_categoria', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/cad_categoria', ['catOrga'=>$cate->listaCategoriasOrganizadas(), 'cat'=>$cate->listaCategorias()]);
 
     }
 

@@ -43,36 +43,45 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                 <div class="form-group">
                                     <label>Selecione a subcategoria</label>
                                     <select class="form-control select2" style="width: 100%;" name="subCategoria" id="subCategoria">
-                                        <?php if(!isset($dados)): ?>
+                                        <?php if(!isset($cat)): ?>
                                             <option value="0"></option>
                                         <?php else: ?>
                                             <option value="0" selected></option>
-                                            <?php foreach ($dados as $dado): ?>
+                                            <?php foreach ($cat as $dado): ?>
                                             <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                     <?php foreach($dados as $dado): ?>                               
-                                     <a href=""><?php echo $dado['nome_cat']; ?></a> 
-                                        <?php 
-                                        if(count($dado['subs'])>0){
-                                            $render("commerce/subcategoria", array(
-                                                'subs' => $dado['subs'],
-                                                'level' => 1
-                                            ));
-                                        }
-                                        ?>
-                                     <?php endforeach; ?>
-                                </div>
-
+                                
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">Cadastrar</button>
                             </div>
                         </form>
-                    </div> <br>
+                    </div> 
+                    
+                    <div class="card card-lightblue">
+                        <div class="card-header">
+                            <h3 class="card-title"><b>Estrutura atual das categorias</b></h3>
+                        </div>
+                        <div class="card-body">
+                    
+                         <?php foreach($catOrga as $dado): ?>                               
+                         <?php echo '<br>- '.$dado['nome_cat']; ?>
+                            <?php 
+                            if(count($dado['subs'])>0){
+                                $render("commerce/subcategoria", array(
+                                    'subs' => $dado['subs'],
+                                    'level' => 1
+                                ));
+                            }
+                            ?>
+                            <br>
+                         <?php endforeach; ?>
+                        </div>
+                    </div>
+                
 
                     <div class="card card-lightblue">
                         <div class="card-header">

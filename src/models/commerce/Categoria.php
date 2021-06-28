@@ -10,8 +10,8 @@ class Categoria extends Model{
      * --- CATEGORIAS
      */
 
-    // Lista todas as categorias
-    public function listaCategorias(){
+    // Lista todas as categorias organizadas em arvore
+    public function listaCategoriasOrganizadas(){
         $array = array();
 
         $sql = "SELECT * FROM categoria WHERE ecommerce_id = ? ORDER BY sub_cat DESC";
@@ -32,6 +32,15 @@ class Categoria extends Model{
         }
 
         return $array;
+    }
+
+    public function listaCategorias(){
+        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        return $sql->fetchAll();
     }
 
     private function organizaCategoria(&$array){
