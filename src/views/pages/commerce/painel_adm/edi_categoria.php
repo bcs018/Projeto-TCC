@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar Categoria']); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Editar Categoria']); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
@@ -12,7 +12,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Cadastrar Categoria</h1>
+                    <h1>Editar Categoria</h1>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form" action="/admin/painel/cadastrar-categorias/action" method="POST">
+                        <form role="form" action="/admin/painel/editar-categoria/action" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
                                     <?php 
@@ -36,24 +36,24 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                     }
                                     ?>
                                     <label for="exampleInputEmail1">Nome categoria</label>
-                                    <input type="text" class="form-control" id="nomeCategoria" name="nomeCategoria"
-                                        placeholder="Insira o nome da categoria">
+                                    <input type="text" class="form-control" id="nomeCategoria" name="nomeCategoria" placeholder="Insira o nome da categoria" value="<?php echo $categoria['nome_cat']; ?>">
+                                    <input type="hidden" value="<?php echo $categoria['categoria_id']; ?>" name="id">
+
                                 </div>
 
                                 <div class="form-group">
                                     <label>Selecione a categoria pai</label>
                                     <select class="form-control select2" style="width: 100%;" name="subCategoria" id="subCategoria">
-                                        <?php if(!isset($cat)): ?>
+                                        <?php if(!isset($categorias)): ?>
                                             <option value="0"></option>
                                         <?php else: ?>
                                             <option value="0" selected></option>
-                                            <?php foreach ($cat as $dado): ?>
-                                            <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
+                                            <?php foreach ($categorias as $cat): ?>
+                                            <option value="<?php echo $cat['categoria_id'] ?>"><?php echo $cat['nome_cat'] ?></option>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </select>
                                 </div>
-                                
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">Cadastrar</button>
@@ -67,8 +67,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                         </div>
                         <div class="card-body">
                     
-                         <?php foreach($catOrga as $dado): ?>                               
-                         <?php echo '<b>- '.$dado['nome_cat'].'</b>'; ?>
+                         <?php foreach($categoriasOrg as $dado): ?>                               
+                         <?php echo '- '.$dado['nome_cat']; ?>
                             <?php 
                             if(count($dado['subs'])>0){
                                 $render("commerce/subcategoria", array(
@@ -80,7 +80,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                             <br>
                          <?php endforeach; ?>
                         </div>
-                    </div>            
+                    </div>
+                
 
                     <div class="card card-lightblue">
                         <div class="card-header">
@@ -125,6 +126,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
 <?php $render("commerce/footer_painel"); ?>
 
 <script>
+  document.getElementById('subCategoria').value = <?php echo $categoria['sub_cat']; ?>;
+
   $(function () {
     $('.select2').select2()
   })

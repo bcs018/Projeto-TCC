@@ -27,12 +27,13 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
             <div class="row">
                 <div class="col">
                   <?php foreach($dados as $dado): ?>                               
-                  <?php echo '<br>- '.$dado['nome_cat']; ?> &nbsp; &nbsp; [<a href="">Editar</a> | <a href="">Excluir</a>]
+                  <?php echo '<br>- '.$dado['nome_cat']; ?>.......[<a href="/admin/painel/editar-categoria/<?php echo $dado['categoria_id']; ?>">Editar</a> | <a href="/admin/painel/excluir-categoria/action/<?php echo $dado['categoria_id']; ?>">Excluir</a>]
                     <?php 
                     if(count($dado['subs'])>0){
                         $render("commerce/subcategoria", array(
                             'subs' => $dado['subs'],
-                            'level' => 1
+                            'level' => 1,
+                            'edit' => 1
                         ));
                     }
                     ?>

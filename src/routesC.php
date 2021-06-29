@@ -22,6 +22,9 @@ $router->post('/admin/painel/cadastrar-produtos/first-part', 'ProdutoController@
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');
 $router->get('/admin/painel/cadastrar-categorias', 'CategoriaController@cadCategoria');
 $router->post('/admin/painel/cadastrar-categorias/action', 'CategoriaController@cadCategoriaAction');
+$router->get('/admin/painel/editar-categoria/{id}', 'CategoriaController@ediCategoria');
+$router->post('/admin/painel/editar-categoria/action', 'CategoriaController@ediCategoriaAction');
+$router->get('/admin/painel/excluir-categoria/action/{id}', 'CategoriaController@excCategoriaAction');
 
 // -- Marcas
 $router->get('/admin/painel/marcas', 'MarcaController@conMarca');

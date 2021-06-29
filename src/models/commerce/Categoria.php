@@ -43,6 +43,20 @@ class Categoria extends Model{
         return $sql->fetchAll();
     }
 
+    public function listaCategoria($id){
+        $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1,$id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0)
+            return $sql->fetch();
+
+        return false;
+
+    }
+
     private function organizaCategoria(&$array){
         foreach ($array as $id => $item) {
             if(isset($array[$item['sub_cat']])){

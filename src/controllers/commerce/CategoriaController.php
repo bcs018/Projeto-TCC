@@ -49,4 +49,23 @@ class CategoriaController extends Controller {
 
         exit;
      }
+
+     public function ediCategoria($id){
+        AdminController::listaDadosEcommerce();
+        
+        $edit = new Categoria;
+        $dados['categoria']     = $edit->listaCategoria(addslashes($id['id']));
+        $dados['categoriasOrg'] = $edit->listaCategoriasOrganizadas();
+        $dados['categorias']    = $edit->listaCategorias();
+
+        if (!$dados){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Categoria não encontrada!
+                                    </div>';
+            header("Location: /admin/painel/categoria");
+            exit;
+        }
+
+        $this->render('commerce/painel_adm/edi_categoria', $dados);
+     }
 }
