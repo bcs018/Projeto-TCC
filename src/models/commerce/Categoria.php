@@ -137,4 +137,34 @@ class Categoria extends Model{
         return false;
 
     }
+
+    public function excCategoria($id){
+        $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $sql = "DELETE FROM categoria WHERE categoria_id = ? AND sub_cat = ? AND ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->bindValue(2, $id);
+            $sql->bindValue(3, $_SESSION['id_sub_dom']);
+            
+            if($sql->execute()){
+                $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                            Categoria excluida com sucesso!
+                                        </div>';
+
+                return true;
+            }
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro 001 ao excluir categoria, atualize a página e tente novamente!
+                                </div>';
+
+        return false;
+    }
 }

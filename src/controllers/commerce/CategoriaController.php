@@ -68,4 +68,19 @@ class CategoriaController extends Controller {
 
         $this->render('commerce/painel_adm/edi_categoria', $dados);
      }
+
+     public function excCategoriaAction($id){
+        if(!isset($id) || empty($id)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro ao excluir categoria, atualize a página e tente novamente!
+                                    </div>';
+            header("Location: /admin/painel/categoria");
+            exit;
+        }
+
+        $exc = new Categoria;
+        $exc->excCategoria(addslashes($id['id']));
+
+        header("Location: /admin/painel/categoria");
+     }
 }
