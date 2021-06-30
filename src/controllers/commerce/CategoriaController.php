@@ -81,6 +81,6 @@ class CategoriaController extends Controller {
         $exc = new Categoria;
         $exc->excCategoria(addslashes($id['id']));
 
-        header("Location: /admin/painel/categoria");
+        header("Location: /admin/painel/categorias");
      }
 }

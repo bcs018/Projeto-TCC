@@ -26,49 +26,36 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col">
-          <div class="card card-red">
-            <div class="card-header">
-              <h3 class="card-title"><b>CUIDADO AO EXCLUIR OU EDITAR UMA CATEGORIA</b></h3>
-            </div>
-            <div class="card-body">
-              <h6>
-                 Ao excluir uma categoria, tenha em mente que se a categoria a ser excluida tiver 
-                 subcategorias (filhas), todas as filhas dessa categoria serão excluidas.
-              </h6>
-              <h6>Exemplo:</h6>
-              <h6>
-                -- Tênis <br>
-                ----- Com cardaço <br>
-                ----- Sem cardaço 
-              </h6>
-              <h6>
-                Ao excluir a Categoria pai Tênis, suas filhas Com cardaço e Sem cardaço serão excluidas 
-                automaticamente.
-              </h6>
-              <h6>
-                Então pense bem antes de excluir suas categorias para não ter que recadastrar tudo novamente.
-              </h6>
-            </div>
-          </div>
+        <div class="col">          
+          <br><h5>Edite ou Exclua as categorias</h5>
           
-          <br><h4>Edite ou Exclua as categorias</h4>
-          
-          <?php foreach($dados as $dado): ?>
-          <?php echo '<br>- '.$dado['nome_cat']; ?>.......[<a
-            href="/admin/painel/editar-categoria/<?php echo $dado['categoria_id']; ?>">Editar</a> | <a
-            href="/admin/painel/excluir-categoria/action/<?php echo $dado['categoria_id']; ?>">Excluir</a>]
+          <?php
+          if(isset($_SESSION['message'])){
+            echo '<br>'.$_SESSION['message'];
+            unset($_SESSION['message']);
+          }
+          ?>
           <?php 
-                    if(count($dado['subs'])>0){
-                        $render("commerce/subcategoria", array(
-                            'subs' => $dado['subs'],
-                            'level' => 1,
-                            'edit' => 1
-                        ));
-                    }
-                    ?>
-          <br>
-          <?php endforeach; ?>
+          if(empty($dados)):
+            echo "<br>Não há categorias cadastradas!";
+          else: 
+          ?>
+            <?php foreach($dados as $dado): ?>
+            <?php echo '<br>- '.$dado['nome_cat']; ?>.......[<a
+              href="/admin/painel/editar-categoria/<?php echo $dado['categoria_id']; ?>">Editar</a> | <a
+              href="/admin/painel/excluir-categoria/action/<?php echo $dado['categoria_id']; ?>">Excluir</a>]
+            <?php 
+              if(count($dado['subs'])>0){
+                  $render("commerce/subcategoria", array(
+                      'subs' => $dado['subs'],
+                      'level' => 1,
+                      'edit' => 1
+                  ));
+              }
+            ?>
+            <br>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </div>
       </div>
     </div>

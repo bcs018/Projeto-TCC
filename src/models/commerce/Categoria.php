@@ -146,11 +146,24 @@ class Categoria extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            $sql = "DELETE FROM categoria WHERE categoria_id = ? AND sub_cat = ? AND ecommerce_id = ?";
+            $sql = "SELECT * FROM categoria WHERE sub_cat = ? AND ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $id);
-            $sql->bindValue(2, $id);
-            $sql->bindValue(3, $_SESSION['id_sub_dom']);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                            Você não pode excluir uma categoria <b>PAI</b>, exclua suas filhas primeiro e tente novamente!
+                                        </div>';
+                return false;
+
+            }
+    
+            $sql = "DELETE FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
             
             if($sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert">
