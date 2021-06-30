@@ -83,4 +83,8 @@ class CategoriaController extends Controller {
 
         header("Location: /admin/painel/categorias");
      }
+
+     public function ediCategoriaAction(){
+        
+     }
 }

@@ -180,4 +180,34 @@ class Categoria extends Model{
 
         return false;
     }
+
+    public function ediCategoria($id, $nomeCategoria, $sub){
+        if(!$this->listaCategoria($id)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro 001 ao editar categoria, atualize a página e tente novamente!
+                                    </div>';
+            return false;
+        }
+
+        $sql = "UPDATE categoria SET nome_cat = ?, sub_cat = ? WHERE categoria_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeCategoria);
+        $sql->bindValue(2, $sub);
+        $sql->bindValue(3, $id);
+        $sql->bindValue(4, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                        Categoria editada com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Erro 002 ao editar categoria, atualize a página e tente novamente!
+                                </div>';
+
+        return false;
+    }
 }
