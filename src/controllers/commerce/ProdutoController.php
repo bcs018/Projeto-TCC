@@ -3,6 +3,8 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\Produto;
+use \src\models\commerce\Marca;
+use \src\models\commerce\Categoria;
 use \src\controllers\commerce\AdminController;
 
 class ProdutoController extends Controller {
@@ -22,7 +24,13 @@ class ProdutoController extends Controller {
     public function cadProduto(){
         AdminController::listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/cad_produto'/*, ['dados'=>$dados]*/);
+        $mar = new Marca;
+        $cat = new Categoria;
+
+        $dados['marcas']     = $mar->listaMarcas();
+        $dados['categorias'] = $cat->listaCategorias();
+
+        $this->render('commerce/painel_adm/cad_produto', $dados);
 
     }
 
@@ -40,7 +48,7 @@ class ProdutoController extends Controller {
         $cad->cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo);
 
 
-        //header("Location: /admin/painel/cadastrar-produtos");
+        header("Location: /admin/painel/cadastrar-produtos");
         exit;
     }
 }

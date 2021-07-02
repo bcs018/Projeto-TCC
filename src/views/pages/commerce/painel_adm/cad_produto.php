@@ -12,8 +12,16 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <h1>Cadastrar produto</h1>
+                    <?php
+                    if(isset($_SESSION['message'])){
+                        echo '<br>'.$_SESSION['message'];
+                        unset($_SESSION['message']);
+                    }
+                    ?>
+                    <center><br><h6 style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
+                                    (*) são obrigatórios.</h6></center>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -32,50 +40,48 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" method="POST" action="/admin/painel/cadastrar-produtos/first-part">
+                        <form role="form" id="cadProduto" method="POST" action="/admin/painel/cadastrar-produtos/1">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="nomeProd">Nome produto</label>
                                     <input type="text" class="form-control" id="nomeProd" name="nomeProd"
                                         placeholder="Insira o nome do produto" value="<?php if(isset($_POST['nomeProd'])){ echo $_POST['nomeProd']; } ?>">
                                 </div>
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="descProd">Descrição do produto</label>
                                     <textarea name="descProd" id="descProd" rows="6" class="form-control" value="<?php if(isset($_POST['descProd'])){ echo $_POST['descProd']; } ?>"></textarea>
                                 </div>
-                        
-                                <div class="form-group">
-                                    <label>Categoria do produto</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option>Camiseta</option>
-                                        <option>Calça</option>
-                                        <option>Moleton</option>
-                                        <option>Tenis</option>
-                                        <option>Meia</option>
-                                        <option>Oculos</option>
-                                        <option>Regatas</option>
-                                    </select>
-                                </div> 
 
                                 <div class="form-group">
-                                    <label>Marca do produto</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option>Nike</option>
-                                        <option>Adidas</option>
-                                        <option>Puma</option>
-                                        <option>Jordan</option>
-                                        <option>Fila</option>
-                                        <option>Everest</option>
-                                        <option>Penalty</option>
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label>Selecione a categoria do produto</label>
+                                    <select class="form-control select2" style="width: 100%;" name="categoria" id="categoria">
+                                        <?php foreach ($categorias as $dado): ?>
+                                        <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label>Selecione a marca do produto</label>
+                                    <select class="form-control select2" style="width: 100%;" name="marca" id="marca">
+                                        <?php foreach ($marcas as $dado): ?>
+                                        <option value="<?php echo $dado['marca_di'] ?>"><?php echo $dado['nome_mar'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="estoque">Estoque</label>
                                     <input type="number" class="form-control" id="estoque" name="estoque"
                                         placeholder="Insira o nome do produto" value="<?php if(isset($_POST['estoque'])){ echo $_POST['estoque']; } ?>">
                                 </div>
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="preco">Preço</label>
                                     <div class="input-group">
                                         <div class="input-group-append">
@@ -86,6 +92,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="precoAnt">Preço antigo</label>
                                     <div class="input-group">
                                         <div class="input-group-append">
@@ -119,6 +126,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                 </div>
 
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="promo">Produto em promoção?</label>
 
                                     <div class="custom-control custom-radio">
@@ -146,6 +154,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                 </div>
 
                                 <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="promo">Produto novo?</label>
 
                                     <div class="custom-control custom-radio">

@@ -35,8 +35,6 @@ class Produto extends Model{
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
-
-            echo "Entrei aqui 1if";
             return false;
         }
 

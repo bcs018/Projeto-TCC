@@ -41,6 +41,8 @@
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/altDadosPessoaisPainel.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
+<script src="<?php echo BASE_ASS_C; ?>js/cadProduto.js"></script>
+
 
 </body>
 </html>
