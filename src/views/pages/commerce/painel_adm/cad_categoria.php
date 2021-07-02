@@ -111,7 +111,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar C
                                 Com cardaço e Sem Cardaço possui a categoria pai Tênis.
                             </h6>
                             <h6>
-                                Para criar uma categoria <b>PAI</b> como Camisetas e Tênis, deixar o campo "Categoria pai" vazio (em branco).
+                                Para criar uma categoria <b>PAI</b> como Camisetas e Tênis, deixar o campo "Categoria pai" selecionado em "Deixar esta categoria como PAI".
                             </h6>
                         </div>
                     </div>

@@ -58,11 +58,11 @@ class CategoriaController extends Controller {
         $dados['categoriasOrg'] = $edit->listaCategoriasOrganizadas();
         $dados['categorias']    = $edit->listaCategorias();
 
-        if (!$dados){
+        if (!$dados['categoria']){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Categoria não encontrada!
                                     </div>';
-            header("Location: /admin/painel/categoria");
+            header("Location: /admin/painel/categorias");
             exit;
         }
 
@@ -79,6 +79,15 @@ class CategoriaController extends Controller {
         }
 
         $exc = new Categoria;
+
+        if(!$exc->listaCategoria(addslashes($id['id']))){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Categoria não encontrada!
+                                    </div>';
+            header("Location: /admin/painel/categorias");
+            exit;
+        }
+
         $exc->excCategoria(addslashes($id['id']));
 
         header("Location: /admin/painel/categorias");

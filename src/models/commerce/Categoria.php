@@ -182,12 +182,27 @@ class Categoria extends Model{
     }
 
     public function ediCategoria($id, $nomeCategoria, $sub){
-        if(!$this->listaCategoria($id)){
+        $categoria = $this->listaCategoria($id);
+        // Pegando a subcategoria para verificar se ela é categoria pai junto com a categoria a ser editada
+        $subCategoria = $this->listaCategoria($sub);
+
+        if(!$categoria){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Erro 001 ao editar categoria, atualize a página e tente novamente!
                                     </div>';
             return false;
         }
+
+        if($categoria['sub_cat'] == null && $subCategoria['sub_cat'] == null && $this->verificaFilha($id) || 
+           $this->verificaFilha($id) && $subCategoria['sub_cat'] != null){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Você não pode colocar uma categoria <b>com subcategorias</b> dentro de outra <b>categoria PAI ou subcategoria</b>
+                                    </div>';
+            return false;
+
+        }
+
+        if($sub == 0) $sub = null;
 
         $sql = "UPDATE categoria SET nome_cat = ?, sub_cat = ? WHERE categoria_id = ? AND ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
@@ -209,5 +224,19 @@ class Categoria extends Model{
                                 </div>';
 
         return false;
+    }
+
+    private function verificaFilha($id){
+        $sql = "SELECT * FROM categoria WHERE sub_cat = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0)
+            return true;
+
+        return false;
+
     }
 }

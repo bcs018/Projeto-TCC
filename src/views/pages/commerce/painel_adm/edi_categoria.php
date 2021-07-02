@@ -45,9 +45,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar Cate
                                     <label>Selecione a categoria pai</label>
                                     <select class="form-control select2" style="width: 100%;" name="subCategoria" id="subCategoria">
                                         <?php if(!isset($categorias)): ?>
-                                            <option value="0"></option>
+                                            <option value="0">Deixar esta categoria como PAI</option>
                                         <?php else: ?>
-                                            <option value="0" selected></option>
+                                            <option value="0" selected>Deixar esta categoria como PAI</option>
                                             <?php foreach ($categorias as $cat): ?>
                                             <option value="<?php echo $cat['categoria_id'] ?>"><?php echo $cat['nome_cat'] ?></option>
                                             <?php endforeach; ?>
@@ -56,7 +56,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar Cate
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Cadastrar</button>
+                                <button type="submit" class="btn btn-success">Editar</button>
                             </div>
                         </form>
                     </div> 
@@ -112,7 +112,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar Cate
                                 Com cardaço e Sem Cardaço possui a categoria pai Tênis.
                             </h6>
                             <h6>
-                                Para criar uma categoria <b>PAI</b> como Camisetas e Tênis, deixar o campo "Categoria pai" vazio (em branco).
+                                Para criar uma categoria <b>PAI</b> como Camisetas e Tênis, deixar o campo "Categoria pai" selecionado em "Deixar esta categoria como PAI".
                             </h6>
                         </div>
                     </div>
