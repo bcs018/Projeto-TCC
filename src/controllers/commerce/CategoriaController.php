@@ -85,6 +85,14 @@ class CategoriaController extends Controller {
      }
 
      public function ediCategoriaAction(){
-        
+        $nomeCat = addslashes($_POST['nomeCategoria']);
+        $idCat   = addslashes($_POST['id']);
+        $sub = addslashes($_POST['subCategoria']);
+
+        $edit = new Categoria;
+        $edit->ediCategoria($idCat, $nomeCat, $sub);
+
+        header("Location: /admin/painel/categorias");              
+
      }
 }
