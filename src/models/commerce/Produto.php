@@ -81,7 +81,7 @@ class Produto extends Model{
         if($flag == 1)
             return ['insercao'=>false];
 
-        $sql = 'INSERT INTO produto (categoria_id, maarca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
+        $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
                 VALUES (?,?,?,?,?,?,?,?,?,?)';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $categoria);

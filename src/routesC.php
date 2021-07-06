@@ -17,7 +17,7 @@ $router->get('/admin/sair', 'AdminController@sair');
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
 $router->get('/admin/painel/cadastrar-produtos', 'ProdutoController@cadProduto');
 $router->post('/admin/painel/cadastrar-produtos/first', 'ProdutoController@cadProdutoActionFirst');
-$router->post('/admin/painel/cadastrar-produtos/{id}', 'ProdutoController@cadProdutoActionSecond');
+$router->get('/admin/painel/cadastrar-produtos/{id}', 'ProdutoController@cadProdutoSecond');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

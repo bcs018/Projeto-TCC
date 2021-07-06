@@ -55,12 +55,9 @@ $(function(){
             },
             dataType: 'JSON',
             success:function(dados){
-                console.log(dados.insercao);
                 if(dados.insercao == false){
                     $('#message').html(dados.message);
                     $('html, body').animate({scrollTop:0}, 'slow');
-        
-                    return;
                 }else{
                     window.location.replace("/admin/painel/cadastrar-produtos/"+dados.id);
                 }

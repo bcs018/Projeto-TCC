@@ -61,4 +61,11 @@ class ProdutoController extends Controller {
         //header("Location: /admin/painel/cadastrar-produtos");
         exit;
     }
+
+    public function cadProdutoSecond($id){
+        AdminController::listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/cad_produto_2', $id);
+
+    }
 }

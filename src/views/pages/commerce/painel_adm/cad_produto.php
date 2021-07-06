@@ -43,7 +43,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" id="cadProduto" method="POST" action="/admin/painel/cadastrar-produtos/1">
+                        <form role="form" id="cadProduto" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
