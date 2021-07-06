@@ -33,9 +33,11 @@
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.css">
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
   <!-- Jquery -->
-  <!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script> -->
+  <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery Mask -->
   <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
+
+
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/select2/css/select2.min.css">
   <!-- <link rel="shortcut icon" href="<?php //echo BASE_ASS; ?>/images/ico.ico"> -->

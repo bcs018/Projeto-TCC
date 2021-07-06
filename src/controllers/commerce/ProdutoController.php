@@ -36,19 +36,29 @@ class ProdutoController extends Controller {
 
     // Cadastro de produtos
     public function cadProdutoActionFirst(){
-        $nomeProd = addslashes($_POST['nomeProd']);
-        $descProd = addslashes($_POST['descProd']);
-        $estoque  = addslashes($_POST['estoque']);
-        $preco    = addslashes($_POST['preco']);
-        $precoAnt = addslashes($_POST['precoAnt']);
-        $promo    = addslashes($_POST['promo']);
-        $novo     = addslashes($_POST['novo']);
+        $nomeProd   = addslashes($_POST['nomeProd']);
+        $descProd   = addslashes($_POST['descProd']);
+        $categoria  = addslashes($_POST['categoria']);
+        $marca      = addslashes($_POST['marca']);
+        $estoque    = addslashes($_POST['estoque']);
+        $preco      = addslashes($_POST['preco']);
+        $precoAnt   = addslashes($_POST['precoAnt']);
+        $promo      = addslashes($_POST['promo']);
+        $novo       = addslashes($_POST['novo']);
 
         $cad = new Produto;
-        $cad->cadProdutoActionFirst($nomeProd, $descProd, $estoque, $preco, $precoAnt, $promo, $novo);
+        $dados = $cad->cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo);
 
+        if(isset($_SESSION['message']))
+            $dados['message'] = $_SESSION['message'];
+        else 
+            $dados['message'] = '';
 
-        header("Location: /admin/painel/cadastrar-produtos");
+        unset($_SESSION['message']);
+
+        echo json_encode($dados);
+
+        //header("Location: /admin/painel/cadastrar-produtos");
         exit;
     }
 }

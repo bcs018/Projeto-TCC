@@ -13,13 +13,16 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Cadastrar produto</h1>
+                    <h1>Cadastrar produto</h1><br>
                     <?php
                     if(isset($_SESSION['message'])){
                         echo '<br>'.$_SESSION['message'];
                         unset($_SESSION['message']);
                     }
                     ?>
+
+                    <div id='message'></div>
+
                     <center><br><h6 style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
                                     (*) são obrigatórios.</h6></center>
                 </div>
@@ -69,7 +72,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <label>Selecione a marca do produto</label>
                                     <select class="form-control select2" style="width: 100%;" name="marca" id="marca">
                                         <?php foreach ($marcas as $dado): ?>
-                                        <option value="<?php echo $dado['marca_di'] ?>"><?php echo $dado['nome_mar'] ?></option>
+                                        <option value="<?php echo $dado['marca_id'] ?>"><?php echo $dado['nome_mar'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -88,7 +91,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                             <span class="input-group-text" id="">R$</span>
                                         </div>
                                         <input type="text" class="form-control" id="preco" name="preco"
-                                            placeholder="Insira o preço do produto" value="<?php if(isset($_POST['preco'])){ echo $_POST['preco']; } ?>">
+                                            placeholder="Insira o preço do produto" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -99,7 +102,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                             <span class="input-group-text" id="">R$</span>
                                         </div>
                                         <input type="text" class="form-control" id="precoAnt" name="precoAnt"
-                                            placeholder="Insira o preço antigo do produto" value="<?php if(isset($_POST['precoAnt'])){ echo $_POST['precoAnt']; } ?>">
+                                            placeholder="Insira o preço antigo do produto" value="">
                                     </div>
                                 </div>
 
@@ -196,7 +199,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     <!-- /.content -->
 </div>
 
-
 <script type="text/javascript">
     $('#preco').mask("# ##0,00", {
         reverse: true
@@ -205,6 +207,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
         reverse: true
     });
 </script>
+
 
 <?php $render("commerce/footer_painel"); ?>
 
