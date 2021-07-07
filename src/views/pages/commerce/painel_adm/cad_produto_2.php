@@ -43,21 +43,18 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form role="form" id="cadProduto" method="POST" action="/admin/painel/cadastrar-produtos/1">
+                        <form role="form" method="POST" enctype="multipart/form-data" action="/admin/painel/cadastrar-produtos/second">
                             <div class="card-body">
                                 <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="inputGroupFile02">
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                </div>
-
-                                <div class="bd-example">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="nomeProd">Selecione as imagens do produto</label>
-                                    <input type="file" class="form-control" id="imagem" name="imagem[]" multiple>
-                                    <input type="hidden" value="<?php echo $id; ?>" name="id">
+                                    <div class="bd-example">
+                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                        <label for="nomeProd">Selecione as imagens do produto</label>
+                                        <input type="file" class="form-control" name="imagem[]" multiple>
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id">
+                                    </div>
                                 </div>
                             </div>
+                            
                             <!-- /.card-body -->
 
                             <div class="card-footer text-right">

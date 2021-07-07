@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/bootstrap.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->

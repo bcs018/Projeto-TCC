@@ -22,9 +22,11 @@ class Produto extends Model{
         $precoAnt = floatval($precoAnt);
 
         $promo = intval($promo);
+
+        $_SESSION['message'] = '';
         
-        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($precoAnt)){
-            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
             //return ['insercao'=>false];

@@ -66,6 +66,20 @@ class ProdutoController extends Controller {
         AdminController::listaDadosEcommerce();
 
         $this->render('commerce/painel_adm/cad_produto_2', $id);
+    }
 
+    public function cadProdutoActionSecond(){
+
+        if(isset($_FILES['imagem'])){
+            if(count($_FILES['imagem']['tmp_name']) > 0){
+                for($i=0; $i < count($_FILES['imagem']['tmp_name']); $i++){
+                    $tpArq = explode('/', $_FILES['imagem']['type'][$i]);
+
+                    $nomeArq = $_SESSION['id_sub_dom'].md5($_FILES['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
+
+                    move_uploaded_file($_FILES['imagem']['tmp_name'][$i], '../assets/commerce/images_commerce/'.$nomeArq);
+                }
+            }
+        }
     }
 }
