@@ -3,4 +3,4 @@ composer.phar
 home/pagseguro.log
 .DS_Store
 geckodriver.log
-/assets/images_commerce/*
+/assets/images_commerce/
