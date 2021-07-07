@@ -107,4 +107,27 @@ class Produto extends Model{
 
         exit;
     }
+
+    public function cadProdutoActionSecond($img){
+        if(count($img['imagem']['tmp_name']) > 0){
+
+            for($a=0; $a < count($img['imagem']['tmp_name']); $a++){
+                $tpArq = explode('/', $img['imagem']['type'][$a]);
+                if($tpArq[1] != 'jpg' || $tpArq[1] != 'jpeg' || $tpArq[1] != 'png'){
+                    $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                                Formato de imagem diferente de JPG, JPEG ou PNG!
+                                            </div>';
+                    return false;
+                }
+            }
+
+            for($i=0; $i < count($img['imagem']['tmp_name']); $i++){
+                $tpArq = explode('/', $img['imagem']['type'][$i]);
+
+                $nomeArq = $_SESSION['id_sub_dom'].md5($img['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
+
+                move_uploaded_file($img['imagem']['tmp_name'][$i], '../assets/commerce/images_commerce/'.$nomeArq);
+            }
+        }
+    }
 }

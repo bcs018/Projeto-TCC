@@ -71,15 +71,10 @@ class ProdutoController extends Controller {
     public function cadProdutoActionSecond(){
 
         if(isset($_FILES['imagem'])){
-            if(count($_FILES['imagem']['tmp_name']) > 0){
-                for($i=0; $i < count($_FILES['imagem']['tmp_name']); $i++){
-                    $tpArq = explode('/', $_FILES['imagem']['type'][$i]);
-
-                    $nomeArq = $_SESSION['id_sub_dom'].md5($_FILES['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
-
-                    move_uploaded_file($_FILES['imagem']['tmp_name'][$i], '../assets/commerce/images_commerce/'.$nomeArq);
-                }
-            }
+            $img = new Produto;
+            $img->cadProdutoActionSecond($_FILES['imagem']);
         }
+
     }
+
 }
