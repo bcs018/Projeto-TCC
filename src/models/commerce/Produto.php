@@ -108,15 +108,16 @@ class Produto extends Model{
         exit;
     }
 
-    public function cadProdutoActionSecond($img){
+    public function cadProdutoActionSecond($img, $idProd){
         if(count($img['imagem']['tmp_name']) > 0){
 
             for($a=0; $a < count($img['imagem']['tmp_name']); $a++){
                 $tpArq = explode('/', $img['imagem']['type'][$a]);
-                if($tpArq[1] != 'jpg' || $tpArq[1] != 'jpeg' || $tpArq[1] != 'png'){
+                if(($tpArq[1] != 'jpg') && ($tpArq[1] != 'jpeg') && ($tpArq[1] != 'png')){
                     $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                                Formato de imagem diferente de JPG, JPEG ou PNG!
+                                                Formato da imagem diferente de JPG, JPEG ou PNG!
                                             </div>';
+
                     return false;
                 }
             }
@@ -127,7 +128,39 @@ class Produto extends Model{
                 $nomeArq = $_SESSION['id_sub_dom'].md5($img['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
 
                 move_uploaded_file($img['imagem']['tmp_name'][$i], '../assets/commerce/images_commerce/'.$nomeArq);
+
+                $sql = 'INSERT INTO produto_imagem (produto_id, url) VALUES (?,?)';
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(1, $idProd);
+                $sql->bindValue(2, $nomeArq);
+                
+                //Nao pode retornar aqui
+                if($sql->execute()){
+                    $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                                Produto inserido com sucesso!
+                                            </div>';
+                    return true;
+                }
+                
+                $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                            Ocorreu erro interno 002 ao inserir o produto, contate o administrador BW Commerce. 
+                                        </div>';
+                return false;
             }
         }
+    }
+
+    public function listaProduto($id){
+        $sql = 'SELECT * FROM produto WHERE ecommerce_id = ? AND produto_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return false;
     }
 }

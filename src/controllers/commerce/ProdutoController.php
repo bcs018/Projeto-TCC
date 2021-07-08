@@ -65,6 +65,18 @@ class ProdutoController extends Controller {
     public function cadProdutoSecond($id){
         AdminController::listaDadosEcommerce();
 
+        $prod = new Produto;
+
+        if(!$prod->listaProduto($id['id'])){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Produto inexistente!
+                                    </div>';
+
+            header("Location: /admin/painel/produtos");
+
+            exit;
+        }
+
         $this->render('commerce/painel_adm/cad_produto_2', $id);
     }
 
@@ -72,7 +84,14 @@ class ProdutoController extends Controller {
 
         if(isset($_FILES['imagem'])){
             $img = new Produto;
-            $img->cadProdutoActionSecond($_FILES['imagem']);
+            
+            if($img->cadProdutoActionSecond($_FILES, addslashes($_POST['id']))){
+                header("Location: /admin/painel/produtos");
+
+                exit;
+            }
+            header("Location: /admin/painel/cadastrar-produtos/".addslashes($_POST['id']));
+            
         }
 
     }

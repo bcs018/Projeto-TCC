@@ -19,6 +19,13 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
               <a class="btn btn-success" href="/admin/painel/cadastrar-produtos"><i class="fas fa-plus"></i>&nbsp; Cadastrar Produtos</a>
           </div>
         </div>
+        <?php 
+        if(isset($_SESSION['message'])){
+          echo $_SESSION['message'];
+          unset($_SESSION['message']);
+        }
+        ?>
+
       </div><!-- /.container-fluid -->
     </section>
 
