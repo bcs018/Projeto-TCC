@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/dist/css/adminlte.min.css">
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/ekko-lightbox/ekko-lightbox.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->

@@ -16,7 +16,11 @@ class ProdutoController extends Controller {
     public function conProduto(){
         AdminController::listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/con_produto'/*, ['dados'=>$dados]*/);
+        $prod = new Produto;
+
+        $dados = $prod->listaProdutos();
+
+        $this->render('commerce/painel_adm/con_produto', ['dados'=>$dados]);
 
     }
 
@@ -32,6 +36,17 @@ class ProdutoController extends Controller {
 
         $this->render('commerce/painel_adm/cad_produto', $dados);
 
+    }
+
+    // PAREI AQUI, FAZER UM FOREACH NAS IMAGENS NA VIEW con_detalhe_prod
+    public function conProdutoDetalhe($id){
+        AdminController::listaDadosEcommerce();
+
+        $prod = new Produto;
+
+        $dados = $prod->listaProduto(addslashes($id['id']));
+
+        $this->render('commerce/painel_adm/con_detalhe_prod', $dados);
     }
 
     // Cadastro de produtos

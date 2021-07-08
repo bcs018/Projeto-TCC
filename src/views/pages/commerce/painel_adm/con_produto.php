@@ -8,7 +8,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
 ?>
 
 <div class="content-wrapper" style="min-height: 1184.92px;">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -25,8 +24,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
           unset($_SESSION['message']);
         }
         ?>
-
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <!-- Main content -->
@@ -40,7 +38,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>Nome</th>
                       <th>Estoque</th>
                       <th>Preço</th>
@@ -49,14 +46,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>45</td>
-                      <td>123,30</td>
-                      <td>150,00</td>
-                      <td> <a href="">Excluir</a> | <a href="">Editar</a> </td>
-                    </tr>
+                    <?php foreach($dados as $dado): ?>
+                      <tr>
+                        <td><?php echo $dado['nome_pro']; ?></td>
+                        <td><?php echo $dado['estoque']; ?></td>
+                        <td><?php echo 'R$'.number_format($dado['preco'], 2, ',','.'); ?></td>
+                        <td><?php echo 'R$'.number_format($dado['preco_antigo'], 2, ',','.'); ?></td>
+                        <td> <a href="">Excluir</a> | <a href="">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

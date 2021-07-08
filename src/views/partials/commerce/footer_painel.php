@@ -35,6 +35,8 @@
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Ekko Lightbox -->
+<script src="<?php echo BASE_ASS; ?>adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 

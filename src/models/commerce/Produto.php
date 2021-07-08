@@ -150,7 +150,10 @@ class Produto extends Model{
     }
 
     public function listaProduto($id){
-        $sql = 'SELECT * FROM produto WHERE ecommerce_id = ? AND produto_id = ?';
+        $sql = 'SELECT * FROM produto p
+                LEFT JOIN produto_imagem pi
+                ON pi.produto_id = p.produto_id
+                WHERE p.ecommerce_id = ? AND p.produto_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $id);
@@ -158,6 +161,36 @@ class Produto extends Model{
 
         if($sql->rowCount() > 0){
             return $sql->fetch();
+        }
+
+        return false;
+    }
+
+    public function listaProdutos(){
+        $sql = 'SELECT * FROM produto WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+
+        return false;
+    }
+
+    public function listaProdutosImg($id){
+        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+                JOIN produto_imagem pi
+                ON pi.produto_id = p.produto_id
+                WHERE p.ecommerce_id = ? AND p.produto_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchaAll();
         }
 
         return false;
