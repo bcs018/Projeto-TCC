@@ -134,19 +134,18 @@ class Produto extends Model{
                 $sql->bindValue(1, $idProd);
                 $sql->bindValue(2, $nomeArq);
                 
-                //Nao pode retornar aqui
-                if($sql->execute()){
-                    $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
-                                                Produto inserido com sucesso!
+                if(!$sql->execute()){
+                    $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                                Ocorreu erro interno 002 ao inserir o produto, contate o administrador BW Commerce. 
                                             </div>';
-                    return true;
+                    return false;
                 }
-                
-                $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                            Ocorreu erro interno 002 ao inserir o produto, contate o administrador BW Commerce. 
-                                        </div>';
-                return false;
             }
+
+            $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                        Produto inserido com sucesso!
+                                    </div>';
+            return true;
         }
     }
 
@@ -163,4 +162,13 @@ class Produto extends Model{
 
         return false;
     }
+
+    /** 
+     * LISTAR IMAGENS DO PRODUTO
+     * 
+     * select p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url from produto p 
+     * join produto_imagem pi
+     * on pi.produto_id = p.produto_id
+     * where p.ecommerce_id = 1;
+     */
 }
