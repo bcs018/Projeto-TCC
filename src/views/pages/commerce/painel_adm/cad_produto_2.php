@@ -8,7 +8,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -27,22 +26,17 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     (*) são obrigatórios.</h6></center>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
                 <div class="col">
-                    <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form role="form" method="POST" enctype="multipart/form-data" action="/admin/painel/cadastrar-produtos/second">
                             <div class="card-body">
                                 <div class="form-group">
@@ -55,20 +49,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                 </div>
                             </div>
                             
-                            <!-- /.card-body -->
-
                             <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-success">Proximo <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></button>
+                                <button type="submit" class="btn btn-success">Cadastrar</button>
                             </div>
                         </form>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
 
 <script type="text/javascript">

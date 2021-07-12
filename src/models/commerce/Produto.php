@@ -3,6 +3,8 @@
 namespace src\models\commerce;
 
 use \core\Model;
+use \src\models\commerce\Marca;
+use \src\models\commerce\Categoria;
 
 class Produto extends Model{
 
@@ -51,32 +53,22 @@ class Produto extends Model{
         }
 
         // Verifica se a marca existe
-        $sql = 'SELECT * FROM marca WHERE ecommerce_id = ? AND marca_id = ?';
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $marca);
-        $sql->execute();
+        $verMarca = new Marca;
 
-        if($sql->rowCount() == 0){
+        if(!$verMarca->listaMarca($marca)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Marca não encontrada!
                                     </div>';
-            //return ['insercao'=>false];
             $flag = 1;
         }
 
         // Verifica se a categoria existe
-        $sql = 'SELECT * FROM categoria WHERE ecommerce_id = ? AND categoria_id = ?';
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $categoria);
-        $sql->execute();
+        $verCate = new Categoria;
 
-        if($sql->rowCount() == 0){
+        if(!$verCate->listaCategoria($categoria)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Categoria não encontrada!
                                     </div>';
-            //return ['insercao'=>false];
             $flag = 1;
         }
 
@@ -149,6 +141,94 @@ class Produto extends Model{
         }
     }
 
+    public function ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd){
+        $flag = 0;
+        $preco = str_replace(',','.',$preco);
+        $preco = str_replace(' ','',$preco);
+        $preco = floatval($preco);
+
+        $precoAnt = str_replace(',','.',$precoAnt);
+        $precoAnt = str_replace(' ','',$precoAnt);
+        $precoAnt = floatval($precoAnt);
+
+        $promo = intval($promo);
+
+        $_SESSION['message'] = '';
+        
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Existem campos não preenchidos!
+                                    </div>';
+            //return ['insercao'=>false];
+            $flag = 1;
+        }
+
+        if(!is_numeric($estoque) || $estoque <= 0){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Estoque não numérico ou menor ou igual a ZERO!
+                                    </div>';
+            //return ['insercao'=>false];
+            $flag = 1;
+        }
+
+
+        if(($promo < 0 || $promo > 1) || ($novo < 0 || $novo > 1)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Houve um problema ao adicionar o produto, atualize a página e tente novamente!
+                                    </div>';
+            //return ['insercao'=>false];
+            $flag = 1;
+        }
+
+        // Verifica se a marca existe
+        $verMarca = new Marca;
+
+        if(!$verMarca->listaMarca($marca)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Marca não encontrada!
+                                    </div>';
+            $flag = 1;
+        }
+
+        // Verifica se a categoria existe
+        $verCate = new Categoria;
+
+        if(!$verCate->listaCategoria($categoria)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Categoria não encontrada!
+                                    </div>';
+            $flag = 1;
+        }
+
+        if($flag == 1)
+            return ['insercao'=>false];
+
+            $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?
+                    WHERE produto_id = ? AND ecommerce_id = ?';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $categoria);
+            $sql->bindValue(2, $marca);
+            $sql->bindValue(3, $nomeProd);
+            $sql->bindValue(4, $descProd);
+            $sql->bindValue(5, $estoque);
+            $sql->bindValue(6, $preco);
+            $sql->bindValue(7, $precoAnt);
+            $sql->bindValue(8, $promo);
+            $sql->bindValue(9, $novo);
+            $sql->bindValue(10, $idProd);
+            $sql->bindValue(11, $_SESSION['id_sub_dom']);
+            
+            if($sql->execute())
+                return ['insercao'=>true];
+
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
+                                    </div>';
+            return ['insercao'=>false];
+
+            exit;
+    }
+
     public function listaProduto($id){
         $sql = 'SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
@@ -160,7 +240,7 @@ class Produto extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            return $sql->fetch();
+            return $sql->fetchAll();
         }
 
         return false;
