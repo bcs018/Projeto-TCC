@@ -46,15 +46,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($dados as $dado): ?>
-                      <tr>
-                        <td><?php echo $dado['nome_pro']; ?></td>
-                        <td><?php echo $dado['estoque']; ?></td>
-                        <td><?php echo 'R$'.number_format($dado['preco'], 2, ',','.'); ?></td>
-                        <td><?php echo 'R$'.number_format($dado['preco_antigo'], 2, ',','.'); ?></td>
-                        <td> <a href="">Excluir</a> | <a href="">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
-                      </tr>
-                    <?php endforeach; ?>
+                    <?php if(isset($dados[0])): ?>
+                      <?php foreach($dados as $dado): ?>
+                        <tr>
+                          <td><?php echo $dado['nome_pro']; ?></td>
+                          <td><?php echo $dado['estoque']; ?></td>
+                          <td><?php echo 'R$'.number_format($dado['preco'], 2, ',','.'); ?></td>
+                          <td><?php echo 'R$'.number_format($dado['preco_antigo'], 2, ',','.'); ?></td>
+                          <td> <a href="">Excluir</a> | <a href="/admin/painel/editar-produto/<?php echo $dado['produto_id']; ?>">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    <?php else: ?>
+                      <td>Não há produtos cadastrados</td>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>

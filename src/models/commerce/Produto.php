@@ -159,7 +159,6 @@ class Produto extends Model{
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
-            //return ['insercao'=>false];
             $flag = 1;
         }
 
@@ -167,7 +166,6 @@ class Produto extends Model{
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Estoque não numérico ou menor ou igual a ZERO!
                                     </div>';
-            //return ['insercao'=>false];
             $flag = 1;
         }
 
@@ -176,7 +174,6 @@ class Produto extends Model{
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Houve um problema ao adicionar o produto, atualize a página e tente novamente!
                                     </div>';
-            //return ['insercao'=>false];
             $flag = 1;
         }
 
@@ -201,7 +198,7 @@ class Produto extends Model{
         }
 
         if($flag == 1)
-            return ['insercao'=>false];
+            return false;
 
             $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?
                     WHERE produto_id = ? AND ecommerce_id = ?';
@@ -218,13 +215,18 @@ class Produto extends Model{
             $sql->bindValue(10, $idProd);
             $sql->bindValue(11, $_SESSION['id_sub_dom']);
             
-            if($sql->execute())
-                return ['insercao'=>true];
+            if($sql->execute()){
+                $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                            Produto atualizado com sucesso!
+                                        </div>';
+                return true;
+            }
+                
 
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
                                     </div>';
-            return ['insercao'=>false];
+            return false;
 
             exit;
     }

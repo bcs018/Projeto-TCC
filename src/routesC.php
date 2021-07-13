@@ -19,7 +19,9 @@ $router->get('/admin/painel/cadastrar-produtos', 'ProdutoController@cadProduto')
 $router->post('/admin/painel/cadastrar-produtos/first', 'ProdutoController@cadProdutoActionFirst');
 $router->post('/admin/painel/cadastrar-produtos/second', 'ProdutoController@cadProdutoActionSecond');
 $router->get('/admin/painel/cadastrar-produtos/{id}', 'ProdutoController@cadProdutoSecond');
-$router->get('/admin/painel/detalhes-produto/{id}', 'ProdutoController@conProdutoDetalhe');
+$router->get('/admin/painel/editar-produto/{id}', 'ProdutoController@ediProduto');
+$router->post('/admin/painel/editar-produto', 'ProdutoController@ediProdutoAction');
+$router->get('/admin/painel/detalhes-produto/{id}', 'ProdutoController@conDetalheProduto');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

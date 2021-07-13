@@ -20,6 +20,8 @@ class ProdutoController extends Controller {
 
         $dados = $prod->listaProdutos();
 
+       // echo '<pre>';print_r($dados);exit;
+
         $this->render('commerce/painel_adm/con_produto', ['dados'=>$dados]);
 
     }
@@ -38,7 +40,74 @@ class ProdutoController extends Controller {
 
     }
 
-    public function conProdutoDetalhe($id){
+    public function ediProduto($id){
+        AdminController::listaDadosEcommerce();
+
+        $prod = new Produto;
+        $cate = new Categoria;
+        $marc = new Marca;
+
+        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']));
+        $dados['categorias']  = $cate->listaCategorias();
+        $dados['marcas']      = $marc->listaMarcas();
+
+        //echo '<pre>';print_r($dados['produtos']);exit;
+
+        if(!$dados){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Produto inexistente!
+                                    </div>';
+
+            header("Location: /admin/painel/produtos");
+
+            exit;
+        }
+
+        $this->render('commerce/painel_adm/edi_produto', $dados);
+    }
+
+    // Edição de produtos da tela de detalhes
+    public function ediProdutoAction(){
+        $idProd = addslashes($_POST['id']);
+
+        if(isset($_FILES['imagem'])){
+            $img = new Produto;
+            
+            if(!$img->cadProdutoActionSecond($_FILES, $idProd))
+                header("Location: /admin/painel/cadastrar-produtos/".$idProd);
+
+        }
+
+        $nomeProd   = addslashes($_POST['nomeProd']);
+        $descProd   = addslashes($_POST['descProd']);
+        $categoria  = addslashes($_POST['categoria']);
+        $marca      = addslashes($_POST['marca']);
+        $estoque    = addslashes($_POST['estoque']);
+        $preco      = addslashes($_POST['preco']);
+        $precoAnt   = addslashes($_POST['precoAnt']);
+        $promo      = addslashes($_POST['promo']);
+        $novo       = addslashes($_POST['novo']);
+
+        $edi = new Produto;
+        $edi->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd);
+        
+        header("Location: /admin/painel/detalhes-produto/".$idProd);
+
+        exit;
+
+        // if(isset($_SESSION['message']))
+        //     $dados['message'] = $_SESSION['message'];
+        // else 
+        //     $dados['message'] = '';
+
+        // unset($_SESSION['message']);
+
+        // echo json_encode($dados);
+
+        // exit;
+    }
+
+    public function conDetalheProduto($id){
         AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
@@ -62,45 +131,6 @@ class ProdutoController extends Controller {
         }
 
         $this->render('commerce/painel_adm/con_detalhe_prod', $dados);
-    }
-
-    // Edição de produtos da tela de detalhes
-    public function ediProdutoAction(){
-        /** NÃO PODE SER EM JS POR CAUSA DA IMAGEM */
-
-        $idProd = addslashes($_POST['id']);
-
-        if(isset($_FILES['imagem'])){
-            $img = new Produto;
-            
-            if(!$img->cadProdutoActionSecond($_FILES, $idProd))
-                header("Location: /admin/painel/cadastrar-produtos/".$idProd);
-
-        }
-
-        $nomeProd   = addslashes($_POST['nomeProd']);
-        $descProd   = addslashes($_POST['descProd']);
-        $categoria  = addslashes($_POST['categoria']);
-        $marca      = addslashes($_POST['marca']);
-        $estoque    = addslashes($_POST['estoque']);
-        $preco      = addslashes($_POST['preco']);
-        $precoAnt   = addslashes($_POST['precoAnt']);
-        $promo      = addslashes($_POST['promo']);
-        $novo       = addslashes($_POST['novo']);
-
-        $edi = new Produto;
-        $dados = $edi->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd);
-        
-        if(isset($_SESSION['message']))
-            $dados['message'] = $_SESSION['message'];
-        else 
-            $dados['message'] = '';
-
-        unset($_SESSION['message']);
-
-        echo json_encode($dados);
-
-        exit;
     }
 
     // Cadastro de produtos
