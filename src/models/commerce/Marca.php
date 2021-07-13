@@ -83,7 +83,7 @@ class Marca extends Model{
         }
 
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                    Erro 001 ao excluir marca, atualize a página e tente novamente!
+                                    Erro 001 ao excluir marca. Verifique se a marca não está vinculada a um produto antes de exclui-la!
                                 </div>';
 
         return false;

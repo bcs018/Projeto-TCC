@@ -175,7 +175,7 @@ class Categoria extends Model{
         }
 
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                    Erro 001 ao excluir categoria, atualize a página e tente novamente!
+                                    Erro 001 ao excluir categoria. Verifique se a categoria não está vinculada a um produto antes de exlui-la!
                                 </div>';
 
         return false;

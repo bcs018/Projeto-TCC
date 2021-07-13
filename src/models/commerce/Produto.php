@@ -200,35 +200,34 @@ class Produto extends Model{
         if($flag == 1)
             return false;
 
-            $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?
-                    WHERE produto_id = ? AND ecommerce_id = ?';
-            $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $categoria);
-            $sql->bindValue(2, $marca);
-            $sql->bindValue(3, $nomeProd);
-            $sql->bindValue(4, $descProd);
-            $sql->bindValue(5, $estoque);
-            $sql->bindValue(6, $preco);
-            $sql->bindValue(7, $precoAnt);
-            $sql->bindValue(8, $promo);
-            $sql->bindValue(9, $novo);
-            $sql->bindValue(10, $idProd);
-            $sql->bindValue(11, $_SESSION['id_sub_dom']);
-            
-            if($sql->execute()){
-                $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
-                                            Produto atualizado com sucesso!
-                                        </div>';
-                return true;
-            }
-                
-
-            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                        Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
+        $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?
+                WHERE produto_id = ? AND ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $categoria);
+        $sql->bindValue(2, $marca);
+        $sql->bindValue(3, $nomeProd);
+        $sql->bindValue(4, $descProd);
+        $sql->bindValue(5, $estoque);
+        $sql->bindValue(6, $preco);
+        $sql->bindValue(7, $precoAnt);
+        $sql->bindValue(8, $promo);
+        $sql->bindValue(9, $novo);
+        $sql->bindValue(10, $idProd);
+        $sql->bindValue(11, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Produto atualizado com sucesso!
                                     </div>';
-            return false;
+            return true;
+        }
+                
+        $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                    Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
+                                </div>';
+        return false;
 
-            exit;
+        exit;
     }
 
     public function listaProduto($id){
@@ -261,29 +260,92 @@ class Produto extends Model{
         return false;
     }
 
-    public function listaProdutosImg($id){
-        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url FROM produto p 
-                JOIN produto_imagem pi
+    // public function listaProdutosImg($id){
+    //     $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+    //             JOIN produto_imagem pi
+    //             ON pi.produto_id = p.produto_id
+    //             WHERE p.ecommerce_id = ? AND p.produto_id = ?';
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $_SESSION['id_sub_dom']);
+    //     $sql->bindValue(2, $id);
+    //     $sql->execute();
+
+    //     if($sql->rowCount() > 0){
+    //         return $sql->fetchaAll();
+    //     }
+
+    //     return false;
+    // }
+
+    public function excImagem($idImg, $idProd){
+        $sql = "SELECT * FROM produto p
+                LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
-                WHERE p.ecommerce_id = ? AND p.produto_id = ?';
+                WHERE p.ecommerce_id = ? AND p.produto_id = ? AND pi.pi_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $idProd);
+        $sql->bindValue(3, $idImg);
+        $sql->execute();
+
+        if($sql->rowCount() == 0){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Ocorreu erro interno 002 ao apagar uma imagem, contate o administrador BW Commerce.
+                                    </div>';
+            return false;
+        }
+
+        $img = $sql->fetch();
+
+        unlink('../assets/commerce/images_commerce/'.$img['url']);
+
+        $sql = "DELETE FROM produto_imagem WHERE pi_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $idImg);
+        $sql->execute();
+
+        $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                    Imagem excluida com sucesso!
+                                </div>';
+
+        return true;
+    }
+
+    public function excProduto($id){
+        $sql = "SELECT * FROM produto p
+                LEFT JOIN produto_imagem pi
+                ON pi.produto_id = p.produto_id
+                WHERE p.ecommerce_id = ? AND p.produto_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $id);
         $sql->execute();
 
-        if($sql->rowCount() > 0){
-            return $sql->fetchaAll();
+        if($sql->rowCount() == 0){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Ocorreu erro interno 003 ao excluir um produto, contate o administrador BW Commerce.
+                                    </div>';
+            return false;
         }
 
-        return false;
-    }
+        foreach($sql->fetchAll() as $img)
+            unlink('../assets/commerce/images_commerce/'.$img['url']);
 
-    /** 
-     * LISTAR IMAGENS DO PRODUTO
-     * 
-     * select p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url from produto p 
-     * join produto_imagem pi
-     * on pi.produto_id = p.produto_id
-     * where p.ecommerce_id = 1;
-     */
+        $sql = "DELETE FROM produto_imagem WHERE produto_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        $sql = "DELETE FROM produto WHERE produto_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                    Produto excluido com sucesso!
+                                </div>';
+
+        return true;
+
+    }
 }

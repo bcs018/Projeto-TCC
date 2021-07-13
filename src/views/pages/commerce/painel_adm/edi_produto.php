@@ -47,7 +47,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                     <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>"
                       class="img-fluid mb-2" alt="black sample">
                   </a>
-                  <a href="">Excluir</a>
+                  <a href="/admin/painel/excluir-img/<?php echo $produto['pi_id'] ?>/<?php echo $produtos[0][0]; ?>">Excluir</a>
                 </div>
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -67,14 +67,14 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
             <div class="card-header">
               <h3 class="card-title">Dados do produto</h3>
             </div>
-            <form role="form" name="detalheProduto" method="POST">
+            <form role="form" name="detalheProduto" method="POST" enctype="multipart/form-data" action="/admin/painel/editar-produto">
               <div class="card-body">
                 <div class="form-group">
                   <div class="bd-example">
                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                     <label for="nomeProd">Adicione imagens aos produto</label>
                     <input type="file" class="form-control" name="imagem[]" multiple>
-                    <input type="hidden" value="<?php echo $produtos[0]['produto_id']; ?>" id="id" name="id">
+                    <input type="hidden" value="<?php echo $produtos[0][0]; ?>" id="id" name="id">
                   </div>
                 </div>
                 <div class="form-group">

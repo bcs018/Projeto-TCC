@@ -22,6 +22,8 @@ $router->get('/admin/painel/cadastrar-produtos/{id}', 'ProdutoController@cadProd
 $router->get('/admin/painel/editar-produto/{id}', 'ProdutoController@ediProduto');
 $router->post('/admin/painel/editar-produto', 'ProdutoController@ediProdutoAction');
 $router->get('/admin/painel/detalhes-produto/{id}', 'ProdutoController@conDetalheProduto');
+$router->get('/admin/painel/excluir-img/{idimg}/{idprod}', 'ProdutoController@excImagem');
+$router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

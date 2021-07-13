@@ -70,11 +70,13 @@ class ProdutoController extends Controller {
     public function ediProdutoAction(){
         $idProd = addslashes($_POST['id']);
 
-        if(isset($_FILES['imagem'])){
-            $img = new Produto;
-            
-            if(!$img->cadProdutoActionSecond($_FILES, $idProd))
-                header("Location: /admin/painel/cadastrar-produtos/".$idProd);
+        $pro = new Produto;
+
+        if(isset($_FILES['imagem']) && !empty($_FILES['imagem']['tmp_name'][0])){
+            if(!$pro->cadProdutoActionSecond($_FILES, $idProd)){
+                header('Location: /admin/painel/editar-produto/'.$idProd);
+                exit;
+            }
 
         }
 
@@ -88,23 +90,11 @@ class ProdutoController extends Controller {
         $promo      = addslashes($_POST['promo']);
         $novo       = addslashes($_POST['novo']);
 
-        $edi = new Produto;
-        $edi->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd);
+        $pro->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd);
         
-        header("Location: /admin/painel/detalhes-produto/".$idProd);
+        header('Location: /admin/painel/editar-produto/'.$idProd);
 
         exit;
-
-        // if(isset($_SESSION['message']))
-        //     $dados['message'] = $_SESSION['message'];
-        // else 
-        //     $dados['message'] = '';
-
-        // unset($_SESSION['message']);
-
-        // echo json_encode($dados);
-
-        // exit;
     }
 
     public function conDetalheProduto($id){
@@ -193,6 +183,26 @@ class ProdutoController extends Controller {
             
         }
 
+    }
+
+    public function excImagem($ids){
+        $img = new Produto;
+
+        $img->excImagem(addslashes($ids['idimg']), addslashes($ids['idprod']));
+
+        header("Location: /admin/painel/editar-produto/".$ids['idprod']);
+        
+        exit;
+    }
+
+    public function excProduto($id){
+        $prod = new Produto;
+
+        $prod->excProduto($id['id']);
+
+        header("Location: /admin/painel/produtos");
+        
+        exit;
     }
 
 }

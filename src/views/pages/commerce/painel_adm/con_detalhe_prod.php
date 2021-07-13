@@ -45,7 +45,6 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Detalhes 
                       <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" data-toggle="lightbox" data-gallery="gallery">
                         <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" class="img-fluid mb-2" alt="black sample">
                       </a>
-                      <a href="">Excluir</a>
                     </div>
                   <?php endforeach; ?>
                 <?php endif; ?>
