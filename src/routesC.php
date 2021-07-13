@@ -12,6 +12,7 @@ $router->get('/admin', 'AdminController@index');
 $router->post('/admin/logar', 'AdminController@logar');
 $router->get('/admin/painel', 'AdminController@painel');
 $router->get('/admin/sair', 'AdminController@sair');
+$router->get('/admin/painel/alterar-dados-pessoais', 'AdminController@ediDadosPessoais');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

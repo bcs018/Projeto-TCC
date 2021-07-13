@@ -233,7 +233,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="/painel/alterar-dados-pessoais" class="nav-link">
+                <a href="/admin/painel/alterar-dados-pessoais" class="nav-link">
                 <i class="fas fa-file-signature nav-icon"></i>
                   <p>Alterar dados pessoais</p>
                 </a>

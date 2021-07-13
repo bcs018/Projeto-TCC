@@ -32,9 +32,12 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/principal'/*, ['dados'=>$dados]*/);
     }
 
-    /**
-     * ---------------- Rotas de POST ----------------
-     */
+    public function ediDadosPessoais(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/edi_dados_pessoais'/*, ['dados'=>$dados]*/);
+
+    }
 
     public function logar() {
         $login = new Admin;

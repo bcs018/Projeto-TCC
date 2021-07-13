@@ -37,7 +37,7 @@ class Admin extends Model{
 
     // Valida para que o usuario não acesso os dados de outros usuarios
     public function listaDados($sub){
-        $sql = "SELECT eu.ecommerce_id, eu.sub_dominio, eu.nome_fantasia, u.usuario_id, u.nome, u.cpf, u.senha FROM ecommerce_usu eu
+        $sql = "SELECT * FROM ecommerce_usu eu
                 JOIN usuario u 
                 ON eu.usuario_id = u.usuario_id
                 WHERE eu.sub_dominio = ? AND u.cpf = ?";

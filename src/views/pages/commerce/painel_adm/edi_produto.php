@@ -218,8 +218,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                 </div>
               </div>
 
-              <div class="card-footer text-right">
-                <button type="submit" class="btn btn-success">Editar</button>
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-success">Editar</button>
               </div>
             </form>
           </div>
