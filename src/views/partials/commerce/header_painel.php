@@ -190,30 +190,30 @@
             <ul class="nav nav-treeview" style="display: none;">
             <li class="nav-item">
                 <a href="/admin/painel/categorias" class="nav-link">
-                <i class="fas fa-plus nav-icon"></i>
-                  <p>Cadastrar categoria</p>
+                <i class="far fa-clipboard nav-icon"></i>
+                  <p>Categorias</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/painel/marcas" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
-                  <p>Cadastrar marca</p>
+                  <p>Marcas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/painel/produtos" class="nav-link">
                 <i class="fas fa-cart-plus nav-icon"></i>
-                  <p>Cadastrar produto</p>
+                  <p>Produtos</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="../UI/icons.html" class="nav-link">
                 <i class="fas fa-cog nav-icon"></i>
                   <p>Criar categorias</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
                   <p>Relatório de Vendas</p>
                 </a>
