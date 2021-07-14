@@ -33,10 +33,58 @@ class AdminController extends Controller {
     }
 
     public function ediDadosPessoais(){
-        $this->listaDadosEcommerce();
+        $dados = $this->listaDadosEcommerce();
+        $est = new Admin;
+        $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/edi_dados_pessoais'/*, ['dados'=>$dados]*/);
+        $this->render('commerce/painel_adm/edi_dados_pessoais', ['dados'=>$dados, 'estados'=>$estados]);
+    }
 
+    public function ediDadosPessoaisAction(){
+        $nome        = addslashes($_POST['nome']);
+        $sobrenome   = addslashes($_POST['sobrenome']);
+        $celular     = addslashes($_POST['celular']);
+        $cep         = addslashes($_POST['cep']);
+        $rua         = addslashes($_POST['rua']);
+        $bairro      = addslashes($_POST['bairro']);
+        $numero      = addslashes($_POST['numero']);
+        $cidade      = addslashes($_POST['cidade']);
+        $estado      = addslashes($_POST['estado']);
+        $complemento = addslashes($_POST['complemento']);
+        $senha       = addslashes($_POST['altSenha']);
+        $senhaRep    = addslashes($_POST['altSenhaRep']);
+
+        echo $nome       .'<br>';
+        echo $sobrenome  .'<br>';
+        echo $celular    .'<br>';
+        echo $cep        .'<br>';
+        echo $rua        .'<br>';
+        echo $bairro     .'<br>';
+        echo $numero     .'<br>';
+        echo $cidade     .'<br>';
+        echo $estado     .'<br>';
+        echo $complemento.'<br>';
+        echo $senha      .'<br>';
+        echo $senhaRep   .'<br>';
+
+
+    }
+
+    public function consultarCep(){
+        $cep = addslashes($_POST['cep']);
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://viacep.com.br/ws/'.$cep.'/json/');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $dados = curl_exec($ch);
+
+        curl_close($ch);
+
+        echo $dados;
+
+        exit;
     }
 
     public function logar() {
@@ -58,4 +106,6 @@ class AdminController extends Controller {
         unset($_SESSION['log_admin_c']);
         header("Location: /admin");
     }
+
+    
 }

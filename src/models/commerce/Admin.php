@@ -55,4 +55,11 @@ class Admin extends Model{
 
         return $sql->fetch();
     }
+
+    public function lista_estados(){
+        $sql = "SELECT * FROM estado";
+        $sql = $this->db->query($sql)->fetchAll();
+
+        return $sql;
+    }
 }

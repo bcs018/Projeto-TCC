@@ -32,15 +32,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form" method="POST" action="/admin/painel/editar-marca/action">
+                        <form role="form" method="POST" action="/admin/painel/alterar-dados-pessoais/action">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nome</label>
                                             <input type="text" class="form-control" name="nome" id="nome"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
-                                            <input type="hidden" value="<?php echo $dados['marca_id']; ?>" name="id">
+                                                value="<?php echo $dados['nome']; ?>">
+                                            <input type="hidden" value="<?php echo $dados['usuario_id']; ?>" name="id">
                                         </div>
                                     </div>
 
@@ -48,7 +48,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Sobrenome</label>
                                             <input type="text" class="form-control" name="sobrenome" id="sobrenome"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['sobrenome']; ?>">
                                         </div>
                                     </div>
 
@@ -56,14 +56,23 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Celular</label>
                                             <input type="text" class="form-control" name="celular" id="celular"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['celular']; ?>">
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">CEP</label>
+                                            <input type="text" class="form-control" name="cep" id="cep"
+                                                value="<?php echo $dados['cep']; ?>">
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Rua</label>
                                             <input type="text" class="form-control" name="rua" id="rua"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['rua']; ?>">
                                         </div>
                                     </div>
 
@@ -71,7 +80,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Bairro</label>
                                             <input type="text" class="form-control" name="bairro" id="bairro"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['bairro']; ?>">
                                         </div>
                                     </div>
 
@@ -79,23 +88,26 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Número</label>
                                             <input type="number" class="form-control" name="numero" id="numero"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['numero']; ?>">
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">CEP</label>
-                                            <input type="number" class="form-control" name="cep" id="cep"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
-                                        </div>
-                                    </div>
+                                    </div> 
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Cidade</label>
                                             <input type="text" class="form-control" name="cidade" id="cidade"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['cidade']; ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Estado</label>
+                                            <select class="form-control select2" style="width: 100%;" name="estado" id="estado">
+                                                <?php foreach ($estados as $estado): ?>
+                                                <option value="<?php echo $estado['estado_id'] ?>"><?php echo $estado['nome_estado'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -103,24 +115,21 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Complemento</label>
                                             <input type="text" class="form-control" name="complemento" id="complemento"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                                value="<?php echo $dados['complemento']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Alterar senha</label>
-                                            <input type="password" class="form-control" name="altSenha" id="altSenha"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                            <input type="password" class="form-control" name="altSenha" id="altSenha">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Repita a senha</label>
-                                            <input type="password" class="form-control" name="altSenhaRep"
-                                                id="altSenhaRep"
-                                                value="<?php echo(isset($dados))?$dados['nome_mar']:''; ?>">
+                                            <input type="password" class="form-control" name="altSenhaRep" id="altSenhaRep">
                                         </div>
                                     </div>
                                 </div>
@@ -136,5 +145,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
         </div>
     </section>
 </div>
+
+<script type="text/javascript">
+    $('#cep').mask("00000-000");
+    $('#celular').mask("(00)00000-0000");
+
+</script>
+
+<script>
+    document.getElementById('estado').value = <?php echo $dados['estado_id']; ?>
+</script>
 
 <?php $render("commerce/footer_painel"); ?>

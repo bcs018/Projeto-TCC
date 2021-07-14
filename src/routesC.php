@@ -8,11 +8,14 @@ $router = new Router();
 
 $router->get('/', 'HomeController@index');
 
+// -- Painel Usuario
 $router->get('/admin', 'AdminController@index');
 $router->post('/admin/logar', 'AdminController@logar');
 $router->get('/admin/painel', 'AdminController@painel');
 $router->get('/admin/sair', 'AdminController@sair');
 $router->get('/admin/painel/alterar-dados-pessoais', 'AdminController@ediDadosPessoais');
+$router->post('/admin/painel/alterar-dados-pessoais/action', 'AdminController@ediDadosPessoaisAction');
+$router->post('/consulta-cep', 'AdminController@consultarCep');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
