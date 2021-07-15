@@ -239,7 +239,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="/admin/painel/add-novo-usuario" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
                   <p>Adicionar novo usuário</p>
                 </a>

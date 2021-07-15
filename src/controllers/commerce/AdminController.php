@@ -40,6 +40,12 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/edi_dados_pessoais', ['dados'=>$dados, 'estados'=>$estados]);
     }
 
+    public function addNovoUsu(){
+        $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/add_usuario');
+    }
+
     public function ediDadosPessoaisAction(){
         $nome        = addslashes($_POST['nome']);
         $sobrenome   = addslashes($_POST['sobrenome']);

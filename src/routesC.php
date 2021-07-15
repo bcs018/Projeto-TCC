@@ -16,6 +16,7 @@ $router->get('/admin/sair', 'AdminController@sair');
 $router->get('/admin/painel/alterar-dados-pessoais', 'AdminController@ediDadosPessoais');
 $router->post('/admin/painel/alterar-dados-pessoais/action', 'AdminController@ediDadosPessoaisAction');
 $router->post('/consulta-cep', 'AdminController@consultarCep');
+$router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
