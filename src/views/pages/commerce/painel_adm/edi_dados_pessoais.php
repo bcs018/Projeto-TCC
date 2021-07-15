@@ -11,8 +11,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Editar dados pessoais</h1>
+                <div class="col-sm-12">
+                    <h1>Editar dados pessoais</h1><br>
+
+                    <center><br><h6 style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
+                                    (*) são obrigatórios.</h6></center>
                 </div>
             </div>
         </div>
@@ -37,6 +40,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Nome</label>
                                             <input type="text" class="form-control" name="nome" id="nome"
                                                 value="<?php echo $dados['nome']; ?>">
@@ -46,6 +50,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Sobrenome</label>
                                             <input type="text" class="form-control" name="sobrenome" id="sobrenome"
                                                 value="<?php echo $dados['sobrenome']; ?>">
@@ -54,6 +59,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Celular</label>
                                             <input type="text" class="form-control" name="celular" id="celular"
                                                 value="<?php echo $dados['celular']; ?>">
@@ -62,6 +68,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">CEP</label>
                                             <input type="text" class="form-control" name="cep" id="cep"
                                                 value="<?php echo $dados['cep']; ?>">
@@ -70,6 +77,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Rua</label>
                                             <input type="text" class="form-control" name="rua" id="rua"
                                                 value="<?php echo $dados['rua']; ?>">
@@ -78,6 +86,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Bairro</label>
                                             <input type="text" class="form-control" name="bairro" id="bairro"
                                                 value="<?php echo $dados['bairro']; ?>">
@@ -86,14 +95,16 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Número</label>
                                             <input type="number" class="form-control" name="numero" id="numero"
                                                 value="<?php echo $dados['numero']; ?>">
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Cidade</label>
                                             <input type="text" class="form-control" name="cidade" id="cidade"
                                                 value="<?php echo $dados['cidade']; ?>">
@@ -102,10 +113,13 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Estado</label>
-                                            <select class="form-control select2" style="width: 100%;" name="estado" id="estado">
+                                            <select class="form-control select2" style="width: 100%;" name="estado"
+                                                id="estado">
                                                 <?php foreach ($estados as $estado): ?>
-                                                <option value="<?php echo $estado['estado_id'] ?>"><?php echo $estado['nome_estado'] ?></option>
+                                                <option value="<?php echo $estado['estado_id'] ?>">
+                                                    <?php echo $estado['nome_estado'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -129,8 +143,10 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Repita a senha</label>
-                                            <input type="password" class="form-control" name="altSenhaRep" id="altSenhaRep">
+                                            <input type="password" class="form-control" name="altSenhaRep"
+                                                id="altSenhaRep">
                                         </div>
+                                        <div id="message"></div>
                                     </div>
                                 </div>
 
@@ -149,7 +165,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 <script type="text/javascript">
     $('#cep').mask("00000-000");
     $('#celular').mask("(00)00000-0000");
-
 </script>
 
 <script>
@@ -157,3 +172,4 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 </script>
 
 <?php $render("commerce/footer_painel"); ?>
+<script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>

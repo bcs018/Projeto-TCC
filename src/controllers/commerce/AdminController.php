@@ -53,19 +53,30 @@ class AdminController extends Controller {
         $complemento = addslashes($_POST['complemento']);
         $senha       = addslashes($_POST['altSenha']);
         $senhaRep    = addslashes($_POST['altSenhaRep']);
+        $idUsu       = addslashes($_POST['id']);
 
-        echo $nome       .'<br>';
-        echo $sobrenome  .'<br>';
-        echo $celular    .'<br>';
-        echo $cep        .'<br>';
-        echo $rua        .'<br>';
-        echo $bairro     .'<br>';
-        echo $numero     .'<br>';
-        echo $cidade     .'<br>';
-        echo $estado     .'<br>';
-        echo $complemento.'<br>';
-        echo $senha      .'<br>';
-        echo $senhaRep   .'<br>';
+        $cep = explode('-', $cep);
+        $cep = $cep[0].$cep[1];
+
+        $edi = new Admin;
+        $edi->ediDadosPessoaisAction($idUsu, $nome, $sobrenome, $celular, $cep, $rua, $bairro, $numero, $cidade, $estado, $complemento, $senha, $senhaRep);
+
+        header("Location: /admin/painel/alterar-dados-pessoais");
+
+        exit;
+
+        // echo $nome       .'<br>';
+        // echo $sobrenome  .'<br>';
+        // echo $celular    .'<br>';
+        // echo $cep        .'<br>';
+        // echo $rua        .'<br>';
+        // echo $bairro     .'<br>';
+        // echo $numero     .'<br>';
+        // echo $cidade     .'<br>';
+        // echo $estado     .'<br>';
+        // echo $complemento.'<br>';
+        // echo $senha      .'<br>';
+        // echo $senhaRep   .'<br>';
 
 
     }
