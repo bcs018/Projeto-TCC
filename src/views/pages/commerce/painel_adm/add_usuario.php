@@ -35,7 +35,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form" method="POST" action="/admin/painel/alterar-dados-pessoais/action">
+                        <form role="form" method="POST" action="/admin/painel/add-usuario/action">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -43,7 +43,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Nome</label>
                                             <input type="text" class="form-control" name="nome" id="nome">
-                                            <input type="hidden" name="id">
+                                            <input type="hidden" value="<?php echo $dados['usuario_id']; ?>" name="id">
                                         </div>
                                     </div>
 
@@ -52,6 +52,14 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Sobrenome</label>
                                             <input type="text" class="form-control" name="sobrenome" id="sobrenome">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <label for="exampleInputEmail1">Login</label>
+                                            <input type="text" class="form-control" name="login" id="login">
                                         </div>
                                     </div>
 
@@ -65,7 +73,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">CEP</label>
                                             <input type="text" class="form-control" name="cep" id="cep">
                                         </div>
@@ -73,7 +81,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">Rua</label>
                                             <input type="text" class="form-control" name="rua" id="rua">
                                         </div>
@@ -81,7 +89,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">Bairro</label>
                                             <input type="text" class="form-control" name="bairro" id="bairro">
                                         </div>
@@ -89,7 +97,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">Número</label>
                                             <input type="number" class="form-control" name="numero" id="numero">
                                         </div>
@@ -97,7 +105,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">Cidade</label>
                                             <input type="text" class="form-control" name="cidade" id="cidade">
                                         </div>
@@ -105,10 +113,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <!-- <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div> -->
                                             <label for="exampleInputEmail1">Estado</label>
                                             <select class="form-control select2" style="width: 100%;" name="estado"
                                                 id="estado">
+                                                <option value="0">Nenhum estado selecionado</option>
                                                 <?php foreach ($estados as $estado): ?>
                                                 <option value="<?php echo $estado['estado_id'] ?>">
                                                     <?php echo $estado['nome_estado'] ?></option>
@@ -126,15 +135,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Alterar senha</label>
-                                            <input type="password" class="form-control" name="altSenha" id="altSenha">
+                                            <label for="exampleInputEmail1">Senha</label>
+                                            <input type="password" class="form-control" name="senha" id="altSenha">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Repita a senha</label>
-                                            <input type="password" class="form-control" name="altSenhaRep"
+                                            <input type="password" class="form-control" name="senhaRep"
                                                 id="altSenhaRep">
                                         </div>
                                         <div id="message"></div>
@@ -143,7 +152,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Editar</button>
+                                <button type="submit" class="btn btn-success">Incluir</button>
                             </div>
                         </form>
                     </div>

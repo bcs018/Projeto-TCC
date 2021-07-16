@@ -41,6 +41,8 @@ create table usuario(
     complemento varchar(100),
     ativo int not null default 0,
     senha varchar(32) not null,
+    tp_usuario tinyint(1) default 1, /* 1 = DONO DO ECOMMERCE, 2 = USUARIOS CRIADOS APÓS A CRAÇÃO DO ECOMMERCE */
+    login varchar(20),
     
     primary key(usuario_id),
     foreign key (estado_id) references estado(estado_id)

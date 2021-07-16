@@ -41,9 +41,18 @@ class AdminController extends Controller {
     }
 
     public function addNovoUsu(){
-        $this->listaDadosEcommerce();
+        $dados = $this->listaDadosEcommerce();
+        $est = new Admin;
+        $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/add_usuario');
+        $this->render('commerce/painel_adm/add_usuario', ['dados'=>$dados, 'estados'=>$estados]);
+    }
+
+    public function addNovoUsuAction(){
+        $est = new Admin;
+        $estados = $est->lista_estados();
+
+        $this->render('commerce/painel_adm/add_usuario', ['estados'=>$estados]);
     }
 
     public function ediDadosPessoaisAction(){
@@ -70,21 +79,6 @@ class AdminController extends Controller {
         header("Location: /admin/painel/alterar-dados-pessoais");
 
         exit;
-
-        // echo $nome       .'<br>';
-        // echo $sobrenome  .'<br>';
-        // echo $celular    .'<br>';
-        // echo $cep        .'<br>';
-        // echo $rua        .'<br>';
-        // echo $bairro     .'<br>';
-        // echo $numero     .'<br>';
-        // echo $cidade     .'<br>';
-        // echo $estado     .'<br>';
-        // echo $complemento.'<br>';
-        // echo $senha      .'<br>';
-        // echo $senhaRep   .'<br>';
-
-
     }
 
     public function consultarCep(){
