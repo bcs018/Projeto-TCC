@@ -227,6 +227,19 @@ class Cadastro extends Model{
         return false;
     }
 
+    public function consultaLogin($login){
+        $sql = "SELECT * FROM usuario WHERE login = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $login);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        return false;
+    }
+
     private function validaCpf($cpf){
         // Extrai somente os números
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );

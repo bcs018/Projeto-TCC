@@ -272,6 +272,32 @@ $('#nome_fan').blur(function(){
 
 });
 
+$('#login').blur(function(){
+
+    if( $('#login').val() == '' ){
+        $('#error16').html('<p style="color: #fa3200;font-weight: bolder;">Login em branco!</p>');
+        return;
+    }else{
+        $.ajax({
+            url: '/crie-sua-loja/consulta-login',
+            type: 'POST',
+            data:{
+                login:$('#login').val()
+            },
+            dataType: 'JSON',
+            success:function(json){
+                if(json.message){
+                    $('#error16').html('<p style="color: #fa3200;font-weight: bolder;">Já existe esse login, informe outro!</p>');
+                    return;            
+                }else{
+                    $('#error16').html('');
+                }
+            }
+        });
+    }
+
+});
+
 $(document).ready(function () {
     $('#cpf_usu').mask("00000000000");
 });

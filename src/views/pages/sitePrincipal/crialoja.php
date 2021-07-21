@@ -118,6 +118,16 @@
                                                         <div id="error6"></div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="label" for="login">Login</label>
+                                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp
+                                                        </div>
+                                                        <input type="text" class="form-control" name="login"
+                                                            id="login" placeholder="Informe seu login para se logar no sistema">
+                                                        <div id="error16"></div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="senha">Senha</label>

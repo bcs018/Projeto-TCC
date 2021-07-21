@@ -42,7 +42,7 @@ create table usuario(
     ativo int not null default 0,
     senha varchar(32) not null,
     tp_usuario tinyint(1) default 1, /* 1 = DONO DO ECOMMERCE, 2 = USUARIOS CRIADOS APÓS A CRAÇÃO DO ECOMMERCE */
-    login varchar(20),
+    login varchar(20) not null unique,
     
     primary key(usuario_id),
     foreign key (estado_id) references estado(estado_id)
@@ -75,6 +75,16 @@ create table ecommerce_usu(
     foreign key(usuario_id) references usuario(usuario_id),
     foreign key(plano_id) references plano(plano_id)
 )default charset utf8;
+
+create table ecom_usua(
+    ecus_id int not null auto_increment,
+    usuario_id int not null,
+    ecommerce_id int not null,
+
+    primary key(ecus_id),
+    foreign key(usuario_id) references usuario_id(usuario),
+    foreign key(ecommerce_id) references ecommerce_id(ecommerce_usu)
+)
 
 create table layout_imagem(
     li_id int not null auto_increment,

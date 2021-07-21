@@ -126,4 +126,18 @@ class CadastroController extends Controller {
         exit;
     }
 
+    public function consultaLogin(){
+        $login = addslashes($_POST['login']);
+
+        $log = new Cadastro;
+
+        if($log->consultaLogin($login)){
+            echo json_encode(['message'=>true]);
+            exit;
+        }
+
+        echo json_encode(['message'=>false]);
+        exit;
+    }
+
 }
