@@ -32,7 +32,7 @@
 
         <form action="/admin/logar" method="POST">
           <div class="input-group mb-3">
-            <input type="number" class="form-control" placeholder="CPF" name="login" value="<?php if(isset($_SESSION['credencial'])){ echo $_SESSION['credencial'];unset($_SESSION['credencial']); }?>">
+            <input type="text" class="form-control" placeholder="Login" name="login" value="<?php if(isset($_SESSION['credencial'])){ echo $_SESSION['credencial'];unset($_SESSION['credencial']); }?>">
             <div class="input-group-append">
               <div class="input-group-text">
               </div>

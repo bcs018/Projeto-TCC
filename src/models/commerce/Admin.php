@@ -8,9 +8,11 @@ class Admin extends Model{
 
     public function verificarLogin($sub, $login, $senha){
         $sql = "SELECT eu.ecommerce_id, eu.sub_dominio, eu.nome_fantasia, u.usuario_id, u.nome, u.cpf, u.senha FROM ecommerce_usu eu
+                JOIN ecom_usua ecu
+                ON ecu.ecommerce_id = eu.ecommerce_id
                 JOIN usuario u 
-                ON eu.usuario_id = u.usuario_id
-                WHERE eu.sub_dominio = ? AND cpf = ? AND senha = ?";
+                ON u.usuario_id = ecu.usuario_id
+                WHERE eu.sub_dominio = ? AND u.login = ? AND u.senha = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $sub);
         $sql->bindValue(2, addslashes($login));
@@ -27,7 +29,7 @@ class Admin extends Model{
         }
 
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                    CPF e/ou Senha inválidos!
+                                    Login e/ou Senha inválidos!
                                 </div>';
         $_SESSION['credencial'] = $login;
         $_SESSION['log_admin_c'] = false;
@@ -38,9 +40,11 @@ class Admin extends Model{
     // Valida para que o usuario não acesso os dados de outros usuarios
     public function listaDados($sub){
         $sql = "SELECT * FROM ecommerce_usu eu
+                JOIN ecom_usua ecu
+                ON eu.ecommerce_id = ecu.ecommerce_id
                 JOIN usuario u 
-                ON eu.usuario_id = u.usuario_id
-                WHERE eu.sub_dominio = ? AND u.cpf = ?";
+                ON u.usuario_id = ecu.usuario_id
+                WHERE eu.sub_dominio = ? AND u.login = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $sub);
         $sql->bindValue(2, $_SESSION['credencial']);
@@ -94,7 +98,12 @@ class Admin extends Model{
                 return false;
             }
 
-            $sql = "SELECT * FROM ecommerce_usu WHERE usuario_id = ? AND ecommerce_id = ?";
+            $sql = "SELECT * FROM ecommerce_usu eu
+                    JOIN ecom_usua ecu
+                    ON eu.ecommerce_id = ecu.ecommerce_id
+                    JOIN usuario u 
+                    ON u.usuario_id = ecu.usuario_id
+                    WHERE u.usuario_id = ? AND eu.ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $idUsu);
             $sql->bindValue(2, $_SESSION['id_sub_dom']);
@@ -138,7 +147,12 @@ class Admin extends Model{
             return true;
         }
 
-        $sql = "SELECT * FROM ecommerce_usu WHERE usuario_id = ? AND ecommerce_id = ?";
+        $sql = "SELECT * FROM ecommerce_usu eu
+                JOIN ecom_usua ecu
+                ON eu.ecommerce_id = ecu.ecommerce_id
+                JOIN usuario u 
+                ON u.usuario_id = ecu.usuario_id
+                WHERE u.usuario_id = ? AND eu.ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $idUsu);
         $sql->bindValue(2, $_SESSION['id_sub_dom']);
