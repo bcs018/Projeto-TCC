@@ -25,7 +25,12 @@ class Assinatura extends Model{
         $statusPgm = 1;
 
         //Pegar o valor do plano fazendo select na tabela de ecommerce
-        $sql = "SELECT * FROM ecommerce_usu WHERE usuario_id = ?";
+        $sql = "SELECT * FROM ecommerce_usu eu
+                JOIN ecom_usua ecu
+                ON eu.ecommerce_id = ecu.ecommerce_id
+                JOIN usuario u 
+                ON u.usuario_id = ecu.usuario_id
+                WHERE u.usuario_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['person']['id']);
         $sql->execute();

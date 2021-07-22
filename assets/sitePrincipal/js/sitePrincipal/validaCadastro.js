@@ -23,7 +23,8 @@ $(function(){
                 senha: $('#senha').val(),
                 rep_senha: $('#rep_senha').val(),
                 cidade: $('#cidade_usu').val(),
-                complemento:$('#complemento').val()
+                complemento:$('#complemento').val(),
+                login: $('#login').val()
             },
             dataType: 'JSON',
             beforeSend: function(){
@@ -83,13 +84,9 @@ $(function(){
 });
 
 $('#nome_usu').blur(function(){
-    var nome = $('#nome_usu').val();
-    var padrao = /[^a-zà-ú]/gi;
 
-    var valida_nome = nome.match(padrao);
-
-    if(valida_nome || !nome){
-        $('#error1').html('<p style="color: #fa3200;font-weight: bolder;">Nome em branco ou com caracteres inválidos!</p>');
+    if($('#nome_usu').val() == ''){
+        $('#error1').html('<p style="color: #fa3200;font-weight: bolder;">Nome em branco!</p>');
         return;
     }else{
         $('#error1').html('');
@@ -114,13 +111,9 @@ $('#rep_senha').blur(function(){
 });
 
 $('#sobrenome_usu').blur(function(){
-    var nome = $('#sobrenome_usu').val();
-    var padrao = /[^a-zà-ú]/gi;
 
-    var valida_nome = nome.match(padrao);
-
-    if(valida_nome || !nome){
-        $('#error2').html('<p style="color: #fa3200;font-weight: bolder;">Sobrenome em branco ou com caracteres inválidos!</p>');
+    if($('#sobrenome_usu').val() == ''){
+        $('#error2').html('<p style="color: #fa3200;font-weight: bolder;">Sobrenome em branco!</p>');
         return;
     }else{
         $('#error2').html('');

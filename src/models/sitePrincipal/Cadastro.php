@@ -140,8 +140,8 @@ class Cadastro extends Model{
             return $message;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['estado_usu']);
         $sql->bindValue(2, $POST['nome_usu']);
@@ -158,24 +158,33 @@ class Cadastro extends Model{
         $sql->bindValue(13, $POST['complemento']);
         $sql->bindValue(14, 0);
         $sql->bindValue(15, md5($POST['senha']));
+        $sql->bindValue(16, $POST['login']);
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";
         $id_person = $this->db->query($sql)->fetch();
 
-        $sql = "INSERT INTO ecommerce_usu (usuario_id, sub_dominio, nome_fantasia, cnpj, layout)
-                VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO ecommerce_usu (sub_dominio, nome_fantasia, cnpj, layout)
+                VALUES(?,?,?,?)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $POST['subdominio']);
+        $sql->bindValue(2, $POST['nome_fan']);
+        $sql->bindValue(3, $POST['cnpj']);
+        $sql->bindValue(4, 'lay01');
+        $sql->execute();
+
+        $sql = "SELECT last_insert_id() as 'ult'";
+        $id_commerce = $this->db->query($sql)->fetch();
+
+        $sql = "INSERT INTO ecom_usua (usuario_id, ecommerce_id) VALUES (?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id_person['ult']);
-        $sql->bindValue(2, $POST['subdominio']);
-        $sql->bindValue(3, $POST['nome_fan']);
-        $sql->bindValue(4, $POST['cnpj']);
-        $sql->bindValue(5, 'lay01');
+        $sql->bindValue(2, $id_commerce['ult']);
         $sql->execute();
 
         $_SESSION['person']['id']   = $id_person['ult'];
         $_SESSION['person']['name'] = $POST['nome_usu'];
-
+        $_SESSION['commerce']['id'] = $id_commerce['ult'];
     }
 
     public function ativarUsuario(){

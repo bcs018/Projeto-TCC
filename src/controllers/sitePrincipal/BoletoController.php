@@ -14,11 +14,11 @@ class BoletoController extends Controller {
         $assinatura = new Assinatura;
         $plano = new Plano;
 
-        // if($assinatura->pegarItensValidos($_SESSION['person']['id'])){
-        //     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago, ou emitiu um boleto que está dentro da data de vencimento, faça seu LOGIN e verifique!</div><br>';
-        //     echo json_encode(['retorno'=>0]);
-        //     exit;        
-        // }
+        if($assinatura->pegarItensValidos($_SESSION['person']['id'])){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Você já fez algum pagamento que está em andamento ou pago, ou emitiu um boleto que está dentro da data de vencimento, faça seu LOGIN e verifique!</div><br>';
+            echo json_encode(['retorno'=>0]);
+            exit;        
+        }
 
         $plano->inserirPlano($idpl['pl']);
         $dados = $assinatura->inserirAss();
@@ -33,7 +33,7 @@ class BoletoController extends Controller {
             'client_secret'=>$gerencianet_clientsecret,
             'sandbox'=>$gerencianet_sandbox
         ];
-
+ 
         $body = [
             'name' => 'Plano '.$dados['nome_plano'],
             'interval' => 1,

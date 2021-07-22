@@ -64,7 +64,7 @@ values ('Free', '5 produtos;Relatórios somente do mês;Suporte;Acesso a um temp
 
 create table ecommerce_usu(
 	ecommerce_id int not null auto_increment,
-    usuario_id int not null,
+    /*usuario_id int not null,*/
     plano_id int,
     sub_dominio varchar(50) not null unique,
     nome_fantasia varchar(50) not null,
@@ -72,19 +72,20 @@ create table ecommerce_usu(
     layout varchar(50) not null,
     
     primary key(ecommerce_id),
-    foreign key(usuario_id) references usuario(usuario_id),
+    /*foreign key(usuario_id) references usuario(usuario_id),*/
     foreign key(plano_id) references plano(plano_id)
 )default charset utf8;
 
+/* Tabela que faz ligação de usuario com ecommerce_usu */
 create table ecom_usua(
     ecus_id int not null auto_increment,
     usuario_id int not null,
     ecommerce_id int not null,
 
     primary key(ecus_id),
-    foreign key(usuario_id) references usuario_id(usuario),
-    foreign key(ecommerce_id) references ecommerce_id(ecommerce_usu)
-)
+    foreign key(usuario_id) references usuario(usuario_id),
+    foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
+)default charset utf8;
 
 create table layout_imagem(
     li_id int not null auto_increment,
