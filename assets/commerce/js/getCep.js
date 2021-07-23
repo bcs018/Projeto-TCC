@@ -14,7 +14,7 @@ $('#cep').on('keyup', function(){
             success: function(json){
                 $('#bairro').val(json.bairro);
                 $('#rua').val(json.logradouro);
-                $('#estado option:selected').text(json.uf);
+                $("#estado option:contains("+json.uf+")").prop({selected: true});
                 $('#cidade').val(json.localidade);
                 $('#complemento').val(json.complemento);
             }

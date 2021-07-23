@@ -49,6 +49,27 @@ class AdminController extends Controller {
     }
 
     public function addNovoUsuAction(){
+        $nome        = addslashes($_POST['nome']);
+        $sobrenome   = addslashes($_POST['sobrenome']);
+        $login       = addslashes($_POST['login']);
+        $email       = addslashes($_POST['email']);
+        $celular     = addslashes($_POST['celular']);
+        $cep         = addslashes($_POST['cep']);
+        $rua         = addslashes($_POST['rua']);
+        $bairro      = addslashes($_POST['bairro']);
+        $numero      = addslashes($_POST['numero']);
+        $cidade      = addslashes($_POST['cidade']);
+        $estado      = addslashes($_POST['estado']);
+        $complemento = addslashes($_POST['complemento']);
+        $senha       = addslashes($_POST['complemento']);
+        $senhaRep    = addslashes($_POST['senhaRep']);
+
+        $usu = new Admin;
+        $usu->addNovoUsuAction($nome, $sobrenome, $login, $email, $celular, $cep, $rua, $bairro, $numero, $cidade, $estado, $complemento, $senha, $senhaRep);
+
+        
+
+
         $est = new Admin;
         $estados = $est->lista_estados();
 

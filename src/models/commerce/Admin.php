@@ -195,6 +195,61 @@ class Admin extends Model{
         return true;
     }
 
+    public function addNovoUsuAction($nome, $sobrenome, $login, $email, $celular, $cep, $rua, $bairro, $numero, $cidade, $estado, $complemento, $senha, $senhaRep){
+        if(empty($nome) || empty($sobrenome) || empty($login) || empty($senha) || empty($senhaRep)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                      Existe campos em brancos, verifique os campos e tente novamente!
+                                    </div>';
+            return false;
+        }
+
+        if(!empty($cep)){
+            $cep = explode('-', $cep);
+            $cep = intval($cep[0].$cep[1]);
+        }
+
+        if($senha != $senhaRep){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                      Senhas não batem!
+                                    </div>';
+            return false;
+        }
+
+        if(!empty($estado)){
+            $sql = "SELECT * FROM estado WHERE estado_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $estado);
+            $sql->execute();
+
+            if($sql->rowCount() == 0){
+                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                            Estado inexistente!
+                                        </div>';
+                return false;
+            }
+        }
+
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $estado);
+        $sql->bindValue(2, $nome);
+        $sql->bindValue(3, $sobrenome);
+        $sql->bindValue(4, $celular);
+        $sql->bindValue(5, $email);
+        $sql->bindValue(6, $rua);
+        $sql->bindValue(7, $bairro);
+        $sql->bindValue(8, $numero);
+        $sql->bindValue(9, $cep);
+        $sql->bindValue(10, $cidade);
+        $sql->bindValue(11, $complemento);
+        $sql->bindValue(12, 1);
+        $sql->bindValue(13, $senha);
+        $sql->bindValue(14, $login);
+        $sql->execute();
+
+    }
+
     public function lista_estados(){
         $sql = "SELECT * FROM estado";
         $sql = $this->db->query($sql)->fetchAll();

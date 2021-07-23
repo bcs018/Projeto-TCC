@@ -46,7 +46,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
                                             <input type="hidden" value="<?php echo $dados['usuario_id']; ?>" name="id">
                                         </div>
                                     </div>
-
+ 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
@@ -60,6 +60,14 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Login</label>
                                             <input type="text" class="form-control" name="login" id="login">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <label for="exampleInputEmail1">E-mail</label>
+                                            <input type="text" class="form-control" name="email" id="email">
                                         </div>
                                     </div>
 
@@ -135,6 +143,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Senha</label>
                                             <input type="password" class="form-control" name="senha" id="altSenha">
                                         </div>
@@ -142,6 +151,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar n
 
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Repita a senha</label>
                                             <input type="password" class="form-control" name="senhaRep"
                                                 id="altSenhaRep">
