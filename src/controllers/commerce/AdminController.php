@@ -61,19 +61,15 @@ class AdminController extends Controller {
         $cidade      = addslashes($_POST['cidade']);
         $estado      = addslashes($_POST['estado']);
         $complemento = addslashes($_POST['complemento']);
-        $senha       = addslashes($_POST['complemento']);
+        $senha       = addslashes($_POST['senha']);
         $senhaRep    = addslashes($_POST['senhaRep']);
 
         $usu = new Admin;
         $usu->addNovoUsuAction($nome, $sobrenome, $login, $email, $celular, $cep, $rua, $bairro, $numero, $cidade, $estado, $complemento, $senha, $senhaRep);
 
-        
+        header("Location: /admin/painel/add-novo-usuario");
 
-
-        $est = new Admin;
-        $estados = $est->lista_estados();
-
-        $this->render('commerce/painel_adm/add_usuario', ['estados'=>$estados]);
+        exit;
     }
 
     public function ediDadosPessoaisAction(){
