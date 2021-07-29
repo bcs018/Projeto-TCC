@@ -12,7 +12,7 @@ class HomeController extends Controller {
         $prod = new Produto;
 
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-        $produtos = $prod->listaProdutos();
+        $produtos = $prod->listaProdutosImg('DESC');
 
         $this->render('commerce/'.$dados['layout'].'/home', ['dados'=>$dados, 'produtos'=>$produtos]);
 

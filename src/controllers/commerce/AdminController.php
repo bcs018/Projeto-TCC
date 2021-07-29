@@ -3,6 +3,7 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\Admin;
+use \src\models\commerce\Produto;
 
 class AdminController extends Controller {
 
@@ -46,6 +47,15 @@ class AdminController extends Controller {
         $estados = $est->lista_estados();
 
         $this->render('commerce/painel_adm/add_usuario', ['dados'=>$dados, 'estados'=>$estados]);
+    }
+
+    public function layout(){
+        $dados = $this->listaDadosEcommerce();
+
+        $p = new Produto;
+        $produtos = $p->listaProdutos();
+
+        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos]);
     }
 
     public function addNovoUsuAction(){

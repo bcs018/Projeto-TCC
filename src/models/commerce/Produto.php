@@ -230,6 +230,7 @@ class Produto extends Model{
         exit;
     }
 
+    // -- Lista um produto com suas imagens
     public function listaProduto($id){
         $sql = 'SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
@@ -247,6 +248,7 @@ class Produto extends Model{
         return false;
     }
 
+    // -- Lista todos os produtos sem as imagens
     public function listaProdutos(){
         $sql = 'SELECT * FROM produto WHERE ecommerce_id = ?';
         $sql = $this->db->prepare($sql);
@@ -260,22 +262,34 @@ class Produto extends Model{
         return false;
     }
 
-    // public function listaProdutosImg($id){
-    //     $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, pi.pi_id, pi.produto_id, pi.url FROM produto p 
-    //             JOIN produto_imagem pi
-    //             ON pi.produto_id = p.produto_id
-    //             WHERE p.ecommerce_id = ? AND p.produto_id = ?';
-    //     $sql = $this->db->prepare($sql);
-    //     $sql->bindValue(1, $_SESSION['id_sub_dom']);
-    //     $sql->bindValue(2, $id);
-    //     $sql->execute();
+    // -- Lista todos produtos com suas imagens
+    public function listaProdutosImg($order){
+        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+                JOIN produto_imagem pi
+                ON pi.produto_id = p.produto_id
+                WHERE p.ecommerce_id = ? ORDER BY ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $order);
+        $sql->execute();
 
-    //     if($sql->rowCount() > 0){
-    //         return $sql->fetchaAll();
-    //     }
+        if($sql->rowCount() > 0){
+            $produtos = $sql->fetchAll();
+            $produtosNovo = array();
+            $i = null;
 
-    //     return false;
-    // }
+            foreach($produtos as $p){
+                if($i != $p['produto_id']){
+                    $i = $p['produto_id'];
+                    $produtosNovo[] = $p;
+                }
+            }
+
+            return $produtosNovo;
+        }
+
+        return false;
+    }
 
     public function excImagem($idImg, $idProd){
         $sql = "SELECT * FROM produto p

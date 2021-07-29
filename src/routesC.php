@@ -18,8 +18,7 @@ $router->post('/admin/painel/alterar-dados-pessoais/action', 'AdminController@ed
 $router->post('/consulta-cep', 'AdminController@consultarCep');
 $router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAction');
-
-
+$router->get('/admin/painel/layout', 'AdminController@layout');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

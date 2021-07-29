@@ -206,6 +206,12 @@
                   <p>Produtos</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/admin/painel/layout" class="nav-link">
+                <i class="fas fa-palette nav-icon"></i>
+                  <p>Layout</p>
+                </a>
+              </li>
               <!-- <li class="nav-item">
                 <a href="../UI/icons.html" class="nav-link">
                 <i class="fas fa-cog nav-icon"></i>
