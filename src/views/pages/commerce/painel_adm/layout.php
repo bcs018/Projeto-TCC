@@ -38,8 +38,8 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                 <div class="form-group">
                                     <div class="bd-example">
                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                        <label for="nomeProd">Adicione imagens ao seu banner</label>
-                                        <input type="file" class="form-control" name="imagem[]" multiple>
+                                        <label for="nomeProd">Adicione imagens ao seu banner (Banners de 1160x360 até 1163x363 mega pixels) </label>
+                                        <input type="file" class="form-control" name="banner">
                                         <input type="hidden" value="<?php echo $produtos[0][0]; ?>" id="id" name="id">
                                     </div>
                                 </div>

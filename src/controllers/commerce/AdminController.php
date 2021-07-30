@@ -49,15 +49,6 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/add_usuario', ['dados'=>$dados, 'estados'=>$estados]);
     }
 
-    public function layout(){
-        $dados = $this->listaDadosEcommerce();
-
-        $p = new Produto;
-        $produtos = $p->listaProdutos();
-
-        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos]);
-    }
-
     public function addNovoUsuAction(){
         $nome        = addslashes($_POST['nome']);
         $sobrenome   = addslashes($_POST['sobrenome']);

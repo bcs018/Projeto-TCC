@@ -362,4 +362,8 @@ class Produto extends Model{
         return true;
 
     }
+
+    public function addBannerProdAction(){
+        
+    }
 }

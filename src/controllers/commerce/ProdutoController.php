@@ -40,6 +40,15 @@ class ProdutoController extends Controller {
 
     }
 
+    public function layout(){
+        $dados = AdminController::listaDadosEcommerce();
+
+        $p = new Produto;
+        $produtos = $p->listaProdutos();
+
+        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos]);
+    }
+
     public function ediProduto($id){
         AdminController::listaDadosEcommerce();
 
@@ -203,6 +212,20 @@ class ProdutoController extends Controller {
         header("Location: /admin/painel/produtos");
         
         exit;
+    }
+
+    public function addBannerProd(){
+        if(isset($_FILES['banner'])){
+            $ban = new Produto;
+            
+            if($ban->cadProdutoActionSecond($_FILES, addslashes($_POST['id']))){
+                header("Location: /admin/painel/produtos");
+
+                exit;
+            }
+            header("Location: /admin/painel/cadastrar-produtos/".addslashes($_POST['id']));
+            
+        }
     }
 
 }

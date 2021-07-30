@@ -150,6 +150,7 @@ create table produto(
     promocao tinyint default 0,
     novo_produto tinyint default 0,
     opcoes varchar(100),
+    banner_img varchar(50) default 0,
     
     primary key(produto_id),
     foreign key(categoria_id) references categoria(categoria_id),
