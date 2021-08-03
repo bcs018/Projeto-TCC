@@ -1,50 +1,26 @@
 <?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home']); ?>
 
-<div class="slider-area">
-    <!-- Slider -->
-    <div class="block-slider block-slider4">
-        <ul class="" id="bxslider-home4">
-            <li>
-                <img src="<?php echo BASE_ASS_C; ?>images_commerce/2876c91b392353f87510c8ecf4e57ac1a.jpeg" width="50px" height="50px" alt="Slide">
-                <div class="caption-group">
-                    <h2 class="caption title">
-                        iPhone <span class="primary">6 <strong>Plus</strong></span>
-                    </h2>
-                    <h4 class="caption subtitle">Dual SIM</h4>
-                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                </div>
-            </li>
-            <!-- <li><img src="img/h4-slide2.png" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            by one, get one <span class="primary">50% <strong>off</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">school supplies & backpacks.*</h4>
-                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                    </div>
-                </li>
-                <li><img src="img/h4-slide3.png" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            Apple <span class="primary">Store <strong>Ipod</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">Select Item</h4>
-                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                    </div>
-                </li>
-                <li><img src="img/h4-slide4.png" alt="Slide">
-                    <div class="caption-group">
-                        <h2 class="caption title">
-                            Apple <span class="primary">Store <strong>Ipod</strong></span>
-                        </h2>
-                        <h4 class="caption subtitle">& Phone</h4>
-                        <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                    </div>
-                </li> -->
-        </ul>
-    </div>
-    <!-- ./Slider -->
-</div> <!-- End slider area -->
+<?php if (!empty($prodBanner)) : ?>
+    <div class="slider-area">
+        <!-- Slider -->
+        <div class="block-slider block-slider4">
+            <ul class="" id="bxslider-home4">
+                <?php foreach ($prodBanner as $pb) : ?>
+                    <li>
+                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pb['banner_img']; ?>" alt="Slide">
+                        <div class="caption-group">
+                            <h2 class="caption title">
+                                <?php echo $pb['nome_pro']; ?> <!--<span class="primary"><strong></strong></span>-->
+                            </h2>
+                            <!-- <h4 class="caption subtitle"></h4> -->
+                            <a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div> 
+<?php endif; ?>
 
 <br><br><br>
 
@@ -56,24 +32,25 @@
                 <div class="latest-product">
                     <h2 class="section-title">Últimos produtos</h2>
                     <div class="product-carousel">
+                        <?php if(!empty($produtos)): ?>
+                            <?php foreach ($produtos as $produto) : ?>
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
+                                        <div class="product-hover">
+                                            <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a>
+                                            <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                        </div>
+                                    </div>
 
-                        <?php foreach($produtos as $produto): ?>
-                            <div class="single-product">
-                                <div class="product-f-image">
-                                    <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
-                                    <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                    <h2><a href="single-product.html"><?php echo $produto['nome_pro']; ?></a></h2>
+
+                                    <div class="product-carousel-price">
+                                        <ins><?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?></ins> <del><?php echo 'R$' . number_format($produto['preco_antigo'], 2, ',', '.'); ?></del>
                                     </div>
                                 </div>
-
-                                <h2><a href="single-product.html"><?php echo $produto['nome_pro']; ?></a></h2>
-
-                                <div class="product-carousel-price">
-                                    <ins><?php echo 'R$'.number_format($produto['preco'], 2,',','.'); ?></ins> <del><?php echo 'R$'.number_format($produto['preco_antigo'], 2,',','.'); ?></del>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
 
 
 

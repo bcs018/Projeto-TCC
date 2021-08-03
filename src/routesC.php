@@ -18,7 +18,8 @@ $router->post('/admin/painel/alterar-dados-pessoais/action', 'AdminController@ed
 $router->post('/consulta-cep', 'AdminController@consultarCep');
 $router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAction');
-$router->get('/admin/painel/layout', 'ProdutoController@layout');
+$router->get('/admin/painel/layout', 'AdminController@layout');
+$router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
@@ -30,6 +31,7 @@ $router->get('/admin/painel/editar-produto/{id}', 'ProdutoController@ediProduto'
 $router->post('/admin/painel/editar-produto', 'ProdutoController@ediProdutoAction');
 $router->get('/admin/painel/detalhes-produto/{id}', 'ProdutoController@conDetalheProduto');
 $router->get('/admin/painel/excluir-img/{idimg}/{idprod}', 'ProdutoController@excImagem');
+$router->get('/admin/painel/excluir-ban/{idprod}', 'ProdutoController@excBanner');
 $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
 
 // -- Categorias

@@ -13,8 +13,17 @@ class HomeController extends Controller {
 
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('DESC');
+        $produtosBanner = array();
 
-        $this->render('commerce/'.$dados['layout'].'/home', ['dados'=>$dados, 'produtos'=>$produtos]);
+        if(!empty($produtos)){
+            foreach($produtos as $p){
+                if($p['banner_img'] != '0'){
+                    $produtosBanner[] = $p;
+                }
+            }
+        }
+
+        $this->render('commerce/'.$dados['layout'].'/home', ['dados'=>$dados, 'produtos'=>$produtos, 'prodBanner'=>$produtosBanner]);
 
     }
 

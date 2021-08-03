@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/commerce/lay01/css/font-awesome.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/owl.carousel.css">

@@ -62,6 +62,38 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
   <section class="content">
     <div class="container-fluid">
       <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <div class="card-title">
+                Banner
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <?php if($produtos[0]['banner_img'] == '0'): ?>
+                <h5>Não há banner cadastrado para esse produto.<br><br>Para cadastrar um novo banner clique na opção <b>"Layout"</b> no Menu</h5>
+                <?php else: ?>
+                <div class="col-sm-2">
+                  <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" data-toggle="lightbox"
+                    data-gallery="gallery">
+                    <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>"
+                      class="img-fluid mb-2" alt="black sample">
+                  </a>
+                  <a href="/admin/painel/excluir-ban/<?php echo $produtos[0][0]; ?>">Excluir</a>
+                </div>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
         <div class="col">
           <div class="card card-primary">
             <div class="card-header">

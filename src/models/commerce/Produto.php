@@ -264,7 +264,7 @@ class Produto extends Model{
 
     // -- Lista todos produtos com suas imagens
     public function listaProdutosImg($order){
-        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
                 JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
                 WHERE p.ecommerce_id = ? ORDER BY ?';
@@ -325,6 +325,31 @@ class Produto extends Model{
         return true;
     }
 
+    public function excBanner($id){
+        $sql = "SELECT * FROM produto WHERE produto_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        $banner = $sql->fetch();
+        
+        $sql = "UPDATE produto SET banner_img = ? WHERE produto_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, '0');
+        $sql->bindValue(2, $id);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        unlink('../assets/commerce/images_commerce/'.$banner['banner_img']);
+
+        $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                    Banner excluido com sucesso!
+                                </div>';
+
+        return true;
+    }
+
     public function excProduto($id){
         $sql = "SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
@@ -363,7 +388,42 @@ class Produto extends Model{
 
     }
 
-    public function addBannerProdAction(){
+    public function addBannerProdAction($banner, $idProd){
+        $tpArq = explode('/', $banner['banner']['type']);
+
+        if(($tpArq[1] != 'jpg') && ($tpArq[1] != 'jpeg') && ($tpArq[1] != 'png')){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Formato da imagem diferente de JPG, JPEG ou PNG!
+                                    </div>';
+
+            return false;
+        }
         
+        list($largura, $altura) = getimagesize($banner['banner']['tmp_name']);
+
+        if($altura < 360 || $altura > 363 || $largura < 1160 || $largura > 1163){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Imagem do banner não está entre 1160x360 e 1163x363 mega pixels!
+                                    </div>';
+            return false;
+        }
+
+        $nomeArq = 'ban'.$_SESSION['id_sub_dom'].md5($banner['banner']['name'].rand(0,999).time()).'.'.$tpArq[1];
+        move_uploaded_file($banner['banner']['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
+
+        $sql = "UPDATE produto SET banner_img = ? WHERE produto_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeArq);
+        $sql->bindValue(2, $idProd);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+                                        Banner adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
     }
 }

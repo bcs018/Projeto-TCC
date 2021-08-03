@@ -49,6 +49,29 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/add_usuario', ['dados'=>$dados, 'estados'=>$estados]);
     }
 
+    public function layout(){
+        $dados = AdminController::listaDadosEcommerce();
+
+        $p = new Produto;
+        $produtos = $p->listaProdutos();
+
+        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos]);
+    }
+
+    public function ediLayoutAction(){
+        if(isset($_FILES['banner'])){
+            $ban = new Produto;
+            
+            $ban->addBannerProdAction($_FILES, addslashes($_POST['produtoId']));
+            
+            header("Location: /admin/painel/layout");
+
+            
+            //header("Location: /admin/painel/cadastrar-produtos/".addslashes($_POST['id']));
+            
+        }
+    }
+
     public function addNovoUsuAction(){
         $nome        = addslashes($_POST['nome']);
         $sobrenome   = addslashes($_POST['sobrenome']);

@@ -33,23 +33,22 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                         <div class="card-header">
                             <h3 class="card-title">Banner da pagina principal</h3>
                         </div>
-                        <form role="form" name="detalheProduto" method="POST" enctype="multipart/form-data" action="/admin/painel/editar-produto">
+                        <form role="form" name="detalheProduto" method="POST" enctype="multipart/form-data" action="/admin/painel/edi-layout">
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
                                         <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                         <label for="nomeProd">Adicione imagens ao seu banner (Banners de 1160x360 até 1163x363 mega pixels) </label>
                                         <input type="file" class="form-control" name="banner">
-                                        <input type="hidden" value="<?php echo $produtos[0][0]; ?>" id="id" name="id">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label>Selecione o produto vinculado ao banner</label>
-                                    <select class="form-control select2" style="width: 100%;" name="produto" id="produto">
+                                    <select class="form-control select2" style="width: 100%;" name="produtoId" id="produto">
                                         <?php foreach ($produtos as $produto) : ?>
-                                            <option value="<?php echo $produto['nome_pro'] ?>"><?php echo $produto['nome_pro'] ?></option>
+                                            <option value="<?php echo $produto['produto_id']; ?>"><?php echo $produto['nome_pro']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

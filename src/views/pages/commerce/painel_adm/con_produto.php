@@ -42,6 +42,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                       <th>Estoque</th>
                       <th>Preço</th>
                       <th>Preço antigo</th>
+                      <th>Banner?</th>
                       <th>Ações</th>
                     </tr>
                   </thead>
@@ -53,6 +54,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                           <td><?php echo $dado['estoque']; ?></td>
                           <td><?php echo 'R$'.number_format($dado['preco'], 2, ',','.'); ?></td>
                           <td><?php echo 'R$'.number_format($dado['preco_antigo'], 2, ',','.'); ?></td>
+                          <td><?php echo $dado['banner_img'] != '0' ? 'SIM' : 'NÃO'; ?></td>
                           <td> <a href="/admin/painel/excluir-produto/<?php echo $dado['produto_id']; ?>">Excluir</a> | <a href="/admin/painel/editar-produto/<?php echo $dado['produto_id']; ?>">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
                         </tr>
                       <?php endforeach; ?>
