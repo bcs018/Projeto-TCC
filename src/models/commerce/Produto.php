@@ -117,7 +117,7 @@ class Produto extends Model{
             for($i=0; $i < count($img['imagem']['tmp_name']); $i++){
                 $tpArq = explode('/', $img['imagem']['type'][$i]);
 
-                $nomeArq = $_SESSION['id_sub_dom'].md5($img['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
+                $nomeArq = 'pro'.$_SESSION['id_sub_dom'].md5($img['imagem']['name'][$i].rand(0,999).time()).'.'.$tpArq[1];
 
                 move_uploaded_file($img['imagem']['tmp_name'][$i], '../assets/commerce/images_commerce/'.$nomeArq);
 
@@ -367,8 +367,12 @@ class Produto extends Model{
             return false;
         }
 
-        foreach($sql->fetchAll() as $img)
+        $produtos = $sql->fetchAll();
+
+        foreach($produtos as $img)
             unlink('../assets/commerce/images_commerce/'.$img['url']);
+        
+        unlink('../assets/commerce/images_commerce/'.$produtos[0]['banner_img']);
 
         $sql = "DELETE FROM produto_imagem WHERE produto_id = ?";
         $sql = $this->db->prepare($sql);
@@ -406,6 +410,21 @@ class Produto extends Model{
                                         Imagem do banner não está entre 1160x360 e 1163x363 mega pixels!
                                     </div>';
             return false;
+        }
+
+        $sql = "SELECT * FROM produto WHERE produto_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $idProd);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        // Verificando se ja existe banner no produto, caso exista exclui a imagem para add a nova
+        if($sql->rowCount() > 0){
+            $prodBan = $sql->fetch();
+
+            if($prodBan['banner_img'] != '0'){
+                unlink('../assets/commerce/images_commerce/'.$prodBan['banner_img']);
+            }
         }
 
         $nomeArq = 'ban'.$_SESSION['id_sub_dom'].md5($banner['name'].rand(0,999).time()).'.'.$tpArq[1];

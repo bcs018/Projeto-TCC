@@ -306,6 +306,10 @@ class Admin extends Model{
             return false;
         }
 
+        if(isset($_SESSION['logo'])){
+            unlink('../assets/commerce/images_commerce/'.$_SESSION['logo']);
+        }
+
         $nomeArq = 'log'.$_SESSION['id_sub_dom'].md5($logo['name'].rand(0,999).time()).'.'.$tpArq[1];
         move_uploaded_file($logo['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
 
@@ -332,6 +336,10 @@ class Admin extends Model{
                                     </div>';
 
             return false;
+        }
+
+        if(isset($_SESSION['ico'])){
+            unlink('../assets/commerce/images_commerce/'.$_SESSION['ico']);
         }
 
         $nomeArq = 'ico'.$_SESSION['id_sub_dom'].md5($ico['name'].rand(0,999).time()).'.ico';
