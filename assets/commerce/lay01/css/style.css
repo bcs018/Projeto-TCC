@@ -13,10 +13,15 @@
     margin: 0 auto 15px;
 }
 a:focus { outline: 0px solid }
+#logo{
+    max-width: 100%;
+    height: auto;
+}
 img {
     max-width: 100%;
     height: 250px;
 }
+
 .fix { overflow: hidden }
 h1,
 h2,

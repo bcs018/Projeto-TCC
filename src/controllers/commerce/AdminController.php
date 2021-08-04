@@ -2,6 +2,7 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
+use PagSeguro\Resources\Responsibility\Configuration\File;
 use \src\models\commerce\Admin;
 use \src\models\commerce\Produto;
 
@@ -59,17 +60,23 @@ class AdminController extends Controller {
     }
 
     public function ediLayoutAction(){
-        if(isset($_FILES['banner'])){
-            $ban = new Produto;
-            
-            $ban->addBannerProdAction($_FILES, addslashes($_POST['produtoId']));
-            
-            header("Location: /admin/painel/layout");
+        $_SESSION['message'] = '';
+        $adm = new Admin;
+        $ban = new Produto;
 
-            
-            //header("Location: /admin/painel/cadastrar-produtos/".addslashes($_POST['id']));
-            
+        if(isset($_FILES['banner']) && !empty($_FILES['banner']['tmp_name'])){
+            $ban->addBannerProdAction($_FILES['banner'], addslashes($_POST['produtoId']));
         }
+
+        if(isset($_FILES['logo']) && !empty($_FILES['logo']['tmp_name'])){
+            $adm->addLogoAction($_FILES['logo']);
+        }
+
+        if(isset($_FILES['ico']) && !empty($_FILES['ico']['tmp_name'])){
+            $adm->addIcoAction($_FILES['ico']);
+        }
+        
+        header("Location: /admin/painel/layout");
     }
 
     public function addNovoUsuAction(){

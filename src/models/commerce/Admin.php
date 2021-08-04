@@ -286,6 +286,71 @@ class Admin extends Model{
 
     }
 
+    public function addLogoAction($logo){
+        $tpArq = explode('/', $logo['type']);
+
+        if(($tpArq[1] != 'jpg') && ($tpArq[1] != 'jpeg') && ($tpArq[1] != 'png')){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                       Formato da imagem diferente de JPG, JPEG ou PNG!
+                                    </div>';
+
+            return false;
+        }
+
+        list($largura, $altura) = getimagesize($logo['tmp_name']);
+
+        if($altura < 60 || $altura > 70 || $largura < 170 || $largura > 180){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Imagem do logotipo não está entre 170x60 e 180x70 mega pixels!
+                                    </div>';
+            return false;
+        }
+
+        $nomeArq = 'log'.$_SESSION['id_sub_dom'].md5($logo['name'].rand(0,999).time()).'.'.$tpArq[1];
+        move_uploaded_file($logo['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
+
+        $sql = "UPDATE ecommerce_usu SET logotipo = ? WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeArq);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Logotipo adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
+    public function addIcoAction($ico){
+        $tpArq = explode('/', $ico['type']);
+
+        if($tpArq[1] != 'x-icon'){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Formato da imagem diferente de ICO!
+                                    </div>';
+
+            return false;
+        }
+
+        $nomeArq = 'ico'.$_SESSION['id_sub_dom'].md5($ico['name'].rand(0,999).time()).'.ico';
+        move_uploaded_file($ico['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
+
+        $sql = "UPDATE ecommerce_usu SET ico = ? WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeArq);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Icone adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
     public function lista_estados(){
         $sql = "SELECT * FROM estado";
         $sql = $this->db->query($sql)->fetchAll();

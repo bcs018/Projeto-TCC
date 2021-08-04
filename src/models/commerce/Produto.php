@@ -389,27 +389,27 @@ class Produto extends Model{
     }
 
     public function addBannerProdAction($banner, $idProd){
-        $tpArq = explode('/', $banner['banner']['type']);
+        $tpArq = explode('/', $banner['type']);
 
         if(($tpArq[1] != 'jpg') && ($tpArq[1] != 'jpeg') && ($tpArq[1] != 'png')){
-            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Formato da imagem diferente de JPG, JPEG ou PNG!
                                     </div>';
 
             return false;
         }
         
-        list($largura, $altura) = getimagesize($banner['banner']['tmp_name']);
+        list($largura, $altura) = getimagesize($banner['tmp_name']);
 
         if($altura < 360 || $altura > 363 || $largura < 1160 || $largura > 1163){
-            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Imagem do banner não está entre 1160x360 e 1163x363 mega pixels!
                                     </div>';
             return false;
         }
 
-        $nomeArq = 'ban'.$_SESSION['id_sub_dom'].md5($banner['banner']['name'].rand(0,999).time()).'.'.$tpArq[1];
-        move_uploaded_file($banner['banner']['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
+        $nomeArq = 'ban'.$_SESSION['id_sub_dom'].md5($banner['name'].rand(0,999).time()).'.'.$tpArq[1];
+        move_uploaded_file($banner['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
 
         $sql = "UPDATE produto SET banner_img = ? WHERE produto_id = ? AND ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
@@ -418,7 +418,7 @@ class Produto extends Model{
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         
         if($sql->execute()){
-            $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
                                         Banner adicionado com sucesso!
                                     </div>';
 

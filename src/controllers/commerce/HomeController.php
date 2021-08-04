@@ -22,9 +22,14 @@ class HomeController extends Controller {
                 }
             }
         }
+        if($dados['logotipo'] != '0'){
+            $_SESSION['logo'] = $dados['logotipo'];
+        }
+        if($dados['ico'] != '0'){
+            $_SESSION['ico'] = $dados['ico'];
+        }
 
         $this->render('commerce/'.$dados['layout'].'/home', ['dados'=>$dados, 'produtos'=>$produtos, 'prodBanner'=>$produtosBanner]);
-
     }
 
     public function sobre() {

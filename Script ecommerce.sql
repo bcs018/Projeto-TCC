@@ -70,6 +70,8 @@ create table ecommerce_usu(
     nome_fantasia varchar(50) not null,
     cnpj int,
     layout varchar(50) not null,
+    logotipo varchar(50) not null default 0,
+    ico varchar(50) not null default 0,
     
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/

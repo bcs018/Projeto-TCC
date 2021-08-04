@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/style.css">
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/responsive.css">
+    <?php if(isset($_SESSION['ico'])): ?>
+        <link rel="shortcut icon" href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['ico']; ?>">
+    <?php endif; ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +59,9 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo">
-                        <h1><a href="./"><img src="img/logo.png"></a></h1>
+                        <?php if(isset($_SESSION['logo'])): ?>
+                            <h1><a href="./"><img id="logo" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>"></a></h1>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-sm-4">
