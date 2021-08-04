@@ -37,14 +37,12 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                         <label for="banner">Adicione imagem ao seu banner (Banners de 1160x360 até 1163x363 mega pixels) </label>
                                         <input type="file" class="form-control" name="banner">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label>Selecione o produto vinculado ao banner</label>
                                     <select class="form-control select2" style="width: 100%;" name="produtoId" id="produto">
                                         <?php foreach ($produtos as $produto) : ?>
@@ -67,7 +65,6 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                         <label for="logo">Adicione seu logotipo (Logotipo de 170x60 até 180x70 mega pixels) </label>
                                         <input type="file" class="form-control" name="logo">
                                     </div>
@@ -87,7 +84,6 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                         <label for="ico">Adicione seu icone</label>
                                         <input type="file" class="form-control" name="ico">
                                     </div>
@@ -97,6 +93,35 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                     <h5>Somente arquivo .ico <br>Para converter arquivos em .ico acessar o site <a href="https://icoconvert.com/" target="_blank">icoconvert.com</a> <br><br>
                                     Exemplo do icone circulado em vermelho:</h5>
                                     <img src="<?php echo BASE_ASS_C; ?>images/ico_ex.jpg" class="img-fluid" alt="Exemplo do icone na barra do navegador">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title"><b>Imagens de Marcas</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="bd-example">
+                                        <label for="marca">Adicione imagem das marcas em que você trabalha (Imagens de 250x100 até 270x120 mega pixels) </label>
+                                        <input type="file" class="form-control" name="marca">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label>Selecione a marca vinculado a imagem</label>
+                                    <select class="form-control select2" style="width: 100%;" name="marcaId" id="marcaId">
+                                        <?php foreach ($marcas as $marca) : ?>
+                                            <option value="<?php echo $marca['marca_id']; ?>"><?php echo $marca['nome_mar']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <h5>Exemplo das marcas:</h5>
+                                    <img src="<?php echo BASE_ASS_C; ?>images/marca_ex.jpg" class="img-fluid" width="900px" height="350px" alt="Exemplo de banner">
                                 </div>
                             </div>
                         </div>

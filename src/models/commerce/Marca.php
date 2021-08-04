@@ -118,4 +118,84 @@ class Marca extends Model{
 
         return false;
     }
+
+    public function addImagemMarcaAction($img, $idMarca){
+        $tpArq = explode('/', $img['type']);
+
+        if(($tpArq[1] != 'jpg') && ($tpArq[1] != 'jpeg') && ($tpArq[1] != 'png')){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Formato da imagem diferente de JPG, JPEG ou PNG!
+                                    </div>';
+
+            return false;
+        }
+        
+        list($largura, $altura) = getimagesize($img['tmp_name']);
+
+        if($altura < 100 || $altura > 120 || $largura < 250 || $largura > 270){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Imagem do banner não está entre 250x100 e 270x120 mega pixels!
+                                    </div>';
+            return false;
+        }
+
+        $sql = "SELECT * FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $idMarca);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        // Verificando se ja existe banner no produto, caso exista exclui a imagem para add a nova
+        if($sql->rowCount() > 0){
+            $imgMar = $sql->fetch();
+
+            if($imgMar['marca_img'] != '0'){
+                unlink('../assets/commerce/images_commerce/'.$imgMar['marca_img']);
+            }
+        }
+
+        $nomeArq = 'mar'.$_SESSION['id_sub_dom'].md5($img['name'].rand(0,999).time()).'.'.$tpArq[1];
+        move_uploaded_file($img['tmp_name'], '../assets/commerce/images_commerce/'.$nomeArq);
+
+        $sql = "UPDATE marca SET marca_img = ? WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeArq);
+        $sql->bindValue(2, $idMarca);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Imagem adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
+    public function excImgMarcaAction($idMarca){
+        $marca = $this->listaMarca($idMarca);
+
+        if(!$marca){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Marca não encontrada!
+                                    </div>';
+
+            return false;
+        }
+
+        unlink('../assets/commerce/images_commerce/'.$marca['marca_img']);
+
+        $sql = "UPDATE marca SET marca_img = ? WHERE marca_id = ? AND ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, '0');
+        $sql->bindValue(2, $idMarca);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                    Imagem excluido com sucesso!
+                                </div>';
+
+        return true;
+    }
 }

@@ -60,7 +60,7 @@
                 <div class="col-sm-4">
                     <div class="logo">
                         <?php if(isset($_SESSION['logo'])): ?>
-                            <h1><a href="./"><img id="logo" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>"></a></h1>
+                            <h1><a href="./"><img id="imagem" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>"></a></h1>
                         <?php endif; ?>
                     </div>
                 </div>

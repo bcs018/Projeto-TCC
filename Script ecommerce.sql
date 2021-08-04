@@ -132,6 +132,7 @@ create table marca(
 	marca_id int not null auto_increment,
     ecommerce_id int not null,
     nome_mar varchar(50) not null,
+    marca_img varchar (50) default 0,
     
     primary key(marca_id),
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)

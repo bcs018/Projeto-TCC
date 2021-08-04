@@ -99,4 +99,12 @@ class MarcaController extends Controller {
         header("Location: /admin/painel/marcas");
         exit;
     }
+
+    public function excImgMarcaAction($idMarca){
+        $mar = new Marca;
+        $mar->excImgMarcaAction($idMarca['id']);
+        
+        header("Location: /admin/painel/editar-marca/".$idMarca['id']);
+        exit;
+    }
 }

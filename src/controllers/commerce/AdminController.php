@@ -5,6 +5,7 @@ use \core\Controller;
 use PagSeguro\Resources\Responsibility\Configuration\File;
 use \src\models\commerce\Admin;
 use \src\models\commerce\Produto;
+use \src\models\commerce\Marca;
 
 class AdminController extends Controller {
 
@@ -53,16 +54,19 @@ class AdminController extends Controller {
     public function layout(){
         $dados = AdminController::listaDadosEcommerce();
 
-        $p = new Produto;
-        $produtos = $p->listaProdutos();
+        $pro = new Produto;
+        $mar = new Marca;
+        $produtos = $pro->listaProdutos();
+        $marcas   = $mar->listaMarcas();
 
-        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos]);
+        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos, 'marcas'=>$marcas]);
     }
 
     public function ediLayoutAction(){
         $_SESSION['message'] = '';
         $adm = new Admin;
         $ban = new Produto;
+        $mar = new Marca;
 
         if(isset($_FILES['banner']) && !empty($_FILES['banner']['tmp_name'])){
             $ban->addBannerProdAction($_FILES['banner'], addslashes($_POST['produtoId']));
@@ -75,6 +79,11 @@ class AdminController extends Controller {
         if(isset($_FILES['ico']) && !empty($_FILES['ico']['tmp_name'])){
             $adm->addIcoAction($_FILES['ico']);
         }
+
+        if(isset($_FILES['marca']) && !empty($_FILES['marca']['tmp_name'])){
+            $mar->addImagemMarcaAction($_FILES['marca'], addslashes($_POST['marcaId']));
+        }
+
         
         header("Location: /admin/painel/layout");
     }

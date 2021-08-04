@@ -48,5 +48,6 @@ $router->get('/admin/painel/cadastrar-marcas', 'MarcaController@cadMarca');
 $router->post('/admin/painel/cadastrar-marcas/action', 'MarcaController@cadMarcaAction');
 $router->get('/admin/painel/excluir-marca/action/{id}', 'MarcaController@excMarcaAction');
 $router->get('/admin/painel/editar-marca/{id}', 'MarcaController@ediMarca');
+$router->get('/admin/painel/excluir-img-marca/{id}', 'MarcaController@excImgMarcaAction');
 $router->post('/admin/painel/editar-marca/action', 'MarcaController@ediMarcaAction');
 
