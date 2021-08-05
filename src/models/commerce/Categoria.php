@@ -6,9 +6,35 @@ use \core\Model;
 
 class Categoria extends Model{
     
-    /**
-     * --- CATEGORIAS
-     */
+    // Lista a categoria selecionada e seus antecessores
+    public function listaCategoriaOrganizada($id){
+        $array = array();
+
+        $haveChild = true;
+
+        while($haveChild){
+            $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                $sql = $sql->fetch();
+                $array[] = $sql;
+
+                if(!empty($sql['sub_cat'])){
+                    $id = $sql['sub_cat'];
+                }else{
+                    $haveChild = false;
+                }
+            }
+        }
+
+        $array = array_reverse($array);
+
+        return $array;
+    }
 
     // Lista todas as categorias organizadas em arvore
     public function listaCategoriasOrganizadas(){

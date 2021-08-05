@@ -33,6 +33,7 @@ $router->get('/admin/painel/detalhes-produto/{id}', 'ProdutoController@conDetalh
 $router->get('/admin/painel/excluir-img/{idimg}/{idprod}', 'ProdutoController@excImagem');
 $router->get('/admin/painel/excluir-ban/{idprod}', 'ProdutoController@excBanner');
 $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
+$router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

@@ -123,10 +123,13 @@
             text-align: center;
             width: 40px;border: 1px solid <?php echo $layout['cor']; ?>;
             }    
-            .footer-top-area {
-                background: none repeat scroll 0 0 <?php echo $layout['cor_rodape']; ?>;
-                color: #999;
-                padding: 35px 0 180px;}
+        .footer-top-area {
+            background: none repeat scroll 0 0 <?php echo $layout['cor_rodape']; ?>;
+            color: #999;
+            padding: 35px 0 180px;
+        }
+        .product-big-title-area {background: url(<?php echo BASE_ASS_C; ?>images/crossword.png) repeat scroll 0 0 <?php echo $layout['cor']; ?>}
+
         .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: <?php echo $layout['cor']; ?>; color:#FFF;}
     </style>
 

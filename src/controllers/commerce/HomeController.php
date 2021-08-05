@@ -54,6 +54,34 @@ class HomeController extends Controller {
                                                             ]);
     }
 
+    public function visProduto($id){
+        $prod = new Produto;
+        $cate = new Categoria;
+        $info = new Info;
+
+        $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produto = $prod->listaProduto(addslashes($id['id']));
+
+        if(!$produto){
+            $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
+                                        Produto inexistente!
+                                    </div><br>';
+
+            header("Location: /");
+
+            exit;
+        }
+
+        $categoriaProd = $cate->listaCategoriaOrganizada($produto[0]['categoria_id']);
+
+        $this->render('commerce/'.$dados['layout'].'/produto', [
+                                                                'produto'   => $produto,
+                                                                'categoria' => $categoriaProd,
+                                                                'dados'     => $dados
+                                                            ]);
+
+    }
+
     public function sobre() {
         $this->render('sobre');
     }

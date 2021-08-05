@@ -1,5 +1,10 @@
 <?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados]); ?>
-
+<?php 
+if(isset($_SESSION['message'])){
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+} 
+?>
 <?php if (!empty($prodBanner)) : ?>
     <div class="slider-area">
         <!-- Slider -->
@@ -7,14 +12,14 @@
             <ul class="" id="bxslider-home4">
                 <?php foreach ($prodBanner as $pb) : ?>
                     <li>
-                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pb['banner_img']; ?>" alt="Slide">
+                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pb['banner_img']; ?>" alt="Slide <?php echo $pb['nome_pro']; ?>">
                         <div class="caption-group">
                             <h2 class="caption title">
                                 <?php echo $pb['nome_pro']; ?>
                                 <!--<span class="primary"><strong></strong></span>-->
                             </h2>
                             <!-- <h4 class="caption subtitle"></h4> -->
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
+                            <a class="caption button-radius" href="/visualizar/produto/<?php echo $pb['produto_id']; ?>"><span class="icon"></span>Visualizar</a>
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -40,11 +45,11 @@
                                         <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
                                         <div class="product-hover">
                                             <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a>
-                                            <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                            <a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
                                         </div>
                                     </div>
 
-                                    <h2><a href="single-product.html"><?php echo $produto['nome_pro']; ?></a></h2>
+                                    <h2><a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><?php echo $produto['nome_pro']; ?></a></h2>
 
                                     <div class="product-carousel-price">
                                         <ins><?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?></ins> <del><?php echo 'R$' . number_format($produto['preco_antigo'], 2, ',', '.'); ?></del>
@@ -186,8 +191,8 @@
                             <?php $i++; ?>
                             <?php if ($i > 3) break; ?>
                             <div class="single-wid-product">
-                                <a href="single-product.html"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb"></a>
-                                <h2><a href="single-product.html"><?php echo $produto['nome_pro'] ?></a></h2>
+                                <a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb"></a>
+                                <h2><a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><?php echo $produto['nome_pro'] ?></a></h2>
                                 <div class="product-wid-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
