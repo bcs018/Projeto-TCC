@@ -264,13 +264,13 @@ class Produto extends Model{
 
     // -- Lista todos produtos com suas imagens
     public function listaProdutosImg($order){
-        $sql = 'SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+        $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
                 JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
-                WHERE p.ecommerce_id = ? ORDER BY ?';
+                WHERE p.ecommerce_id = ? ORDER BY p.produto_id $order";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $order);
+        //$sql->bindValue(2, $order);
         $sql->execute();
 
         if($sql->rowCount() > 0){

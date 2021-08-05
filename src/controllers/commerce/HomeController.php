@@ -5,6 +5,7 @@ use \core\Controller;
 use \src\models\commerce\Info;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Marca;
+use \src\models\commerce\Categoria;
 
 class HomeController extends Controller {
 
@@ -12,6 +13,7 @@ class HomeController extends Controller {
         $info = new Info;
         $prod = new Produto;
         $marc = new Marca;
+        $cate = new Categoria;
 
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('DESC');
@@ -36,7 +38,7 @@ class HomeController extends Controller {
                 }
             }
         }
-        
+
         if($dados['logotipo'] != '0'){
             $_SESSION['logo'] = $dados['logotipo'];
         }

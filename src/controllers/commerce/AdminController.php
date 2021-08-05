@@ -6,6 +6,7 @@ use PagSeguro\Resources\Responsibility\Configuration\File;
 use \src\models\commerce\Admin;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Marca;
+use \src\models\commerce\Info;
 
 class AdminController extends Controller {
 
@@ -56,10 +57,13 @@ class AdminController extends Controller {
 
         $pro = new Produto;
         $mar = new Marca;
+        $inf = new Info;
+
+        $dados    = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $pro->listaProdutos();
         $marcas   = $mar->listaMarcas();
 
-        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos, 'marcas'=>$marcas]);
+        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
     public function ediLayoutAction(){
@@ -82,6 +86,14 @@ class AdminController extends Controller {
 
         if(isset($_FILES['marca']) && !empty($_FILES['marca']['tmp_name'])){
             $mar->addImagemMarcaAction($_FILES['marca'], addslashes($_POST['marcaId']));
+        }
+
+        if(isset($_POST['cor']) || !empty($_POST['cor'])){
+            $adm->addCorSec(addslashes($_POST['cor']));
+        }
+
+        if(isset($_POST['corRodape']) || !empty($_POST['corRodape'])){
+            $adm->addCorRodape(addslashes($_POST['corRodape']));
         }
 
         

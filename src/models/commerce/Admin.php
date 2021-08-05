@@ -359,6 +359,36 @@ class Admin extends Model{
         }
     }
 
+    public function addCorSec($cor){
+        $sql = "UPDATE ecommerce_usu SET cor = ? WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $cor);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Cor adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
+    public function addCorRodape($cor){
+        $sql = "UPDATE ecommerce_usu SET cor_rodape = ? WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $cor);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Cor do rodapé adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
     public function lista_estados(){
         $sql = "SELECT * FROM estado";
         $sql = $this->db->query($sql)->fetchAll();

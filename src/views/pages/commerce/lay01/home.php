@@ -1,4 +1,4 @@
-<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home']); ?>
+<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home','layout'=>$dados]); ?>
 
 <?php if (!empty($prodBanner)) : ?>
     <div class="slider-area">
@@ -179,52 +179,31 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Novos produtos</h2>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>R$400.00</ins> <del>R$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>R$400.00</ins> <del>R$425.00</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>R$400.00</ins> <del>R$425.00</del>
-                        </div>
-                    </div>
-                </div>
+                    <?php if(!empty($produtos)): ?>
+                        <?php $i = 0; ?>
+                        <?php foreach ($produtos as $produto) : ?>
+                            <?php $i++; ?>
+                            <?php if($i > 3) break; ?>
+                            <div class="single-wid-product">
+                                <a href="single-product.html"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb"></a>
+                                <h2><a href="single-product.html"><?php echo $produto['nome_pro'] ?></a></h2>
+                                <div class="product-wid-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product-wid-price">
+                                    <ins><?php echo $produto['preco'] ?></ins> <del><?php echo $produto['preco_antigo'] ?></del>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
             </div>
         </div>
     </div>
+    </div>
 </div> <!-- End product widget area -->
 
-<?php $render('commerce/lay01/footer'); ?>
+<?php $render('commerce/lay01/footer', ['dados'=>$dados]); ?>

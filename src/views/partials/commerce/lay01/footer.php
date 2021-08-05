@@ -4,11 +4,8 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero
-                            quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi
-                            iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi
-                            veritatis magni at?</p>
+                        <h2><span><?php echo $dados['nome_fantasia']; ?></span></h2>
+                        <br>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -18,9 +15,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <h2 class="footer-wid-title">Confira também </h2>
                         <ul>
                             <li><a href="#">My account</a></li>
                             <li><a href="#">Order history</a></li>
@@ -31,9 +28,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
+                        <h2 class="footer-wid-title">Categorias</h2>
                         <ul>
                             <li><a href="#">Mobile Phone</a></li>
                             <li><a href="#">Home accesseries</a></li>
@@ -44,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <!-- <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
                         <h2 class="footer-wid-title">Newsletter</h2>
                         <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to
@@ -56,12 +53,12 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div> <!-- End footer top area -->
 
-    <div class="footer-bottom-area">
+    <!-- <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -81,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End footer bottom area -->
+    </div> End footer bottom area -->
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>

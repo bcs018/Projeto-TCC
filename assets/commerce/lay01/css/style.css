@@ -108,12 +108,12 @@ z-index: 999;}
 .shopping-item a {
     color: #666;
 }
-.cart-amunt {
-    color: #5a88ca;
+/* .cart-amunt {
+    color: #cc63ad;
     font-weight: 700;
-}
-.product-count {
-    background: none repeat scroll 0 0 #5a88ca;
+} */
+/* .product-count {
+    background: none repeat scroll 0 0 #1cda1c;
     border-radius: 50%;
     color: #fff;
     display: inline-block;
@@ -125,7 +125,7 @@ z-index: 999;}
     text-align: center;
     top: -10px;
     width: 20px;
-}
+} */
 .shopping-item i.fa {
     margin-left: 15px;
 }
@@ -175,10 +175,10 @@ z-index: 999;}
     margin-left: -10px;
  }
 
-.shopping-item:hover {
+/* .shopping-item:hover {
     background: none repeat scroll 0 0 #5a88ca;
     border-color: #5a88ca;
-}
+} */
 .shopping-item:hover a {
     color: #fff;text-decoration: none
 }
@@ -196,7 +196,7 @@ z-index: 999;}
     padding: 20px;
 }
 
-.mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #5a88ca; color:#FFF;}
+/* .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #5a88ca; color:#FFF;} */
 .mainmenu-area .nav > li > a:focus {color: #FFF;}
 
 .slider-area { width:80%; position:relative; margin:0 auto; padding:5px;}
@@ -252,12 +252,12 @@ z-index: 999;}
 .block-slider:hover .bx-next{
 	right: 10px;
 }
-.block-slider .bx-prev:hover,
+/* .block-slider .bx-prev:hover,
 .block-slider .bx-next:hover{
 	background: #5a88ca;
 	color: #fff;
 	border-color: #5a88ca;
-}
+} */
 
 /*------------------
 [4. Slidershow]
@@ -347,14 +347,14 @@ z-index: 999;}
   overflow: hidden;
 }
 
-.button-radius .icon:before{
+/* .button-radius .icon:before{
   font-family: 'FontAwesome';
   content: "\f105";
   font-size: 14px;
   color: #fff;
   width: 28px;
   height: 28px;
-  background-color: #5a88ca;
+  background-color: #99c71a;
   border-radius: 90%;
   text-align: center;
   line-height: 26px;
@@ -364,7 +364,7 @@ z-index: 999;}
   -o-transition: all 1s ease-out;
   -ms-transition: all 1s ease-out;
   transition: all 1s ease-out;
-}
+} */
 
 .button-radius.white{
   border-color: #fff;
@@ -443,8 +443,8 @@ z-index: 999;}
   top: 0;
   width: 100%;transition: .4s;
 }
-.product-hover a {
-    background: none repeat scroll 0 0 #5a88ca;
+/* .product-hover a {
+    background: none repeat scroll 0 0 #bbff00;
     border-radius: 5px;
     color: #fff;
     display: block;
@@ -457,17 +457,17 @@ z-index: 999;}
     text-transform: uppercase;
     border: 1px solid #5a88ca;
     width: 80%;z-index: 99;transition: .4s;
-}
+} */
 .product-hover a:hover {
   background: #000;
   text-decoration: none;border-color: #444;
 }
-.product-carousel-price ins {
+/* .product-carousel-price ins {
   color: #5a88ca;
   font-weight: 700;
   margin-right: 5px;
   text-decoration: none;
-}
+} */
 .product-hover a i.fa {
     margin-right: 5px;
 }
@@ -565,12 +565,12 @@ z-index: 999;}
     color: #ffc808;
     margin-bottom: 10px;
 }
-.product-wid-price ins {
+/* .product-wid-price ins {
     color: #5a88ca;
     font-weight: 700;
     margin-right: 10px;
     text-decoration: none;
-}
+} */
 .single-wid-product h2 a {
     color: #222;
 }
@@ -595,15 +595,15 @@ z-index: 999;}
 }
 .product-widget-area .zigzag-bottom{background: #f4f4f4;}
 .footer-top-area .zigzag-bottom{background: #f4f4f4}
-.footer-top-area {background: none repeat scroll 0 0 #333;
+/* .footer-top-area {background: none repeat scroll 0 0 #333;
 color: #999;
-padding: 35px 0 180px;}
+padding: 35px 0 180px;} */
 
 
 .footer-bottom-area {background: #000;color: #fff}
-.footer-about-us span {
+/* .footer-about-us span {
   color: #5a88ca;
-}
+} */
 .footer-wid-title {
   font-family: raleway;
   font-size: 30px;
@@ -628,7 +628,7 @@ padding: 35px 0 180px;}
 }
 
 
-.footer-social a {
+/* .footer-social a {
   background: none repeat scroll 0 0 #5a88ca;
   color: #fff;
   display: inline-block;
@@ -639,7 +639,7 @@ padding: 35px 0 180px;}
   padding-top: 5px;
   text-align: center;
   width: 40px;border: 1px solid #5a88ca;
-}
+} */
 
 .footer-social a:hover {background-color: #222;border-color: #666}
 
