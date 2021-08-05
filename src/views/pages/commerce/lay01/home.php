@@ -1,4 +1,4 @@
-<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home','layout'=>$dados]); ?>
+<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados]); ?>
 
 <?php if (!empty($prodBanner)) : ?>
     <div class="slider-area">
@@ -10,7 +10,8 @@
                         <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pb['banner_img']; ?>" alt="Slide">
                         <div class="caption-group">
                             <h2 class="caption title">
-                                <?php echo $pb['nome_pro']; ?> <!--<span class="primary"><strong></strong></span>-->
+                                <?php echo $pb['nome_pro']; ?>
+                                <!--<span class="primary"><strong></strong></span>-->
                             </h2>
                             <!-- <h4 class="caption subtitle"></h4> -->
                             <a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
@@ -19,7 +20,7 @@
                 <?php endforeach; ?>
             </ul>
         </div>
-    </div> 
+    </div>
 <?php endif; ?>
 
 <br><br><br>
@@ -32,7 +33,7 @@
                 <div class="latest-product">
                     <h2 class="section-title">Últimos produtos</h2>
                     <div class="product-carousel">
-                        <?php if(!empty($produtos)): ?>
+                        <?php if (!empty($produtos)) : ?>
                             <?php foreach ($produtos as $produto) : ?>
                                 <div class="single-product">
                                     <div class="product-f-image">
@@ -58,16 +59,16 @@
     </div>
 </div> <!-- End main content area -->
 
-<?php if(!empty($marcasImg)): ?>
+<?php if (!empty($marcasImg)) : ?>
     <div class="brands-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <h2 class="section-title">Nossas marcas</h2>
+                    <h2 class="section-title">Nossas marcas</h2>
                     <div class="brand-wrapper">
                         <div class="brand-list">
-                            <?php foreach($marcasImg as $img): ?>
+                            <?php foreach ($marcasImg as $img) : ?>
                                 <img id="imagem" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $img['marca_img']; ?>" alt="Nossas marcas">
                             <?php endforeach; ?>
                         </div>
@@ -179,11 +180,11 @@
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Novos produtos</h2>
-                    <?php if(!empty($produtos)): ?>
+                    <?php if (!empty($produtos)) : ?>
                         <?php $i = 0; ?>
                         <?php foreach ($produtos as $produto) : ?>
                             <?php $i++; ?>
-                            <?php if($i > 3) break; ?>
+                            <?php if ($i > 3) break; ?>
                             <div class="single-wid-product">
                                 <a href="single-product.html"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb"></a>
                                 <h2><a href="single-product.html"><?php echo $produto['nome_pro'] ?></a></h2>
@@ -200,10 +201,10 @@
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 </div> <!-- End product widget area -->
 
-<?php $render('commerce/lay01/footer', ['dados'=>$dados]); ?>
+<?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
