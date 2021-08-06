@@ -265,7 +265,7 @@ class Produto extends Model{
     // -- Lista todos produtos com suas imagens
     public function listaProdutosImg($order){
         $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
-                JOIN produto_imagem pi
+                LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
                 WHERE p.ecommerce_id = ? ORDER BY p.produto_id $order";
         $sql = $this->db->prepare($sql);
@@ -279,8 +279,9 @@ class Produto extends Model{
             $i = null;
 
             foreach($produtos as $p){
-                if($i != $p['produto_id']){
-                    $i = $p['produto_id'];
+                // Colocando o p[0] porque nao está vindo o id no primeiro array
+                if($i != $p[0]){
+                    $i = $p[0];
                     $produtosNovo[] = $p;
                 }
             }

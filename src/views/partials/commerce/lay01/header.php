@@ -129,7 +129,22 @@
             padding: 35px 0 180px;
         }
         .product-big-title-area {background: url(<?php echo BASE_ASS_C; ?>images/crossword.png) repeat scroll 0 0 <?php echo $layout['cor']; ?>}
-
+        .product-inner-price > ins {
+            color: <?php echo $layout['cor']; ?>;
+            font-weight: 700;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        input[type="submit"], button[type=submit] {
+            background: none repeat scroll 0 0 <?php echo $layout['cor']; ?>;
+            border: medium none;
+            color: #fff;
+            padding: 11px 20px;
+            text-transform: uppercase;
+        }
+        .product-tab li.active {
+            background: none repeat scroll 0 0 <?php echo $layout['cor']; ?>;
+        }
         .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: <?php echo $layout['cor']; ?>; color:#FFF;}
     </style>
 
@@ -199,7 +214,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         <li><a href="shop.html">Produtos</a></li>
                         <li><a href="single-product.html">Single product</a></li>
                         <li><a href="cart.html">Cart</a></li>

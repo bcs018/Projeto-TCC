@@ -760,13 +760,13 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
     border: 1px solid #ddd;
     padding: 10px;
 }
-input[type="submit"], button[type=submit] {
+/* input[type="submit"], button[type=submit] {
     background: none repeat scroll 0 0 #5a88ca;
     border: medium none;
     color: #fff;
     padding: 11px 20px;
     text-transform: uppercase;
-}
+} */
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
     margin-bottom: 10px;
@@ -843,12 +843,12 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .product-inner-price {
     margin-bottom: 25px;
 }
-.product-inner-price > ins {
+/* .product-inner-price > ins {
     color: #5a88ca;
     font-weight: 700;
     margin-right: 10px;
     text-decoration: none;
-}
+} */
 .quantity {
     float: left;
     margin-right: 15px;
@@ -881,9 +881,9 @@ form.cart {
 .product-tab li {
     display: inline-block;
 }
-.product-tab li.active {
+/* .product-tab li.active {
     background: none repeat scroll 0 0 #5a88ca;
-}
+} */
 .product-tab li.active a {
     color: #fff;
 }

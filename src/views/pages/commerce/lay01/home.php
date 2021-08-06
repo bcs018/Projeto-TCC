@@ -19,7 +19,7 @@ if(isset($_SESSION['message'])){
                                 <!--<span class="primary"><strong></strong></span>-->
                             </h2>
                             <!-- <h4 class="caption subtitle"></h4> -->
-                            <a class="caption button-radius" href="/visualizar/produto/<?php echo $pb['produto_id']; ?>"><span class="icon"></span>Visualizar</a>
+                            <a class="caption button-radius" href="/visualizar/produto/<?php echo $pb[0]; ?>"><span class="icon"></span>Visualizar</a>
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -29,6 +29,8 @@ if(isset($_SESSION['message'])){
 <?php endif; ?>
 
 <br><br><br>
+
+<!- -->
 
 <div class="maincontent-area">
     <div class="zigzag-bottom"></div>
@@ -42,17 +44,21 @@ if(isset($_SESSION['message'])){
                             <?php foreach ($produtos as $produto) : ?>
                                 <div class="single-product">
                                     <div class="product-f-image">
-                                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
+                                        <?php if($produto['url'] == null): ?>
+                                            <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" width="500px" height="1000" alt="">
+                                        <?php else: ?>
+                                            <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
+                                        <?php endif; ?>
                                         <div class="product-hover">
                                             <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a>
-                                            <a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                            <a href="/visualizar/produto/<?php echo $produto[0]; ?>" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
                                         </div>
                                     </div>
 
-                                    <h2><a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><?php echo $produto['nome_pro']; ?></a></h2>
+                                    <h2><a href="/visualizar/produto/<?php echo $produto[0]; ?>"><?php echo $produto['nome_pro']; ?></a></h2>
 
                                     <div class="product-carousel-price">
-                                        <ins><?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?></ins> <del><?php echo 'R$' . number_format($produto['preco_antigo'], 2, ',', '.'); ?></del>
+                                        <ins><?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?></ins> <del><?php echo ($produto['preco_antigo'] == 0.00)?'':'R$' . number_format($produto['preco_antigo'], 2, ',', '.'); ?></del>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -191,8 +197,14 @@ if(isset($_SESSION['message'])){
                             <?php $i++; ?>
                             <?php if ($i > 3) break; ?>
                             <div class="single-wid-product">
-                                <a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb"></a>
-                                <h2><a href="/visualizar/produto/<?php echo $produto['produto_id']; ?>"><?php echo $produto['nome_pro'] ?></a></h2>
+                                <a href="/visualizar/produto/<?php echo $produto[0]; ?>">
+                                    <?php if($produto['url'] == null): ?>    
+                                        <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" width="500px" height="1000" alt="" class="product-thumb">
+                                    <?php else: ?>
+                                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="" class="product-thumb">
+                                    <?php endif; ?>
+                                </a>
+                                <h2><a href="/visualizar/produto/<?php echo $produto[0]; ?>"><?php echo $produto['nome_pro'] ?></a></h2>
                                 <div class="product-wid-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -201,7 +213,7 @@ if(isset($_SESSION['message'])){
                                     <i class="fa fa-star"></i>
                                 </div>
                                 <div class="product-wid-price">
-                                    <ins><?php echo $produto['preco'] ?></ins> <del><?php echo $produto['preco_antigo'] ?></del>
+                                    <ins><?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?></ins> <del> <?php echo ($produto['preco_antigo'] == 0.00)?'':'R$' . number_format($produto['preco_antigo'], 2, ',', '.'); ?></del>
                                 </div>
                             </div>
                         <?php endforeach; ?>

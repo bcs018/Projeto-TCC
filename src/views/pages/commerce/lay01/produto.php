@@ -1,4 +1,4 @@
-<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados]); ?>
+<?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | '. $produto[0]['nome_pro'], 'layout' => $dados]); ?>
 
 <div class="product-big-title-area">
     <div class="container">
@@ -17,65 +17,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <!-- <div class="single-sidebar">
-                    <h2 class="sidebar-title">Search Products</h2>
-                    <form action="">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
-                    </form>
-                </div> -->
-
-                <!-- <div class="single-sidebar">
-                    <h2 class="sidebar-title">Products</h2>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Recent Posts</h2>
+                    <h2 class="sidebar-title">Postagens recentes</h2>
                     <ul>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
+                        <?php if (!empty($produtos)) : ?>
+                            <?php $i=0; ?>
+                            <?php foreach ($produtos as $p) : ?>
+                                <?php $i++; ?>
+                                <?php if($i > 5) break; ?>
+                                <li><a href=""><?php echo $p['nome_pro']; ?></a></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-8">
                 <div class="product-content-right">
-                    <div class="product-breadcroumb">
-                        <?php foreach($categoria as $c): ?>
-                            <a href=""><?php echo $c['nome_cat'] ?></a>
-                        <?php endforeach; ?>
-                    </div>
+                    <div class="product-inner-category">
+                        <p>Categoria: <?php foreach($categoria as $c): ?>
+                                          <a href=""><?php echo $c['nome_cat'] ?></a> /
+                                      <?php endforeach; ?>. </p>
+                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="product-images">
@@ -98,22 +61,16 @@
                             <div class="product-inner">
                                 <h2 class="product-name"><?php echo $produto[0]['nome_pro']; ?></h2>
                                 <div class="product-inner-price">
-                                    <ins style="font-size:x-large;"><?php echo 'R$'. number_format($produto[0]['preco'],2,',','.') ; ?></ins> <del><?php echo 'R$'. number_format($produto[0]['preco_antigo'],2,',','.'); ?></del>
+                                    <ins style="font-size:x-large;"><?php echo 'R$'. number_format($produto[0]['preco'],2,',','.') ; ?></ins> <del><?php echo ($produto[0]['preco_antigo'] == 0.00)?'':'R$' . number_format($produto[0]['preco_antigo'], 2, ',', '.'); ?></del>
                                 </div>
 
                                 <form action="" class="cart">
-                                    <div class="quantity">
+                                    <!-- <div class="quantity">
                                         <input type="number" size="4" class="input-text qty text" title="Quantidade" value="1" name="quantidade" min="1" step="1">
-                                    </div>
+                                    </div> -->
                                     <button class="add_to_cart_button" type="submit">Comprar</button>
                                 </form>
-
-                                <div class="product-inner-category">
-                                    <p>Categoria: <?php foreach($categoria as $c): ?>
-                                                      <a href=""><?php echo $c['nome_cat'] ?></a> /
-                                                  <?php endforeach; ?>. </p>
-                                </div>
-
+                                <br><br>
                                 <div role="tabpanel">
                                     <ul class="product-tab" role="tablist">
                                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Descrição do produto</a></li>
@@ -130,9 +87,8 @@
                         </div>
                     </div>
 
-
                     <div class="related-products-wrapper">
-                        <h2 class="related-products-title">Related Products</h2>
+                        <h2 class="related-products-title">PRODUTOS RELACIONADOS</h2>
                         <div class="related-products-carousel">
                             <div class="single-product">
                                 <div class="product-f-image">

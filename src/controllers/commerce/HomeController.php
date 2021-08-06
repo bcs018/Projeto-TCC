@@ -59,8 +59,9 @@ class HomeController extends Controller {
         $cate = new Categoria;
         $info = new Info;
 
-        $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-        $produto = $prod->listaProduto(addslashes($id['id']));
+        $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produto  = $prod->listaProduto(addslashes($id['id']));
+        $produtos = $prod->listaProdutos();
 
         if(!$produto){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
@@ -75,6 +76,7 @@ class HomeController extends Controller {
         $categoriaProd = $cate->listaCategoriaOrganizada($produto[0]['categoria_id']);
 
         $this->render('commerce/'.$dados['layout'].'/produto', [
+                                                                'produtos'  => $produtos,
                                                                 'produto'   => $produto,
                                                                 'categoria' => $categoriaProd,
                                                                 'dados'     => $dados
