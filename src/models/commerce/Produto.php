@@ -292,6 +292,49 @@ class Produto extends Model{
         return false;
     }
 
+    // Lista produtos referenciados pela categoria
+    public function listaProdutosRelacionados($idCat){        
+        $cat = new Categoria;
+        $categorias = $cat->listaCategoriaOrganizada($idCat);
+
+        // Pegando todos os produtos cuja categoria se enquadra na categoria vinda do parametro
+        foreach ($categorias as $c) {
+            $sql = "SELECT * FROM produto p
+                    LEFT JOIN produto_imagem pi
+                    ON pi.produto_id = p.produto_id
+                    WHERE p.categoria_id = ? AND p.ecommerce_id = ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $c['categoria_id']);
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                $produtosRel[] = $sql->fetchAll();
+            }
+        }
+
+        // Arrumando o array pois estava ficando com 3 array um dentro do outro e o certo é ficar somente 2 arrays
+        for($i=0; $i<count($produtosRel); $i++){
+            $prodRelNovo[] = $produtosRel[$i][0];
+        }
+        
+        $i = null;
+
+        $produtosRel = array();
+
+        // Deixando sem produtos repetidos dentro do array
+        foreach($prodRelNovo as $pr){
+            // Colocando o p[0] porque nao está vindo o id no primeiro array
+            if($i != $pr[0]){
+                $i = $pr[0];
+                $produtosRel[] = $pr;
+            }
+        }
+
+        return $produtosRel;
+    }
+
+
     public function excImagem($idImg, $idProd){
         $sql = "SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
