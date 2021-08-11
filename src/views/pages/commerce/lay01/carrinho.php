@@ -74,60 +74,48 @@
                             </table>
                         </form>
 
-                        <div class="cart-collaterals">
+                        <div class="col-md-6 float-left">
                             <div class="cart_totals ">
-                                <h2>Cart Totals</h2>
+                                <h2>Total</h2>
 
                                 <table cellspacing="0">
                                     <tbody>
                                         <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
+                                            <th>Subtotal</th>
                                             <td><span class="amount">£15.00</span></td>
                                         </tr>
 
                                         <tr class="shipping">
-                                            <th>Shipping and Handling</th>
+                                            <th>Frete</th>
                                             <td>Free Shipping</td>
                                         </tr>
 
                                         <tr class="order-total">
-                                            <th>Order Total</th>
+                                            <th>Total</th>
                                             <td><strong><span class="amount">£15.00</span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- <div class="container">
-                                <div class="row">-->
-                                    <div class="float-left"> 
-                                    <form method="post" action="#" class="shipping_calculator float-left">
-                                            <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2>
+                        </div>
 
-                                            <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
+                        <div class="col-md-6 ">
+                            <form method="post" action="#" class="shipping_calculator float-left">
+                                <h2>
+                                    <a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculo do Frete</a>
+                                </h2>
 
-                                                <p class="form-row form-row-wide">
-                                                    <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
-                                                        <option value="">Select a country…</option>
-                                                        <option value="AX">Åland Islands</option>
-                                                        <option value="AF">Afghanistan</option>
-                                                        <option value="AL">Albania</option>
-                                                        <option value="DZ">Algeria</option>
-                                                        <option value="AD">Andorra</option>
-                                                    </select>
-                                                </p>
+                                <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
+                                    <p class="form-row form-row-wide">
+                                        <input type="text" id="calc_shipping_postcode" name="cep" placeholder="Informe o CEP" value="" class="input-text">
+                                    </p>
 
-                                                <p class="form-row form-row-wide"><input type="text" id="calc_shipping_state" name="calc_shipping_state" placeholder="State / county" value="" class="input-text"> </p>
+                                    <p>
+                                        <button class="button" value="1" name="calc_shipping" type="submit">Calcular</button>
+                                    </p>
 
-                                                <p class="form-row form-row-wide"><input type="text" id="calc_shipping_postcode" name="calc_shipping_postcode" placeholder="Postcode / Zip" value="" class="input-text"></p>
-
-
-                                                <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button></p>
-
-                                            </section>
-                                        </form>
-                                     </div>
-                                <!--</div>
-                            </div> -->
+                                </section>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -137,3 +125,7 @@
 </div>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
+
+<script type="text/javascript">
+    $('#calc_shipping_postcode').mask("00000-000");
+</script>

@@ -952,7 +952,7 @@ table.shop_table th, table.shop_table td {
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 15px;
-    text-align: center;
+    text-align: right;
 }
 table.shop_table th {
     background: none repeat scroll 0 0 #f4f4f4;
@@ -990,9 +990,9 @@ td.actions div.coupon {
     width: 57%;
 }
 .cart_totals {
-    float: right;
+    float: left;
     margin-bottom: 50px;
-    width: 40%;
+    width: 90%;
 }
 .cart-collaterals h2 {
     color: #5a88ca;
