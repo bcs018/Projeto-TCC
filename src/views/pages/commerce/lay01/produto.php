@@ -64,9 +64,8 @@
                                 <div class="product-inner-price">
                                     <ins style="font-size:x-large;"><?php echo 'R$' . number_format($produto[0]['preco'], 2, ',', '.'); ?></ins> <del><?php echo ($produto[0]['preco_antigo'] == 0.00) ? '' : 'R$' . number_format($produto[0]['preco_antigo'], 2, ',', '.'); ?></del>
                                 </div>
-
                                 <form action="/carrinho" method="POST" class="cart">
-                                    <input type="hidden" name="id_produto" value="<?php echo $produto[0]['produto_id']; ?>">
+                                    <input type="hidden" name="id_produto" value="<?php echo $produto[0][0]; ?>">
                                     <button class="add_to_cart_button" type="submit">Comprar</button>
                                 </form>
                                 <h5>Estoque: <b><?php echo $produto[0]['estoque']; ?></b></h5>

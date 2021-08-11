@@ -242,7 +242,18 @@ class Produto extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            return $sql->fetchAll();
+            $i = null;
+
+            // Deixando sem produtos repetidos dentro do array
+            foreach($sql->fetchAll() as $p){
+                // Colocando o p[0] porque nao está vindo o id no primeiro array
+                if($i != $p[0]){
+                    $i = $p[0];
+                    $produtoNovo[] = $p;
+                }
+            }
+
+            return $produtoNovo;
         }
 
         return false;
