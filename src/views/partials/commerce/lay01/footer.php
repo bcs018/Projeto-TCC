@@ -80,7 +80,8 @@
         </div>
     </div> End footer bottom area -->
 
-    <!-- Latest jQuery form server -->
+    <!-- Jquery -->
+    <!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
 
     <!-- Bootstrap JS form CDN -->
@@ -92,7 +93,8 @@
 
     <!-- jQuery easing -->
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/jquery.easing.1.3.min.js"></script>
-
+    <!-- Mask -->
+    <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
     <!-- Main Script -->
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/main.js"></script>
 

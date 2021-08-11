@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/style.css">
     <link rel="stylesheet" href="<?php echo BASE_ASS_C; ?>lay01/css/responsive.css">
+
     <?php if(isset($_SESSION['ico'])): ?>
         <link rel="shortcut icon" href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['ico']; ?>">
     <?php endif; ?>

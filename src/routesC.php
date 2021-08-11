@@ -35,6 +35,9 @@ $router->get('/admin/painel/excluir-ban/{idprod}', 'ProdutoController@excBanner'
 $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
 $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 
+// -- Carrinho
+$router->post('/carrinho', 'CarrinhoController@index');
+
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');
 $router->get('/admin/painel/cadastrar-categorias', 'CategoriaController@cadCategoria');
