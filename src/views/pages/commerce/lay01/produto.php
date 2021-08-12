@@ -64,7 +64,7 @@
                                 <div class="product-inner-price">
                                     <ins style="font-size:x-large;"><?php echo 'R$' . number_format($produto[0]['preco'], 2, ',', '.'); ?></ins> <del><?php echo ($produto[0]['preco_antigo'] == 0.00) ? '' : 'R$' . number_format($produto[0]['preco_antigo'], 2, ',', '.'); ?></del>
                                 </div>
-                                <form action="/carrinho" method="POST" class="cart">
+                                <form action="/add-carrinho" method="POST" class="cart">
                                     <input type="hidden" name="id_produto" value="<?php echo $produto[0][0]; ?>">
                                     <button class="add_to_cart_button" type="submit">Comprar</button>
                                 </form>
@@ -80,7 +80,7 @@
                                             <p><?php echo $produto[0]['descricao']; ?></p>
                                         </div>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                                        <!-- <div role="tabpanel" class="tab-pane fade" id="profile"> -->
                                             <h2>Cálculo do frete</h2>
                                             <div class="submit-review">
                                                 <p>
@@ -91,7 +91,7 @@
                                                     <input type="submit" value="Calcular">
                                                 </p>
                                             </div>
-                                        </div>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>

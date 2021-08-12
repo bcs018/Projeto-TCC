@@ -36,7 +36,8 @@ $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto
 $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 
 // -- Carrinho
-$router->post('/carrinho', 'CarrinhoController@index');
+$router->post('/add-carrinho', 'CarrinhoController@addCarrinho');
+$router->get('/carrinho', 'CarrinhoController@index');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');
