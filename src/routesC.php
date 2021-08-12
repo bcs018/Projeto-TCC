@@ -38,6 +38,7 @@ $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 // -- Carrinho
 $router->post('/add-carrinho', 'CarrinhoController@addCarrinho');
 $router->get('/carrinho', 'CarrinhoController@index');
+$router->get('/deletar/item/carrinho/{id}', 'CarrinhoController@delItem');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

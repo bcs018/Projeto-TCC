@@ -952,7 +952,7 @@ table.shop_table th, table.shop_table td {
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
     padding: 15px;
-    text-align: right;
+    text-align: left
 }
 table.shop_table th {
     background: none repeat scroll 0 0 #f4f4f4;

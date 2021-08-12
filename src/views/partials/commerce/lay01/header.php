@@ -176,7 +176,7 @@
                 <div class="col-sm-4">
                     <div class="logo">
                         <?php if(isset($_SESSION['logo'])): ?>
-                            <h1><a href="./"><img id="imagem" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>"></a></h1>
+                            <h1><a href="/"><img id="imagem" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>"></a></h1>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="shopping-item">
-                        <a href="cart.html">Carrinho - <span class="cart-amunt">R$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Carrinho - <span class="cart-amunt">R$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?php echo(isset($_SESSION['carrinho']))?count($_SESSION['carrinho']):'0'; ?></span></a>
                     </div>
                 </div>
                 

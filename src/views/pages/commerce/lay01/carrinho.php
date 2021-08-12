@@ -32,35 +32,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="cart_item">
-                                        <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="#">×</a>
-                                        </td>
+                                    <?php if($control): ?>
+                                        <?php echo $carrinho; ?>
+                                    <?php else: ?>
+                                        <?php foreach($carrinho as $c): ?>
+                                            <tr class="cart_item">
+                                                <td class="product-remove">
+                                                    <center><a title="Remover" class="remove" href="/deletar/item/carrinho/<?php echo $c[0] ?>">X</a></center>
+                                                </td>
 
-                                        <td class="product-thumbnail">
-                                            <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
-                                        </td>
+                                                <td class="product-thumbnail">
+                                                    <a href="/visualizar/produto/<?php echo $c[0]; ?>"><center><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?php if ($c['url'] == null) : ?>
+                                                                                                                                                                  <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
+                                                                                                                                                              <?php else : ?>
+                                                                                                                                                                  <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
+                                                                                                                                                              <?php endif; ?>"></center>
+                                                                                                                                                            </a>
+                                                </td>
 
-                                        <td class="product-name">
-                                            <a href="single-product.html">Ship Your Idea</a>
-                                        </td>
+                                                <td class="product-name">
+                                                    <a href="/visualizar/produto/<?php echo $c[0]; ?>"><?php echo $c['nome_pro']; ?></a>
+                                                </td>
 
-                                        <td class="product-price">
-                                            <span class="amount">£15.00</span>
-                                        </td>
+                                                <td class="product-price">
+                                                    <span class="amount"><?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?></span>
+                                                </td>
 
-                                        <td class="product-quantity">
-                                            <div class="quantity buttons_added">
-                                                <input type="number" size="4" class="input-text qty text" title="Quantidade" value="1" min="1" step="1">
-                                            </div>
-                                        </td>
+                                                <td class="product-quantity">
+                                                    <div class="quantity buttons_added">
+                                                        <input type="number" size="4" name="qtd" class="input-text qty text" title="Quantidade" value="<?php echo $_SESSION['carrinho'][$c[0]]; ?>" min="1" step="1">
+                                                    </div>
+                                                </td>
 
-                                        <td class="product-subtotal">
-                                            <span class="amount">£15.00</span>
-                                        </td>
-                                    </tr>
+                                                <td class="product-subtotal">
+                                                    <span class="amount">£15.00</span>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                     <tr>
-                                        <td class="actions" colspan="6">
+                                        <td class="actions" colspan="6" style="text-align: right;">
                                             <!-- <div class="coupon">
                                                     <label for="coupon_code">Coupon:</label>
                                                     <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
@@ -76,8 +87,6 @@
 
                         <div class="col-md-6 float-left">
                             <div class="cart_totals ">
-                                <h2>Total</h2>
-
                                 <table cellspacing="0">
                                     <tbody>
                                         <tr class="cart-subtotal">

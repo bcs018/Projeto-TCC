@@ -97,6 +97,7 @@
     <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
     <!-- Main Script -->
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/main.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/calculaPreco.js"></script>
 
     <!-- Slider -->
     <script type="text/javascript" src="<?php echo BASE_ASS_C; ?>lay01/js/bxslider.min.js"></script>
