@@ -155,6 +155,11 @@ create table produto(
     novo_produto tinyint default 0,
     opcoes varchar(100),
     banner_img varchar(50) default 0,
+    peso decimal(10,0) not null,
+    altura decimal(10,0) not null,
+    largura decimal(10,0) not null,
+    comprimento decimal(10,0) not null,
+    diametro decimal(10,0) not null,
     
     primary key(produto_id),
     foreign key(categoria_id) references categoria(categoria_id),
