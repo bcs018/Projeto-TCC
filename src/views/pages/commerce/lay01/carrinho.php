@@ -43,11 +43,11 @@
 
                                                 <td class="product-thumbnail">
                                                     <a href="/visualizar/produto/<?php echo $c[0]; ?>"><center><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="<?php if ($c['url'] == null) : ?>
-                                                                                                                                                                  <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
-                                                                                                                                                              <?php else : ?>
-                                                                                                                                                                  <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
-                                                                                                                                                              <?php endif; ?>"></center>
-                                                                                                                                                            </a>
+                                                                                                                                                                                                <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
+                                                                                                                                                                                            <?php else : ?>
+                                                                                                                                                                                                <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
+                                                                                                                                                                                            <?php endif; ?>"></center>
+                                                                                                                                                                                            </a>
                                                 </td>
 
                                                 <td class="product-name">
@@ -60,13 +60,14 @@
 
                                                 <td class="product-quantity">
                                                     <div class="quantity buttons_added">
-                                                        <input type="number" size="4" name="qtd" class="input-text qty text" title="Quantidade" value="<?php echo $_SESSION['carrinho'][$c[0]]; ?>" min="1" step="1">
+                                                        <input type="number" id="<?php echo $c[0]; ?>" size="4" name="qtd" class="input-text qty text" title="Quantidade" value="<?php echo $_SESSION['carrinho'][$c[0]]; ?>" min="1" step="1">
                                                     </div>
                                                 </td>
 
                                                 <td class="product-subtotal">
-                                                    <span class="amount">£15.00</span>
+                                                    <div id="v<?php echo $c[0]; ?>"><?php echo 'R$ ' . number_format($c['preco'] * $_SESSION['carrinho'][$c[0]], 2, ',', '.'); ?></div>
                                                 </td>
+
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
@@ -91,7 +92,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
+                                            <td><div id="subtot"><?php echo 'R$ '. number_format($subtotal, 2, ',','.'); ?></div></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -101,7 +102,7 @@
 
                                         <tr class="order-total">
                                             <th>Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <td><strong><span class="amount"><?php echo 'R$ '. number_format($subtotal, 2, ',','.'); ?></span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -110,20 +111,14 @@
 
                         <div class="col-md-6 ">
                             <form method="post" action="#" class="shipping_calculator float-left">
-                                <h2>
-                                    <a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculo do Frete</a>
-                                </h2>
+                                <h2>Calculo do Frete</h2>
+                                <p class="form-row form-row-wide">
+                                    <input type="text" id="calc_shipping_postcode" name="cep" placeholder="Informe o CEP" value="" class="input-text">
+                                </p>
 
-                                <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
-                                    <p class="form-row form-row-wide">
-                                        <input type="text" id="calc_shipping_postcode" name="cep" placeholder="Informe o CEP" value="" class="input-text">
-                                    </p>
-
-                                    <p>
-                                        <button class="button" value="1" name="calc_shipping" type="submit">Calcular</button>
-                                    </p>
-
-                                </section>
+                                <p>
+                                    <button class="button" value="1" name="calc_shipping" type="submit">Calcular</button>
+                                </p>
                             </form>
                         </div>
                     </div>

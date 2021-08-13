@@ -13,6 +13,8 @@ class CarrinhoController extends Controller {
         $prod = new Produto;
         $carr = new Carrinho;
 
+        $subtotal = floatval($info->somaValor());
+
         //unset($_SESSION['carrinho']);
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
@@ -28,7 +30,7 @@ class CarrinhoController extends Controller {
 
         $carrinho = $carr->listaItens($_SESSION['carrinho']);
 
-        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'control'=>false]);
+        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'subtotal'=>$subtotal, 'control'=>false]);
     }
 
     public function addCarrinho(){
@@ -73,6 +75,28 @@ class CarrinhoController extends Controller {
         }
 
         header("Location: /carrinho");
+    }
+
+    public function calPrecoProduto(){
+        $prod = new Produto;
+
+        $id = $_POST['id'];
+        $qt = $_POST['qt'];
+
+        $produto = $prod->listaProduto($id);
+
+        $valor = floatval($produto[0]['preco']) * $qt;
+
+        $_SESSION['carrinho'][$id] = $qt;
+
+        echo json_encode(['valor'=>number_format($valor, 2, ',','.')]);
+        exit;
+    }
+
+    public function calTotalProduto(){
+        $info = new Info;
+
+        echo json_encode(['valor' => number_format($info->somaValor(), 2, ',','.')]);
     }
 
 }

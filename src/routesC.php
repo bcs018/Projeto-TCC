@@ -37,6 +37,8 @@ $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 
 // -- Carrinho
 $router->post('/add-carrinho', 'CarrinhoController@addCarrinho');
+$router->post('/calcular-subtotal', 'CarrinhoController@calTotalProduto');
+$router->post('/calcular-preco', 'CarrinhoController@calPrecoProduto');
 $router->get('/carrinho', 'CarrinhoController@index');
 $router->get('/deletar/item/carrinho/{id}', 'CarrinhoController@delItem');
 
