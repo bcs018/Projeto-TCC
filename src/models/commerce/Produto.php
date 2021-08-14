@@ -231,7 +231,9 @@ class Produto extends Model{
     }
 
     // -- Lista um produto com suas imagens
-    public function listaProduto($id){
+    public function listaProduto($id, $control=0){
+        $produtos = [];
+
         $sql = 'SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
@@ -240,6 +242,11 @@ class Produto extends Model{
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $id);
         $sql->execute();
+
+        if($control == 1){
+            $produtos = $sql->fetchAll();
+            return $produtos;
+        }
 
         if($sql->rowCount() > 0){
             $i = null;

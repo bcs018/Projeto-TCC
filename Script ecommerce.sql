@@ -73,6 +73,7 @@ create table ecommerce_usu(
     logotipo varchar(50) not null default 0,
     ico varchar(50) not null default 0,
     cor varchar (50) default '#adadad',
+    cor_rodape varchar (50) default '#adadad',
     
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/

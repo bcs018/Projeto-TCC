@@ -47,9 +47,11 @@ class ProdutoController extends Controller {
         $cate = new Categoria;
         $marc = new Marca;
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']));
+        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']), 1);
         $dados['categorias']  = $cate->listaCategorias();
-        $dados['marcas']      = $marc->listaMarcas();
+        $dados['marcas']      = $marc->listaMarcas(); 
+
+        //echo '<pre>';print_r($dados['produtos']);
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
@@ -104,7 +106,7 @@ class ProdutoController extends Controller {
         $cate = new Categoria;
         $marc = new Marca;
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']));
+        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']),1);
         $dados['categorias']  = $cate->listaCategorias();
         $dados['marcas']      = $marc->listaMarcas();
 

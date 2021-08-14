@@ -60,7 +60,7 @@ class HomeController extends Controller {
         $info = new Info;
 
         $dados      = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-        $produto    = $prod->listaProduto(addslashes($id['id']));
+        $produto    = $prod->listaProduto(addslashes($id['id']), 1);
         $produtos   = $prod->listaProdutos();
         $produtoRel = $prod->listaProdutosRelacionados($produto[0]['categoria_id']);
 
