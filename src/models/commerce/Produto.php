@@ -27,7 +27,7 @@ class Produto extends Model{
 
         $_SESSION['message'] = '';
         
-        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco)){
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($peso) || empty($altura) || empty($largura) || empty($comprimento) || empty($diametro)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
@@ -75,8 +75,8 @@ class Produto extends Model{
         if($flag == 1)
             return ['insercao'=>false];
 
-        $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto)
-                VALUES (?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto, peso, altura, largura, comprimento, diametro)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $categoria);
         $sql->bindValue(2, $marca);
@@ -88,6 +88,11 @@ class Produto extends Model{
         $sql->bindValue(8, $precoAnt);
         $sql->bindValue(9, $promo);
         $sql->bindValue(10, $novo);
+        $sql->bindValue(11, $peso);
+        $sql->bindValue(12, $altura);
+        $sql->bindValue(13, $largura);
+        $sql->bindValue(14, $comprimento);
+        $sql->bindValue(15, $diametro);
         
         if($sql->execute())
             return ['insercao'=>true, 'id'=>$this->db->lastInsertId()];

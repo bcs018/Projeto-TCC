@@ -250,11 +250,64 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                 </div>
               </div>
 
-              <div class="card-footer">
+              <!-- <div class="card-footer">
                   <button type="submit" class="btn btn-success">Editar</button>
               </div>
-            </form>
+            </form> -->
           </div>
+
+          <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Dados para o cálculo do frete do produto <b>(Insira os dados mais próximos possiveis)</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="nomeProd">Peso (Kg)</label>
+                                    <input type="text" class="form-control" id="peso" name="peso"
+                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['peso'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Altura (cm)</label>
+                                    <input type="text" class="form-control" id="altura" name="altura"
+                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['altura'] ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Largura (cm)</label>
+                                    <input type="text" class="form-control" id="largura" name="largura"
+                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['largura'] ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Comprimento (cm)</label>
+                                    <input type="text" class="form-control" id="comprimento" name="comprimento"
+                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['comprimento'] ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Diâmetro (cm)</label>
+                                    <input type="text" class="form-control" id="diametro" name="diametro"
+                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['diametro'] ?>">
+
+                                </div>
+
+                                
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-success">Editar</button>
+                            </div>
+                        </form>
+                    </div>
+
         </div>
       </div>
     </div>
@@ -297,6 +350,21 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
         reverse: true
     });
     $('#precoAnt').mask("# ##0,00", {
+        reverse: true
+    });
+    $('#peso').mask("00,00", {
+        reverse: true
+    });
+    $('#altura').mask("00,00", {
+        reverse: true
+    });
+    $('#largura').mask("00,00", {
+        reverse: true
+    });
+    $('#comprimento').mask("00,00", {
+        reverse: true
+    });
+    $('#diametro').mask("00,00", {
         reverse: true
     });
 </script>

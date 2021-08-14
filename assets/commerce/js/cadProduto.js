@@ -2,17 +2,22 @@ $(function(){
     $('#cadProduto').on('submit', function(e){
         e.preventDefault();
 
-        nomeProd  = $('#nomeProd').val();
-        descProd  = $('#descProd').val();
-        categoria = $('#categoria').val();
-        marca     = $('#marca').val();
-        estoque   = $('#estoque').val();
-        preco     = $('#preco').val();
-        precoAnt  = $('#precoAnt').val();
-        promo     = $('input[name=promo]:checked').val();
-        novo      = $('input[name=novo]:checked').val();
+        nomeProd    = $('#nomeProd').val();
+        descProd    = $('#descProd').val();
+        categoria   = $('#categoria').val();
+        marca       = $('#marca').val();
+        estoque     = $('#estoque').val();
+        preco       = $('#preco').val();
+        precoAnt    = $('#precoAnt').val();
+        promo       = $('input[name=promo]:checked').val();
+        novo        = $('input[name=novo]:checked').val();
+        peso        = $('#precoAnt').val();
+        altura      = $('#precoAnt').val();
+        largura     = $('#precoAnt').val();
+        comprimento = $('#precoAnt').val();
+        diametro    = $('#precoAnt').val();
 
-        if(nomeProd == '' || estoque == '' || preco == ''){
+        if(nomeProd == '' || estoque == '' || preco == '' || peso == '' || altura == '' || largura == '' || comprimento == '' || diametro == ''){
             message = '<br><div class="alert alert-danger" role="alert">Existem campos não preenchidos!</div>';
 
             $('#message').html(message);
@@ -43,15 +48,21 @@ $(function(){
             url: '/admin/painel/cadastrar-produtos/first',
             type: 'POST',
             data:{
-                nomeProd ,
-                descProd ,
-                categoria,
-                marca    ,
-                estoque  ,
-                preco    ,
-                precoAnt ,
-                promo    ,
-                novo     ,
+                nomeProd    ,
+                descProd    ,
+                categoria   ,
+                marca       ,
+                estoque     ,
+                preco       ,
+                precoAnt    ,
+                promo       ,
+                novo        ,
+                peso        ,
+                altura      ,
+                largura     ,
+                comprimento ,
+                diametro
+
             },
             dataType: 'JSON',
             success:function(dados){

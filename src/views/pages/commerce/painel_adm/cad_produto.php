@@ -206,28 +206,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Altura</label>
+                                    <label for="descProd">Altura (cm)</label>
                                     <input type="text" class="form-control" id="altura" name="altura"
                                         placeholder="Insira o peso do produto" value="<?php if(isset($_POST['altura'])){ echo $_POST['altura']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Largura</label>
+                                    <label for="descProd">Largura (cm)</label>
                                     <input type="text" class="form-control" id="largura" name="largura"
                                         placeholder="Insira o peso do produto" value="<?php if(isset($_POST['largura'])){ echo $_POST['largura']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Comprimento</label>
+                                    <label for="descProd">Comprimento (cm)</label>
                                     <input type="text" class="form-control" id="comprimento" name="comprimento"
                                         placeholder="Insira o peso do produto" value="<?php if(isset($_POST['comprimento'])){ echo $_POST['comprimento']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Diâmetro</label>
+                                    <label for="descProd">Diâmetro (cm)</label>
                                     <input type="text" class="form-control" id="diametro" name="diametro"
                                         placeholder="Insira o peso do produto" value="<?php if(isset($_POST['diametro'])){ echo $_POST['diametro']; } ?>">
 
@@ -259,19 +259,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     $('#precoAnt').mask("# ##0,00", {
         reverse: true
     });
-    $('#peso').mask("000,00", {
+    $('#peso').mask("00,00", {
         reverse: true
     });
-    $('#altura').mask("000,00", {
+    $('#altura').mask("00,00", {
         reverse: true
     });
-    $('#largura').mask("000,00", {
+    $('#largura').mask("00,00", {
         reverse: true
     });
-    $('#comprimento').mask("000,00", {
+    $('#comprimento').mask("00,00", {
         reverse: true
     });
-    $('#diametro').mask("000,00", {
+    $('#diametro').mask("00,00", {
         reverse: true
     });
 </script>
