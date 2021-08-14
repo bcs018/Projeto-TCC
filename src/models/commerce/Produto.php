@@ -13,7 +13,7 @@ class Produto extends Model{
      */
 
     // Cadastra produto
-    public function cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo){
+    public function cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $peso, $altura, $largura, $comprimento, $diametro){
         $flag = 0;
         $preco = str_replace(',','.',$preco);
         $preco = str_replace(' ','',$preco);

@@ -127,18 +127,23 @@ class ProdutoController extends Controller {
 
     // Cadastro de produtos
     public function cadProdutoActionFirst(){
-        $nomeProd   = addslashes($_POST['nomeProd']);
-        $descProd   = addslashes($_POST['descProd']);
-        $categoria  = addslashes($_POST['categoria']);
-        $marca      = addslashes($_POST['marca']);
-        $estoque    = addslashes($_POST['estoque']);
-        $preco      = addslashes($_POST['preco']);
-        $precoAnt   = addslashes($_POST['precoAnt']);
-        $promo      = addslashes($_POST['promo']);
-        $novo       = addslashes($_POST['novo']);
+        $nomeProd    = addslashes($_POST['nomeProd']);
+        $descProd    = addslashes($_POST['descProd']);
+        $categoria   = addslashes($_POST['categoria']);
+        $marca       = addslashes($_POST['marca']);
+        $estoque     = addslashes($_POST['estoque']);
+        $preco       = addslashes($_POST['preco']);
+        $precoAnt    = addslashes($_POST['precoAnt']);
+        $promo       = addslashes($_POST['promo']);
+        $novo        = addslashes($_POST['novo']);
+        $peso        = addslashes($_POST['peso']);
+        $altura      = addslashes($_POST['altura']);
+        $largura     = addslashes($_POST['largura']);
+        $comprimento = addslashes($_POST['comprimento']);
+        $diametro    = addslashes($_POST['diametro']);
 
         $cad = new Produto;
-        $dados = $cad->cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo);
+        $dados = $cad->cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $peso, $altura, $largura, $comprimento, $diametro);
 
         if(isset($_SESSION['message']))
             $dados['message'] = $_SESSION['message'];

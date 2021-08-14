@@ -39,7 +39,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Dados</h3>
+                            <h3 class="card-title">Dados do produto</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -185,11 +185,64 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                             </div>
                             <!-- /.card-body -->
 
+                            <!-- <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-success">Proximo <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></button>
+                            </div> -->
+                    </div>
+
+
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Dados para o cálculo do frete do produto <b>(Insira os dados mais próximos possiveis)</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="nomeProd">Peso (Kg)</label>
+                                    <input type="text" class="form-control" id="peso" name="peso"
+                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['peso'])){ echo $_POST['peso']; } ?>">
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Altura</label>
+                                    <input type="text" class="form-control" id="altura" name="altura"
+                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['altura'])){ echo $_POST['altura']; } ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Largura</label>
+                                    <input type="text" class="form-control" id="largura" name="largura"
+                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['largura'])){ echo $_POST['largura']; } ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Comprimento</label>
+                                    <input type="text" class="form-control" id="comprimento" name="comprimento"
+                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['comprimento'])){ echo $_POST['comprimento']; } ?>">
+
+                                </div>
+                                <div class="form-group">
+                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                    <label for="descProd">Diâmetro</label>
+                                    <input type="text" class="form-control" id="diametro" name="diametro"
+                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['diametro'])){ echo $_POST['diametro']; } ?>">
+
+                                </div>
+
+                                
+                            </div>
+                            <!-- /.card-body -->
+
                             <div class="card-footer text-right">
                                 <button type="submit" class="btn btn-success">Proximo <i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></button>
                             </div>
                         </form>
                     </div>
+
                     <!-- /.card -->
                 </div>
             </div>
@@ -204,6 +257,21 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
         reverse: true
     });
     $('#precoAnt').mask("# ##0,00", {
+        reverse: true
+    });
+    $('#peso').mask("000,00", {
+        reverse: true
+    });
+    $('#altura').mask("000,00", {
+        reverse: true
+    });
+    $('#largura').mask("000,00", {
+        reverse: true
+    });
+    $('#comprimento').mask("000,00", {
+        reverse: true
+    });
+    $('#diametro').mask("000,00", {
         reverse: true
     });
 </script>
