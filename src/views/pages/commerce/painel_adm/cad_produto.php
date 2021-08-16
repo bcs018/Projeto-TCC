@@ -208,28 +208,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="descProd">Altura (cm)</label>
                                     <input type="text" class="form-control" id="altura" name="altura"
-                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['altura'])){ echo $_POST['altura']; } ?>">
+                                        placeholder="Insira a altura do produto" value="<?php if(isset($_POST['altura'])){ echo $_POST['altura']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="descProd">Largura (cm)</label>
                                     <input type="text" class="form-control" id="largura" name="largura"
-                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['largura'])){ echo $_POST['largura']; } ?>">
+                                        placeholder="Insira a largura do produto" value="<?php if(isset($_POST['largura'])){ echo $_POST['largura']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="descProd">Comprimento (cm)</label>
                                     <input type="text" class="form-control" id="comprimento" name="comprimento"
-                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['comprimento'])){ echo $_POST['comprimento']; } ?>">
+                                        placeholder="Insira o comprimento do produto" value="<?php if(isset($_POST['comprimento'])){ echo $_POST['comprimento']; } ?>">
 
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="descProd">Diâmetro (cm)</label>
                                     <input type="text" class="form-control" id="diametro" name="diametro"
-                                        placeholder="Insira o peso do produto" value="<?php if(isset($_POST['diametro'])){ echo $_POST['diametro']; } ?>">
+                                        placeholder="Insira o diâmetro do produto" value="<?php if(isset($_POST['diametro'])){ echo $_POST['diametro']; } ?>">
 
                                 </div>
 

@@ -92,7 +92,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><div id="subtot"><?php echo 'R$ '. number_format($subtotal, 2, ',','.'); ?></div></td>
+                                            <td><div id="subtot"><?php echo (isset($subtotal)) ? 'R$ '. number_format($subtotal, 2, ',','.') : 'R$ 0,00'; ?></div></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -102,13 +102,14 @@
 
                                         <tr class="order-total">
                                             <th>Total</th>
-                                            <td><strong><span class="amount"><?php echo 'R$ '. number_format($subtotal, 2, ',','.'); ?></span></strong> </td>
+                                            <td><strong><span class="amount"><?php echo (isset($subtotal)) ? 'R$ '. number_format($subtotal, 2, ',','.') : 'R$ 0,00'; ?></span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
+                        <?php if(isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0): ?>
                         <div class="col-md-6 ">
                             <form method="post" action="#" class="shipping_calculator float-left">
                                 <h2>Calculo do Frete</h2>
@@ -121,6 +122,7 @@
                                 </p>
                             </form>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

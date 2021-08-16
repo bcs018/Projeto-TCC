@@ -1,10 +1,10 @@
 <?php
-if(!isset($_SESSION['log_admin_c'])){
+if (!isset($_SESSION['log_admin_c'])) {
   header("Location: /admin");
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Editar produto']); 
+$render("commerce/header_painel", ['title' => 'Painel administrativo | Editar produto']);
 ?>
 
 <div class="content-wrapper" style="min-height: 1184.92px;">
@@ -16,12 +16,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
           <h1>Editar produto</h1>
         </div>
       </div>
-      <?php 
-        if(isset($_SESSION['message'])){
-          echo $_SESSION['message'];
-          unset($_SESSION['message']);
-        }
-        ?>
+      <?php
+      if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+      }
+      ?>
     </div>
   </section>
 
@@ -37,19 +37,17 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
             </div>
             <div class="card-body">
               <div class="row">
-                <?php if($produtos[0]['url'] == ''): ?>
-                <h5>Não há imagens cadastradas</h5>
-                <?php else: ?>
-                <?php foreach($produtos as $produto): ?>
-                <div class="col-sm-2">
-                  <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" data-toggle="lightbox"
-                    data-gallery="gallery">
-                    <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>"
-                      class="img-fluid mb-2" alt="black sample">
-                  </a>
-                  <a href="/admin/painel/excluir-img/<?php echo $produto['pi_id'] ?>/<?php echo $produtos[0][0]; ?>">Excluir</a>
-                </div>
-                <?php endforeach; ?>
+                <?php if ($produtos[0]['url'] == '') : ?>
+                  <h5>Não há imagens cadastradas</h5>
+                <?php else : ?>
+                  <?php foreach ($produtos as $produto) : ?>
+                    <div class="col-sm-2">
+                      <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" data-toggle="lightbox" data-gallery="gallery">
+                        <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" class="img-fluid mb-2" alt="black sample">
+                      </a>
+                      <a href="/admin/painel/excluir-img/<?php echo $produto['pi_id'] ?>/<?php echo $produtos[0][0]; ?>">Excluir</a>
+                    </div>
+                  <?php endforeach; ?>
                 <?php endif; ?>
               </div>
             </div>
@@ -71,17 +69,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
             </div>
             <div class="card-body">
               <div class="row">
-                <?php if($produtos[0]['banner_img'] == '0'): ?>
-                <h5>Não há banner cadastrado para esse produto.<br><br>Para cadastrar um novo banner clique na opção <b>"Layout"</b> no Menu</h5>
-                <?php else: ?>
-                <div class="col-sm-2">
-                  <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" data-toggle="lightbox"
-                    data-gallery="gallery">
-                    <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>"
-                      class="img-fluid mb-2" alt="black sample">
-                  </a>
-                  <a href="/admin/painel/excluir-ban/<?php echo $produtos[0][0]; ?>">Excluir</a>
-                </div>
+                <?php if ($produtos[0]['banner_img'] == '0') : ?>
+                  <h5>Não há banner cadastrado para esse produto.<br><br>Para cadastrar um novo banner clique na opção <b>"Layout"</b> no Menu</h5>
+                <?php else : ?>
+                  <div class="col-sm-2">
+                    <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" data-toggle="lightbox" data-gallery="gallery">
+                      <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" class="img-fluid mb-2" alt="black sample">
+                    </a>
+                    <a href="/admin/painel/excluir-ban/<?php echo $produtos[0][0]; ?>">Excluir</a>
+                  </div>
                 <?php endif; ?>
               </div>
             </div>
@@ -112,9 +108,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                 <div class="form-group">
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                   <label for="nomeProd">Nome produto</label>
-                  <input type="text" class="form-control" id="nomeProd" name="nomeProd"
-                    placeholder="Insira o nome do produto"
-                    value="<?php echo $produtos[0]['nome_pro']; ?>">
+                  <input type="text" class="form-control" id="nomeProd" name="nomeProd" placeholder="Insira o nome do produto" value="<?php echo $produtos[0]['nome_pro']; ?>">
                 </div>
                 <div class="form-group">
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
@@ -126,8 +120,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                   <label>Selecione a categoria do produto</label>
                   <select class="form-control select2" style="width: 100%;" name="categoria" id="categoria">
-                    <?php foreach ($categorias as $dado): ?>
-                    <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
+                    <?php foreach ($categorias as $dado) : ?>
+                      <option value="<?php echo $dado['categoria_id'] ?>"><?php echo $dado['nome_cat'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -136,8 +130,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                   <label>Selecione a marca do produto</label>
                   <select class="form-control select2" style="width: 100%;" name="marca" id="marca">
-                    <?php foreach ($marcas as $dado): ?>
-                    <option value="<?php echo $dado['marca_id'] ?>"><?php echo $dado['nome_mar'] ?></option>
+                    <?php foreach ($marcas as $dado) : ?>
+                      <option value="<?php echo $dado['marca_id'] ?>"><?php echo $dado['nome_mar'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -145,9 +139,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                 <div class="form-group">
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                   <label for="estoque">Estoque</label>
-                  <input type="number" class="form-control" id="estoque" name="estoque"
-                    placeholder="Insira o nome do produto"
-                    value="<?php echo $produtos[0]['estoque']; ?>">
+                  <input type="number" class="form-control" id="estoque" name="estoque" placeholder="Insira o nome do produto" value="<?php echo $produtos[0]['estoque']; ?>">
                 </div>
                 <div class="form-group">
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
@@ -156,8 +148,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                     <div class="input-group-append">
                       <span class="input-group-text" id="">R$</span>
                     </div>
-                    <input type="text" class="form-control" id="preco" name="preco"
-                      placeholder="Insira o preço do produto" value="<?php echo $produtos[0]['preco']; ?>">
+                    <input type="text" class="form-control" id="preco" name="preco" placeholder="Insira o preço do produto" value="<?php echo $produtos[0]['preco']; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -167,8 +158,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
                     <div class="input-group-append">
                       <span class="input-group-text" id="">R$</span>
                     </div>
-                    <input type="text" class="form-control" id="precoAnt" name="precoAnt"
-                      placeholder="Insira o preço antigo do produto" value="<?php echo $produtos[0]['preco_antigo']; ?>">
+                    <input type="text" class="form-control" id="precoAnt" name="precoAnt" placeholder="Insira o preço antigo do produto" value="<?php echo $produtos[0]['preco_antigo']; ?>">
                   </div>
                 </div>
 
@@ -257,62 +247,56 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
           </div>
 
           <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Dados para o cálculo do frete do produto <b>(Insira os dados mais próximos possiveis)</b></h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="nomeProd">Peso (Kg)</label>
-                                    <input type="text" class="form-control" id="peso" name="peso"
-                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['peso'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Altura (cm)</label>
-                                    <input type="text" class="form-control" id="altura" name="altura"
-                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['altura'] ?>">
+            <div class="card-header">
+              <h3 class="card-title">Dados para o cálculo do frete do produto <b>(Insira os dados mais próximos possiveis)</b></h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div class="card-body">
+              <div class="form-group">
+                <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                <label for="nomeProd">Peso (Kg)</label>
+                <input type="text" class="form-control" id="peso" name="peso" placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['peso'] ?>">
+              </div>
+              <div class="form-group">
+                <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                <label for="descProd">Altura (cm)</label>
+                <input type="text" class="form-control" id="altura" name="altura" placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['altura'] ?>">
 
-                                </div>
-                                <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Largura (cm)</label>
-                                    <input type="text" class="form-control" id="largura" name="largura"
-                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['largura'] ?>">
+              </div>
+              <div class="form-group">
+                <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                <label for="descProd">Largura (cm)</label>
+                <input type="text" class="form-control" id="largura" name="largura" placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['largura'] ?>">
 
-                                </div>
-                                <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Comprimento (cm)</label>
-                                    <input type="text" class="form-control" id="comprimento" name="comprimento"
-                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['comprimento'] ?>">
+              </div>
+              <div class="form-group">
+                <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                <label for="descProd">Comprimento (cm)</label>
+                <input type="text" class="form-control" id="comprimento" name="comprimento" placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['comprimento'] ?>">
 
-                                </div>
-                                <div class="form-group">
-                                    <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                    <label for="descProd">Diâmetro (cm)</label>
-                                    <input type="text" class="form-control" id="diametro" name="diametro"
-                                        placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['diametro'] ?>">
+              </div>
+              <div class="form-group">
+                <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                <label for="descProd">Diâmetro (cm)</label>
+                <input type="text" class="form-control" id="diametro" name="diametro" placeholder="Insira o peso do produto" value="<?php echo $produtos[0]['diametro'] ?>">
 
-                                </div>
+              </div>
 
-                                
-                            </div>
-                            <!-- /.card-body -->
 
-                            <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-success">Editar</button>
-                            </div>
-                        </form>
-                    </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer text-right">
+              <button type="submit" class="btn btn-success">Editar</button>
+            </div>
+            </form>
+          </div>
 
         </div>
       </div>
     </div>
   </section>
-
 </div>
 
 <?php $render("commerce/footer_painel"); ?>
@@ -321,14 +305,14 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
   document.getElementById('categoria').value = <?php echo $produtos[0]['categoria_id']; ?>;
   document.getElementById('marca').value = <?php echo $produtos[0]['marca_id']; ?>;
 
-  $(function () {
+  $(function() {
     $('.select2').select2()
   })
 </script>
 
 <script>
-  $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+  $(function() {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
       event.preventDefault();
       $(this).ekkoLightbox({
         alwaysShowClose: true
@@ -338,7 +322,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
     $('.filter-container').filterizr({
       gutterPixels: 3
     });
-    $('.btn[data-filter]').on('click', function () {
+    $('.btn[data-filter]').on('click', function() {
       $('.btn[data-filter]').removeClass('active');
       $(this).addClass('active');
     });
@@ -346,25 +330,25 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar prod
 </script>
 
 <script type="text/javascript">
-    $('#preco').mask("# ##0,00", {
-        reverse: true
-    });
-    $('#precoAnt').mask("# ##0,00", {
-        reverse: true
-    });
-    $('#peso').mask("00,00", {
-        reverse: true
-    });
-    $('#altura').mask("00,00", {
-        reverse: true
-    });
-    $('#largura').mask("00,00", {
-        reverse: true
-    });
-    $('#comprimento').mask("00,00", {
-        reverse: true
-    });
-    $('#diametro').mask("00,00", {
-        reverse: true
-    });
+  $('#preco').mask("# ##0,00", {
+    reverse: true
+  });
+  $('#precoAnt').mask("# ##0,00", {
+    reverse: true
+  });
+  $('#peso').mask("00,00", {
+    reverse: true
+  });
+  $('#altura').mask("00,00", {
+    reverse: true
+  });
+  $('#largura').mask("00,00", {
+    reverse: true
+  });
+  $('#comprimento').mask("00,00", {
+    reverse: true
+  });
+  $('#diametro').mask("00,00", {
+    reverse: true
+  });
 </script>

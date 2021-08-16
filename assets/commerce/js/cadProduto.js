@@ -11,11 +11,11 @@ $(function(){
         precoAnt    = $('#precoAnt').val();
         promo       = $('input[name=promo]:checked').val();
         novo        = $('input[name=novo]:checked').val();
-        peso        = $('#precoAnt').val();
-        altura      = $('#precoAnt').val();
-        largura     = $('#precoAnt').val();
-        comprimento = $('#precoAnt').val();
-        diametro    = $('#precoAnt').val();
+        peso        = $('#peso').val();
+        altura      = $('#altura').val();
+        largura     = $('#largura').val();
+        comprimento = $('#comprimento').val();
+        diametro    = $('#diametro').val();
 
         if(nomeProd == '' || estoque == '' || preco == '' || peso == '' || altura == '' || largura == '' || comprimento == '' || diametro == ''){
             message = '<br><div class="alert alert-danger" role="alert">Existem campos não preenchidos!</div>';

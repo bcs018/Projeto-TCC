@@ -146,7 +146,7 @@ class Produto extends Model{
         }
     }
 
-    public function ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd){
+    public function ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd, $peso, $altura, $largura, $comprimento, $diametro){
         $flag = 0;
         $preco = str_replace(',','.',$preco);
         $preco = str_replace(' ','',$preco);
@@ -160,7 +160,7 @@ class Produto extends Model{
 
         $_SESSION['message'] = '';
         
-        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco)){
+        if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($peso) || empty($altura) || empty($largura) || empty($comprimento) || empty($diametro)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
                                     </div>';
@@ -205,7 +205,7 @@ class Produto extends Model{
         if($flag == 1)
             return false;
 
-        $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?
+        $sql = 'UPDATE produto SET categoria_id = ?, marca_id = ?, nome_pro = ?, descricao = ?, estoque = ?, preco = ?, preco_antigo = ?, promocao = ?, novo_produto = ?, peso = ?, altura = ?, largura = ?, comprimento = ?, diametro = ?
                 WHERE produto_id = ? AND ecommerce_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $categoria);
@@ -217,8 +217,13 @@ class Produto extends Model{
         $sql->bindValue(7, $precoAnt);
         $sql->bindValue(8, $promo);
         $sql->bindValue(9, $novo);
-        $sql->bindValue(10, $idProd);
-        $sql->bindValue(11, $_SESSION['id_sub_dom']);
+        $sql->bindValue(10, $peso);
+        $sql->bindValue(11, $altura);
+        $sql->bindValue(12, $largura);
+        $sql->bindValue(13, $comprimento);
+        $sql->bindValue(14, $diametro);
+        $sql->bindValue(15, $idProd);
+        $sql->bindValue(16, $_SESSION['id_sub_dom']);
         
         if($sql->execute()){
             $_SESSION['message'] .= '<div class="alert alert-success" role="alert">

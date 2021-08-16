@@ -82,17 +82,22 @@ class ProdutoController extends Controller {
 
         }
 
-        $nomeProd   = addslashes($_POST['nomeProd']);
-        $descProd   = addslashes($_POST['descProd']);
-        $categoria  = addslashes($_POST['categoria']);
-        $marca      = addslashes($_POST['marca']);
-        $estoque    = addslashes($_POST['estoque']);
-        $preco      = addslashes($_POST['preco']);
-        $precoAnt   = addslashes($_POST['precoAnt']);
-        $promo      = addslashes($_POST['promo']);
-        $novo       = addslashes($_POST['novo']);
+        $nomeProd    = addslashes($_POST['nomeProd']);
+        $descProd    = addslashes($_POST['descProd']);
+        $categoria   = addslashes($_POST['categoria']);
+        $marca       = addslashes($_POST['marca']);
+        $estoque     = addslashes($_POST['estoque']);
+        $preco       = addslashes($_POST['preco']);
+        $precoAnt    = addslashes($_POST['precoAnt']);
+        $promo       = addslashes($_POST['promo']);
+        $novo        = addslashes($_POST['novo']);
+        $peso        = floatval(str_replace(',','.', addslashes($_POST['peso'])));
+        $altura      = floatval(str_replace(',','.', addslashes($_POST['altura'])));
+        $largura     = floatval(str_replace(',','.', addslashes($_POST['largura'])));
+        $comprimento = floatval(str_replace(',','.', addslashes($_POST['comprimento'])));
+        $diametro    = floatval(str_replace(',','.', addslashes($_POST['diametro'])));
 
-        $pro->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd);
+        $pro->ediProdutoAction($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $idProd, $peso, $altura, $largura, $comprimento, $diametro);
         
         header('Location: /admin/painel/editar-produto/'.$idProd);
 
@@ -136,11 +141,11 @@ class ProdutoController extends Controller {
         $precoAnt    = addslashes($_POST['precoAnt']);
         $promo       = addslashes($_POST['promo']);
         $novo        = addslashes($_POST['novo']);
-        $peso        = floatval(str_replace(',','.',addslashes($_POST['peso'])));
-        $altura      = floatval(str_replace(',','.',addslashes($_POST['altura'])));
-        $largura     = floatval(str_replace(',','.',addslashes($_POST['largura'])));
-        $comprimento = floatval(str_replace(',','.',addslashes($_POST['comprimento'])));
-        $diametro    = floatval(str_replace(',','.',addslashes($_POST['diametro'])));
+        $peso        = floatval(str_replace(',','.', addslashes($_POST['peso'])));
+        $altura      = floatval(str_replace(',','.', addslashes($_POST['altura'])));
+        $largura     = floatval(str_replace(',','.', addslashes($_POST['largura'])));
+        $comprimento = floatval(str_replace(',','.', addslashes($_POST['comprimento'])));
+        $diametro    = floatval(str_replace(',','.', addslashes($_POST['diametro'])));
 
         $cad = new Produto;
         $dados = $cad->cadProdutoActionFirst($nomeProd, $descProd, $categoria, $marca, $estoque, $preco, $precoAnt, $promo, $novo, $peso, $altura, $largura, $comprimento, $diametro);
