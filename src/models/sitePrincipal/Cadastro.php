@@ -140,8 +140,8 @@ class Cadastro extends Model{
             return $message;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['estado_usu']);
         $sql->bindValue(2, $POST['nome_usu']);
@@ -159,6 +159,7 @@ class Cadastro extends Model{
         $sql->bindValue(14, 0);
         $sql->bindValue(15, md5($POST['senha']));
         $sql->bindValue(16, $POST['login']);
+        $sql->bindValue(17, 1);
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";

@@ -18,6 +18,7 @@ class CarrinhoController extends Controller {
         //unset($_SESSION['carrinho']);
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        echo '<pre>'; print_r($dados);
 
         if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0){
             $carrinho = '<br><div class="alert alert-info" role="alert">

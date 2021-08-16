@@ -241,7 +241,7 @@ class Admin extends Model{
             return false;
         }
 
-        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login)
+        $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $estado);
@@ -260,6 +260,7 @@ class Admin extends Model{
         $sql->bindValue(14, 1);
         $sql->bindValue(15, md5($senha));
         $sql->bindValue(16, $login);
+        $sql->bindValue(17, 0);
         
         if($sql->execute()){
             $id_person = $this->db->query("SELECT last_insert_id() as 'ult'")->fetch();
