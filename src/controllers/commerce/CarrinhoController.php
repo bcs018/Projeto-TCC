@@ -13,7 +13,7 @@ class CarrinhoController extends Controller {
         $prod = new Produto;
         $carr = new Carrinho;
 
-        $subtotal = floatval($info->somaValor());
+        $valores = $carr->somaValor();
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         //echo '<pre>'; print_r($dados);
@@ -27,13 +27,15 @@ class CarrinhoController extends Controller {
             exit;
         }
 
-        
+        //print_r($valores);
+
+        //unset($_SESSION['frete']);
 
         $carrinho = $carr->listaItens($_SESSION['carrinho']);
 
         //echo '<pre>'; print_r($frete);
 
-        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'subtotal'=>$subtotal, 'control'=>false]);
+        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
     }
 
     public function calcFrete(){
@@ -45,16 +47,14 @@ class CarrinhoController extends Controller {
         $frete = [];
 
         if(!empty($_POST['cep'])){
-            $cep = 17380000; //intval(str_replace('-','', $_POST['cep']));
+            $cep = intval(str_replace('-','', $_POST['cep']));
             $frete = $carr->calculaFrete($cep, $dados['cep']);
             $_SESSION['frete'] = $frete;
         }
 
-        if(!empty($_SESSION['frete'])){
-            $frete = $_SESSION['frete'];
-        }
-
-        print_r($frete);
+        // if(!empty($_SESSION['frete'])){
+        //     $frete = $_SESSION['frete'];
+        // }
 
         echo json_encode($frete);
         exit;
@@ -104,6 +104,7 @@ class CarrinhoController extends Controller {
         header("Location: /carrinho");
     }
 
+    // Calcula o preço total por produto
     public function calPrecoProduto(){
         $prod = new Produto;
 
@@ -121,9 +122,16 @@ class CarrinhoController extends Controller {
     }
 
     public function calTotalProduto(){
-        $info = new Info;
+        $carr = new Carrinho;
 
-        echo json_encode(['valor' => number_format($info->somaValor(), 2, ',','.')]);
+        echo json_encode($carr->somaValor());
+    }
+
+    // Deleta a sessão do frete para fazer o calculo correto quando o usuario não informa nada no campo do CEP
+    public function delSessaoFrete(){
+        unset($_SESSION['frete']);
+
+        echo json_encode(['deletado'=>'deletado']);
     }
 
 }

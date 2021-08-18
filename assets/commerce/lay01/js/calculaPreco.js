@@ -1,8 +1,13 @@
 $(document).ready(function(){
-    $(".product-quantity").find("input[name=qtd]").click(function(){
+    $(".product-quantity").find("input[name=qtd]").on("click",function(){
         
         id = $(this).attr("id");
         qt = $('#'+id).val();
+
+        if(qt == 0){
+            $(this).val(1);
+            qt = 1;
+        }
 
         $.ajax({
             url: '/calcular-preco',
@@ -19,8 +24,9 @@ $(document).ready(function(){
             type: 'POST',
             dataType: 'JSON',
             success:function(ret){
-                $('#subtot').html('R$ '+ret.valor);
-                $('#subtotHead').html('R$ '+ret.valor)
+                $('#subtot').html('R$ '+ret.subtotal);
+                $('#subtotHead').html('R$ '+ret.subtotal)
+                $('#totalfinal').html('R$ '+ret.total)
             }
         })
     })

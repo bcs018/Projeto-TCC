@@ -81,8 +81,11 @@
                                         </div>
 
                                         <!-- <div role="tabpanel" class="tab-pane fade" id="profile"> -->
-                                            <h2>Cálculo do frete</h2>
-                                            <div class="submit-review">
+                                        <br>
+                                        <hr>    
+                                        <h2>Cálculo do frete</h2>
+                                        <div class="submit-review">
+                                            <form id="frete">
                                                 <p>
                                                     <label for="cep">Informe seu CEP</label> 
                                                     <input name="cep" id="cep" type="text">
@@ -90,8 +93,9 @@
                                                 <p>
                                                     <input type="submit" value="Calcular">
                                                 </p>
-                                            </div>
-                                        <!-- </div> -->
+                                            </form>
+                                        </div>
+                                        <div id="calcfrete"></div>
                                     </div>
                                 </div>
                             </div>
@@ -134,5 +138,5 @@
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">
-    $('#cep').mask("00000-000");
+    $('#cep').mask("00000000");
 </script>

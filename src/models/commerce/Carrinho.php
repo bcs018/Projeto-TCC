@@ -58,27 +58,6 @@ class Carrinho extends Model{
             $nVlPeso = 40;
         }
 
-        //echo $nVlValorDeclarado;
-
-        // $data = [
-        //     // Tipo de envio, PAC = 41106, Sedex = 40010....
-        //     'nCdEmpresa' => '',
-        //     'sDsSenha' => '',
-        //     'nCdServico' => '04014',
-        //     'sCepOrigem' => $cepOrigem,
-        //     'sCepDestino' => $cepDestino,
-        //     'nVlPeso'     => $nVlPeso,
-        //     'nCdFormato'  => 1,
-        //     'nVlComprimento' => $nVlComprimento,
-        //     'nVlAltura' => $nVlAltura,
-        //     'nVlLargura' => $nVlLargura,
-        //     'nVlDiametro' => $nVlDiametro,
-        //     'sCdMaoPropria' => 'n',
-        //     'nVlValorDeclarado' => 0,
-        //     'sCdAvisoRecebimento' => 'n'
-        //     //'StrRetorno' => 'xml'
-        // ];
-
         $data = [
             'sCepOrigem'			=> $cepOrigem,
             'sCepDestino'			=> $cepDestino,
@@ -100,29 +79,47 @@ class Carrinho extends Model{
 
         $data = http_build_query($data);
 
-
         $ch = curl_init($url.'?'.$data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $r = curl_exec($ch);
 
-        
         $r = simplexml_load_string($r);
-
-        //echo $r;exit;
-        echo $cepOrigem.'<br>';
-        echo $cepDestino.'<br>';
-        echo $nVlPeso.'<br>';
-        echo $nVlComprimento.'<br>';
-        echo $nVlAltura.'<br>';
-        echo $nVlLargura.'<br>';
-        echo $nVlDiametro.'<br>';exit;
-
 
         $array['preco'] = current($r->cServico->Valor);
         $array['data'] = current($r->cServico->PrazoEntrega);
+        $array['cep'] = $cepDestino;
+        $array['erro'] = current($r->cServico->Erro);
         //$array['erro'] = current($r->cServico->Erro);
 
         return $array;
+    }
+
+    // Retorna o subtotal dos itens do carrinho
+    public function somaValor(){
+        if(isset($_SESSION['carrinho'])){
+            $carr = new Carrinho;
+
+            $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+            $dados['subtotal'] = 0;
+            $dados['total'] = 0;
+
+            foreach($produtos as $item){
+                $dados['subtotal'] += ((floatval($item['preco'])) * $_SESSION['carrinho'][$item[0]]);
+            }
+
+            if(isset($_SESSION['frete'])){
+                $dados['total'] = $dados['subtotal'] + floatval(str_replace(',','.',$_SESSION['frete']['preco']));
+                //echo $_SESSION['frete']['preco'];
+            }else{
+                $dados['total'] = $dados['subtotal'];
+            }
+
+            $dados['total'] = number_format($dados['total'], 2, ',','.');
+            $dados['subtotal'] = number_format($dados['subtotal'], 2, ',','.');
+
+            return $dados;
+        }
     }
 
 }

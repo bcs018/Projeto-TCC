@@ -92,17 +92,17 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><div id="subtot"><?php echo (isset($subtotal)) ? 'R$ '. number_format($subtotal, 2, ',','.') : 'R$ 0,00'; ?></div></td>
+                                            <td><div id="subtot"><?php echo (isset($valores['subtotal'])) ? 'R$ '. $valores['subtotal'] : 'R$ 0,00'; ?></div></td>
                                         </tr>
 
                                         <tr class="shipping">
                                             <th>Frete</th>
-                                            <td><div id="calcfrete"></div></td>
+                                            <td><div id="calcfrete"><?php //echo(isset($_SESSION['frete']))?'R$ '.$_SESSION['frete']['preco'].' Prazo: '.$_SESSION['frete']['data'].' dia(s)':''; ?></div></td>
                                         </tr>
 
                                         <tr class="order-total">
                                             <th>Total</th>
-                                            <td><strong><span class="amount"><?php echo (isset($subtotal)) ? 'R$ '. number_format($subtotal, 2, ',','.') : 'R$ 0,00'; ?></span></strong> </td>
+                                            <td><strong><span id="totalfinal" class="amount"><?php echo (isset($valores['total'])) ? 'R$ '. $valores['total'] : 'R$ 0,00'; ?></span></strong> </td>
                                         </tr>
                                     </tbody>
                                 </table>

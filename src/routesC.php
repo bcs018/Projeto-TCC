@@ -42,6 +42,7 @@ $router->post('/calcular-preco', 'CarrinhoController@calPrecoProduto');
 $router->get('/carrinho', 'CarrinhoController@index');
 $router->get('/deletar/item/carrinho/{id}', 'CarrinhoController@delItem');
 $router->post('/calcula-frete', 'CarrinhoController@calcFrete');
+$router->post('/deleta-sessao-frete', 'CarrinhoController@delSessaoFrete');
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

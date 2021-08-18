@@ -1,7 +1,7 @@
 <?php  
 use \src\models\commerce\Info;
 $info = new Info;
-$subtotal = floatval($info->somaValor());
+$valores = $info->somaValor();
 ?>
 
 <!DOCTYPE html>
@@ -200,7 +200,7 @@ $subtotal = floatval($info->somaValor());
                 </div>
                 <div class="col-sm-4">
                     <div class="shopping-item">
-                        <a href="/carrinho">Carrinho - <span id="subtotHead" class="cart-amunt"><?php echo 'R$ '. number_format($subtotal, 2, ',','.');  ?></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?php echo(isset($_SESSION['carrinho']))?count($_SESSION['carrinho']):'0'; ?></span></a>
+                        <a href="/carrinho">Carrinho - <span id="subtotHead" class="cart-amunt"><?php echo 'R$ '. $valores['total'];  ?></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"><?php echo(isset($_SESSION['carrinho']))?count($_SESSION['carrinho']):'0'; ?></span></a>
                     </div>
                 </div>
                 
