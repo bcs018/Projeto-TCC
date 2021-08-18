@@ -97,7 +97,7 @@
 
                                         <tr class="shipping">
                                             <th>Frete</th>
-                                            <td>Free Shipping</td>
+                                            <td><div id="calcfrete"></div></td>
                                         </tr>
 
                                         <tr class="order-total">
@@ -111,14 +111,14 @@
 
                         <?php if(isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0): ?>
                         <div class="col-md-6 ">
-                            <form method="post" action="#" class="shipping_calculator float-left">
+                            <form method="post" id="frete" class="shipping_calculator float-left">
                                 <h2>Calculo do Frete</h2>
                                 <p class="form-row form-row-wide">
-                                    <input type="text" id="calc_shipping_postcode" name="cep" placeholder="Informe o CEP" value="" class="input-text">
+                                    <input type="text" id="cep" name="cep" placeholder="Informe o CEP" class="input-text">
                                 </p>
 
                                 <p>
-                                    <button class="button" value="1" name="calc_shipping" type="submit">Calcular</button>
+                                    <button class="button" type="submit">Calcular</button>
                                 </p>
                             </form>
                         </div>
@@ -133,5 +133,5 @@
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">
-    $('#calc_shipping_postcode').mask("00000-000");
+    $('#cep').mask("00000000");
 </script>

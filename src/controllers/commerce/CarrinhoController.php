@@ -15,7 +15,6 @@ class CarrinhoController extends Controller {
 
         $subtotal = floatval($info->somaValor());
 
-
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         //echo '<pre>'; print_r($dados);
 
@@ -28,10 +27,25 @@ class CarrinhoController extends Controller {
             exit;
         }
 
+        
+
+        $carrinho = $carr->listaItens($_SESSION['carrinho']);
+
+        //echo '<pre>'; print_r($frete);
+
+        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'subtotal'=>$subtotal, 'control'=>false]);
+    }
+
+    public function calcFrete(){
+        $carr = new Carrinho;
+        $info = new Info;
+
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
         $frete = [];
 
         if(!empty($_POST['cep'])){
-            $cep = intval(str_replace('-','', $_POST['cep']));
+            $cep = 17380000; //intval(str_replace('-','', $_POST['cep']));
             $frete = $carr->calculaFrete($cep, $dados['cep']);
             $_SESSION['frete'] = $frete;
         }
@@ -40,11 +54,10 @@ class CarrinhoController extends Controller {
             $frete = $_SESSION['frete'];
         }
 
-        $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        print_r($frete);
 
-        //echo '<pre>'; print_r($carrinho);
-
-        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'subtotal'=>$subtotal, 'control'=>false]);
+        echo json_encode($frete);
+        exit;
     }
 
     public function addCarrinho(){
