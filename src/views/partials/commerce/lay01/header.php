@@ -43,6 +43,9 @@ if(!$valores)$valores['total'] = '0,00';
     <![endif]-->
 
     <style>
+        .space{
+            padding-bottom: 2%;
+        }
         .cart-amunt {
             color: <?php echo $layout['cor']; ?>;
             font-weight: 700;
@@ -167,8 +170,9 @@ if(!$valores)$valores['total'] = '0,00';
                     <div class="user-menu">
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i>Minha conta</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="/cadastrar"><i class="fa fa-edit"></i>Cadastre-se</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li> -->
+                            <li><a href="/login"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>

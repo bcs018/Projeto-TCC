@@ -44,6 +44,10 @@ $router->get('/deletar/item/carrinho/{id}', 'CarrinhoController@delItem');
 $router->post('/calcula-frete', 'CarrinhoController@calcFrete');
 $router->post('/deleta-sessao-frete', 'CarrinhoController@delSessaoFrete');
 
+// -- Cadastro de clientes do ecommerce
+$router->get('/cadastrar', 'CadastroController@index');
+$router->post('/cadastrar-usuario', 'CadastroController@cadUsuarioAction');
+
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');
 $router->get('/admin/painel/cadastrar-categorias', 'CategoriaController@cadCategoria');
