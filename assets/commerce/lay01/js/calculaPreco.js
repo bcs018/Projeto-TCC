@@ -25,7 +25,7 @@ $(document).ready(function(){
             dataType: 'JSON',
             success:function(ret){
                 $('#subtot').html('R$ '+ret.subtotal);
-                $('#subtotHead').html('R$ '+ret.subtotal)
+                $('#subtotHead').html('R$ '+ret.total)
                 $('#totalfinal').html('R$ '+ret.total)
             }
         })

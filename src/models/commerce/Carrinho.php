@@ -19,14 +19,12 @@ class Carrinho extends Model{
        return $produtos;
     }
 
-    public function calculaFrete($cepDestino, $cepOrigem){
+    public function calculaFrete($cepDestino, $cepOrigem, $id=0){
         $array = [
             'preco' => 0,
             'data'  => ''
         ];
 
-        $dadosProd = $this->listaItens($_SESSION['carrinho']);
-        //echo '<pre>';print_r($dadosProd);
         $nVlPeso = 0;
         $nVlComprimento = 0;
         $nVlAltura = 0;
@@ -34,13 +32,30 @@ class Carrinho extends Model{
         $nVlDiametro = 0;
         $nVlValorDeclarado = 0;
 
-        foreach($dadosProd as $item){
-            $nVlPeso += floatval($item['peso']);
-            $nVlComprimento += floatval($item['comprimento']);
-            $nVlAltura += floatval($item['altura']);
-            $nVlLargura += floatval($item['largura']);
-            $nVlDiametro += floatval(($item['diametro']));
-            $nVlValorDeclarado += floatval($item['preco']);  // Colocar Vezes a quantidade
+        if($id != 0){
+            $prod = new Produto;
+            $dadosProd = $prod->listaProduto($id);
+
+            $nVlPeso = $dadosProd[0]['peso'];
+            $nVlComprimento = $dadosProd[0]['comprimento'];
+            $nVlAltura = $dadosProd[0]['altura'];
+            $nVlLargura = $dadosProd[0]['largura'];
+            $nVlDiametro = $dadosProd[0]['diametro'];
+            $nVlValorDeclarado = 0;
+    
+        }else{
+
+            $dadosProd = $this->listaItens($_SESSION['carrinho']);
+            //echo '<pre>';print_r($dadosProd);
+
+            foreach($dadosProd as $item){
+                $nVlPeso += floatval($item['peso']);
+                $nVlComprimento += floatval($item['comprimento']);
+                $nVlAltura += floatval($item['altura']);
+                $nVlLargura += floatval($item['largura']);
+                $nVlDiametro += floatval(($item['diametro']));
+                $nVlValorDeclarado += 0; //floatval($item['preco']) * $_SESSION['carrinho'][$item[0]];  // Colocar Vezes a quantidade
+            }
         }
 
         $soma = $nVlComprimento + $nVlAltura + $nVlLargura;
@@ -89,7 +104,7 @@ class Carrinho extends Model{
         $array['data'] = current($r->cServico->PrazoEntrega);
         $array['cep'] = $cepDestino;
         $array['erro'] = current($r->cServico->Erro);
-        //$array['erro'] = current($r->cServico->Erro);
+        $array['msgErro'] = current($r->cServico->MsgErro);
 
         return $array;
     }

@@ -198,6 +198,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         <!-- /.card-header -->
                         <!-- form start -->
                             <div class="card-body">
+                                <h4>Caso o produto seja menor que 15 cm em Altura, Largura, Comprimento e Diâmetro, informe 15 cm nesses campos para o cálculo do Correios</h4>
+                                <br>
+
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="nomeProd">Peso (Kg)</label>

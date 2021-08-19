@@ -250,9 +250,12 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
             <div class="card-header">
               <h3 class="card-title">Dados para o cálculo do frete do produto <b>(Insira os dados mais próximos possiveis)</b></h3>
             </div>
+            
             <!-- /.card-header -->
             <!-- form start -->
             <div class="card-body">
+              <h4>Caso o produto seja menor que 15 cm em Altura, Largura, Comprimento e Diâmetro, informe 15 cm nesses campos para o cálculo do Correios</h4>
+              <br>
               <div class="form-group">
                 <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                 <label for="nomeProd">Peso (Kg)</label>
@@ -336,19 +339,19 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
   $('#precoAnt').mask("# ##0,00", {
     reverse: true
   });
-  $('#peso').mask("00,00", {
+  $('#peso').mask("##0,00", {
     reverse: true
   });
-  $('#altura').mask("00,00", {
+  $('#altura').mask("##0,00", {
     reverse: true
   });
-  $('#largura').mask("00,00", {
+  $('#largura').mask("##0,00", {
     reverse: true
   });
-  $('#comprimento').mask("00,00", {
+  $('#comprimento').mask("##0,00", {
     reverse: true
   });
-  $('#diametro').mask("00,00", {
+  $('#diametro').mask("##0,00", {
     reverse: true
   });
 </script>

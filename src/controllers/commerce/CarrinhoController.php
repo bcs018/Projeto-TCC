@@ -13,6 +13,8 @@ class CarrinhoController extends Controller {
         $prod = new Produto;
         $carr = new Carrinho;
 
+        unset($_SESSION['frete']);
+        
         $valores = $carr->somaValor();
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
@@ -29,11 +31,9 @@ class CarrinhoController extends Controller {
 
         //print_r($valores);
 
-        //unset($_SESSION['frete']);
-
         $carrinho = $carr->listaItens($_SESSION['carrinho']);
 
-        //echo '<pre>'; print_r($frete);
+        //echo '<pre>'; print_r($_SESSION['frete']);
 
         $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
     }
@@ -46,9 +46,14 @@ class CarrinhoController extends Controller {
 
         $frete = [];
 
+        if(isset($_POST['id']))
+            $id = $_POST['id'];
+        else 
+            $id = 0;
+
         if(!empty($_POST['cep'])){
             $cep = intval(str_replace('-','', $_POST['cep']));
-            $frete = $carr->calculaFrete($cep, $dados['cep']);
+            $frete = $carr->calculaFrete($cep, $dados['cep'], $id);
             $_SESSION['frete'] = $frete;
         }
 

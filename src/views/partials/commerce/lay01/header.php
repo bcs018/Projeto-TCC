@@ -1,7 +1,7 @@
 <?php  
-use \src\models\commerce\Info;
-$info = new Info;
-$valores = $info->somaValor();
+use \src\models\commerce\Carrinho;
+$carr = new Carrinho;
+$valores = $carr->somaValor();
 ?>
 
 <!DOCTYPE html>
