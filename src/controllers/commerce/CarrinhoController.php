@@ -38,6 +38,14 @@ class CarrinhoController extends Controller {
         $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
     }
 
+    public function pagamento(){
+        $info = new Info;
+
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        
+        $this->render('commerce/lay01/pagamento', ['dados'=>$dados/*, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false*/]);
+    }
+
     public function calcFrete(){
         $carr = new Carrinho;
         $info = new Info;

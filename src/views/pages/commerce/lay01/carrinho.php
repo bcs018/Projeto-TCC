@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" action="#">
+                        <!-- <form method="get" action="/pagamento"> -->
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
@@ -79,12 +79,13 @@
                                                     <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                                 </div>
                                                 <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
-                                            <input type="submit" value="Pagar" name="proceed" class="checkout-button button alt wc-forward">
+                                                <a href="/pagamento" class="btn btn-info">Pagar</a>
+                                            <!-- <input type="submit" value="Pagar" name="proceed" class="checkout-button button alt wc-forward"> -->
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </form>
+                        <!-- </form> -->
 
                         <div class="col-md-6 float-left">
                             <div class="cart_totals ">
