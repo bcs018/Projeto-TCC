@@ -1,3 +1,10 @@
+<?php  
+if(isset($_SESSION['login_cliente_ecommerce'])){
+  // redirecionar para o painel de controle
+  header("Location: /");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -30,16 +37,17 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Informe suas credênciais</p>
 
-        <form action="/admin/logar" method="POST">
+        <form id="login_cliente">
+          <div id="message"></div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Login" name="login" value="<?php if(isset($_SESSION['credencial'])){ echo $_SESSION['credencial'];unset($_SESSION['credencial']); }?>">
+            <input type="text" class="form-control" placeholder="Login ou Email" name="login" value="<?php if(isset($_SESSION['credencial'])){ echo $_SESSION['credencial'];unset($_SESSION['credencial']); }?>">
             <div class="input-group-append">
               <div class="input-group-text">
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Senha" name="pass">
+            <input type="password" class="form-control" placeholder="Senha" name="senha">
             <div class="input-group-append">
               <div class="input-group-text">
               </div>
@@ -80,6 +88,8 @@
   <script src="<?php echo BASE_ASS; ?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo BASE_ASS; ?>adminlte/dist/js/adminlte.min.js"></script>
+  <script src="<?php echo BASE_ASS_C; ?>lay01/js/login.js"></script>
+
 
 </body>
 

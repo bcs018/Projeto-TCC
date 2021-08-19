@@ -17,20 +17,37 @@ class CadastroController extends Controller {
         $this->render('commerce/lay01/cadastro',['dados'=>$dados]);
     }
 
+    
+    public function login(){
+        $this->render('commerce/lay01/login_cliente');
+    }
+
+    public function loginAction(){
+        $login = addslashes($_POST['login']);
+        $senha = addslashes($_POST['senha']);
+
+        $cad = new Cadastro;
+
+        $cad->loginAction($login, $senha);
+    }
+
     public function cadUsuarioAction(){
         $nome      = addslashes($_POST['nome']);
         $sobrenome = addslashes($_POST['sobrenome']);
         $cpf       = addslashes($_POST['cpf']);
         $email     = addslashes($_POST['email']);
+        $cel       = addslashes($_POST['cel']);
+        $login     = addslashes($_POST['login']);
         $senha     = addslashes($_POST['altSenha']);
         $senhaRep  = addslashes($_POST['altSenhaRep']);
 
         $cpf = str_replace('.','',$cpf);
         $cpf = str_replace('-','',$cpf);
+        $cpf = intval($cpf);
 
         $cad = new Cadastro;
 
-        $cad->cadUsuarioAction($nome, $sobrenome, $cpf, $email, $senha, $senhaRep);
+        $cad->cadUsuarioAction($nome, $sobrenome, $cpf, $email, $senha, $senhaRep, $cel, $login);
         
         header("Location: /cadastrar");
         exit;

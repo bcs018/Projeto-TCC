@@ -104,8 +104,12 @@ create table layout_imagem(
 create table usuario_ecommerce(
 	ue_id int not null auto_increment,
     nome_usu_ue varchar(100) not null,
-    cpf_ue int not null,
-    endereco_ue varchar(100),
+    sobrenome varchar(100) not null,
+    cpf_ue int not null not null,
+    email_ue varchar(100) not null,
+    celular_ue varchar(30) not null,
+    login_ue varchar(50) not null,
+    senha_ue varchar(32) not null,
     
     primary key(ue_id)
 )default charset utf8;

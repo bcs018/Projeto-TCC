@@ -46,7 +46,10 @@ $router->post('/deleta-sessao-frete', 'CarrinhoController@delSessaoFrete');
 
 // -- Cadastro de clientes do ecommerce
 $router->get('/cadastrar', 'CadastroController@index');
+$router->get('/login', 'CadastroController@login');
 $router->post('/cadastrar-usuario', 'CadastroController@cadUsuarioAction');
+$router->post('/cliente/logar', 'CadastroController@loginAction');
+
 
 // -- Categorias
 $router->get('/admin/painel/categorias', 'CategoriaController@conCategoria');

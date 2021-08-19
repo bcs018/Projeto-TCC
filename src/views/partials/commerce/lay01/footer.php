@@ -99,6 +99,7 @@
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/main.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/calculaPreco.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/calculaFrete.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>lay01/js/login.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>
 
     <!-- Slider -->
