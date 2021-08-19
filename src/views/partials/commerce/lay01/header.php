@@ -2,6 +2,7 @@
 use \src\models\commerce\Carrinho;
 $carr = new Carrinho;
 $valores = $carr->somaValor();
+if(!$valores)$valores['total'] = '0,00';
 ?>
 
 <!DOCTYPE html>

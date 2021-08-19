@@ -135,6 +135,8 @@ class Carrinho extends Model{
 
             return $dados;
         }
+
+        return false;
     }
 
 }
