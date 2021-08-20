@@ -9,11 +9,22 @@ $('#pagar').on('click', function(e){
             if(ret.log == false){
                 window.location.href = '/login';
             }else{
-                $('#exampleModal').modal('show');
-                // $('#exampleModal').on('show.bs.modal', function (event) {
-
-                // // })
+                $('#selectPay').modal('show');
             }
         }
     })
+})
+
+$('#btnSelPgm').on('click', function(e){
+    e.preventDefault();
+
+    tpPgm = $("input[name='tpPgm']:checked").val();
+
+    if(tpPgm != 'bol' && tpPgm != 'card'){
+        $('#message').html('<br><div class="alert alert-danger" role="alert">Tipo de pagamento inválido!</div>');
+    }else{
+        if(tpPgm == 'card'){
+            window.location.href = '/pagamento';
+        }
+    }
 })

@@ -18,16 +18,29 @@ $(document).ready(function(){
                 $('#v'+id).html('R$ '+ret.valor);
             }
         })
-
-        $.ajax({
-            url: '/calcular-subtotal',
-            type: 'POST',
-            dataType: 'JSON',
-            success:function(ret){
-                $('#subtot').html('R$ '+ret.subtotal);
-                $('#subtotHead').html('R$ '+ret.total)
-                $('#totalfinal').html('R$ '+ret.total)
-            }
-        })
+        calcSubtotal()
+        // $.ajax({
+        //     url: '/calcular-subtotal',
+        //     type: 'POST',
+        //     dataType: 'JSON',
+        //     success:function(ret){
+        //         $('#subtot').html('R$ '+ret.subtotal);
+        //         $('#subtotHead').html('R$ '+ret.total)
+        //         $('#totalfinal').html('R$ '+ret.total)
+        //     }
+        // })
     })
 })
+
+function calcSubtotal(){
+    $.ajax({
+        url: '/calcular-subtotal',
+        type: 'POST',
+        dataType: 'JSON',
+        success:function(ret){
+            $('#subtot').html('R$ '+ret.subtotal);
+            $('#subtotHead').html('R$ '+ret.total)
+            $('#totalfinal').html('R$ '+ret.total)
+        }
+    })
+}

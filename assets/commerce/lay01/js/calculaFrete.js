@@ -42,7 +42,6 @@ $(function(){
 })
 
 function calcSubtotal(){
-    console.log('Entri')
     $.ajax({
         url: '/calcular-subtotal',
         type: 'POST',

@@ -28,7 +28,7 @@ class CarrinhoController extends Controller {
             $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'control'=>true]);
             exit;
         }
-
+        //unset($_SESSION['login_cliente_ecommerce']);
         //print_r($valores);
 
         $carrinho = $carr->listaItens($_SESSION['carrinho']);
@@ -38,13 +38,13 @@ class CarrinhoController extends Controller {
         $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
     }
 
-    public function pagamento(){
-        $info = new Info;
+    // public function pagamento(){
+    //     $info = new Info;
 
-        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+    //     $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         
-        $this->render('commerce/lay01/pagamento', ['dados'=>$dados/*, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false*/]);
-    }
+    //     $this->render('commerce/lay01/pagamento', ['dados'=>$dados/*, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false*/]);
+    // }
 
     public function calcFrete(){
         $carr = new Carrinho;

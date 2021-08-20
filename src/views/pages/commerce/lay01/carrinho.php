@@ -134,7 +134,7 @@
                         <?php if(isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0): ?>
                         <div class="col-md-6 ">
                             <form method="post" id="frete" class="shipping_calculator float-left">
-                                <h2>Calculo do Frete</h2>
+                                <h2>Cálculo do Frete</h2>
                                 <p class="form-row form-row-wide">
                                     <input type="text" id="cep" name="cep" placeholder="Informe o CEP"
                                         class="input-text">
@@ -153,9 +153,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-sm" id="selectPay" tabindex="-1" role="dialog"
+    aria-labelledby="selectPayLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
@@ -164,28 +164,32 @@
                 <h4 class="modal-title" id="exampleModalLabel">Selecione o tipo de pagamento</h4>
 
             </div>
-            <div class="modal-body">
-                <form>
+            <form>
+                <div class="modal-body">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                            value="opcao1" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Cartão de crédito <img src="<?php echo BASE_ASS_C?>images/card.png" alt="Cartão de crédito" id="imgcard" >
+                        <input class="form-check-input" type="radio" name="tpPgm" id="card"
+                            value="card" checked>
+                        <label class="form-check-label" for="card">
+                            Cartão de crédito <img src="<?php echo BASE_ASS_C?>images/card.png" alt="Cartão de crédito"
+                                id="imgcard">
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                            value="opcao2">
-                        <label class="form-check-label" for="exampleRadios2">
-                            Boleto bancario <img src="<?php echo BASE_ASS_C?>images/codbarra.png" alt="Cartão de crédito" id="imgbol" >
+                        <input class="form-check-input" type="radio" name="tpPgm" id="bol"
+                            value="bol">
+                        <label class="form-check-label" for="bol">
+                            Boleto bancario <img src="<?php echo BASE_ASS_C?>images/codbarra.png"
+                                alt="Cartão de crédito" id="imgbol">
                         </label>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Enviar</button>
-            </div>
+                    <div id="message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="btnSelPgm">OK</button>
+                </div>
+                
+            </form>
         </div>
     </div>
 </div>
