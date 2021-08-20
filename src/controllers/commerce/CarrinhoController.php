@@ -73,6 +73,19 @@ class CarrinhoController extends Controller {
         exit;
     }
 
+    public function verUsuarioLogado(){
+        if(isset($_SESSION['login_cliente_ecommerce'])){  
+            echo json_encode(['log'=>true]);
+            exit;
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                    Faça login para continuar!
+                                </div>';
+        echo json_encode(['log'=>false]);
+        exit;
+    }
+
     public function addCarrinho(){
         $prod = new Produto;
 

@@ -43,6 +43,14 @@ if(!$valores)$valores['total'] = '0,00';
     <![endif]-->
 
     <style>
+        #imgcard{
+            width: 50px;
+            height: 30px;
+        }
+        #imgbol{
+            width: 30px;
+            height: 20px;
+        }
         .space{
             padding-bottom: 2%;
         }
