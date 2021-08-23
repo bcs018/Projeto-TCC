@@ -14,6 +14,7 @@ class CarrinhoController extends Controller {
         $carr = new Carrinho;
 
         unset($_SESSION['frete']);
+        unset($_SESSION['login_cliente_ecommerce']);
         
         $valores = $carr->somaValor();
 

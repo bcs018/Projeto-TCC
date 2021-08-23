@@ -17,20 +17,6 @@ class CadastroController extends Controller {
         $this->render('commerce/lay01/cadastro',['dados'=>$dados]);
     }
 
-    
-    public function login(){
-        $this->render('commerce/lay01/login_cliente');
-    }
-
-    public function loginAction(){
-        $login = addslashes($_POST['login']);
-        $senha = addslashes($_POST['senha']);
-
-        $cad = new Cadastro;
-
-        $cad->loginAction($login, $senha);
-    }
-
     public function cadUsuarioAction(){
         $nome      = addslashes($_POST['nome']);
         $sobrenome = addslashes($_POST['sobrenome']);

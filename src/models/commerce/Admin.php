@@ -6,36 +6,36 @@ use \core\Model;
 
 class Admin extends Model{
 
-    public function verificarLogin($sub, $login, $senha){
-        $sql = "SELECT eu.ecommerce_id, eu.sub_dominio, eu.nome_fantasia, u.usuario_id, u.nome, u.cpf, u.senha FROM ecommerce_usu eu
-                JOIN ecom_usua ecu
-                ON ecu.ecommerce_id = eu.ecommerce_id
-                JOIN usuario u 
-                ON u.usuario_id = ecu.usuario_id
-                WHERE eu.sub_dominio = ? AND u.login = ? AND u.senha = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $sub);
-        $sql->bindValue(2, addslashes($login));
-        $sql->bindValue(3, md5($senha));
-        $sql->execute();
+    // public function verificarLogin($sub, $login, $senha){
+    //     $sql = "SELECT eu.ecommerce_id, eu.sub_dominio, eu.nome_fantasia, u.usuario_id, u.nome, u.cpf, u.senha FROM ecommerce_usu eu
+    //             JOIN ecom_usua ecu
+    //             ON ecu.ecommerce_id = eu.ecommerce_id
+    //             JOIN usuario u 
+    //             ON u.usuario_id = ecu.usuario_id
+    //             WHERE eu.sub_dominio = ? AND u.login = ? AND u.senha = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $sub);
+    //     $sql->bindValue(2, addslashes($login));
+    //     $sql->bindValue(3, md5($senha));
+    //     $sql->execute();
 
-        $dados = $sql->fetch();
+    //     $dados = $sql->fetch();
 
-        if($sql->rowCount() > 0){
-            $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
-            $_SESSION['credencial'] = $login;
+    //     if($sql->rowCount() > 0){
+    //         $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
+    //         $_SESSION['credencial'] = $login;
 
-            return true;
-        }
+    //         return true;
+    //     }
 
-        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                    Login e/ou Senha inválidos!
-                                </div>';
-        $_SESSION['credencial'] = $login;
-        $_SESSION['log_admin_c'] = false;
+    //     $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+    //                                 Login e/ou Senha inválidos!
+    //                             </div>';
+    //     $_SESSION['credencial'] = $login;
+    //     $_SESSION['log_admin_c'] = false;
 
-        return false;
-    }
+    //     return false;
+    // }
 
     // Valida para que o usuario não acesso os dados de outros usuarios
     public function listaDados($sub){

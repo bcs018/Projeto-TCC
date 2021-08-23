@@ -10,9 +10,9 @@ use \src\models\commerce\Info;
 
 class AdminController extends Controller {
 
-    public function index() {
-        $this->render('commerce/lay01/login_adm');
-    }
+    // public function index() {
+    //     $this->render('commerce/lay01/login_adm');
+    // }
 
     // -- Função para pegar informações do ecommerce de cada cliente
     public static function listaDadosEcommerce(){
@@ -167,25 +167,25 @@ class AdminController extends Controller {
         exit;
     }
 
-    public function logar() {
-        $login = new Admin;
-        $dados = $login->verificarLogin($_SESSION['sub_dom'], $_POST['login'], $_POST['pass']);
+    // public function logar() {
+    //     $login = new Admin;
+    //     $dados = $login->verificarLogin($_SESSION['sub_dom'], $_POST['login'], $_POST['pass']);
 
-        if($dados == false){
-            header("Location: /admin");
-            exit;
-        }
+    //     if($dados == false){
+    //         header("Location: /admin");
+    //         exit;
+    //     }
 
-        header("Location: /admin/painel");
+    //     header("Location: /admin/painel");
 
-        exit;
+    //     exit;
 
-    }
+    // }
 
-    public function sair(){
-        unset($_SESSION['log_admin_c']);
-        header("Location: /admin");
-    }
+    // public function sair(){
+    //     unset($_SESSION['log_admin_c']);
+    //     header("Location: /admin");
+    // }
 
     
 }

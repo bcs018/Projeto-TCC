@@ -82,11 +82,11 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                 <br>
 
                 <label for="numero" class="form-label">Número</label>
-                <input type="text" class="form-control" id="numero" placeholder="Informe seu número">
+                <input type="text" class="form-control" id="numero" name="numero" placeholder="Informe seu número">
                 <br>
 
                 <label for="estado" class="form-label">Estado</label>
-                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado_usu" id="estado_usu">
+                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado" id="estado">
                     <?php foreach($estados as $estado): ?>
                         <option value="<?php echo $estado['estado_id']; ?>"><?php echo $estado['nome_estado']; ?></option>
                     <?php endforeach; ?>
@@ -165,7 +165,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
 </div>
 
 <?php 
-echo'<pre>';print_r($produtos);
+echo'<pre>';print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>

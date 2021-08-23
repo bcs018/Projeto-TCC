@@ -28,6 +28,22 @@ $(function(){
                     $('#calcfrete').html('Ocorreu erro ao calcular o frete, combine com o vendedor!');
                 }else{
                     $('#calcfrete').html('R$ '+ret.preco+ ' Prazo: '+ret.data+' dia(s) para o CEP: '+ret.cep);
+                    $('#cep').val(cep.substr(0,5)+'-'+cep.substr(5,7));                    
+                    $.ajax({
+                        url: '/consulta-cep',
+                        type: 'POST',
+                        data: {
+                            cep:cep
+                        },
+                        dataType: 'json',
+                        success: function(json){
+                            $('#bairro').val(json.bairro);
+                            $('#rua').val(json.logradouro);
+                            $("#estado option:contains("+json.uf+")").prop({selected: true});
+                            $('#cidade').val(json.localidade);
+                            $('#complemento').val(json.complemento);
+                        }
+                    });
                 }
                 //console.log(ret.erro)
                 // console.log()
@@ -35,9 +51,6 @@ $(function(){
                 calcSubtotal();
             }
         })
-
-        
-        
     })
 })
 

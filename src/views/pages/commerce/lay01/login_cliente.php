@@ -53,6 +53,7 @@ if(isset($_SESSION['login_cliente_ecommerce'])){
               </div>
             </div>
           </div>
+          <input type="hidden" name="control" value="<?php echo(count($control)>0)?$control['control']:''; ?>">
           <div class="row">
             <div class="col-8">
             </div>

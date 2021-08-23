@@ -146,30 +146,36 @@ class Cadastro extends Model{
 
     }
 
-    public function loginAction($login, $senha){
-        $sql = "SELECT * FROM usuario_ecommerce ue
-                JOIN eco_usu eu
-                ON ue.ue_id = eu.usuario_id
-                JOIN ecommerce_usu ecus
-                ON ecus.ecommerce_id = eu.ecommerce_id
-                WHERE ecus.ecommerce_id = ? AND (ue.email_ue = ? OR ue.login_ue = ?) AND ue.senha_ue = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $login);
-        $sql->bindValue(3, $login);
-        $sql->bindValue(4, md5($senha));
-        $sql->execute();
+    // public function loginAction($login, $senha, $control){
+    //     $sql = "SELECT * FROM usuario_ecommerce ue
+    //             JOIN eco_usu eu
+    //             ON ue.ue_id = eu.usuario_id
+    //             JOIN ecommerce_usu ecus
+    //             ON ecus.ecommerce_id = eu.ecommerce_id
+    //             WHERE ecus.ecommerce_id = ? AND (ue.email_ue = ? OR ue.login_ue = ?) AND ue.senha_ue = ?";
+    //     $sql = $this->db->prepare($sql);
+    //     $sql->bindValue(1, $_SESSION['id_sub_dom']);
+    //     $sql->bindValue(2, $login);
+    //     $sql->bindValue(3, $login);
+    //     $sql->bindValue(4, md5($senha));
+    //     $sql->execute();
 
-        if($sql->rowCount() > 0){
-            $idUsu = $sql->fetch();
-            $_SESSION['login_cliente_ecommerce'] = $idUsu['ue_id'];
+    //     if($sql->rowCount() > 0){
+    //         $idUsu = $sql->fetch();
+    //         $_SESSION['login_cliente_ecommerce'] = $idUsu['ue_id'];
 
-            echo json_encode(['login'=>true]);
-            exit;
-        }
-            echo json_encode(['login'=>false]);
-            exit;
-    }
+    //         // Variavel de controle para quando o usuario clicar no LOGIN entrar no painel de controle, e quando ele for fazer uma compra e nao
+    //         // estiver logado, o control vai ser '' e o levara para a pagina anterior
+    //         if($control == 'p'){
+    //             echo json_encode(['login'=>true, 'control'=>true]);
+    //             exit;
+    //         }
+    //         echo json_encode(['login'=>true, 'control'=>false]);
+    //         exit;
+    //     }
+    //         echo json_encode(['login'=>false]);
+    //         exit;
+    // }
 
 
     

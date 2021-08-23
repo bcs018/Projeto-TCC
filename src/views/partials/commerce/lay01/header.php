@@ -180,7 +180,7 @@ if(!$valores)$valores['total'] = '0,00';
                             <li><a href="#"><i class="fa fa-user"></i>Minha conta</a></li>
                             <li><a href="/cadastrar"><i class="fa fa-edit"></i>Cadastre-se</a></li>
                             <!-- <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li> -->
-                            <li><a href="/login"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="/login/c"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>

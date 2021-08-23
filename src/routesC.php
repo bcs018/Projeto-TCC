@@ -8,11 +8,11 @@ $router = new Router();
 
 $router->get('/', 'HomeController@index');
 
-// -- Painel Usuario
-$router->get('/admin', 'AdminController@index');
-$router->post('/admin/logar', 'AdminController@logar');
+// -- Painel Usuario Empreendedor
+$router->get('/admin', 'LoginController@login');
+$router->post('/admin/logar', 'LoginController@loginAction');
 $router->get('/admin/painel', 'AdminController@painel');
-$router->get('/admin/sair', 'AdminController@sair');
+$router->get('/admin/sair', 'LoginController@sair');
 $router->get('/admin/painel/alterar-dados-pessoais', 'AdminController@ediDadosPessoais');
 $router->post('/admin/painel/alterar-dados-pessoais/action', 'AdminController@ediDadosPessoaisAction');
 $router->post('/consulta-cep', 'AdminController@consultarCep');
@@ -20,6 +20,12 @@ $router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAction');
 $router->get('/admin/painel/layout', 'AdminController@layout');
 $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
+
+// Painel Usuario Cliente
+$router->get('/login', 'LoginController@loginC');
+$router->get('/login/{control}', 'LoginController@loginC');
+$router->post('/cliente/logar', 'LoginController@loginCAction');
+$router->get('/cliente/painel', 'AdminCController@painel');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
@@ -51,9 +57,7 @@ $router->get('/pagamento', 'PagamentoController@pagamento');
 
 // -- Cadastro de clientes do ecommerce
 $router->get('/cadastrar', 'CadastroController@index');
-$router->get('/login', 'CadastroController@login');
 $router->post('/cadastrar-usuario', 'CadastroController@cadUsuarioAction');
-$router->post('/cliente/logar', 'CadastroController@loginAction');
 
 
 // -- Categorias
