@@ -1,7 +1,7 @@
 $(function(){
     $('#frete').on('submit', function(e){
         e.preventDefault();
-        cep = $('#cep').val();
+        cep = $('#cepCalc').val();
         id  = $('#id').val();
 
         if(cep == ''){

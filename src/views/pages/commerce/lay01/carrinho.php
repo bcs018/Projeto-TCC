@@ -90,7 +90,7 @@
                                                     <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                                 </div>
                                                 <input type="submit" value="Update Cart" name="update_cart" class="button"> -->
-                                        <a href="/pagamento" class="btn btn-info" id="pagar">Pagar</a>
+                                        <a href="" class="btn btn-info" id="pagar">Pagar</a>
                                         <!-- <input type="submit" value="Pagar" name="proceed" class="checkout-button button alt wc-forward"> -->
                                     </td>
                                 </tr>
@@ -136,7 +136,7 @@
                             <form method="post" id="frete" class="shipping_calculator float-left">
                                 <h2>Cálculo do Frete</h2>
                                 <p class="form-row form-row-wide">
-                                    <input type="text" id="cep" name="cep" placeholder="Informe o CEP"
+                                    <input type="text" id="cepCalc" name="cepCalc" placeholder="Informe o CEP"
                                         class="input-text">
                                 </p>
 
@@ -197,5 +197,5 @@
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">
-    $('#cep').mask("00000000");
+    $('#cepCalc').mask("00000000");
 </script>

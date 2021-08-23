@@ -88,7 +88,7 @@
                                             <form id="frete">
                                                 <p>
                                                     <label for="cep">Informe seu CEP</label> 
-                                                    <input name="cep" id="cep" type="text">
+                                                    <input name="cepCalc" id="cepCalc" type="text">
                                                     <input value="<?php echo $produto[0][0]; ?>" name="id" id="id" type="hidden">
                                                 </p>
                                                 <p>
@@ -139,5 +139,5 @@
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">
-    $('#cep').mask("00000000");
+    $('#cepCalc').mask("00000000");
 </script>

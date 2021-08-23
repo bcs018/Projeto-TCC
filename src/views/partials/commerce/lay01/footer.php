@@ -102,6 +102,7 @@
     <script src="<?php echo BASE_ASS_C; ?>lay01/js/login.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/selecionaPgm.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>js/getCep.js"></script>
 
     <!-- Slider -->
     <script type="text/javascript" src="<?php echo BASE_ASS_C; ?>lay01/js/bxslider.min.js"></script>

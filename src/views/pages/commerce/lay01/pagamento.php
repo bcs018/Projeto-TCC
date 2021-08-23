@@ -63,11 +63,45 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                 <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nome impresso no cartão">
                 <br>
 
-                <label for="formGroupExampleInput" class="form-label">CPF do titular do cartão</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="CPF do titular do cartão">
-                <br>
+                <label for="cpf" class="form-label">CPF do titular do cartão</label>
+                <input type="text" class="form-control" id="cpf" placeholder="CPF do titular do cartão">
+                <br><hr>
                 
-                <button type="submit" style="float: right;">Finalizar compra</button> <br><br><br><br>
+                <h4>Dados para entrega</h4>
+
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="cep" placeholder="Informe seu CEP">
+                <br>
+
+                <label for="rua" class="form-label">Rua</label>
+                <input type="text" class="form-control" id="rua"  placeholder="Informe sua rua">
+                <br>
+
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="bairro" placeholder="Informe seu bairro">
+                <br>
+
+                <label for="numero" class="form-label">Número</label>
+                <input type="text" class="form-control" id="numero" placeholder="Informe seu número">
+                <br>
+
+                <label for="estado" class="form-label">Estado</label>
+                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado_usu" id="estado_usu">
+                    <?php foreach($estados as $estado): ?>
+                        <option value="<?php echo $estado['estado_id']; ?>"><?php echo $estado['nome_estado']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <br>
+
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" placeholder="Informe sua cidade">
+                <br>
+
+                <label for="formGroupExampleInput" class="form-label">Complemento</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Informe o complemento">
+                <br>
+
+                <button type="submit" style="float: right;">Avançar</button> <br><br><br><br>
 
                 
             </div>
@@ -120,7 +154,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                 </div>
                 <form id="frete">
                     <label for="cep" class="form-label">Cálculo do frete</label>
-                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Insira o CEP de entrega">
+                    <input type="text" class="form-control" id="cepCalc" name="cepCalc" placeholder="Insira o CEP de entrega">
                     <br><button type="submit">Calcular</button>
                 </form>
                 <br>
@@ -137,5 +171,7 @@ echo'<pre>';print_r($produtos);
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">
-    $('#cep').mask("00000000");
+    $('#cepCalc').mask("00000000");
+    $('#cep').mask("00000-000");
+    $('#cpf').mask("00000000000");
 </script>
