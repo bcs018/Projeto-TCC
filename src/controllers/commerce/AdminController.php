@@ -27,7 +27,7 @@ class AdminController extends Controller {
         $_SESSION['log_admin_c']['nome'] = $dados['nome'];
 
         return $dados;
-    }
+    } 
 
     // -- Pagina principal do painel de controle
     public function painel() {

@@ -1,8 +1,8 @@
 <?php  
-if(isset($_SESSION['login_cliente_ecommerce'])){
-  // redirecionar para o painel de controle
-  header("Location: /");
-}
+// if(isset($_SESSION['login_cliente_ecommerce'])){
+//   //redirecionar para o painel de controle
+//   header("Location: /cliente/painel");
+// }
 ?>
 
 <!DOCTYPE html>

@@ -57,4 +57,10 @@ class LoginController extends Controller {
         header("Location: /admin");
     }
 
+    public function sairC(){
+        unset($_SESSION['log_admin_c']);
+        unset($_SESSION['login_cliente_ecommerce']);
+        header("Location: /login/c");
+    }
+
 }

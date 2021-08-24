@@ -56,8 +56,10 @@ class Login extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            $idUsu = $sql->fetch();
-            $_SESSION['login_cliente_ecommerce'] = $idUsu['ue_id'];
+            $dados = $sql->fetch();
+            $_SESSION['login_cliente_ecommerce'] = $dados['ue_id'];
+            $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
+            $_SESSION['credencial'] = $login;
 
             // Variavel de controle para quando o usuario clicar no LOGIN entrar no painel de controle, e quando ele for fazer uma compra e nao
             // estiver logado, o control vai ser '' e o levara para a pagina anterior

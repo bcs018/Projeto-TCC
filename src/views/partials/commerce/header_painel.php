@@ -142,7 +142,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/admin/sair" class="nav-link" style="color:red;">
+        <a href="/admin/sair/c" class="nav-link" style="color:red;">
           Sair
         </a>
       </li>

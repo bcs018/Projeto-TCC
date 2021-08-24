@@ -26,6 +26,7 @@ $router->get('/login', 'LoginController@loginC');
 $router->get('/login/{control}', 'LoginController@loginC');
 $router->post('/cliente/logar', 'LoginController@loginCAction');
 $router->get('/cliente/painel', 'AdminCController@painel');
+$router->get('/admin/sair/c', 'LoginController@sairC');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

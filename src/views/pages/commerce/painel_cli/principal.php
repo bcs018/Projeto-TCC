@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION['login_cliente_ecommerce'])){
-  header("Location: /login");
+  header("Location: /login/c");
   exit;
 }
 
@@ -31,10 +31,10 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
               <div class="inner">
                 <h3>0</h3>
 
-                <p>Todos clientes</p>
+                <p>Produtos adquiridos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-stalker"></i>
+                <i class="fas fa-shopping-cart"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -44,12 +44,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>0<sup style="font-size: 20px">%</sup></h3>
+                <h3><sup style="font-size: 20px">Dúvidas</sup></h3>
 
-                <p>Total visitas diario</p>
+                <p></p><br>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-question"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
