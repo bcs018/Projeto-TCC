@@ -50,15 +50,24 @@ class Cadastro extends Model{
             $flag = 1;
         }
 
-        $sql = "SELECT * FROM usuario_ecommerce ue
-                JOIN eco_usu eu
-                ON ue.ue_id = eu.usuario_id
-                JOIN ecommerce_usu ecus
-                ON ecus.ecommerce_id = eu.ecommerce_id
-                WHERE ecus.ecommerce_id = ? AND ue.login_ue = ?";
+        $sql = "SELECT * FROM usuario_ecommerce WHERE login_ue = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $login);
+        //$sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(1, $login);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Já existe esse login, informe outro!
+                                    </div>';
+
+            $flag = 1;
+        }
+
+        $sql = "SELECT * FROM usuario WHERE login = ?";
+        $sql = $this->db->prepare($sql);
+        //$sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(1, $login);
         $sql->execute();
 
         if($sql->rowCount() > 0){

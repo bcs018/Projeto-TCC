@@ -17,6 +17,7 @@ class AdminC extends Model{
         $sql->bindValue(1, $sub);
         $sql->bindValue(2, $_SESSION['credencial']);
         $sql->execute();
+        //echo $_SERVER['REQUEST_URI']; exit;
 
         if($sql->rowCount() == 0){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">

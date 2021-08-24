@@ -4,7 +4,7 @@ if(!isset($_SESSION['login_cliente_ecommerce'])){
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']); 
+$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Principal']); 
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -59,12 +59,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>0</h3>
-
-                <p>Novos clientes p/ dia</p>
+                <h3><sup style="font-size: 20px">Reclamação</sup></h3>
+                <p></p><br>
+                <!-- <p>Novos clientes p/ dia</p> -->
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-exclamation"></i>
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>

@@ -241,6 +241,18 @@ class Admin extends Model{
             return false;
         }
 
+        $sql = "SELECT * FROM usuario_ecommerce WHERE login_ue = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $login);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Já existe esse Login, informe outro!
+                                    </div>';
+            return false;
+        }
+
         $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);

@@ -131,6 +131,13 @@ class Cadastro extends Model{
             $flag = true;
         }
 
+        if($this->consultaLogin($POST['login'])){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                           Já existe esse Login, informe outro!
+                                                        </div>';
+            $flag = true;
+        }
+
         /**
          * Fim da validação
          */
@@ -158,7 +165,7 @@ class Cadastro extends Model{
         $sql->bindValue(13, $POST['complemento']);
         $sql->bindValue(14, 0);
         $sql->bindValue(15, md5($POST['senha']));
-        $sql->bindValue(16, $POST['login']);
+        $sql->bindValue(16, addslashes($POST['login']));
         $sql->bindValue(17, 1);
         $sql->execute();
 
@@ -239,6 +246,15 @@ class Cadastro extends Model{
 
     public function consultaLogin($login){
         $sql = "SELECT * FROM usuario WHERE login = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $login);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        $sql = "SELECT * FROM usuario_ecommerce WHERE login_ue = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $login);
         $sql->execute();
