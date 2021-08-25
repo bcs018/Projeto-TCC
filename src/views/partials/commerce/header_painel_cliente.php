@@ -142,7 +142,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/admin/sair/c" class="nav-link" style="color:red;">
+        <a href="/cliente/sair/c" class="nav-link" style="color:red;">
           Sair
         </a>
       </li>
@@ -201,7 +201,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/cliente/painel/alterar-dados-pessoais" class="nav-link">
+                <a href="/cliente/painel/contato" class="nav-link">
                 <i class="fas fa-phone nav-icon"></i>
                   <p>Contato</p>
                 </a>

@@ -86,6 +86,13 @@ class Cadastro extends Model{
             $flag = true;
         }
 
+        if($this->consultaEmail($POST['email_usu'])){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Já existe esse E-mail, informe outro!
+                                                        </div>';
+            $flag = true;
+        }
+
         if(!empty($POST['cnpj'])){
             if(!$this->validarCnpj($POST['cnpj'])){
                 $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
@@ -327,6 +334,28 @@ class Cadastro extends Model{
         $resto = $soma % 11;
 
         return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
+    }
+
+    private function consultaEmail($email){
+        $sql = "SELECT * FROM usuario_ecommerce WHERE email_ue = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        $sql = "SELECT * FROM usuario WHERE email = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        return false;
     }
 
 }

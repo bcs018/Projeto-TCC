@@ -253,6 +253,13 @@ class Admin extends Model{
             return false;
         }
 
+        if($this->consultaEmail($email)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Já existe esse E-mail, informe outro!
+                                    </div>';
+            return false;
+        }
+
         $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
@@ -407,5 +414,27 @@ class Admin extends Model{
         $sql = $this->db->query($sql)->fetchAll();
 
         return $sql;
+    }
+
+    private function consultaEmail($email){
+        $sql = "SELECT * FROM usuario_ecommerce WHERE email_ue = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        $sql = "SELECT * FROM usuario WHERE email = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        return false;
     }
 }

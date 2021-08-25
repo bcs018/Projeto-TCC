@@ -97,24 +97,32 @@ class Cadastro extends Model{
             $flag = 1;
         }
 
-        $sql = "SELECT * FROM usuario_ecommerce ue
-                JOIN eco_usu eu
-                ON ue.ue_id = eu.usuario_id
-                JOIN ecommerce_usu ecus
-                ON ecus.ecommerce_id = eu.ecommerce_id
-                WHERE ecus.ecommerce_id = ? AND ue.email_ue = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $_SESSION['id_sub_dom']);
-        $sql->bindValue(2, $email);
-        $sql->execute();
-
-        if($sql->rowCount() > 0){
+        if($this->consultaEmail($email)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Já existe esse E-mail, informe outro!
                                     </div>';
-
+    
             $flag = 1;
         }
+
+        // $sql = "SELECT * FROM usuario_ecommerce ue
+        //         JOIN eco_usu eu
+        //         ON ue.ue_id = eu.usuario_id
+        //         JOIN ecommerce_usu ecus
+        //         ON ecus.ecommerce_id = eu.ecommerce_id
+        //         WHERE ecus.ecommerce_id = ? AND ue.email_ue = ?";
+        // $sql = $this->db->prepare($sql);
+        // $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        // $sql->bindValue(2, $email);
+        // $sql->execute();
+
+        // if($sql->rowCount() > 0){
+        //     $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+        //                                 Já existe esse E-mail, informe outro!
+        //                             </div>';
+
+        //     $flag = 1;
+        // }
 
         if($flag == 1)return false;
 
@@ -213,6 +221,28 @@ class Cadastro extends Model{
             }
         }
         return true;
+    }
+
+    private function consultaEmail($email){
+        $sql = "SELECT * FROM usuario_ecommerce WHERE email_ue = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        $sql = "SELECT * FROM usuario WHERE email = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        }
+
+        return false;
     }
 
 }

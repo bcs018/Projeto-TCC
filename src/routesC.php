@@ -26,7 +26,10 @@ $router->get('/login', 'LoginController@loginC');
 $router->get('/login/{control}', 'LoginController@loginC');
 $router->post('/cliente/logar', 'LoginController@loginCAction');
 $router->get('/cliente/painel', 'AdminCController@painel');
-$router->get('/admin/sair/c', 'LoginController@sairC');
+$router->get('/cliente/painel/alterar-dados-pessoais', 'AdminCController@ediDadosPessoais');
+$router->post('/cliente/painel/alterar-dados-pessoais/action', 'AdminCController@ediDadosPessoaisAction');
+$router->get('/cliente/sair/c', 'LoginController@sairC');
+$router->get('/cliente/painel/contato', 'AdminCController@contato');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
