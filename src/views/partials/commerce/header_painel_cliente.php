@@ -189,7 +189,7 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
             <li class="nav-item">
-                <a href="/admin/painel/categorias" class="nav-link">
+                <a href="/cliente/painel/meus-pedidos" class="nav-link">
                 <i class="far fa-clipboard nav-icon"></i>
                   <p>Meus pedidos</p>
                 </a>

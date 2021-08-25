@@ -30,6 +30,7 @@ $router->get('/cliente/painel/alterar-dados-pessoais', 'AdminCController@ediDado
 $router->post('/cliente/painel/alterar-dados-pessoais/action', 'AdminCController@ediDadosPessoaisAction');
 $router->get('/cliente/sair/c', 'LoginController@sairC');
 $router->get('/cliente/painel/contato', 'AdminCController@contato');
+$router->get('/cliente/painel/meus-pedidos', 'AdminCController@pedidos');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

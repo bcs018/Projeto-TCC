@@ -66,4 +66,10 @@ class AdminCController extends Controller {
     
         $this->render('commerce/painel_cli/contato', ['dados'=>$dados]);
     }
+
+    public function pedidos(){
+        $dados = $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_cli/pedidos', ['dados'=>$dados]);
+    }
 }

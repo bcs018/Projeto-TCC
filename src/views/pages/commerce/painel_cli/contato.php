@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION['log_admin_c'])){
-  header("Location: /admin");
+  header("Location: /login/c");
   exit;
 }
 
