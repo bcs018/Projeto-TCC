@@ -20,6 +20,7 @@ $router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAction');
 $router->get('/admin/painel/layout', 'AdminController@layout');
 $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
+$router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDadosRecebimento');
 
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');

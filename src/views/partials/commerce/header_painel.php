@@ -239,6 +239,12 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
+                <a href="/admin/painel/cadastrar-dados-recebimento" class="nav-link">
+                <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Dados para recebimento</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/admin/painel/alterar-dados-pessoais" class="nav-link">
                 <i class="fas fa-file-signature nav-icon"></i>
                   <p>Alterar dados pessoais</p>

@@ -66,6 +66,12 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
+    public function cadDadosRecebimento(){
+        $dados = AdminController::listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/dados_recebimento', ['dados'=>$dados]);
+    }
+
     public function ediLayoutAction(){
         $_SESSION['message'] = '';
         $adm = new Admin;
