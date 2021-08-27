@@ -27,7 +27,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                             <h3 class="card-title">Selecione o método em que você quer trabalhar: <b>PagSeguro</b> ou
                                 <b>Mercado Pago</b></h3>
                         </div>
-                        <form role="form" method="POST" action="/admin/painel/cadastrar-marcas/action">
+                        <form role="form" method="POST" action="/admin/painel/cadastrar-dados-recebimento/action">
                             <div class="card-body">
                                 <div class="form-group">
                                     <?php 
@@ -54,22 +54,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                                         <div class="tab-pane fade show active" id="pagseguro" role="tabpanel" aria-labelledby="pills-home-tab">
                                             <div class="form-group">
                                                 <label for="tknpagseguro">Token do PagSeguro</label>
-                                                <input type="text" class="form-control" id="tknpagseguro"
-                                                    aria-describedby="emailHelp" placeholder="Token PagSeguro">
-                                                    <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small>
+                                                <input type="text" class="form-control" name="tknpagseguro" id="tknpagseguro" aria-describedby="emailHelp" placeholder="Token PagSeguro">
+                                                <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small>
                                                 <br>
                                                 <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>
-                                                <input type="email" class="form-control" id="emailpagseguro"
-                                                    aria-describedby="emailHelp" placeholder="E-mail cadastrado no PagSeguro">
+                                                <input type="email" class="form-control" name="emailpagseguro" id="emailpagseguro" aria-describedby="emailHelp" placeholder="E-mail cadastrado no PagSeguro">
                                             </div>
                                         </div>
 
                                         <div class="tab-pane fade" id="mercadopago" role="tabpanel" aria-labelledby="pills-profile-tab">
                                             <div class="form-group">
                                                 <label for="tknmpago">Token do Mercado Pago</label>
-                                                <input type="text" class="form-control" id="tknmpago"
-                                                    aria-describedby="emailHelp" placeholder="Token Mercado Pago">
-                                                    <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small>
+                                                <input type="text" class="form-control" name="tknmpago" id="tknmpago" aria-describedby="emailHelp" placeholder="Token Mercado Pago">
+                                                <!-- <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small> -->
                                                 <br>
                                                 <!-- <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>
                                                 <input type="email" class="form-control" id="emailpagseguro"

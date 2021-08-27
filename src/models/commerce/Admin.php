@@ -409,6 +409,39 @@ class Admin extends Model{
         }
     }
 
+    public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $tknmpago){
+        if((empty($tknmpago) && empty($emailpagseguro) && empty($tknpagseguro))   /*|| 
+           (empty($tknmpago) && !empty($emailpagseguro) || !empty($tknpagseguro)) ||
+           (empty($emailpagseguro) || empty($tknpagseguro) && !empty($tknmpago))*/){
+            
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Campos obrigátórios do PagSeguro ou Mercado Pago não preenchidos OU <br>
+                                        um dos campos de ambos os métodos preenchidos, PREENCHA PAGSEGURO <b>OU</b> MERCADO PAGO!
+                                    </div>';
+
+            return false;
+        }
+
+        if((!empty($tknmpago) || !empty($emailpagseguro)) && !empty($tknpagseguro)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
+                                        Preencha do PagSeguro ou Mercado Pago!
+                                    </div>';
+
+            return false;
+        }
+
+        if(empty($tknmpago) || empty($emailpagseguro) || !empty($tknpagseguro)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
+                                        Preencha do PagSeguro ou Mercado Pago!
+                                    </div>';
+
+            return false;
+        }
+
+    }
+
     public function lista_estados(){
         $sql = "SELECT * FROM estado";
         $sql = $this->db->query($sql)->fetchAll();

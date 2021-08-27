@@ -74,7 +74,11 @@ create table ecommerce_usu(
     ico varchar(50) not null default 0,
     cor varchar (50) default '#adadad',
     cor_rodape varchar (50) default '#adadad',
-    
+    tp_recebimento ENUM ('pagseguro','mercadopago','0') default '0' not null,
+    ps_token varchar(200) default 0 not null, 
+    ps_email varchar(100) default 0 not null, 
+    mp_token varchar(200) default 0 not null,
+
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/
     foreign key(plano_id) references plano(plano_id)

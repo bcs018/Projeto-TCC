@@ -21,6 +21,9 @@ $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAct
 $router->get('/admin/painel/layout', 'AdminController@layout');
 $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
 $router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDadosRecebimento');
+$router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminController@cadDadosRecebimentoAction');
+
+
 
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');

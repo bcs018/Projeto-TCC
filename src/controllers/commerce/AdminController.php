@@ -72,6 +72,18 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/dados_recebimento', ['dados'=>$dados]);
     }
 
+    public function cadDadosRecebimentoAction(){
+        $tknpagseguro   = addslashes($_POST['tknpagseguro']);
+        $emailpagseguro = addslashes($_POST['emailpagseguro']);
+        $tknmpago       = addslashes($_POST['tknmpago']);
+
+        $admin = new Admin;
+
+        $admin->cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $tknmpago);
+
+        header("Location: /admin/painel/cadastrar-dados-recebimento");
+    }
+
     public function ediLayoutAction(){
         $_SESSION['message'] = '';
         $adm = new Admin;
