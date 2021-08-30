@@ -11,7 +11,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <h1>Cadastrar dados para Recebimento</h1>
                 </div>
             </div>

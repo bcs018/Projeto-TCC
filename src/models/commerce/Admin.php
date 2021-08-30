@@ -410,36 +410,46 @@ class Admin extends Model{
     }
 
     public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $tknmpago){
-        if((empty($tknmpago) && empty($emailpagseguro) && empty($tknpagseguro))   /*|| 
-           (empty($tknmpago) && !empty($emailpagseguro) || !empty($tknpagseguro)) ||
-           (empty($emailpagseguro) || empty($tknpagseguro) && !empty($tknmpago))*/){
+        if((empty($tknmpago) && empty($emailpagseguro) && empty($tknpagseguro))){
             
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
-                                        Campos obrigátórios do PagSeguro ou Mercado Pago não preenchidos OU <br>
-                                        um dos campos de ambos os métodos preenchidos, PREENCHA PAGSEGURO <b>OU</b> MERCADO PAGO!
+                                        Campos obrigátórios do PagSeguro ou Mercado Pago não preenchidos!
                                     </div>';
 
             return false;
         }
 
-        if((!empty($tknmpago) || !empty($emailpagseguro)) && !empty($tknpagseguro)){
+        if(!empty($tknmpago) && (!empty($emailpagseguro) || !empty($tknpagseguro))){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
-                                        Preencha do PagSeguro ou Mercado Pago!
+                                        Preencha PagSeguro ou Mercado Pago!
                                     </div>';
 
             return false;
         }
 
-        if(empty($tknmpago) || empty($emailpagseguro) || !empty($tknpagseguro)){
-            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
-                                        Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
-                                        Preencha do PagSeguro ou Mercado Pago!
+        $sql = 'UPDATE ecommerce_usu SET tp_recebimento = ?, ps_token = ?, ps_email = ?, mp_token = ?
+                WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, (empty($tknmpago)?'pagseguro':'mercadopago'));
+        $sql->bindValue(2, (!empty($tknpagseguro)?$tknpagseguro:'0'));
+        $sql->bindValue(3, (!empty($emailpagseguro)?$emailpagseguro:'0'));
+        $sql->bindValue(4, (!empty($tknmpago)?$tknmpago:'0'));
+        $sql->bindValue(5, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Dados atualizados com sucesso!
                                     </div>';
 
-            return false;
+            return true;
         }
 
+        $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                    Erro 004 ao atualizar dados!
+                                </div>';
+
+        return false;
     }
 
     public function lista_estados(){

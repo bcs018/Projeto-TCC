@@ -13,8 +13,8 @@ class CarrinhoController extends Controller {
         $prod = new Produto;
         $carr = new Carrinho;
 
-        unset($_SESSION['frete']);
-        unset($_SESSION['login_cliente_ecommerce']);
+        // unset($_SESSION['frete']);
+        // unset($_SESSION['login_cliente_ecommerce']);
         
         $valores = $carr->somaValor();
 
@@ -79,7 +79,7 @@ class CarrinhoController extends Controller {
             echo json_encode(['log'=>true]);
             exit;
         }
-
+ 
         $_SESSION['message'] = '<div class="alert alert-info" role="alert">
                                     Faça login para continuar!
                                 </div>';
