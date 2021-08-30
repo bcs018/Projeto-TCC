@@ -1,13 +1,26 @@
 <?php
-namespace src\controllers\sitePrincipal;
+namespace src\controllers\commerce;
 
 use \core\Controller;
-use Exception;
-use \src\models\sitePrincipal\Plano;
-use \src\models\sitePrincipal\Assinatura;
+use \src\models\commerce\Admin;
+use \src\models\commerce\Produto;
+use \src\models\commerce\Info;
+use \src\models\sitePrincipal\Cadastro;
+use src\models\commerce\Carrinho;
 
 class PgCheckTransPrincipalController extends Controller {
-    public function pagamentoPlano($idpl){
+    public function index(){
+
+        $info = new Info;
+        $carr = new Carrinho;
+        $cada = new Cadastro;
+
+        $estados = $cada->lista_estados();
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+
 
         //Pegando a sessão do pagseguro
         try {
@@ -21,12 +34,7 @@ class PgCheckTransPrincipalController extends Controller {
             exit;
         }
 
-        $plano = new Plano;
-        
-        $pl = $plano->pegarItem($idpl['pl']);
-        $plano->inserirPlano($idpl['pl']);
-        
-        $this->render('sitePrincipal/cartaoPgm',  ['plano'=>$pl, 'sessionCode'=>$session]);
+        $this->render('commerce/lay01/pagamento',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados, 'sessionCode'=>$session]);
     }
 
     public function checkout(){

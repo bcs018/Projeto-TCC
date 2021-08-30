@@ -62,7 +62,7 @@ $router->post('/verifica-log-usuario', 'CarrinhoController@verUsuarioLogado');
 
 // -- Pagamento
 $router->post('/sel-pagamento', 'PagamentoController@index');
-$router->get('/pagamento', 'PagamentoController@pagamento');
+$router->get('/pagamento', 'PgCheckTransPrincipalController@index');
 
 // -- Cadastro de clientes do ecommerce
 $router->get('/cadastrar', 'CadastroController@index');

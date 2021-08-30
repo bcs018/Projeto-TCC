@@ -27,16 +27,16 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
             
             <div class="col-md-4">
-                <label for="formGroupExampleInput" class="form-label">Número do cartão</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Número do cartão">
+                <label for="n_card" class="form-label">Número do cartão</label>
+                <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
                 <br>
 
-                <label for="formGroupExampleInput2" class="form-label">Número de parcelas</label>
+                <label for="parc" class="form-label">Número de parcelas</label>
                 <select name="parc" id="parc" class="form-control"></select>
                 <br>
 
-                <label for="formGroupExampleInput" class="form-label">Código de segurança</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Código de segurança">
+                <label for="cd_seg" class="form-label">Código de segurança</label>
+                <input type="number" class="form-control" id="cd_seg" placeholder="Código de segurança">
                 <br>
 
                 <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
@@ -59,12 +59,12 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                     </div>
                 </div> <br>
 
-                <label for="formGroupExampleInput" class="form-label">Nome impresso no cartão</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Nome impresso no cartão">
+                <label for="nome_card" class="form-label">Nome impresso no cartão</label>
+                <input type="number" class="form-control" id="nome_card" placeholder="Nome impresso no cartão">
                 <br>
 
-                <label for="cpf" class="form-label">CPF do titular do cartão</label>
-                <input type="text" class="form-control" id="cpf" placeholder="CPF do titular do cartão">
+                <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
+                <input type="text" class="form-control" id="cpf_card" placeholder="CPF do titular do cartão">
                 <br><hr>
                 
                 <h4>Dados para entrega</h4>
@@ -96,12 +96,13 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                 <label for="cidade" class="form-label">Cidade</label>
                 <input type="text" class="form-control" id="cidade" placeholder="Informe sua cidade">
                 <br>
+                <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
 
                 <label for="formGroupExampleInput" class="form-label">Complemento</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Informe o complemento">
                 <br>
 
-                <button type="submit" style="float: right;">Avançar</button> <br><br><br><br>
+                <button type="submit" class="finalizar" style="float: right;">Finalizar</button> <br><br><br><br>
 
                 
             </div>
@@ -169,6 +170,8 @@ echo'<pre>';print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
+<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
 
 <script type="text/javascript">
     $('#cepCalc').mask("00000000");
