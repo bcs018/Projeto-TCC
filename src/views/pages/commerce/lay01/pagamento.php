@@ -2,8 +2,7 @@
 if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset($_SESSION['login_cliente_ecommerce'])){
     header("Location: /");
 }
-?>
-
+?> 
 <?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Finalização da compra', 'layout' => $dados]); ?>
 
 <div class="product-big-title-area">
@@ -170,8 +169,13 @@ echo'<pre>';print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
+
 <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
 <script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
+<script type="text/javascript">
+    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
+</script>
+
 
 <script type="text/javascript">
     $('#cepCalc').mask("00000000");

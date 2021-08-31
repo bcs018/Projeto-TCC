@@ -19,9 +19,7 @@ class PgCheckTransPrincipalController extends Controller {
         $produtos = $carr->listaItens($_SESSION['carrinho']);
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-
-
-
+        
         //Pegando a sessão do pagseguro
         try {
             $sessionCode = \PagSeguro\Services\Session::create(
