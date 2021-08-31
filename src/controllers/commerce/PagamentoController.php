@@ -2,39 +2,108 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use \src\models\commerce\Admin;
+use \src\models\commerce\PagSeguro;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Info;
 use \src\models\sitePrincipal\Cadastro;
 use src\models\commerce\Carrinho;
 
 class PagamentoController extends Controller {
-    // public function index(){
-    //     $tpPgm = $_POST['tpPgm'];
-
-    //     if($tpPgm != 'card' && $tpPgm != 'bol'){
-    //         echo json_encode(['erro'=>false]);
-    //         exit;
-    //     }
-    //     if($tpPgm == 'card'){
-    //        header("Location: /pagamento");
-    //     }
-
-    //     echo json_encode(['erro'=>true]);
-    //     exit;
-    // }
-
-    public function pagamento(){
+    // Primeira etapa da finalização da compra - Dados de entrega e calculo de cep
+    public function index(){
         $info = new Info;
         $carr = new Carrinho;
         $cada = new Cadastro;
 
         $estados = $cada->lista_estados();
         $produtos = $carr->listaItens($_SESSION['carrinho']);
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        //echo '<pre>';print_r($estados);
+        
+        $this->render('commerce/lay01/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+    }
+
+    // Recebe os dados da entrega referente a primeira parte da finalização da compra
+    public function atuDadosEntregaAction(){
+        $cep         = addslashes($_POST['cep']);
+        $rua         = addslashes($_POST['rua']);
+        $bairro      = addslashes($_POST['bairro']);
+        $numero      = addslashes($_POST['numero']);
+        $estado      = addslashes($_POST['estado']);
+        $cidade      = addslashes($_POST['cidade']);
+        $complemento = (empty($_POST['complemento'])?'':addslashes($_POST['complemento']));
+
+        if(empty($rua) || empty($cep) || empty($bairro) || empty($numero) || empty($estado) || empty($cidade)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Existem campos necessários para o endereço de entrega não preenchidos!
+                                    </div>';
+
+            header("Location: /pagamento");
+            exit;
+        }
+
+        if(!isset($_SESSION['frete'])){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Calcule o frete para continuar!
+                                    </div>';
+
+            header("Location: /pagamento");
+            exit;
+        }
+        
+        $cada = new Cadastro;       
+        $estados = $cada->lista_estados();
+
+        //echo $estados[$estado - 1]['nome_estado'];
+
+        // Armazenando os dados da entrega na SESSAO
+        $_SESSION['dados_entrega'] = [
+            'cep'         => $cep,
+            'rua'         => $rua,
+            'bairro'      => $bairro,
+            'numero'      => $numero,
+            'estado'      => $estados[$estado - 1]['nome_estado'],
+            'cidade'      => $cidade,
+            'complemento' => $complemento
+        ];
+
+        header("Location: /pagamento/2");
+    }
+    
+    // Segunda etapa da finalização da compra - Pagamento checkout
+    public function pagamentoSecond(){
+        $info = new Info;
+        $carr = new Carrinho;
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/lay01/pagamento',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+        //echo '<pre>';print_r($dados);exit;
 
-    } 
+        if($dados['tp_recebimento'] == 'pagseguro'){
+            //Pegando a sessão do pagseguro
+            PagSeguro::setDados();
+
+            try {
+                $sessionCode = \PagSeguro\Services\Session::create(
+                    \PagSeguro\Configuration\Configure::getAccountCredentials()
+                );
+
+                $session = $sessionCode->getResult();
+            } catch (\Exception $e) {
+                echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
+                exit;
+            }
+            
+            $this->render('commerce/lay01/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            exit;
+
+        }else if($dados['tp_recebimento'] == 'mercadopago'){
+            // ...
+        }else{
+            header("Location: /");
+        }
+
+    }
 }

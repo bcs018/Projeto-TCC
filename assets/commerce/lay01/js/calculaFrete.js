@@ -63,6 +63,7 @@ function calcSubtotal(){
             $('#subtot').html('R$ '+ret.subtotal);
             $('#subtotHead').html('R$ '+ret.total)
             $('#totalfinal').html('R$ '+ret.total)
+            $('#plan').val(ret.total)
         }
     })
 }

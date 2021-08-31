@@ -2,215 +2,122 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use \src\models\commerce\Admin;
-use \src\models\commerce\Produto;
+use \src\models\commerce\PagSeguro;
+use \src\models\commerce\Compra;
 use \src\models\commerce\Info;
-use \src\models\sitePrincipal\Cadastro;
+use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
 
 class PgCheckTransPrincipalController extends Controller {
-    public function index(){
 
-        $info = new Info;
+    public function checkout(){
+        $dados = PagSeguro::setDados();
+
+        $parc = explode(';', addslashes($_POST['parc']));
+        $nome_tit = addslashes($_POST['nome_card']);
+        $cpf = addslashes($_POST['cpf_card']);
+        $n_card = addslashes($_POST['n_card']);
+        $cvv = addslashes($_POST['cd_seg']);
+        $cartao_mes = addslashes($_POST['cartao_mes']);
+        $cartao_ano = addslashes($_POST['cartao_ano']);
+        //email do vendedor
+        $pagseguro_seller = $dados['ps_email'];
+        $code = $dados['ps_token'];
+
+        $comp = new Compra;
         $carr = new Carrinho;
         $cada = new Cadastro;
 
-        $estados = $cada->lista_estados();
         $produtos = $carr->listaItens($_SESSION['carrinho']);
+        $id_compra = $comp->inserirCompra('cartao');
+        $usuario = $cada->listaUsuario($_SESSION['login_cliente_ecommerce']);
 
-        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $ddd_usu = substr($usuario['celular_ue'],1,2);
+        $cel_usu = substr($usuario['celular_ue'],4,5).substr($usuario['celular_ue'],10,4);
+
+        // echo "DDD: ".$ddd_usu;
+        // echo "cel: ".$cel_usu;exit;
+    
+        //echo '<pre>';print_r($produtos);exit;
+
+        $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
+        $creditCard->setReceiverEmail($pagseguro_seller);
+
+        //Referenciação da compra do seu site com o pagseguro
+        $creditCard->setReference($id_compra);
+        $creditCard->setCurrency("BRL");
+        foreach($produtos as $p){
+            $creditCard->addItems()->withParameters(
+                $p[0], //id do produto
+                $p['nome_pro'],
+                $_SESSION['carrinho'][$p[0]], //qtd
+                $p['preco']
+            );
+        }
+        $creditCard->setSender()->setName($usuario['nome_usu_ue'].' '.$usuario['sobrenome']);
+        $creditCard->setSender()->setEmail($usuario['email_ue']);
+        $creditCard->setSender()->setDocument()->withParameters('CPF', $usuario['cpf_ue']);
+        $creditCard->setSender()->setPhone()->withParameters(
+            $ddd_usu,
+            $cel_usu
+        );
+        $creditCard->setSender()->setHash($_POST['id']);
         
-        //Pegando a sessão do pagseguro
-        try {
-            $sessionCode = \PagSeguro\Services\Session::create(
+        //No ip como esta em localhost, tem que enviar um ip valido
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if(strlen($ip) < 9){
+            $ip = '127.0.0.1';
+        }    
+        $creditCard->setSender()->setIp($ip);
+        
+        $creditCard->setShipping()->setAddress()->withParameters(
+            $dados['rua'],
+            $dados['numero'],
+            $dados['bairro'],
+            $dados['cep'],
+            $dados['cidade'],
+            $dados['estado'],
+            'BRA',
+            $dados['complemento']
+        );
+
+        $creditCard->setBilling()->setAddress()->withParameters(
+            $dados['rua'],
+            $dados['numero'],
+            $dados['bairro'],
+            $dados['cep'],
+            $dados['cidade'],
+            $dados['estado'],
+            'BRA',
+            $dados['complemento']
+        );
+
+        $creditCard->setToken($_POST['cartao_token']);
+        $creditCard->setInstallment()->withParameters($parc[0], $parc[1], 12);
+        $creditCard->setHolder()->setName($nome_tit);
+        $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
+        
+        $creditCard->setMode('DEFAULT');
+
+        //Url para o pagseguro notificar que o pagamento foi aprovado
+        //$creditCard->setNotificationUrl('/notification');
+
+        //$creditCard->setNotificationUrl();
+
+        try{
+            $result = $creditCard->register(
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
-            $session = $sessionCode->getResult();
-        } catch (\Exception $e) {
-            echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
+            echo json_encode($result);
+            exit;
+        }catch(Exception $e){
+            //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
+            $assinatura->excluirItem($dados['id_assinatura']);
+
+            echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
             exit;
         }
-
-        $this->render('commerce/lay01/pagamento',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados, 'sessionCode'=>$session]);
-    }
-
-    public function checkout(){
-        $assinatura = new Assinatura;
-
-        $parc = explode(';', $_POST['parc']);
-
-        $dados = $assinatura->inserirAss($_POST);
-
-        $nome_tit = addslashes($_POST['nome_tit']);
-        $cpf = addslashes($_POST['cpf']);
-
-        //Variavel global defineda no Config.php = email do vendedor
-        global $pagseguro_seller;
-
-        $preco = floatval($dados['preco']);
-
-
-        $code = "61EB374E0202EA0BB40EFFA6D7AB1F5F";
-
-        try {
-            $response = \PagSeguro\Services\PreApproval\Cancel::create(
-                \PagSeguro\Configuration\Configure::getAccountCredentials(),
-                $code
-            );
-
-            echo "<pre>";
-            print_r($response);
-        } catch (Exception $e) {
-            echo "ERRO: ".$e->getMessage();
-        }
-
-        /**
-         * Cancelamento de adesão -----------------------------
-         */
-        // $status = new \PagSeguro\Domains\Requests\DirectPreApproval\Cancel();
-        // $status->setPreApprovalCode('8');
-
-        // try {
-        //     $response = $status->register(
-        //         \PagSeguro\Configuration\Configure::getAccountCredentials()
-        //     );
-
-        //     echo '<pre>';
-        //     print_r($response);
-        // } catch (Exception $e) {
-        //     echo "ERRO: ".$e->getMessage();
-        // }
-        /**
-         * Fim de cancelamento de adesão -----------------------------
-         */
-
-
-        /**
-         * Começo de criação de plano -----------------------------
-         */
-        // $plan = new \PagSeguro\Domains\Requests\DirectPreApproval\Plan;
-        // $plan->setReference($dados['id_assinatura']);
-        // $plan->setPreApproval()->setName($dados['nome_plano']);
-        // $plan->setPreApproval()->setCharge('AUTO');
-        // $plan->setPreApproval()->setPeriod('MONTHLY');
-        // $plan->setPreApproval()->setAmountPerPayment($dados['preco']);
-        // $plan->setPreApproval()->setDetails('Plano '.$dados['nome_plano'].' com pagamento de R$'.$dados['preco'].' mensais');
-        // $plan->setReceiver()->withParameters($pagseguro_seller);
-
-        // try {
-        //     $response = $plan->register(
-        //         \PagSeguro\Configuration\Configure::getAccountCredentials()
-        //     );
-
-        //     echo '<pre>';
-        //     print_r($response);
-        // } catch ( Exception $e) {
-        //     echo 'ERRO: '. $e->getMessage();
-        // }
-
-        /**
-         * Fim da criação de pano -----------------------
-         */
-
-
-        
-
-        // $dados['email'] = 'bwcommerce@outlook.com';
-        // $dados['token'] = '23E3EEF82A4046C5826279C0A3D2A541';
-        // $dados['reference'] = $dados['id_assinatura'];
-        // $dados['name'] = $dados['nome_plano'];
-        // $dados['charge'] = 'AUTO';
-        // $dados['period'] = 'MONTHLY';
-        // $dados['amountPerPayment'] = $dados['preco'];
-        // $dados['membershipFee'] = 0.00;
-        // $dados['trialPeriodDuration'] = 0;  
-        // $dados['trialPeriodDuration'] = 0;  
-        // $dados['trialPeriodDuration'] = 0;  
-        // $dados['trialPeriodDuration'] = 0;  
-        // $dados['trialPeriodDuration'] = 0;  
-
-
-        // $url = 'https://ws.sandbox.pagseguro.uol.com.br/pre-approvals/request';
-
-        // $a = new \PagSeguro\Domains\Requests\Adapter\
-
-        // $creditCard = new \PagSeguro\Domains\Requests\DirectPayment\CreditCard();
-        // $creditCard->setReceiverEmail($pagseguro_seller);
-        // //Referenciação da compra do seu site com o pagseguro
-        // $creditCard->setReference($dados['id_assinatura']);
-        // $creditCard->setCurrency("BRL");
-        // $creditCard->addItems()->withParameters(
-        //     $dados['id_plano'],
-        //     $dados['nome_plano'],
-        //     1,
-        //     $preco
-
-        // );
-        // $creditCard->setSender()->setName($dados['nome_cli']);
-        // $creditCard->setSender()->setEmail($dados['email']);
-        // $creditCard->setSender()->setDocument()->withParameters('CPF', $dados['cpf']);
-        // $creditCard->setSender()->setPhone()->withParameters(
-        //     $dados['ddd'],
-        //     $dados['celular']
-        // );
-        // $creditCard->setSender()->setHash($_POST['id']);
-        
-        // //No ip como esta em localhost, tem que enviar um ip valido
-        // $ip = $_SERVER['REMOTE_ADDR'];
-        // if(strlen($ip) < 9){
-        //     $ip = '127.0.0.1';
-        // }    
-        // $creditCard->setSender()->setIp($ip);
-        
-        // $creditCard->setShipping()->setAddress()->withParameters(
-        //     $dados['rua'],
-        //     $dados['numero'],
-        //     $dados['bairro'],
-        //     $dados['cep'],
-        //     $dados['cidade'],
-        //     $dados['estado'],
-        //     'BRA',
-        //     $dados['complemento']
-        // );
-
-        // $creditCard->setBilling()->setAddress()->withParameters(
-        //     $dados['rua'],
-        //     $dados['numero'],
-        //     $dados['bairro'],
-        //     $dados['cep'],
-        //     $dados['cidade'],
-        //     $dados['estado'],
-        //     'BRA',
-        //     $dados['complemento']
-        // );
-
-        // $creditCard->setToken($_POST['cartao_token']);
-        // $creditCard->setInstallment()->withParameters($parc[0], $parc[1], 12);
-        // $creditCard->setHolder()->setName($nome_tit);
-        // $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
-        
-        // $creditCard->setMode('DEFAULT');
-
-        // //Url para o pagseguro notificar que o pagamento foi aprovado
-        // //$creditCard->setNotificationUrl('/notification');
-
-        // //$creditCard->setNotificationUrl();
-
-        // try{
-        //     $result = $creditCard->register(
-        //         \PagSeguro\Configuration\Configure::getAccountCredentials()
-        //     );
-
-        //     echo json_encode($result);
-        //     exit;
-        // }catch(Exception $e){
-        //     //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
-        //     $assinatura->excluirItem($dados['id_assinatura']);
-
-        //     echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
-        //     exit;
-        // }
     }
 
     // public function notification(){

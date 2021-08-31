@@ -10,7 +10,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Finalização da compra</h2>
+                    <h2>Finalização da compra 1/2</h2>
                 </div>
             </div>
         </div>
@@ -22,66 +22,27 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <center><h1>Preencha os dados</h1></center> <br><br>
+                <center><h1>Calcule o frete e informe o endereço de entrega</h1></center> <br><br>
             </div>
-            
+
             <div class="col-md-4">
-                <label for="n_card" class="form-label">Número do cartão</label>
-                <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
-                <br>
-
-                <label for="parc" class="form-label">Número de parcelas</label>
-                <select name="parc" id="parc" class="form-control"></select>
-                <br>
-
-                <label for="cd_seg" class="form-label">Código de segurança</label>
-                <input type="number" class="form-control" id="cd_seg" placeholder="Código de segurança">
-                <br>
-
-                <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <select name="cartao_mes" id="cartao_mes" class="form-control">
-                            <?php for($q=1; $q<=12; $q++): ?>
-                            <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6">
-                        <select name="cartao_ano" id="cartao_ano" class="form-control">
-                            <?php $ano = intval(date('Y')); ?>
-                            <?php for($q=$ano; $q<=($ano+30); $q++): ?>
-                            <option><?php echo $q; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-                </div> <br>
-
-                <label for="nome_card" class="form-label">Nome impresso no cartão</label>
-                <input type="number" class="form-control" id="nome_card" placeholder="Nome impresso no cartão">
-                <br>
-
-                <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-                <input type="text" class="form-control" id="cpf_card" placeholder="CPF do titular do cartão">
-                <br><hr>
-                
+                <form action="/pagamento/action" method="POST">
                 <h4>Dados para entrega</h4>
 
                 <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="cep" placeholder="Informe seu CEP">
+                <input type="text" class="form-control" name="cep" id="cep" placeholder="Informe seu CEP">
                 <br>
 
                 <label for="rua" class="form-label">Rua</label>
-                <input type="text" class="form-control" id="rua"  placeholder="Informe sua rua">
+                <input type="text" class="form-control" name="rua" id="rua"  placeholder="Informe sua rua">
                 <br>
 
                 <label for="bairro" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="bairro" placeholder="Informe seu bairro">
+                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Informe seu bairro">
                 <br>
 
                 <label for="numero" class="form-label">Número</label>
-                <input type="text" class="form-control" id="numero" name="numero" placeholder="Informe seu número">
+                <input type="text" class="form-control" name="numero" id="numero" name="numero" placeholder="Informe seu número">
                 <br>
 
                 <label for="estado" class="form-label">Estado</label>
@@ -93,18 +54,18 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                 <br>
 
                 <label for="cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="cidade" placeholder="Informe sua cidade">
+                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Informe sua cidade">
                 <br>
                 <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
 
                 <label for="formGroupExampleInput" class="form-label">Complemento</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Informe o complemento">
+                <input type="text" class="form-control" name="complemento" id="formGroupExampleInput" placeholder="Informe o complemento">
                 <br>
 
-                <button type="submit" class="finalizar" style="float: right;">Finalizar</button> <br><br><br><br>
-
-                
+                <button type="submit" class="finalizar" style="float: right;">Avançar</button> <br><br><br><br>
+                </form>
             </div>
+
             <div class="col-md-1"></div>
             <div class="col-md-7">
                 <h4>Produtos selecionados</h4>
@@ -169,13 +130,6 @@ echo'<pre>';print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
-
-<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-<script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
-<script type="text/javascript">
-    PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-</script>
-
 
 <script type="text/javascript">
     $('#cepCalc').mask("00000000");

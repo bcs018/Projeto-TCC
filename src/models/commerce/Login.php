@@ -58,6 +58,7 @@ class Login extends Model{
         if($sql->rowCount() > 0){
             $dados = $sql->fetch();
             $_SESSION['login_cliente_ecommerce'] = $dados['ue_id'];
+            //$_SESSION['nome_cliente_ecommerce'] = $dados['nome_usu_ue'];
             $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
             $_SESSION['credencial'] = $login;
 

@@ -9,7 +9,7 @@ $(function(){
                 console.log(r.message);
                 return false;
             }
-             id = r.senderHash; //Hash estará disponível nesta variável.
+             id = r.senderHash; 
         });
 
         var numero = $('#n_card').val();
@@ -92,7 +92,7 @@ $(function(){
                         //bandeira cartao
                         brand:window.bandeira,
                         //max de parcelas sem juros
-                        maxInstallmentNoInterest:12,
+                        maxInstallmentNoInterest:9,
                         success:function(r){
                             if(r.error == false){
                                 var parc = r.installments[window.bandeira];
@@ -121,27 +121,25 @@ $(function(){
                         complete:function(r){}
 
                     });
-
-                    switch (r.brand.name) {
-                        case 'visa':
-                            $('#error1').html('<img src="/assets/sitePrincipal/images/card/visa.png" width="59" height="15">');
-                            break;
-                        case 'mastercard':
-                            $('#error1').html('<img src="/assets/sitePrincipal/images/card/mastercard.png" width="105" height="29">');
-                            break;
-                        case 'elo':
-                            $('#error1').html('<img src="/assets/sitePrincipal/images/card/elo.png" width="65" height="20">');
-                            break;
-                        case 'hipercard':
-                            $('#error1').html('<img src="/assets/sitePrincipal/images/card/hipercard.png" width="56" height="25">');
-                            break;
-                        default:
-                            $('#error1').html('<p>'+r.brand.name.toUpperCase()+'</p>');
-                            break;
-                    }
-                    $('input[name=cd_seg]').attr('maxlength', cvvLimit);
-
-                    
+                    $('#brand').html(r.brand.name.toUpperCase())
+                    // switch (r.brand.name) {
+                    //     case 'visa':
+                    //         $('#brand').html('<img src="/assets/sitePrincipal/images/card/visa.png" width="59" height="5">');
+                    //         break;
+                    //     case 'mastercard':
+                    //         $('#brand').html('<img src="/assets/sitePrincipal/images/card/mastercard.png" width="105" height="29">');
+                    //         break;
+                    //     case 'elo':
+                    //         $('#brand').html('<img src="/assets/sitePrincipal/images/card/elo.png" width="65" height="20">');
+                    //         break;
+                    //     case 'hipercard':
+                    //         $('#brand').html('<img src="/assets/sitePrincipal/images/card/hipercard.png" width="56" height="25">');
+                    //         break;
+                    //     default:
+                    //         $('#brand').html('<p>'+r.brand.name.toUpperCase()+'</p>');
+                    //         break;
+                    // }
+                    $('input[name=cd_seg]').attr('maxlength', cvvLimit);                  
                 },
                 error:function(r){
                     console.log(r)
