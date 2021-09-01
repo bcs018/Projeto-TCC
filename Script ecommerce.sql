@@ -207,6 +207,9 @@ create table cupom(
     primary key(cupom_id)
 )default charset utf8;
 
+INSERT INTO cupom (nome_cupom, tipo_cupom, valor_cupom)
+VALUES('Sem Cupom', 0, 0);
+
 create table assinatura(
 	assinatura_id int not null auto_increment,
     usuario_id int not null,

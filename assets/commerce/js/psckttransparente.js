@@ -17,7 +17,7 @@ $(function(){
         var v_mes = $('#cartao_mes').val();
         var v_ano = $('#cartao_ano').val();
 
-        var nome_tit = $('#nome_card').val();
+        var nome_card = $('#nome_card').val();
         var cpf_tit = $('#cpf_card').val();
 
         var parc = $('#parc').val();
@@ -40,12 +40,8 @@ $(function(){
                         type: 'POST',
                         data:{
                             id:id,
-                            nome_tit:nome_tit,
+                            nome_card:nome_card,
                             cpf:cpf_tit,
-                            numero_card:numero,
-                            cvv:cvv,
-                            v_mes:v_mes,
-                            v_ano:v_ano,
                             cartao_token:window.cardToken,
                             parc:parc,
                             cupom:cupom
@@ -59,6 +55,7 @@ $(function(){
                                 $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
                                 return;
                             }
+                            console.log(json)
                             $('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
 
                         },
@@ -92,7 +89,7 @@ $(function(){
                         //bandeira cartao
                         brand:window.bandeira,
                         //max de parcelas sem juros
-                        maxInstallmentNoInterest:9,
+                        maxInstallmentNoInterest:12,
                         success:function(r){
                             if(r.error == false){
                                 var parc = r.installments[window.bandeira];
@@ -110,7 +107,7 @@ $(function(){
                                     html += '<option value="'+optionValue+'">'+parc[i].quantity+'x de R$'+number+'</option>';
                                 }
 
-                                console.log(r);
+                                //console.log(r);
 
                                 $('select[name=parc]').html(html);
                             }

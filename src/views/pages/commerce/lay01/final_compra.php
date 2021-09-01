@@ -10,7 +10,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Finalização da compra 2/2</h2>
+                    <h2>Obrigado!</h2>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <center><h1>Preencha os dados</h1></center> <br><br>
+                <center><h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradeçe a sua compra!</h1></center> <br><br>
             </div>
             
             <div class="col-md-4">
@@ -32,58 +32,18 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                     unset($_SESSION['message']);
                 }
                 ?>
-                <!-- <form action="/checkout" method="POST"> -->
-                    <label for="n_card" class="form-label">Número do cartão</label>
-                    <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
-                    <div id="brand"></div>
-                    <br>
-
-                    <label for="parc" class="form-label">Número de parcelas</label>
-                    <select name="parc" id="parc" class="form-control"></select>
-                    <br>
-
-                    <label for="cd_seg" class="form-label">Código de segurança</label>
-                    <input type="number" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
-                    <br>
-
-                    <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select name="cartao_mes" id="cartao_mes" class="form-control">
-                                <?php for($q=1; $q<=12; $q++): ?>
-                                <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <select name="cartao_ano" id="cartao_ano" class="form-control">
-                                <?php $ano = intval(date('Y')); ?>
-                                <?php for($q=$ano; $q<=($ano+30); $q++): ?>
-                                <option><?php echo $q; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                        </div>
-                    </div> <br>
-
-                    <label for="nome_card" class="form-label">Nome impresso no cartão</label>
-                    <input type="text" value="BRUNO C SILVA" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
-                    <br>
-
-                    <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-                    <input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
-                    <br><hr>
-                    <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
-                    
-                    <button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
-                   
-                    <div id="loading"></div>
-                <!-- </form> -->
             </div>
+            <h4>Agradecemos por sua compra, segue abaixo os detalhes:</h4>
+
+            <h5>Compra número: <br>
+                Pagamento: </h5>
+            
+            <h5>Dados de entrega</h5>
+            <h5></h5>
+
 
             <div class="col-md-1"></div>
             <div class="col-md-7">
-                <h4>Produtos selecionados</h4>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>

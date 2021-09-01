@@ -7,6 +7,9 @@ use \src\models\commerce\Compra;
 use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
+use Exception;
+
+use function PHPSTORM_META\type;
 
 class PgCheckTransPrincipalController extends Controller {
 
@@ -15,11 +18,7 @@ class PgCheckTransPrincipalController extends Controller {
 
         $parc = explode(';', addslashes($_POST['parc']));
         $nome_tit = addslashes($_POST['nome_card']);
-        $cpf = addslashes($_POST['cpf_card']);
-        $n_card = addslashes($_POST['n_card']);
-        $cvv = addslashes($_POST['cd_seg']);
-        $cartao_mes = addslashes($_POST['cartao_mes']);
-        $cartao_ano = addslashes($_POST['cartao_ano']);
+        $cpf = addslashes($_POST['cpf']);
         //email do vendedor
         $pagseguro_seller = $dados['ps_email'];
         $code = $dados['ps_token'];
@@ -29,7 +28,38 @@ class PgCheckTransPrincipalController extends Controller {
         $cada = new Cadastro;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
-        $id_compra = $comp->inserirCompra('cartao');
+        $id_compra = $comp->addCompra('cartao');
+
+        $frete = floatval(str_replace(',','.', $_SESSION['frete']['preco']));
+
+
+        // $options = [
+        //     'amount' => $parc[1], //Required
+        //     'card_brand' => 'visa', //Optional
+        //     'max_installment_no_interest' => 12 //Optional
+        // ];
+        
+        // try {
+        //     $result = \PagSeguro\Services\Installment::create(
+        //         \PagSeguro\Configuration\Configure::getAccountCredentials(),
+        //         $options
+        //     );
+        
+        //     echo "<pre>";
+        //     print_r($result->getInstallments());exit;
+        // } catch (Exception $e) {
+        //     die($e->getMessage());
+        // }
+
+
+
+        if(!$id_compra){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro 001 ao fazer pagamento, atualize a página e tente novamente!
+                                    </div>';
+            return false;
+        }
+
         $usuario = $cada->listaUsuario($_SESSION['login_cliente_ecommerce']);
 
         $ddd_usu = substr($usuario['celular_ue'],1,2);
@@ -46,13 +76,17 @@ class PgCheckTransPrincipalController extends Controller {
         //Referenciação da compra do seu site com o pagseguro
         $creditCard->setReference($id_compra);
         $creditCard->setCurrency("BRL");
+
+        $i = false;
+
         foreach($produtos as $p){
             $creditCard->addItems()->withParameters(
                 $p[0], //id do produto
                 $p['nome_pro'],
                 $_SESSION['carrinho'][$p[0]], //qtd
-                $p['preco']
+                ($i==false?$p['preco']+$frete:$p['preco'])
             );
+            $i=true;
         }
         $creditCard->setSender()->setName($usuario['nome_usu_ue'].' '.$usuario['sobrenome']);
         $creditCard->setSender()->setEmail($usuario['email_ue']);
@@ -71,36 +105,37 @@ class PgCheckTransPrincipalController extends Controller {
         $creditCard->setSender()->setIp($ip);
         
         $creditCard->setShipping()->setAddress()->withParameters(
-            $dados['rua'],
-            $dados['numero'],
-            $dados['bairro'],
-            $dados['cep'],
-            $dados['cidade'],
-            $dados['estado'],
+            $_SESSION['dados_entrega']['rua'],
+            $_SESSION['dados_entrega']['numero'],
+            $_SESSION['dados_entrega']['bairro'],
+            str_replace('-','',$_SESSION['dados_entrega']['cep']),
+            $_SESSION['dados_entrega']['cidade'],
+            $_SESSION['dados_entrega']['estado'],
             'BRA',
-            $dados['complemento']
+            $_SESSION['dados_entrega']['complemento']
         );
 
         $creditCard->setBilling()->setAddress()->withParameters(
-            $dados['rua'],
-            $dados['numero'],
-            $dados['bairro'],
-            $dados['cep'],
-            $dados['cidade'],
-            $dados['estado'],
+            $_SESSION['dados_entrega']['rua'],
+            $_SESSION['dados_entrega']['numero'],
+            $_SESSION['dados_entrega']['bairro'],
+            str_replace('-','',$_SESSION['dados_entrega']['cep']),
+            $_SESSION['dados_entrega']['cidade'],
+            $_SESSION['dados_entrega']['estado'],
             'BRA',
-            $dados['complemento']
+            $_SESSION['dados_entrega']['complemento']
         );
 
         $creditCard->setToken($_POST['cartao_token']);
-        $creditCard->setInstallment()->withParameters($parc[0], $parc[1], 12);
+        $creditCard->setInstallment()->withParameters(intval($parc[0]), $parc[1], 12);
+
         $creditCard->setHolder()->setName($nome_tit);
         $creditCard->setHolder()->setDocument()->withParameters('CPF', $cpf);
         
         $creditCard->setMode('DEFAULT');
 
         //Url para o pagseguro notificar que o pagamento foi aprovado
-        //$creditCard->setNotificationUrl('/notification');
+        //$creditCard->setNotificationUrl('http://www.bw.com.br/notification');
 
         //$creditCard->setNotificationUrl();
 
@@ -109,11 +144,17 @@ class PgCheckTransPrincipalController extends Controller {
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
+            // unset($_SESSION['frete']);
+            // unset($_SESSION['carrinho']);
+            // unset($_SESSION['subtotal']);
+            // unset($_SESSION['total']);
+            // unset($_SESSION['dados_entrega']);
+
             echo json_encode($result);
             exit;
         }catch(Exception $e){
-            //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
-            $assinatura->excluirItem($dados['id_assinatura']);
+            //Excluindo o ultimo registro inserido da compra pois houve erro no pagamento
+            $comp->delCompra($id_compra);
 
             echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
             exit;
