@@ -40,8 +40,10 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
                 <b>Pagamento: </b><?php echo $compra['parcela']; ?><br>
                 <b>Tipo de Pagamento: </b><?php echo ($compra['tipo_pagamento']=='cartao'?'Cartão de crédito':'Boleto'); ?>
             </h5>
-            
-            <h5>Dados de entrega</h5>
+            <br>
+            <hr>
+            <br>
+            <h5><b>Dados de entrega</b></h5>
             <p>
                 <b>Rua:</b> <?php echo $compra['rua_entrega'].' - <b>N°: </b>'.$compra['numero_entrega']; ?></br>
                 <b>Bairro:</b> <?php echo $compra['bairro_entrega']; ?></br>
@@ -49,9 +51,10 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
                 <b>Cidade:</b> <?php echo $compra['cidade_entrega'].' - '.$compra['estado_entrega']; ?><br>
                 <?php echo ($compra['complemento_entrega']==''?'':'<b>Complemento: </b>'.$compra['complemento_entrega']) ?>
             </p>
-
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+            <br><br>
+            
+            <div class="col-md-12"></div>
+            <div class="col-md-12"><h3>Itens</h3>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -62,36 +65,36 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  $_SESSION['subtotal'] = 0; ?>
+                            <?php  //$_SESSION['subtotal'] = 0; ?>
                             <?php foreach($produtos as $p): ?>
                                 <tr>
                                     <td><a href="/visualizar/produto/<?php echo $p['0']; ?>"><?php echo $p['nome_pro']; ?></a></td>
                                     <td><?php echo 'R$ '. number_format($p['preco'],2,',','.'); ?></td>
-                                    <td><?php echo $_SESSION['carrinho'][$p[0]]; ?></td>
+                                    <td><?php echo $p['quantidade']; ?></td>
                                 </tr>
 
                                 <?php 
-                                $_SESSION['subtotal'] += floatval($p['preco']) * $_SESSION['carrinho'][$p[0]];
+                                //$_SESSION['subtotal'] += floatval($p['preco']) * $_SESSION['carrinho'][$p[0]];
                                 ?>
 
                             <?php endforeach; ?>
                             
                             <tr>
-                                <td colspan="3" style="text-align:right"><b>SUBTOTAL: <div id="subtot" style="display:inline;"><?php echo 'R$ '. number_format( $_SESSION['subtotal'],2,',','.'); ?></div></b></td>
+                                <td colspan="3" style="text-align:right"><b>SUBTOTAL: <div id="subtot" style="display:inline;"><?php echo 'R$ '. number_format( $compra['subtotal_compra'],2,',','.'); ?></div></b></td>
                             </tr>
                             <tr>
-                                <td colspan="3" style="text-align:right"><b>FRETE: <div id="calcfrete" style="display:inline;"><?php echo(isset($_SESSION['frete'])?'R$ '.$_SESSION['frete']['preco'].' Prazo: '.$_SESSION['frete']['data'].' dia(s) para o CEP: '.$_SESSION['frete']['cep']:'R$ 0,00') ?></div></b></td>
+                                <td colspan="3" style="text-align:right"><b>FRETE: <div id="calcfrete" style="display:inline;"><?php echo $compra['frete']; ?></div></b></td>
                             </tr>
                             <tr>
                                 <?php 
-                                if(isset($_SESSION['frete'])){
-                                    $frete = str_replace(',','.',$_SESSION['frete']['preco']);
-                                    $_SESSION['total'] = $_SESSION['subtotal'] + floatval($frete);
-                                }else{
-                                    $_SESSION['total'] = $_SESSION['subtotal'];
-                                }
+                                // if(isset($_SESSION['frete'])){
+                                //     $frete = str_replace(',','.',$_SESSION['frete']['preco']);
+                                //     $_SESSION['total'] = $_SESSION['subtotal'] + floatval($frete);
+                                // }else{
+                                //     $_SESSION['total'] = $_SESSION['subtotal'];
+                                // }
                                 ?>
-                                <td colspan="3" style="text-align:right"><b>TOTAL: <div id="totalfinal" style="display:inline;"><?php echo 'R$ '. number_format( $_SESSION['total'],2,',','.'); ?></div></b></td>
+                                <td colspan="3" style="text-align:right"><b>TOTAL: <div id="totalfinal" style="display:inline;"><?php echo 'R$ '. number_format( $compra['total_compra'],2,',','.'); ?></div></b></td>
                             </tr>
                         </tbody>
                     </table>

@@ -20,7 +20,7 @@ $(function(){
         var nome_card = $('#nome_card').val();
         var cpf_tit = $('#cpf_card').val();
 
-        var parc = $('#parc').val();
+        var parc = $('#parc').val().replace(',','');
         var cupom = $('#cupom').val();
 
         if(numero != '' && cvv != '' && v_mes != '' && v_ano != ''){
@@ -55,7 +55,7 @@ $(function(){
                                 $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
                                 return;
                             }
-                            console.log(json)
+                            //console.log(json)
                             window.location.href = '/pagamento/concluido/'+json.id_compra;
                             //$('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
                         },
@@ -85,7 +85,7 @@ $(function(){
                     //Pegando parcelamento
                     PagSeguroDirectPayment.getInstallments({
                         //valor total
-                        amount:$('#plan').val(),
+                        amount:$('#plan').val().replace(',',''),
                         //bandeira cartao
                         brand:window.bandeira,
                         //max de parcelas sem juros
@@ -107,7 +107,7 @@ $(function(){
                                     html += '<option value="'+optionValue+'">'+parc[i].quantity+'x de R$'+number+'</option>';
                                 }
 
-                                //console.log(r);
+                                console.log(r);
 
                                 $('select[name=parc]').html(html);
                             }

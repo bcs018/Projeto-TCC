@@ -277,6 +277,7 @@ create table compra_prod(
 	cp_id int not null auto_increment,
     produto_id int not null,
     compra_id int not null,
+    quantidade int not null,
     
     primary key(cp_id),
     foreign key (compra_id) references compra(compra_id),

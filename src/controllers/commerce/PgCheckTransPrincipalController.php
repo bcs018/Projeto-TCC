@@ -84,7 +84,8 @@ class PgCheckTransPrincipalController extends Controller {
                 $p[0], //id do produto
                 $p['nome_pro'],
                 $_SESSION['carrinho'][$p[0]], //qtd
-                ($i==false?$p['preco']+$frete:$p['preco'])
+                // preço pdt+frete*qtd
+                ($i==false ? $p['preco']+$frete*$_SESSION['carrinho'][$p[0]] : $p['preco']*$_SESSION['carrinho'][$p[0]])
             );
             $i=true;
         }
@@ -144,13 +145,14 @@ class PgCheckTransPrincipalController extends Controller {
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
-            // unset($_SESSION['frete']);
-            // unset($_SESSION['carrinho']);
-            // unset($_SESSION['subtotal']);
-            // unset($_SESSION['total']);
-            // unset($_SESSION['dados_entrega']);
+            unset($_SESSION['frete']);
+            unset($_SESSION['carrinho']);
+            unset($_SESSION['subtotal']);
+            unset($_SESSION['total']);
+            unset($_SESSION['dados_entrega']);
 
-            echo json_encode(['id_compra'=>$id_compra, 'result'=>$result]);
+            //echo json_encode(['id_compra'=>$id_compra, 'result'=>$result]);
+            echo json_encode(['id_compra'=>$id_compra]);
             exit;
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da compra pois houve erro no pagamento
