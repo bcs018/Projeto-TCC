@@ -59,11 +59,9 @@ class HomeController extends Controller {
         $cate = new Categoria;
         $info = new Info;
 
-        $dados      = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-        $produto    = $prod->listaProduto(addslashes($id['id']), 1);
-        $produtos   = $prod->listaProdutos();
-        $produtoRel = $prod->listaProdutosRelacionados($produto[0]['categoria_id']);
-
+        $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produto = $prod->listaProduto(addslashes($id['id']), 1);
+        
         if(!$produto){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Produto inexistente!
@@ -74,6 +72,8 @@ class HomeController extends Controller {
             exit;
         }
 
+        $produtos      = $prod->listaProdutos();
+        $produtoRel    = $prod->listaProdutosRelacionados($produto[0]['categoria_id']);
         $categoriaProd = $cate->listaCategoriaOrganizada($produto[0]['categoria_id']);
 
         $this->render('commerce/'.$dados['layout'].'/produto', [

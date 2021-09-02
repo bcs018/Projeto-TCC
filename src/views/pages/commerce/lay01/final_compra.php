@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset($_SESSION['login_cliente_ecommerce'])){
+if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
     header("Location: /");
 }
 ?> 
@@ -35,12 +35,20 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
             <h4>Agradecemos por sua compra, segue abaixo os detalhes:</h4>
 
-            <h5>Compra número: <br>
-                Pagamento: </h5>
+            <h5>
+                <b>Compra número: </b><?php echo $compra['compra_id']; ?><br>
+                <b>Pagamento: </b><?php echo $compra['parcela']; ?><br>
+                <b>Tipo de Pagamento: </b><?php echo ($compra['tipo_pagamento']=='cartao'?'Cartão de crédito':'Boleto'); ?>
+            </h5>
             
             <h5>Dados de entrega</h5>
-            <h5></h5>
-
+            <p>
+                <b>Rua:</b> <?php echo $compra['rua_entrega'].' - <b>N°: </b>'.$compra['numero_entrega']; ?></br>
+                <b>Bairro:</b> <?php echo $compra['bairro_entrega']; ?></br>
+                <b>CEP:</b> <?php echo $compra['cep_entrega']; ?></br>
+                <b>Cidade:</b> <?php echo $compra['cidade_entrega'].' - '.$compra['estado_entrega']; ?><br>
+                <?php echo ($compra['complemento_entrega']==''?'':'<b>Complemento: </b>'.$compra['complemento_entrega']) ?>
+            </p>
 
             <div class="col-md-1"></div>
             <div class="col-md-7">
@@ -88,15 +96,6 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                         </tbody>
                     </table>
                 </div>
-
-                <p><b>Dados para a entrega:</b></p>
-                <p>
-                    <b>Rua:</b> <?php echo $_SESSION['dados_entrega']['rua'].' - <b>N°: </b>'.$_SESSION['dados_entrega']['numero']; ?></br>
-                    <b>Bairro:</b> <?php echo $_SESSION['dados_entrega']['bairro']; ?></br>
-                    <b>CEP:</b> <?php echo $_SESSION['dados_entrega']['cep']; ?></br>
-                    <b>Cidade:</b> <?php echo $_SESSION['dados_entrega']['cidade'].' - '.$_SESSION['dados_entrega']['estado']; ?><br>
-                    <?php echo ($_SESSION['dados_entrega']['complemento']==''?'':'<b>Complemento: </b>'.$_SESSION['dados_entrega']['complemento']) ?>
-                </p>
                 <br>
 
             </div>

@@ -244,9 +244,18 @@ create table compra(
     cupom_id int not null,
     ecommerce_id int not null,
     total_compra decimal(10,2) not null,
+    subtotal_compra decimal(10,2) not null,
+    frete decimal(10,2) not null,
     tipo_pagamento int not null,
     status_pagamanto int not null,
-    
+    cep_entrega varchar(100) not null,
+    rua_entrega varchar(100) not null,
+    bairro_entrega varchar(100) not null,
+    numero_entrega varchar(100) not null,
+    estado_entrega varchar(100) not null,
+    cidade_entrega varchar(100) not null,
+    complemento_entrega varchar(100) not null,
+
     primary key(compra_id),
 	foreign key(usuario_id) references usuario_ecommerce(ue_id),
 	foreign key(cupom_id) references cupom(cupom_id),
@@ -258,6 +267,7 @@ create table transacao_compra(
     compra_id int not null,
     valor_pago decimal(10,2) not null,
     cod_transacao varchar(100),
+    parcela varchar(100) not null,
     
     primary key(tc_id),
     foreign key (compra_id) references compra(compra_id)

@@ -28,7 +28,7 @@ class PgCheckTransPrincipalController extends Controller {
         $cada = new Cadastro;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
-        $id_compra = $comp->addCompra('cartao');
+        $id_compra = $comp->addCompra('cartao', $parc);
 
         $frete = floatval(str_replace(',','.', $_SESSION['frete']['preco']));
 
@@ -150,7 +150,7 @@ class PgCheckTransPrincipalController extends Controller {
             // unset($_SESSION['total']);
             // unset($_SESSION['dados_entrega']);
 
-            echo json_encode($result);
+            echo json_encode(['id_compra'=>$id_compra, 'result'=>$result]);
             exit;
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da compra pois houve erro no pagamento

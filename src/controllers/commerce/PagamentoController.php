@@ -3,7 +3,7 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\PagSeguro;
-use \src\models\commerce\Produto;
+use \src\models\commerce\Compra;
 use \src\models\commerce\Info;
 use \src\models\sitePrincipal\Cadastro;
 use src\models\commerce\Carrinho;
@@ -105,5 +105,19 @@ class PagamentoController extends Controller {
             header("Location: /");
         }
 
+    }
+
+    public function fimPagamento($id_compra){
+        $info = new Info;
+        $comp = new Compra;
+        $carr = new Carrinho;
+
+        $compra = $comp->listaCompra($id_compra['id_compra']);
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+        unset($_SESSION['carrinho']);
+
+        $this->render('commerce/lay01/pagamento1',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
     }
 }
