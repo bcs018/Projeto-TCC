@@ -116,8 +116,6 @@ class PagamentoController extends Controller {
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $carr->listaItens($_SESSION['carrinho']);
 
-        unset($_SESSION['carrinho']);
-
         $this->render('commerce/lay01/pagamento1',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
     }
 }

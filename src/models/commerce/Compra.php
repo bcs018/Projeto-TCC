@@ -30,7 +30,7 @@ class Compra extends Model{
             $id_compra = $this->db->lastInsertId();
 
             $sql = 'INSERT INTO transacao_compra (compra_id, valor_pago, cod_transacao, parcela)
-            VALUES (?,?,?,?)';
+                    VALUES (?,?,?,?)';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $id_compra);
             $sql->bindValue(2, $_SESSION['total']);
@@ -42,6 +42,17 @@ class Compra extends Model{
                 unset($_SESSION['total']);
                 unset($_SESSION['subtotal']);
                 unset($_SESSION['frete']);
+
+                foreach($_SESSION['carrinho'] as $key => $c){
+                    $sql = 'INSERT INTO compra_prod (produto_id, compra_id, quantidade)
+                            VALUES (?,?,?)';
+                    $sql = $this->db->prepare($sql);
+                    $sql->bindValue(1, $key);
+                    $sql->bindValue(2, $id_compra);
+                    $sql->bindValue(3, $c);
+                    $sql->execute();
+                }
+                unset($_SESSION['carrinho']);
                 
                 return $id_compra;
             }
