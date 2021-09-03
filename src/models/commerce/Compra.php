@@ -34,7 +34,7 @@ class Compra extends Model{
         $sql->bindValue(5,  $_SESSION['subtotal']);
         $sql->bindValue(6,  floatval(str_replace(',','.',$_SESSION['frete']['preco'])));
         $sql->bindValue(7,  $tp_pagamento);
-        $sql->bindValue(8,  '0');
+        $sql->bindValue(8,  '1');
         $sql->bindValue(9,  $_SESSION['dados_entrega']['cep']);
         $sql->bindValue(10, $_SESSION['dados_entrega']['rua']);
         $sql->bindValue(11, $_SESSION['dados_entrega']['bairro']);
@@ -125,7 +125,7 @@ class Compra extends Model{
     public function listaProdCompra($id){
         $sql = 'SELECT * FROM produto p
                 JOIN compra_prod cp
-                ON p.produto_id = p.produto_id
+                ON p.produto_id = cp.produto_id
                 JOIN compra c 
                 ON c.compra_id = cp.compra_id
                 WHERE c.compra_id = ? AND c.ecommerce_id = ? AND c.usuario_id = ?';
@@ -143,6 +143,10 @@ class Compra extends Model{
                                 </div>';
         return false;
 
+    }
+
+    public function alteraStatusCompra(){
+        
     }
 
 }

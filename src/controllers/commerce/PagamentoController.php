@@ -75,6 +75,9 @@ class PagamentoController extends Controller {
     public function pagamentoSecond(){
         $info = new Info;
         $carr = new Carrinho;
+        if(!isset($_SESSION['carrinho'])){
+            header("Location: /");
+        }
         $produtos = $carr->listaItens($_SESSION['carrinho']);
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);

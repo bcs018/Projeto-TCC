@@ -67,6 +67,7 @@ $router->post('/pagamento/action', 'PagamentoController@atuDadosEntregaAction');
 $router->get('/pagamento/2', 'PagamentoController@pagamentoSecond');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
+$router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 
 // -- Cadastro de clientes do ecommerce
 $router->get('/cadastrar', 'CadastroController@index');

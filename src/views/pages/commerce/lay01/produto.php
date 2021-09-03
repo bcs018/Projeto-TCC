@@ -115,12 +115,12 @@
                                             <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pr['url']; ?>" alt="Produto <?php echo $pr['nome_pro']; ?>">
                                         <?php endif; ?>
                                         <div class="product-hover">
-                                            <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Carrinho</a>
-                                            <a href="" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                            <a href="/visualizar/produto/<?php echo $pr[0] ?>" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Carrinho</a>
+                                            <a href="/visualizar/produto/<?php echo $pr[0] ?>" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
                                         </div>
                                     </div>
 
-                                    <h2><a href=""><?php echo $pr['nome_pro']; ?></a></h2>
+                                    <h2><a href="/visualizar/produto/<?php echo $pr[0] ?>"><?php echo $pr['nome_pro']; ?></a></h2>
 
                                     <div class="product-carousel-price">
                                         <ins><?php echo 'R$' . number_format($pr['preco'], 2, ',', '.'); ?></ins>

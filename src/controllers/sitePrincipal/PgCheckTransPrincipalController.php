@@ -246,4 +246,57 @@ class PgCheckTransPrincipalController extends Controller {
     //         //throw $th;
     //     }    
     // }
+
+    public function notification(){
+        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+        
+        //$comp = new Compra;
+
+        try {
+            //Verifica se foi enviada as informações do retorno da compra
+            if(\PagSeguro\Helpers\Xhr::hasPost()){
+                $r = \PagSeguro\Services\Transactions\Notification::check(
+                    \PagSeguro\Configuration\Configure::getAccountCredentials()
+                );
+
+                $ref = $r->getReference();
+                /**
+                 * Status
+                 * 1 - Aguardando pagamento
+                 * 2 - Em analise - Paga mas n foi aprovado de cara
+                 * 3 - Paga
+                 * 4 - Disponivel - Disponivel para saque
+                 * 5 - Em disputa
+                 * 6 - Dinheiro foi devolvido
+                 * 7 - Compra cancelada
+                 * 8 - Debitado - Dinheiro daquela compra foi devolvida na disputa
+                 * 9 - Retenção temporaria - Quando o cara liga para o cartão e fala que nao reconhece a compra
+                 */
+                $status = $r->getStatus();
+
+                $arquivo = "retorno.txt";
+                
+                //Variável $fp armazena a conexão com o arquivo e o tipo de ação.
+                $fp = fopen($arquivo, "a+");
+
+                //Escreve no arquivo aberto.
+                fwrite($fp, $ref);
+                
+                //Fecha o arquivo.
+                fclose($fp);
+
+                //Dependendo do retorno no PS, faz alguma coisa no sistema (FAZER UMA TRATATIVA MELHOR POSTERIORMENTE)
+                // if($status == 3){
+                //     $comp->alteraStatusCompra($ref);
+                // }elseif($status == 5 || $status == 6 || $status == 7 || $status == 8 || $status == 9){
+                //     $assinatura->bloquearCompra($ref);
+                // }else{
+                //     $assinatura->analiseCompra($ref);
+                // }
+
+            }
+        } catch (Exception $e) {
+            //throw $th;
+        }    
+    }
 }

@@ -52,6 +52,7 @@ $(function(){
                         },
                         success:function(json){
                             if(json.error == true){
+                                console.log(json.calculo)
                                 $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
                                 return;
                             }
