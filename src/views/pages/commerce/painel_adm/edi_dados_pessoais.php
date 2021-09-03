@@ -162,6 +162,29 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
     </section>
 </div>
 
+<div class="modal" id="aviso" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">AVISO!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Você não cadastrou nenhuma conta referente ao recebimento de suas vendas!.</p>
+        <p>Vá no MENU "Dados para recebimento" e cadastre sua conta PagSeguro ou Mercado Pago</p>
+        <p><b>CASO VOCÊ NÃO CADASTRE, SEUS CLIENTES NÃO VÃO CONSEGUIR EFETUAR COMPRAS E EVENTUALMENTE 
+            VOCÊ NÃO IRÁ RECEBER!!!
+        </b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
     $('#cep').mask("00000-000");
     $('#celular').mask("(00)00000-0000");
@@ -173,3 +196,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
 
 <?php $render("commerce/footer_painel"); ?>
 <script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>
+
+<script>
+    $(document).ready(function(){
+        if( <?php echo $control_rec; ?> == '0'){
+            $('#aviso').modal('show')
+       }
+    });
+</script>

@@ -12,24 +12,24 @@ class MarcaController extends Controller {
 
      // Lista todas as marcas
      public function conMarca(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $mar = new Marca;
         $dados = $mar->listaMarcas($_SESSION['sub_dom']);
 
-        $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
     }
 
     // View para cadastrar marca
     public function cadMarca(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
     
-        $this->render('commerce/painel_adm/cad_marca'/*, ['dados'=>$dados]*/);
+        $this->render('commerce/painel_adm/cad_marca',['control_rec'=>$dadosEco['tp_recebimento']]);
     }
 
     // View para editar marca
     public function ediMarca($id){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
         
         $edit = new Marca;
         $dados = $edit->listaMarca(addslashes($id['id']));
@@ -42,7 +42,7 @@ class MarcaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_marca', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/edi_marca', ['dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
 
     }
 

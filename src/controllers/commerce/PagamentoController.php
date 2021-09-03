@@ -67,7 +67,7 @@ class PagamentoController extends Controller {
             'cidade'      => $cidade,
             'complemento' => $complemento
         ];
-
+        
         header("Location: /pagamento/2");
     }
     

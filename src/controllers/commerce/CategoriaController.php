@@ -12,20 +12,20 @@ class CategoriaController extends Controller {
 
     // View para consulta de categorias 
     public function conCategoria(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
         $cate = new Categoria;
 
-        $this->render('commerce/painel_adm/con_categoria', ['dados'=>$cate->listaCategoriasOrganizadas()]);
+        $this->render('commerce/painel_adm/con_categoria', ['control_rec'=>$dadosEco['tp_recebimento'], 'dados'=>$cate->listaCategoriasOrganizadas()]);
 
     }
 
     // View para cadastro de categorias
     public function cadCategoria(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $cate = new Categoria;
 
-        $this->render('commerce/painel_adm/cad_categoria', ['catOrga'=>$cate->listaCategoriasOrganizadas(), 'cat'=>$cate->listaCategorias()]);
+        $this->render('commerce/painel_adm/cad_categoria', ['control_rec'=>$dadosEco['tp_recebimento'],'catOrga'=>$cate->listaCategoriasOrganizadas(), 'cat'=>$cate->listaCategorias()]);
 
     }
 
@@ -51,7 +51,7 @@ class CategoriaController extends Controller {
      }
 
      public function ediCategoria($id){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
         
         $edit = new Categoria;
         $dados['categoria']     = $edit->listaCategoria(addslashes($id['id']));
@@ -66,7 +66,7 @@ class CategoriaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_categoria', $dados);
+        $this->render('commerce/painel_adm/edi_categoria', $dados,['control_rec'=>$dadosEco['tp_recebimento']]);
      }
 
      public function excCategoriaAction($id){

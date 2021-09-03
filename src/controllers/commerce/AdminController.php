@@ -33,7 +33,7 @@ class AdminController extends Controller {
     public function painel() {
         $dados = $this->listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/principal'/*, ['dados'=>$dados]*/);
+        $this->render('commerce/painel_adm/principal', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function ediDadosPessoais(){
@@ -41,7 +41,7 @@ class AdminController extends Controller {
         $est = new Admin;
         $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/edi_dados_pessoais', ['dados'=>$dados, 'estados'=>$estados]);
+        $this->render('commerce/painel_adm/edi_dados_pessoais', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados, 'estados'=>$estados]);
     }
 
     public function addNovoUsu(){
@@ -49,7 +49,7 @@ class AdminController extends Controller {
         $est = new Admin;
         $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/add_usuario', ['dados'=>$dados, 'estados'=>$estados]);
+        $this->render('commerce/painel_adm/add_usuario', ['control_rec'=>$dados['tp_recebimento'], 'dados'=>$dados, 'estados'=>$estados]);
     }
 
     public function layout(){
@@ -63,13 +63,13 @@ class AdminController extends Controller {
         $produtos = $pro->listaProdutos();
         $marcas   = $mar->listaMarcas();
 
-        $this->render('commerce/painel_adm/layout', ['produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
+        $this->render('commerce/painel_adm/layout', ['control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
     public function cadDadosRecebimento(){
         $dados = AdminController::listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/dados_recebimento', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/dados_recebimento', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function cadDadosRecebimentoAction(){

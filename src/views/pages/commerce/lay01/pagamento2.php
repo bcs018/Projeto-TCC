@@ -1,6 +1,8 @@
 <?php
 if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset($_SESSION['login_cliente_ecommerce'])){
-    header("Location: /");
+    //header("Location: /");
+
+    echo 'Entrei nesse if';exit;
 }
 ?> 
 <?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Finalização da compra', 'layout' => $dados]); ?>

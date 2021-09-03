@@ -14,7 +14,7 @@ class ProdutoController extends Controller {
 
     // View para consulta de produtos
     public function conProduto(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
 
@@ -22,26 +22,27 @@ class ProdutoController extends Controller {
 
        // echo '<pre>';print_r($dados);exit;
 
-        $this->render('commerce/painel_adm/con_produto', ['dados'=>$dados]);
+        $this->render('commerce/painel_adm/con_produto', ['control_rec'=>$dadosEco['tp_recebimento'],'dados'=>$dados]);
 
     }
 
     // View para cadastro de produtos
     public function cadProduto(){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $mar = new Marca;
         $cat = new Categoria;
 
         $dados['marcas']     = $mar->listaMarcas();
         $dados['categorias'] = $cat->listaCategorias();
+        $dados['control_rec'] = $dadosEco['tp_recebimento'];
 
         $this->render('commerce/painel_adm/cad_produto', $dados);
 
     }
 
     public function ediProduto($id){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
         $cate = new Categoria;
@@ -50,6 +51,7 @@ class ProdutoController extends Controller {
         $dados['produtos']    = $prod->listaProduto(addslashes($id['id']), 1);
         $dados['categorias']  = $cate->listaCategorias();
         $dados['marcas']      = $marc->listaMarcas(); 
+        $dados['control_rec'] = $dadosEco['tp_recebimento']; 
 
         //echo '<pre>';print_r($dados['produtos']);
 
@@ -105,7 +107,7 @@ class ProdutoController extends Controller {
     }
 
     public function conDetalheProduto($id){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
         $cate = new Categoria;
@@ -114,6 +116,7 @@ class ProdutoController extends Controller {
         $dados['produtos']    = $prod->listaProduto(addslashes($id['id']),1);
         $dados['categorias']  = $cate->listaCategorias();
         $dados['marcas']      = $marc->listaMarcas();
+        $dados['control_rec'] = $dadosEco['tp_recebimento'];
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
@@ -164,7 +167,7 @@ class ProdutoController extends Controller {
     }
 
     public function cadProdutoSecond($id){
-        AdminController::listaDadosEcommerce();
+        $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
 

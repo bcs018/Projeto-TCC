@@ -224,4 +224,9 @@ if(isset($_SESSION['message'])){
     </div>
 </div> <!-- End product widget area -->
 
+<?php  
+echo '<pre>';
+print_r($_SESSION);
+?>
+
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
