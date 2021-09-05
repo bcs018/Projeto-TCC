@@ -1,8 +1,14 @@
 <?php
 if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset($_SESSION['login_cliente_ecommerce'])){
-    //header("Location: /");
+    header("Location: /");
 
-    echo 'Entrei nesse if';exit;
+    //echo 'Entrei nesse if';exit;
+}
+if(isset($_SESSION['frete'])){
+    $frete = str_replace(',','.',$_SESSION['frete']['preco']);
+    $_SESSION['total'] = $_SESSION['subtotal'] + floatval($frete);
+}else{
+        $_SESSION['total'] = $_SESSION['subtotal'];
 }
 ?> 
 <?php $render('commerce/lay01/header', ['title' => $dados['nome_fantasia'] . ' | Finalização da compra', 'layout' => $dados]); ?>
@@ -34,53 +40,45 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                     unset($_SESSION['message']);
                 }
                 ?>
-                <!-- <form action="/checkout" method="POST"> -->
-                    <label for="n_card" class="form-label">Número do cartão</label>
-                    <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
-                    <div id="brand"></div>
-                    <br>
-
-                    <label for="parc" class="form-label">Número de parcelas</label>
-                    <select name="parc" id="parc" class="form-control"></select>
-                    <br>
-
-                    <label for="cd_seg" class="form-label">Código de segurança</label>
-                    <input type="number" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
-                    <br>
-
-                    <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select name="cartao_mes" id="cartao_mes" class="form-control">
-                                <?php for($q=1; $q<=12; $q++): ?>
-                                <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <select name="cartao_ano" id="cartao_ano" class="form-control">
-                                <?php $ano = intval(date('Y')); ?>
-                                <?php for($q=$ano; $q<=($ano+30); $q++): ?>
-                                <option><?php echo $q; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                        </div>
-                    </div> <br>
-
-                    <label for="nome_card" class="form-label">Nome impresso no cartão</label>
-                    <input type="text" value="BRUNO C SILVA" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
-                    <br>
-
-                    <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-                    <input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
-                    <br><hr>
-                    <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
-                    
-                    <button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
-                   
-                    <div id="loading"></div>
-                <!-- </form> -->
+                <label for="n_card" class="form-label">Número do cartão</label>
+                <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
+                <div id="brand"></div>
+                <br>
+                <label for="parc" class="form-label">Número de parcelas</label>
+                <select name="parc" id="parc" class="form-control"></select>
+                <br>
+                <label for="cd_seg" class="form-label">Código de segurança</label>
+                <input type="number" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
+                <br>
+                <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select name="cartao_mes" id="cartao_mes" class="form-control">
+                            <?php for($q=1; $q<=12; $q++): ?>
+                            <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select name="cartao_ano" id="cartao_ano" class="form-control">
+                            <?php $ano = intval(date('Y')); ?>
+                            <?php for($q=$ano; $q<=($ano+30); $q++): ?>
+                            <option><?php echo $q; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </div> <br>
+                <label for="nome_card" class="form-label">Nome impresso no cartão</label>
+                <input type="text" value="BRUNO C SILVA" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
+                <br>
+                <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
+                <input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
+                <br><hr>
+                <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
+                
+                <button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
+                
+                <div id="loading"></div>
             </div>
 
             <div class="col-md-1"></div>
@@ -117,14 +115,6 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                                 <td colspan="3" style="text-align:right"><b>FRETE: <div id="calcfrete" style="display:inline;"><?php echo(isset($_SESSION['frete'])?'R$ '.$_SESSION['frete']['preco'].' Prazo: '.$_SESSION['frete']['data'].' dia(s) para o CEP: '.$_SESSION['frete']['cep']:'R$ 0,00') ?></div></b></td>
                             </tr>
                             <tr>
-                                <?php 
-                                if(isset($_SESSION['frete'])){
-                                    $frete = str_replace(',','.',$_SESSION['frete']['preco']);
-                                    $_SESSION['total'] = $_SESSION['subtotal'] + floatval($frete);
-                                }else{
-                                    $_SESSION['total'] = $_SESSION['subtotal'];
-                                }
-                                ?>
                                 <td colspan="3" style="text-align:right"><b>TOTAL: <div id="totalfinal" style="display:inline;"><?php echo 'R$ '. number_format( $_SESSION['total'],2,',','.'); ?></div></b></td>
                             </tr>
                         </tbody>

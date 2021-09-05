@@ -23,6 +23,12 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
         <div class="row">
             <div class="col-md-12">
                 <center><h1>Calcule o frete e informe o endereço de entrega</h1></center> <br><br>
+                <?php
+                if(isset($_SESSION['message'])){
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
+                ?>
             </div>
 
             <div class="col-md-4">
