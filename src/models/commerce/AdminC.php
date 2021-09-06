@@ -110,6 +110,8 @@ class AdminC extends Model{
                 ON p.produto_id = cp.produto_id
                 JOIN compra c 
                 ON c.compra_id = cp.compra_id
+                JOIN transacao_compra tc
+                ON c.compra_id = tc.compra_id
                 WHERE c.ecommerce_id = ? AND c.usuario_id = ? AND c.compra_id = ?';
          $sql = $this->db->prepare($sql);
          $sql->bindValue(1, $_SESSION['id_sub_dom']);

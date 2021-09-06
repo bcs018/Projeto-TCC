@@ -25,7 +25,7 @@ class PagamentoController extends Controller {
     }
 
     // Recebe os dados da entrega referente a primeira parte da finalização da compra
-    public function atuDadosEntregaAction(){
+    public function atuDadosEntregaAction($flag){
         $cep         = addslashes($_POST['cep']);
         $rua         = addslashes($_POST['rua']);
         $bairro      = addslashes($_POST['bairro']);
@@ -68,7 +68,14 @@ class PagamentoController extends Controller {
             'complemento' => $complemento
         ];
         
-        header("Location: /pagamento/2");
+        if($flag['flag'] == '0'){
+            header("Location: /pagamento/2");
+            exit;
+        }
+
+        header("Location: /gerar-boleto/2");
+        exit;
+
     }
     
     // Segunda etapa da finalização da compra - Pagamento checkout
@@ -107,6 +114,62 @@ class PagamentoController extends Controller {
         }else{
             header("Location: /");
         }
+
+    }
+
+    // Boleto -----
+
+    // Segunda parte da geração do boleto
+    public function gerarBoletoSecond(){
+        $info = new Info;
+        $carr = new Carrinho;
+        if(!isset($_SESSION['carrinho'])){
+            header("Location: /");
+        }
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        //echo '<pre>';print_r($dados);exit;
+
+        if($dados['tp_recebimento'] == 'pagseguro'){
+            //Pegando a sessão do pagseguro
+            PagSeguro::setDados();
+
+            try {
+                $sessionCode = \PagSeguro\Services\Session::create(
+                    \PagSeguro\Configuration\Configure::getAccountCredentials()
+                );
+
+                $session = $sessionCode->getResult();
+            } catch (\Exception $e) {
+                echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
+                exit;
+            }
+            
+            $this->render('commerce/lay01/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            exit;
+
+        }else if($dados['tp_recebimento'] == 'mercadopago'){
+            // ...
+        }else{
+            header("Location: /");
+        }
+    }
+
+    // Primeira pagina da geração do boleto (calculo do frete)
+    public function gerarBoleto(){
+        $info = new Info;
+        $carr = new Carrinho;
+        $cada = new Cadastro;
+
+        $estados = $cada->lista_estados();
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        //echo '<pre>';print_r($estados);
+        
+        $this->render('commerce/lay01/boleto1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
 
     }
 

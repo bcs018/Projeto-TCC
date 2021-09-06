@@ -32,7 +32,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
 
             <div class="col-md-4">
-                <form action="/pagamento/action/0" method="POST">
+                <form action="/pagamento/action/1" method="POST">
                 <h4>Dados para entrega</h4>
 
                 <label for="cep" class="form-label">CEP</label>

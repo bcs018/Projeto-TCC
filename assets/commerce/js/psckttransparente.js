@@ -56,7 +56,6 @@ $(function(){
                                 $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
                                 return;
                             }
-                            //console.log(json)
                             window.location.href = '/pagamento/concluido/'+json.id_compra;
                             //$('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
                         },

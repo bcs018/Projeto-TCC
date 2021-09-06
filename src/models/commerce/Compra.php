@@ -6,7 +6,7 @@ use \core\Model;
 
 class Compra extends Model{
 
-    public function addCompra($tp_pagamento, $parc){
+    public function addCompra($tp_pagamento, $parc='À vista'){
 
         // echo $_SESSION['login_cliente_ecommerce'].'<br>';
         // echo '1'.'<br>';
@@ -24,7 +24,7 @@ class Compra extends Model{
         // echo $_SESSION['dados_entrega']['cidade'].'<br>';
         // echo (isset($_SESSION['dados_entrega']['complemento'])?$_SESSION['dados_entrega']['complemento']:'');exit;
 
-        $sql = 'INSERT INTO compra (usuario_id, cupom_id, ecommerce_id, total_compra, subtotal_compra, frete, tipo_pagamento, data_compra, status_pagamanto, cep_entrega, rua_entrega, bairro_entrega, numero_entrega, estado_entrega, cidade_entrega, complemento_entrega)
+        $sql = 'INSERT INTO compra (usuario_id, cupom_id, ecommerce_id, total_compra, subtotal_compra, frete, tipo_pagamento, data_compra, status_pagamento, cep_entrega, rua_entrega, bairro_entrega, numero_entrega, estado_entrega, cidade_entrega, complemento_entrega)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,  $_SESSION['login_cliente_ecommerce']);
@@ -53,7 +53,7 @@ class Compra extends Model{
             $sql->bindValue(1, $id_compra);
             $sql->bindValue(2, $_SESSION['total']);
             $sql->bindValue(3, $id_compra);
-            $sql->bindValue(4, $parc[0].'x de R$'.number_format($parc[1],2,',','.'));
+            $sql->bindValue(4, ($parc == 'À vista')?'À vista':$parc[0].'x de R$'.number_format($parc[1],2,',','.'));
 
             if($sql->execute()){
                 // unset($_SESSION['dados_entrega']);
@@ -80,17 +80,17 @@ class Compra extends Model{
     }
     
     public function delCompra($id){
-        $sql = 'DELETE FROM compra WHERE compra_id = ?';
+        $sql = 'DELETE FROM transacao_compra WHERE compra_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
-        
+
         if($sql->execute()){
-            $sql = 'DELETE FROM transacao_compra WHERE compra_id = ?';
+            $sql = 'DELETE FROM compra_prod WHERE compra_id = ?';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $id);
-
+            
             if($sql->execute()){
-                $sql = 'DELETE FROM compra_prod WHERE compra_id = ?';
+                $sql = 'DELETE FROM compra WHERE compra_id = ?';
                 $sql = $this->db->prepare($sql);
                 $sql->bindValue(1, $id);
 

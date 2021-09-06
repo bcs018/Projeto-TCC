@@ -10,7 +10,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Finalização da compra 1/2</h2>
+                    <h2>Finalização da compra 2/2</h2>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <center><h1>Calcule o frete e informe o endereço de entrega</h1></center> <br><br>
+                <center><h1>Você está prestes a finalizar, clique no botão "Gerar boleto" para concluir sua compra</h1></center> <br><br>
                 <?php
                 if(isset($_SESSION['message'])){
                     echo $_SESSION['message'];
@@ -32,45 +32,10 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
 
             <div class="col-md-4">
-                <form action="/pagamento/action/0" method="POST">
-                <h4>Dados para entrega</h4>
-
-                <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" name="cep" id="cep" placeholder="Informe seu CEP">
                 <br>
-
-                <label for="rua" class="form-label">Rua</label>
-                <input type="text" class="form-control" name="rua" id="rua"  placeholder="Informe sua rua">
-                <br>
-
-                <label for="bairro" class="form-label">Bairro</label>
-                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Informe seu bairro">
-                <br>
-
-                <label for="numero" class="form-label">Número</label>
-                <input type="text" class="form-control" name="numero" id="numero" name="numero" placeholder="Informe seu número">
-                <br>
-
-                <label for="estado" class="form-label">Estado</label>
-                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado" id="estado">
-                    <?php foreach($estados as $estado): ?>
-                        <option value="<?php echo $estado['estado_id']; ?>"><?php echo $estado['nome_estado']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <br>
-
-                <label for="cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Informe sua cidade">
-                <br>
-                <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
-
-                <label for="formGroupExampleInput" class="form-label">Complemento</label>
-                <input type="text" class="form-control" name="complemento" id="formGroupExampleInput" placeholder="Informe o complemento">
-                <br>
-
-                <button type="submit" class="finalizar" style="float: right;">Avançar</button> <br><br><br><br>
-                </form>
+                <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br><br>
             </div>
+            <div id="teste"></div>
 
             <div class="col-md-1"></div>
             <div class="col-md-7">
@@ -119,11 +84,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                         </tbody>
                     </table>
                 </div>
-                <form id="frete">
-                    <label for="cep" class="form-label">Cálculo do frete</label>
-                    <input type="text" class="form-control" id="cepCalc" name="cepCalc" placeholder="Insira o CEP de entrega">
-                    <br><button type="submit">Calcular</button>
-                </form>
+                
                 <br>
 
             </div>
@@ -137,8 +98,10 @@ echo'<pre>';print_r($_SESSION);
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
-<script type="text/javascript">
-    $('#cepCalc').mask("00000000");
-    $('#cep').mask("00000-000");
-    $('#cpf').mask("00000000000");
-</script>
+<?php if(isset($sessionCode)): ?>
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparenteBol.js"></script>
+    <script type="text/javascript">
+        PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
+    </script>
+<?php endif; ?>

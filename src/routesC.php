@@ -62,9 +62,12 @@ $router->post('/verifica-log-usuario', 'CarrinhoController@verUsuarioLogado');
 // -- Pagamento
 $router->post('/sel-pagamento', 'PagamentoController@index');
 $router->get('/pagamento', 'PagamentoController@index');
-$router->post('/pagamento/action', 'PagamentoController@atuDadosEntregaAction');
+$router->post('/pagamento/action/{flag}', 'PagamentoController@atuDadosEntregaAction');
 $router->get('/pagamento/2', 'PagamentoController@pagamentoSecond');
+$router->get('/gerar-boleto/2', 'PagamentoController@gerarBoletoSecond');
+$router->get('/gerar-boleto', 'PagamentoController@gerarBoleto');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
+$router->post('/checkoutBol', 'PgCheckTransPrincipalController@checkoutBol');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
 $router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 

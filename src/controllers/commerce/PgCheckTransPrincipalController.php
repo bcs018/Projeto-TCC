@@ -13,6 +13,7 @@ use function PHPSTORM_META\type;
 
 class PgCheckTransPrincipalController extends Controller {
 
+    // Checkout com Cartão
     public function checkout(){
         $dados = PagSeguro::setDados();
 
@@ -175,6 +176,126 @@ class PgCheckTransPrincipalController extends Controller {
 
             echo json_encode(array('error'=>true, 'msg'=>$e->getMessage(),'calculo'=>$calculo));
             exit;
+        }
+    }
+
+    // Checkout com Boleto
+    public function checkoutBol(){
+        $dados = PagSeguro::setDados();
+        $comp = new Compra;
+        $carr = new Carrinho;
+        $cada = new Cadastro;
+
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+        $id_compra = $comp->addCompra('boleto');
+
+        $frete = floatval(str_replace(',','.', $_SESSION['frete']['preco']));
+
+        if(!$id_compra){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Erro 001 ao fazer pagamento, atualize a página e tente novamente!
+                                    </div>';
+            return false;
+        }
+
+        $usuario = $cada->listaUsuario($_SESSION['login_cliente_ecommerce']);
+
+        $ddd_usu = substr($usuario['celular_ue'],1,2);
+        $cel_usu = substr($usuario['celular_ue'],4,5).substr($usuario['celular_ue'],10,4);
+
+        //Instantiate a new Boleto Object
+        $boleto = new \PagSeguro\Domains\Requests\DirectPayment\Boleto();
+
+        // Set the Payment Mode for this payment request
+        $boleto->setMode('DEFAULT');
+
+        /**
+         * @todo Change the receiver Email
+         */
+        $boleto->setReceiverEmail($dados['ps_email']); 
+
+        // Set the currency
+        $boleto->setCurrency("BRL");
+
+        // Add an item for this payment request
+        foreach($produtos as $p){
+            $boleto->addItems()->withParameters(
+                $p[0],
+                $p['nome_pro'],
+                $_SESSION['carrinho'][$p[0]],
+                floatval($p['preco'])
+            );
+        }
+
+        // Add an item for this payment request
+        $boleto->addItems()->withParameters(
+            999999, //id do produto
+            'FRETE',
+            1, //qtd
+            $frete
+        );
+
+        // Set a reference code for this payment request. It is useful to identify this payment
+        // in future notifications.
+        $boleto->setReference($id_compra);
+
+        //set extra amount
+        //$boleto->setExtraAmount(11.5);
+
+        // Set your customer information.
+        // If you using SANDBOX you must use an email @sandbox.pagseguro.com.br
+        $boleto->setSender()->setName($usuario['nome_usu_ue'].' '.$usuario['sobrenome']);
+        $boleto->setSender()->setEmail($usuario['email_ue']);
+
+        $boleto->setSender()->setPhone()->withParameters(
+            $ddd_usu,
+            $cel_usu
+        );
+
+        $boleto->setSender()->setDocument()->withParameters(
+            'CPF',
+            $usuario['cpf_ue']
+        );
+
+        $boleto->setSender()->setHash($_POST['id']);
+
+        //No ip como esta em localhost, tem que enviar um ip valido
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if(strlen($ip) < 9){
+            $ip = '127.0.0.1';
+        }    
+        $boleto->setSender()->setIp($ip);
+
+        // Set shipping information for this payment request
+        $boleto->setShipping()->setAddress()->withParameters(
+            $_SESSION['dados_entrega']['rua'],
+            $_SESSION['dados_entrega']['numero'],
+            $_SESSION['dados_entrega']['bairro'],
+            str_replace('-','',$_SESSION['dados_entrega']['cep']),
+            $_SESSION['dados_entrega']['cidade'],
+            $_SESSION['dados_entrega']['estado'],
+            'BRA',
+            $_SESSION['dados_entrega']['complemento']
+        );
+
+        // If your payment request don't need shipping information use:
+        // $boleto->setShipping()->setAddressRequired()->withParameters('FALSE');
+
+        try {
+            //Get the crendentials and register the boleto payment
+            $result = $boleto->register(
+                \PagSeguro\Configuration\Configure::getAccountCredentials()
+            );
+
+            // You can use methods like getCode() to get the transaction code and getPaymentLink() for the Payment's URL.
+            //echo "<pre>";
+            // print_r($result->getCode());
+            // print_r($result->getPaymentLink());
+
+            echo json_encode(['code'=>$result->getCode(),'link'=>$result->getPaymentLink()]);
+        } catch (Exception $e) {
+            echo "</br> <strong>";
+            die($e->getMessage());
         }
     }
 

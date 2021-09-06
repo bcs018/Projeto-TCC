@@ -25,6 +25,10 @@ $('#btnSelPgm').on('click', function(e){
     }else{
         if(tpPgm == 'card'){
             window.location.href = '/pagamento';
+        }else if(tpPgm == 'bol'){
+            window.location.href = '/gerar-boleto';
+        }else{
+            $('#message').html('<br><div class="alert alert-danger" role="alert">Tipo de pagamento inválido!</div>');
         }
     }
 })
