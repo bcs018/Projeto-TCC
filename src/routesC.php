@@ -23,8 +23,6 @@ $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
 $router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDadosRecebimento');
 $router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminController@cadDadosRecebimentoAction');
 
-
-
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');
 $router->get('/login/{control}', 'LoginController@loginC');
@@ -35,6 +33,7 @@ $router->post('/cliente/painel/alterar-dados-pessoais/action', 'AdminCController
 $router->get('/cliente/sair/c', 'LoginController@sairC');
 $router->get('/cliente/painel/contato', 'AdminCController@contato');
 $router->get('/cliente/painel/meus-pedidos', 'AdminCController@pedidos');
+$router->get('/cliente/painel/meus-pedidos/{id}', 'AdminCController@pedido');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

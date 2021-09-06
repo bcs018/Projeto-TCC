@@ -68,8 +68,22 @@ class AdminCController extends Controller {
     }
 
     public function pedidos(){
+        $adm = new AdminC;
+
         $dados = $this->listaDadosEcommerce();
 
-        $this->render('commerce/painel_cli/pedidos', ['dados'=>$dados]);
+        $compras = $adm->listaComprasUsu();
+
+        $this->render('commerce/painel_cli/pedidos', ['dados'=>$dados, 'compras'=>$compras]);
+    }
+
+    public function pedido($id){
+        $adm = new AdminC;
+
+        $dados = $this->listaDadosEcommerce();
+
+        $pedido = $adm->listaCompraUsu($id['id']);
+
+        $this->render('commerce/painel_cli/pedido', ['dados'=>$dados, 'pedido'=>$pedido]);
     }
 }

@@ -88,5 +88,41 @@ class AdminC extends Model{
             return false;
     }
 
+    // Lista todas as compras do usuário
+    public function listaComprasUsu(){
+        $sql = 'SELECT * FROM compra WHERE usuario_id = ? AND ecommerce_id = ? ORDER BY compra_id DESC';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['login_cliente_ecommerce']);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+
+        return false;
+    }
+
+    // Lista uma determinada compra do usuário
+    public function listaCompraUsu($id){
+        $sql = 'SELECT * FROM produto p
+                JOIN compra_prod cp
+                ON p.produto_id = cp.produto_id
+                JOIN compra c 
+                ON c.compra_id = cp.compra_id
+                WHERE c.ecommerce_id = ? AND c.usuario_id = ? AND c.compra_id = ?';
+         $sql = $this->db->prepare($sql);
+         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+         $sql->bindValue(2, $_SESSION['login_cliente_ecommerce']);
+         $sql->bindValue(3, $id);
+         $sql->execute();
+ 
+         if($sql->rowCount() > 0){
+             return $sql->fetchAll();
+         }
+ 
+         return false;
+    }
+
 }
 

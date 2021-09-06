@@ -24,8 +24,8 @@ class Compra extends Model{
         // echo $_SESSION['dados_entrega']['cidade'].'<br>';
         // echo (isset($_SESSION['dados_entrega']['complemento'])?$_SESSION['dados_entrega']['complemento']:'');exit;
 
-        $sql = 'INSERT INTO compra (usuario_id, cupom_id, ecommerce_id, total_compra, subtotal_compra, frete, tipo_pagamento, status_pagamanto, cep_entrega, rua_entrega, bairro_entrega, numero_entrega, estado_entrega, cidade_entrega, complemento_entrega)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO compra (usuario_id, cupom_id, ecommerce_id, total_compra, subtotal_compra, frete, tipo_pagamento, data_compra, status_pagamanto, cep_entrega, rua_entrega, bairro_entrega, numero_entrega, estado_entrega, cidade_entrega, complemento_entrega)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,  $_SESSION['login_cliente_ecommerce']);
         $sql->bindValue(2,  1);
@@ -34,14 +34,15 @@ class Compra extends Model{
         $sql->bindValue(5,  $_SESSION['subtotal']);
         $sql->bindValue(6,  floatval(str_replace(',','.',$_SESSION['frete']['preco'])));
         $sql->bindValue(7,  $tp_pagamento);
-        $sql->bindValue(8,  '1');
-        $sql->bindValue(9,  $_SESSION['dados_entrega']['cep']);
-        $sql->bindValue(10, $_SESSION['dados_entrega']['rua']);
-        $sql->bindValue(11, $_SESSION['dados_entrega']['bairro']);
-        $sql->bindValue(12, $_SESSION['dados_entrega']['numero']);
-        $sql->bindValue(13, $_SESSION['dados_entrega']['estado']);
-        $sql->bindValue(14, $_SESSION['dados_entrega']['cidade']);
-        $sql->bindValue(15, (isset($_SESSION['dados_entrega']['complemento'])?$_SESSION['dados_entrega']['complemento']:''));
+        $sql->bindValue(8,  date("d/m/Y H:i:s"));
+        $sql->bindValue(9,  '1');
+        $sql->bindValue(10,  $_SESSION['dados_entrega']['cep']);
+        $sql->bindValue(11, $_SESSION['dados_entrega']['rua']);
+        $sql->bindValue(12, $_SESSION['dados_entrega']['bairro']);
+        $sql->bindValue(13, $_SESSION['dados_entrega']['numero']);
+        $sql->bindValue(14, $_SESSION['dados_entrega']['estado']);
+        $sql->bindValue(15, $_SESSION['dados_entrega']['cidade']);
+        $sql->bindValue(16, (isset($_SESSION['dados_entrega']['complemento'])?$_SESSION['dados_entrega']['complemento']:''));
         
         if($sql->execute()){
             $id_compra = $this->db->lastInsertId();
