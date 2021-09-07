@@ -39,7 +39,10 @@ class PagamentoController extends Controller {
                                         Existem campos necessários para o endereço de entrega não preenchidos!
                                     </div>';
 
-            header("Location: /pagamento");
+            if($flag['flag'] == 0)
+                header("Location: /pagamento");
+            else
+                header("Location: /gerar-boleto");
             exit;
         }
 
@@ -47,8 +50,11 @@ class PagamentoController extends Controller {
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Calcule o frete para continuar!
                                     </div>';
-
-            header("Location: /pagamento");
+            if($flag['flag'] == 0)
+                header("Location: /pagamento");
+            else
+                header("Location: /gerar-boleto");
+            
             exit;
         }
         

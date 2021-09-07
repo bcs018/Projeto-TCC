@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Subdominio:</label>
-                            <p><?php echo $plano['sub_dominio']; ?></p>
+                            <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Endereço de sua loja:</label>
+                            <p><?php echo $plano['sub_dominio'].'.bw.com.br'; ?></p>
                         </div>
 
                         <div class="col-md-6">

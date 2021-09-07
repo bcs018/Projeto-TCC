@@ -33,7 +33,8 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
 
             <div class="col-md-4">
                 <br>
-                <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br><br>
+                <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br>
+                <div id="loading"></div>
             </div>
             <div id="teste"></div>
 

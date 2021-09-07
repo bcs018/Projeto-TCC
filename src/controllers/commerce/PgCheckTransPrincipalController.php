@@ -78,11 +78,7 @@ class PgCheckTransPrincipalController extends Controller {
         $creditCard->setReference($id_compra);
         $creditCard->setCurrency("BRL");
 
-        $i = false;
-        $calculo = 0;
-
         foreach($produtos as $p){
-            $calculo += $p['preco']*$_SESSION['carrinho'][$p[0]];
             $creditCard->addItems()->withParameters(
                 $p[0], //id do produto
                 $p['nome_pro'],
@@ -90,8 +86,6 @@ class PgCheckTransPrincipalController extends Controller {
                 // preço pdt+frete*qtd
                 floatval($p['preco'])/**$_SESSION['carrinho'][$p[0]]*/
             );
-
-            //$calculo += ($i==false ? $p['preco']+$frete*$_SESSION['carrinho'][$p[0]] : $p['preco']*$_SESSION['carrinho'][$p[0]]);
         }
 
         $creditCard->addItems()->withParameters(
@@ -100,10 +94,6 @@ class PgCheckTransPrincipalController extends Controller {
             1, //qtd
             $frete
         );
-
-        $calculo += $frete;
-
-        //$calculo += ($i==false ? $p['preco']+$frete*$_SESSION['carrinho'][$p[0]] : $p['preco']*$_SESSION['carrinho'][$p[0]]);
 
         $creditCard->setSender()->setName($usuario['nome_usu_ue'].' '.$usuario['sobrenome']);
         $creditCard->setSender()->setEmail($usuario['email_ue']);
@@ -161,20 +151,21 @@ class PgCheckTransPrincipalController extends Controller {
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
+            $comp->atuCompra($id_compra, $result->getCode());
+
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);
             unset($_SESSION['subtotal']);
             unset($_SESSION['total']);
             unset($_SESSION['dados_entrega']);
 
-            //echo json_encode(['id_compra'=>$id_compra, 'result'=>$result]);
-            echo json_encode(['id_compra'=>$id_compra,'calculo'=>$calculo]);
+            echo json_encode(['id_compra'=>$id_compra]);
             exit;
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da compra pois houve erro no pagamento
             $comp->delCompra($id_compra);
 
-            echo json_encode(array('error'=>true, 'msg'=>$e->getMessage(),'calculo'=>$calculo));
+            echo json_encode(array('error'=>true, 'msg'=>$e->getMessage()));
             exit;
         }
     }
@@ -292,7 +283,15 @@ class PgCheckTransPrincipalController extends Controller {
             // print_r($result->getCode());
             // print_r($result->getPaymentLink());
 
-            echo json_encode(['code'=>$result->getCode(),'link'=>$result->getPaymentLink()]);
+            $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink());
+
+            unset($_SESSION['frete']);
+            unset($_SESSION['carrinho']);
+            unset($_SESSION['subtotal']);
+            unset($_SESSION['total']);
+            unset($_SESSION['dados_entrega']);
+
+            echo json_encode(['id_compra'=>$id_compra]);
         } catch (Exception $e) {
             echo "</br> <strong>";
             die($e->getMessage());

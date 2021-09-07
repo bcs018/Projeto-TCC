@@ -26,13 +26,11 @@ $(function(){
                 $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Finalizando pagamento...</span></div>');
             },
             success:function(json){
-                $('#teste').html(json.code+'</br>'+json.link);
-                // if(json.error == true){
-                //     console.log(json.calculo)
-                //     $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
-                //     return;
-                // }
-                // window.location.href = '/pagamento/concluido/'+json.id_compra;
+                 if(json.error == true){
+                     $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
+                     return;
+                 }
+                window.location.href = '/pagamento/concluido/'+json.id_compra;
                 //$('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
             },
             error:function(json){

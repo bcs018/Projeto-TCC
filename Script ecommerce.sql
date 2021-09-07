@@ -270,6 +270,7 @@ create table transacao_compra(
     valor_pago decimal(10,2) not null,
     cod_transacao varchar(100),
     parcela varchar(100) not null,
+    link_bol varchar(300) default 0 not null,
     
     primary key(tc_id),
     foreign key (compra_id) references compra(compra_id)

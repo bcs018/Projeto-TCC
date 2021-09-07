@@ -24,7 +24,9 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
             <div class="col-md-12">
                 <center><h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradeçe a sua compra!</h1></center> <br><br>
             </div>
-            
+        </div>
+        
+        <div class="row">
             <div class="col-md-4">
                 <?php 
                 if(isset($_SESSION['message'])){
@@ -33,27 +35,40 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
                 }
                 ?>
             </div>
-            <h4>Agradecemos por sua compra, segue abaixo os detalhes:</h4>
+        </div>
 
-            <h5>
-                <b>Compra número: </b><?php echo $compra['compra_id']; ?><br>
-                <b>Pagamento: </b><?php echo $compra['parcela']; ?><br>
-                <b>Tipo de Pagamento: </b><?php echo ($compra['tipo_pagamento']=='cartao'?'Cartão de crédito':'Boleto'); ?>
-            </h5>
-            <br>
-            <hr>
-            <br>
-            <h5><b>Dados de entrega</b></h5>
-            <p>
-                <b>Rua:</b> <?php echo $compra['rua_entrega'].' - <b>N°: </b>'.$compra['numero_entrega']; ?></br>
-                <b>Bairro:</b> <?php echo $compra['bairro_entrega']; ?></br>
-                <b>CEP:</b> <?php echo $compra['cep_entrega']; ?></br>
-                <b>Cidade:</b> <?php echo $compra['cidade_entrega'].' - '.$compra['estado_entrega']; ?><br>
-                <?php echo ($compra['complemento_entrega']==''?'':'<b>Complemento: </b>'.$compra['complemento_entrega']) ?>
-            </p>
+        <div class="row">
+            <div class="col-md-12">
+                <center><h4>Agradecemos por sua compra, segue abaixo os detalhes:</h4></center> <br><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h5><b>Dados da compra</b></h5>
+                <p style="margin-bottom: 40px;">
+                    <b>Compra número: </b><?php echo $compra['compra_id']; ?><br>
+                    <b>Pagamento: </b><?php echo $compra['parcela']; ?><br>
+                    <b>Tipo de Pagamento: </b><?php echo ($compra['tipo_pagamento']=='cartao'?'Cartão de crédito':'Boleto'); ?><br>
+                    <?php if($compra['link_bol'] != '0'): ?>
+                        <b> <a href="<?php echo $compra['link_bol']; ?>" target="_blank">Clique aqui</a> para baixar seu boleto </b><br>
+                    <?php endif; ?>
+                </p>
+            </div>
+           
+
+            <div class="col-md-6">
+                <h5><b>Dados de entrega</b></h5>
+                <p>
+                    <b>Rua:</b> <?php echo $compra['rua_entrega'].' - <b>N°: </b>'.$compra['numero_entrega']; ?></br>
+                    <b>Bairro:</b> <?php echo $compra['bairro_entrega']; ?></br>
+                    <b>CEP:</b> <?php echo $compra['cep_entrega']; ?></br>
+                    <b>Cidade:</b> <?php echo $compra['cidade_entrega'].' - '.$compra['estado_entrega']; ?><br>
+                    <?php echo ($compra['complemento_entrega']==''?'':'<b>Complemento: </b>'.$compra['complemento_entrega']) ?>
+                </p>
+            </div>
             <br><br>
             
-            <div class="col-md-12"></div>
             <div class="col-md-12"><h3>Itens</h3>
                 <div class="table-responsive">
                     <table class="table">

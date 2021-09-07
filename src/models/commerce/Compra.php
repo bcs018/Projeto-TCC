@@ -103,6 +103,21 @@ class Compra extends Model{
         return false;
     }
 
+    public function atuCompra($id, $code, $link='0'){
+        $sql = 'UPDATE transacao_compra SET cod_transacao = ?, link_bol = ?
+                WHERE tc_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $code);
+        $sql->bindValue(2, $link);
+        $sql->bindValue(3, $id);
+
+        if($sql->execute()){
+            return true;
+        }
+
+        return false;
+    }
+
     public function listaCompra($id){
         $sql = 'SELECT * FROM compra c
                 JOIN transacao_compra tc
