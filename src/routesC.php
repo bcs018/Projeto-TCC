@@ -48,6 +48,7 @@ $router->get('/admin/painel/excluir-img/{idimg}/{idprod}', 'ProdutoController@ex
 $router->get('/admin/painel/excluir-ban/{idprod}', 'ProdutoController@excBanner');
 $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
 $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
+$router->get('/produtos', 'HomeController@produtos');
 
 // -- Carrinho
 $router->post('/add-carrinho', 'CarrinhoController@addCarrinho');

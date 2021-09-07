@@ -86,6 +86,22 @@ class HomeController extends Controller {
 
     }
 
+    public function produtos(){
+        $prod = new Produto;
+        $cate = new Categoria;
+        $info = new Info;
+
+        $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produtos = $prod->listaProdutosImg('ASC');
+
+        $this->render('commerce/'.$dados['layout'].'/produtos', [
+                                                                'produtos'    => $produtos,
+                                                                //'categoria'   => $categoriaProd,
+                                                                'dados'       => $dados
+                                                            ]);
+
+    }
+
     public function sobre() {
         $this->render('sobre');
     }
