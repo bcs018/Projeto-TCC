@@ -1,8 +1,8 @@
 {
     "require": {
-        "clancats/hydrahon": "^1.1",
         "pagseguro/pagseguro-php-sdk": "^6.0",
-        "gerencianet/gerencianet-sdk-php": "^3.0"
+        "gerencianet/gerencianet-sdk-php": "^3.0",
+        "mercadopago/dx-php": "^2.4"
     },
     "autoload": {
         "psr-4": {

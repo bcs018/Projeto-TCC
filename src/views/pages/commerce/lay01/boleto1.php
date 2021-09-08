@@ -29,7 +29,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
                     unset($_SESSION['message']);
                 }
                 ?>
-            </div>
+            </div> 
 
             <div class="col-md-4">
                 <form action="/pagamento/action/1" method="POST">

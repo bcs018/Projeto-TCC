@@ -75,11 +75,11 @@ class AdminController extends Controller {
     public function cadDadosRecebimentoAction(){
         $tknpagseguro   = addslashes($_POST['tknpagseguro']);
         $emailpagseguro = addslashes($_POST['emailpagseguro']);
-        $tknmpago       = addslashes($_POST['tknmpago']);
+        $pkmpago        = addslashes($_POST['pkmpago']);
 
         $admin = new Admin;
 
-        $admin->cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $tknmpago);
+        $admin->cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago);
 
         header("Location: /admin/painel/cadastrar-dados-recebimento");
     }

@@ -64,8 +64,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
 
                                         <div class="tab-pane fade" id="mercadopago" role="tabpanel" aria-labelledby="pills-profile-tab">
                                             <div class="form-group">
-                                                <label for="tknmpago">Token do Mercado Pago</label>
-                                                <input type="text" class="form-control" name="tknmpago" id="tknmpago" aria-describedby="emailHelp" placeholder="Token Mercado Pago">
+                                                <label for="pkmpago">Public Key do Mercado Pago</label>
+                                                <input type="text" class="form-control" name="pkmpago" id="pkmpago" aria-describedby="emailHelp" placeholder="Token Mercado Pago">
                                                 <!-- <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small> -->
                                                 <br>
                                                 <!-- <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>

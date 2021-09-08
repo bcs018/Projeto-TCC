@@ -116,7 +116,8 @@ class PagamentoController extends Controller {
             exit;
 
         }else if($dados['tp_recebimento'] == 'mercadopago'){
-            // ...
+            $this->render('commerce/lay01/pagamento2',['dados'=>$dados,'produtos'=>$produtos]);
+            exit;
         }else{
             header("Location: /");
         }

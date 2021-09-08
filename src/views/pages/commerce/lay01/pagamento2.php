@@ -40,42 +40,14 @@ if(isset($_SESSION['frete'])){
                     unset($_SESSION['message']);
                 }
                 ?>
-                <label for="n_card" class="form-label">Número do cartão</label>
-                <input type="number" class="form-control" name="n_card" id="n_card" placeholder="Número do cartão">
-                <div id="brand"></div>
-                <br>
-                <label for="parc" class="form-label">Número de parcelas</label>
-                <select name="parc" id="parc" class="form-control"></select>
-                <br>
-                <label for="cd_seg" class="form-label">Código de segurança</label>
-                <input type="number" class="form-control" name="cd_seg" id="cd_seg" placeholder="Código de segurança">
-                <br>
-                <label for="formGroupExampleInput" class="form-label">Mês e ano do vencimento</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <select name="cartao_mes" id="cartao_mes" class="form-control">
-                            <?php for($q=1; $q<=12; $q++): ?>
-                            <option><?php echo ($q<10)?'0'.$q:$q; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <select name="cartao_ano" id="cartao_ano" class="form-control">
-                            <?php $ano = intval(date('Y')); ?>
-                            <?php for($q=$ano; $q<=($ano+30); $q++): ?>
-                            <option><?php echo $q; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-                </div> <br>
-                <label for="nome_card" class="form-label">Nome impresso no cartão</label>
-                <input type="text" value="BRUNO C SILVA" class="form-control" name="nome_card" id="nome_card" placeholder="Nome impresso no cartão">
-                <br>
-                <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-                <input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card" placeholder="CPF do titular do cartão">
-                <br><hr>
-                <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
                 
+                <?php if($dados['tp_recebimento'] == 'pagseguro'){
+                    require_once('fmr_pagseguro.php');
+                }else{
+                    require_once('fmr_mpago.php');
+                }
+                ?>
+
                 <button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
                 
                 <div id="loading"></div>
@@ -142,17 +114,122 @@ echo'<pre>';print_r($_SESSION);
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
-<?php if(isset($sessionCode)): ?>
+<?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
     <script type="text/javascript">
         PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
     </script>
-<?php endif; ?>
+<?php else: ?>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="<?php echo BASE_ASS_C; ?>js/mpckttransparente.js"></script>
+    <script>
+        const mp = new MercadoPago('<?php echo $dados['mp_token'] ?>', {
+            locale: 'pt-BR'
+        })
 
+        const cardForm = mp.cardForm({
+            amount: '100.5',
+            autoMount: true,
+            processingMode: 'aggregator',
+            form: {
+                id: 'form-checkout',
+                cardholderName: {
+                    id: 'form-checkout__cardholderName',
+                    placeholder: 'Nome impresso no cartão',
+                },
+                // cardholderEmail: {
+                //     id: 'form-checkout__cardholderEmail',
+                //     placeholder: 'Email',
+                // },
+                cardNumber: {
+                    id: 'form-checkout__cardNumber',
+                    placeholder: 'Número do cartão',
+                },
+                cardExpirationMonth: {
+                    id: 'form-checkout__cardExpirationMonth',
+                    placeholder: 'MM'
+                },
+                cardExpirationYear: {
+                    id: 'form-checkout__cardExpirationYear',
+                    placeholder: 'AAAA'
+                },
+                securityCode: {
+                    id: 'form-checkout__securityCode',
+                    placeholder: 'CVV',
+                },
+                installments: {
+                    id: 'form-checkout__installments',
+                    placeholder: 'Parcelas'
+                },
+                identificationType: {
+                    id: 'form-checkout__identificationType',
+                    placeholder: 'Tipo do documento'
+                },
+                identificationNumber: {
+                    id: 'form-checkout__identificationNumber',
+                    placeholder: 'Número do documento'
+                },
+                issuer: {
+                    id: 'form-checkout__issuer',
+                    placeholder: ''
+                }
+            },
+            callbacks: {
+                onFormMounted: error => {
+                    if (error) return console.warn('Form Mounted handling error: ', error)
+                    console.log('Form mounted')
+                },
+                onFormUnmounted: error => {
+                    if (error) return console.warn('Form Unmounted handling error: ', error)
+                    console.log('Form unmounted')
+                },
+                onIdentificationTypesReceived: (error, identificationTypes) => {
+                    if (error) return console.warn('identificationTypes handling error: ', error)
+                    console.log('Identification types available: ', identificationTypes)
+                },
+                onPaymentMethodsReceived: (error, paymentMethods) => {
+                    if (error) return console.warn('paymentMethods handling error: ', error)
+                    console.log('Payment Methods available: ', paymentMethods)
+                },
+                onIssuersReceived: (error, issuers) => {
+                    if (error) return console.warn('issuers handling error: ', error)
+                    console.log('Issuers available: ', issuers)
+                },
+                onInstallmentsReceived: (error, installments) => {
+                    if (error) return console.warn('installments handling error: ', error)
+                    console.log('Installments available: ', installments)
+                },
+                onCardTokenReceived: (error, token) => {
+                    if (error) return console.warn('Token handling error: ', error)
+                    console.log('Token available: ', token)
+                },
+                onSubmit: (event) => {
+                    event.preventDefault();
+                    const cardData = cardForm.getCardFormData();
+                    console.log('CardForm data available: ', cardData)
+                },
+                onFetching: (resource) => {
+                    console.log('Fetching resource: ', resource)
+
+                    // Animate progress bar
+                    const progressBar = document.querySelector('.progress-bar')
+                    progressBar.removeAttribute('value')
+
+                    return () => {
+                        progressBar.setAttribute('value', '0')
+                    }
+                },
+            }
+        })
+    </script>
+<?php endif; ?>
 
 <script type="text/javascript">
     $('#cepCalc').mask("00000000");
     $('#cep').mask("00000-000");
     $('#cpf').mask("00000000000");
+
+    $('#form-checkout__cardExpirationMonth').mask("00");
+    $('#form-checkout__cardExpirationYear').mask("0000");
 </script>
