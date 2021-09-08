@@ -62,8 +62,8 @@ class AdminC extends Model{
             }
 
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                            Ocorreu erro 001 ao fazer alteração!
-                                        </div>';
+                                        Ocorreu erro 001 ao fazer alteração!
+                                     </div>';
             return false;
 
         }
