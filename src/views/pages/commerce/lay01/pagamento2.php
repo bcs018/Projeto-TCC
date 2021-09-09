@@ -222,7 +222,6 @@ echo'<pre>';print_r($_SESSION);
                     event.preventDefault();
 
                     const {
-                        cardholderName: $('input[name=cardholderName]').val(),
                         paymentMethodId: payment_method_id,
                         issuerId: issuer_id,
                         // cardholderEmail: email,
@@ -243,7 +242,8 @@ echo'<pre>';print_r($_SESSION);
                             cardData
                         },
                         success:function(r){
-                            $('#message').html("OK");
+                            //$('#message').html("OK");
+                            console.log(r)
                         } 
 
                     });

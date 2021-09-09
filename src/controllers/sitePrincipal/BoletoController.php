@@ -112,8 +112,8 @@ class BoletoController extends Controller {
         $body = [
             'payment' => [
                 'banking_billet' => [
-                    //'expire_at' => date("Y-m-d", strtotime('+5 days')),
-                    'expire_at' => date("Y-m-d"),
+                    'expire_at' => date("Y-m-d", strtotime('+2 days')),
+                    //'expire_at' => date("Y-m-d"),
                     'customer' => $customer
                 ]
             ]

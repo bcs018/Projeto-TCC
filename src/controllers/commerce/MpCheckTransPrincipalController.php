@@ -23,9 +23,8 @@ class MpCheckTransPrincipalController extends Controller {
         $numParcela      = $_POST['cardData']['installments'];    
         $tipoDocumento   = $_POST['cardData']['identificationNumber']; 
         $numeroDocumento = $_POST['cardData']['identificationType'];
-        $titCartao       = $_POST['cardData']['cardholderName'];
 
-        echo '<pre>';print_r($_POST['cardData']);exit;
+        //echo '<pre>';print_r($_POST['cardData']);exit;
 
         if(empty($token) || empty($idEmissorBanco) || empty($emissorBanco) || empty($tipoDocumento) || empty($totalCompra) || empty($numParcela)){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -34,23 +33,27 @@ class MpCheckTransPrincipalController extends Controller {
             
         }
 
-        //if(empty())
+        if(empty($numeroDocumento)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        CPF em branco!
+                                    </div>';
+        }
 
         \MercadoPago\SDK::setAccessToken("TEST-6863185104180239-090800-f737fca299bc2244dcdf24a739522f5f-219670214");
 
         $payment = new \MercadoPago\Payment();
-        $payment->transaction_amount = (float)$_POST['transactionAmount'];
-        $payment->token = $_POST['token'];
-        $payment->description = $_POST['description']; //Razão do pagamento ou titulo do item
-        $payment->installments = (int)$_POST['installments'];
-        $payment->payment_method_id = $_POST['paymentMethodId'];
-        $payment->issuer_id = (int)$_POST['issuer'];
+        $payment->transaction_amount = (float)$totalCompra;
+        $payment->token = $token;
+        $payment->description = 'Alguma descrição qualquer'; //Razão do pagamento ou titulo do item
+        $payment->installments = (int)$numParcela;
+        $payment->payment_method_id = $emissorBanco;
+        $payment->issuer_id = (int)$idEmissorBanco;
 
         $payer = new \MercadoPago\Payer();
-        $payer->email = $_POST['email'];
+        //$payer->email = $_POST['email'];
         $payer->identification = array( 
-            "type" => $_POST['docType'],
-            "number" => $_POST['docNumber']
+            "type" => $tipoDocumento,
+            "number" => $numeroDocumento
         );
         $payment->payer = $payer;
 
@@ -62,7 +65,7 @@ class MpCheckTransPrincipalController extends Controller {
             'id' => $payment->id
         );
         echo json_encode($response);
-        
+        exit;
     }
 
 }
