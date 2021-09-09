@@ -69,6 +69,7 @@ $router->get('/gerar-boleto/2', 'PagamentoController@gerarBoletoSecond');
 $router->get('/gerar-boleto', 'PagamentoController@gerarBoleto');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/checkoutBol', 'PgCheckTransPrincipalController@checkoutBol');
+$router->post('/checkout_mp', 'MpCheckTransPrincipalController@checkout');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
 $router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 

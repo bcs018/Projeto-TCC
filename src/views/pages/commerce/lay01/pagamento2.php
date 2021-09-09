@@ -48,8 +48,6 @@ if(isset($_SESSION['frete'])){
                 }
                 ?>
 
-                <button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
-                
                 <div id="loading"></div>
             </div>
 
@@ -102,6 +100,7 @@ if(isset($_SESSION['frete'])){
                     <?php echo ($_SESSION['dados_entrega']['complemento']==''?'':'<b>Complemento: </b>'.$_SESSION['dados_entrega']['complemento']) ?>
                 </p>
                 <br>
+                <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ''); ?>">
 
             </div>
         </div>
@@ -129,7 +128,7 @@ echo'<pre>';print_r($_SESSION);
         })
 
         const cardForm = mp.cardForm({
-            amount: '100.5',
+            amount: $('#plan').val(),
             autoMount: true,
             processingMode: 'aggregator',
             form: {
@@ -201,13 +200,55 @@ echo'<pre>';print_r($_SESSION);
                     console.log('Installments available: ', installments)
                 },
                 onCardTokenReceived: (error, token) => {
-                    if (error) return console.warn('Token handling error: ', error)
+                    if (error){
+                        html = '';
+                        for(i = 0; i < error.length; i++){
+                            if(error[i].code == '205'){
+                                html += '<div class="alert alert-danger" role="alert"> Número do cartão em branco </div>';
+                            }else if(error[i].code == '208'){
+                                html += '<div class="alert alert-danger" role="alert">Mês em branco </div>';
+                            }else if(error[i].code == '209'){
+                                html += '<div class="alert alert-danger" role="alert">Ano em branco </div>';  
+                            }
+                        }
+
+                        $('#message').html(html);
+
+                        return console.log('Token handling error: ', error)
+                    } 
                     console.log('Token available: ', token)
                 },
                 onSubmit: (event) => {
                     event.preventDefault();
+
+                    const {
+                        cardholderName: $('input[name=cardholderName]').val(),
+                        paymentMethodId: payment_method_id,
+                        issuerId: issuer_id,
+                        // cardholderEmail: email,
+                        amount,
+                        token,
+                        installments,
+                        identificationNumber,
+                        identificationType,
+                    } = cardForm.getCardFormData();
                     const cardData = cardForm.getCardFormData();
-                    console.log('CardForm data available: ', cardData)
+                    //console.log('Dados do formulario ', cardData)
+                    
+                    $.ajax({
+                        url: '/checkout_mp',
+                        dataType: 'JSON',
+                        type: 'POST',
+                        data: {
+                            cardData
+                        },
+                        success:function(r){
+                            $('#message').html("OK");
+                        } 
+
+                    });
+
+                    return;
                 },
                 onFetching: (resource) => {
                     console.log('Fetching resource: ', resource)

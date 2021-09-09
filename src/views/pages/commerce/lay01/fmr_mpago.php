@@ -22,7 +22,9 @@
     <label for="parc" class="form-label">Número de parcelas</label>
     <select class="form-control" name="installments" id="form-checkout__installments"></select> <br>
 
-    <button type="submit" id="form-checkout__submit">Pay</button>
+    <button type="submit" id="form-checkout__submit">Finalizar Compra</button> <br><br><br>
+
+    <div id="message"></div>
 
     <progress value="0" class="progress-bar">loading...</progress>
 </form>

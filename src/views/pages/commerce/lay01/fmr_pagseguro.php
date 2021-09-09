@@ -35,4 +35,5 @@
     placeholder="CPF do titular do cartão">
 <br>
 <hr>
-<input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
+
+<button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
