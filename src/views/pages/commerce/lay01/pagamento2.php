@@ -123,7 +123,7 @@ echo'<pre>';print_r($_SESSION);
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/mpckttransparente.js"></script>
     <script>
-        const mp = new MercadoPago('<?php echo $dados['mp_token'] ?>', {
+        const mp = new MercadoPago('<?php echo $dados['mp_public_key'] ?>', {
             locale: 'pt-BR'
         })
 
@@ -209,6 +209,8 @@ echo'<pre>';print_r($_SESSION);
                                 html += '<div class="alert alert-danger" role="alert">Mês em branco </div>';
                             }else if(error[i].code == '209'){
                                 html += '<div class="alert alert-danger" role="alert">Ano em branco </div>';  
+                            }else if(error[i].code == '316'){
+                                html += '<div class="alert alert-danger" role="alert">Nome inválido</div>';  
                             }
                         }
 

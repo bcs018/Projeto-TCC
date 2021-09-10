@@ -77,7 +77,8 @@ create table ecommerce_usu(
     tp_recebimento ENUM ('pagseguro','mercadopago','0') default '0' not null,
     ps_token varchar(200) default 0 not null, 
     ps_email varchar(100) default 0 not null, 
-    mp_token varchar(200) default 0 not null,
+    mp_public_key varchar(300) default 0 not null,
+    mp_access_token varchar(300) default 0 not null;
 
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/

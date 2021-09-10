@@ -61,6 +61,8 @@ $router->post('/deleta-sessao-frete', 'CarrinhoController@delSessaoFrete');
 $router->post('/verifica-log-usuario', 'CarrinhoController@verUsuarioLogado');
 
 // -- Pagamento
+$router->get('/cria-cliente', 'PagamentoController@criaCliente');
+
 $router->post('/sel-pagamento', 'PagamentoController@index');
 $router->get('/pagamento', 'PagamentoController@index');
 $router->post('/pagamento/action/{flag}', 'PagamentoController@atuDadosEntregaAction');

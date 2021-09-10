@@ -409,8 +409,8 @@ class Admin extends Model{
         }
     }
 
-    public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago){
-        if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro))){
+    public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago, $tknmpago){
+        if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro) && empty($tknmpago))){
             
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Campos obrigátórios do PagSeguro ou Mercado Pago não preenchidos!
@@ -419,7 +419,7 @@ class Admin extends Model{
             return false;
         }
 
-        if(!empty($pkmpago) && (!empty($emailpagseguro) || !empty($tknpagseguro))){
+        if((!empty($pkmpago) || !empty($tknmpago)) && (!empty($emailpagseguro) || !empty($tknpagseguro))){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
                                         Preencha PagSeguro ou Mercado Pago!
@@ -428,14 +428,15 @@ class Admin extends Model{
             return false;
         }
 
-        $sql = 'UPDATE ecommerce_usu SET tp_recebimento = ?, ps_token = ?, ps_email = ?, mp_token = ?
+        $sql = 'UPDATE ecommerce_usu SET tp_recebimento = ?, ps_token = ?, ps_email = ?, mp_public_key = ?, mp_access_token = ?
                 WHERE ecommerce_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, (empty($pkmpago)?'pagseguro':'mercadopago'));
         $sql->bindValue(2, (!empty($tknpagseguro)?$tknpagseguro:'0'));
         $sql->bindValue(3, (!empty($emailpagseguro)?$emailpagseguro:'0'));
         $sql->bindValue(4, (!empty($pkmpago)?$pkmpago:'0'));
-        $sql->bindValue(5, $_SESSION['id_sub_dom']);
+        $sql->bindValue(5, (!empty($tknmpago)?$tknmpago:'0'));
+        $sql->bindValue(6, $_SESSION['id_sub_dom']);
         
         if($sql->execute()){
             $_SESSION['message'] .= '<div class="alert alert-success" role="alert">

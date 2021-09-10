@@ -191,4 +191,37 @@ class PagamentoController extends Controller {
 
         $this->render('commerce/lay01/final_compra',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
     }
+
+
+
+    public function criaCliente(){
+
+        $header = [
+            'Authorization: Bearer TEST-6863185104180239-090800-f737fca299bc2244dcdf24a739522f5f-219670214',
+            'Content-Type: application/json'
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://api.mercadopago.com/users/test_user');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['site_id'=>'MLB']));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $r = curl_exec($ch);
+
+        curl_close($ch);
+
+        echo '<pre>';
+        print_r($r);
+
+        exit;
+
+
+        // curl -X POST \
+        // -H "Content-Type: application/json" \
+        // -H 'Authorization: Bearer PROD_ACCESS_TOKEN' \
+        // "https://api.mercadopago.com/users/test_user" \
+        // -d '{"site_id":"MLB"}';
+    }
 }

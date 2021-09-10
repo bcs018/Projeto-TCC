@@ -50,7 +50,7 @@ class MpCheckTransPrincipalController extends Controller {
         $payment->issuer_id = (int)$idEmissorBanco;
 
         $payer = new \MercadoPago\Payer();
-        //$payer->email = $_POST['email'];
+        $payer->email = 'test_user_61744996@testuser.com'; //$_POST['email'];
         $payer->identification = array( 
             "type" => $tipoDocumento,
             "number" => $numeroDocumento
