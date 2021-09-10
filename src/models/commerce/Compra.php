@@ -6,7 +6,16 @@ use \core\Model;
 
 class Compra extends Model{
 
-    public function addCompra($tp_pagamento, $parc='À vista'){
+    public function addCompra($tp_pagamento, $parc='À vista', $flag = false){
+
+        // Se flag for false, é pq o pagamento está vindo do PagSeguro, então monta 
+        // a parcela atraves de um array, se flag for true, está vindo do Mercado Pago 
+        // e a parcela ja vem montada
+        if(!$flag){
+            if($parc != 'À vista'){
+                $parc = $parc[0].'x de R$'.number_format($parc[1],2,',','.');
+            }
+        }
 
         // echo $_SESSION['login_cliente_ecommerce'].'<br>';
         // echo '1'.'<br>';
@@ -53,7 +62,7 @@ class Compra extends Model{
             $sql->bindValue(1, $id_compra);
             $sql->bindValue(2, $_SESSION['total']);
             $sql->bindValue(3, $id_compra);
-            $sql->bindValue(4, ($parc == 'À vista')?'À vista':$parc[0].'x de R$'.number_format($parc[1],2,',','.'));
+            $sql->bindValue(4, $parc); //($parc == 'À vista')?'À vista':$parc);
 
             if($sql->execute()){
                 // unset($_SESSION['dados_entrega']);

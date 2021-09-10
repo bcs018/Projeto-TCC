@@ -9,6 +9,9 @@
     <label for="form-checkout__cardholderName" class="form-label">Nome impresso no cartão</label>
     <input class="form-control" type="text" name="cardholderName" id="form-checkout__cardholderName" /> <br>
     
+    <label for="form-checkout__cardholderEmail" class="form-label">E-mail</label>
+    <input class="form-control" type="email" name="cardholderEmail" id="form-checkout__cardholderEmail"/> <br>
+
     <label for="form-checkout__securityCode" class="form-label">Código de segurança</label>
     <input class="form-control" type="text" name="securityCode" id="form-checkout__securityCode" /> <br>
 

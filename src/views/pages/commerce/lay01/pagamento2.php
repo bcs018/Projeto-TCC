@@ -137,10 +137,10 @@ echo'<pre>';print_r($_SESSION);
                     id: 'form-checkout__cardholderName',
                     placeholder: 'Nome impresso no cartão',
                 },
-                // cardholderEmail: {
-                //     id: 'form-checkout__cardholderEmail',
-                //     placeholder: 'Email',
-                // },
+                cardholderEmail: {
+                    id: 'form-checkout__cardholderEmail',
+                    placeholder: 'Email',
+                },
                 cardNumber: {
                     id: 'form-checkout__cardNumber',
                     placeholder: 'Número do cartão',
@@ -210,7 +210,23 @@ echo'<pre>';print_r($_SESSION);
                             }else if(error[i].code == '209'){
                                 html += '<div class="alert alert-danger" role="alert">Ano em branco </div>';  
                             }else if(error[i].code == '316'){
-                                html += '<div class="alert alert-danger" role="alert">Nome inválido</div>';  
+                                html += '<div class="alert alert-danger" role="alert">Por favor, digite um nome válido.</div>';  
+                            }else if(error[i].code == '212' || error[i].code == '213' || error[i].code == '214'){
+                                html += '<div class="alert alert-danger" role="alert">Informe seu documento..</div>';  
+                            }else if(error[i].code == '221'){
+                                html += '<div class="alert alert-danger" role="alert">Por favor, digite o nome e sobrenome.</div>';  
+                            }else if(error[i].code == '224'){
+                                html += '<div class="alert alert-danger" role="alert">Por favor, digite o código de segurança.</div>';  
+                            }else if(error[i].code == 'E301'){
+                                html += '<div class="alert alert-danger" role="alert">Há algo de errado com esse número de cartão. Digite novamente.</div>';  
+                            }else if(error[i].code == 'E302'){
+                                html += '<div class="alert alert-danger" role="alert">Confira o código de segurança.</div>';  
+                            }else if(error[i].code == '322' || error[i].code == '323' || error[i].code == '324'){
+                                html += '<div class="alert alert-danger" role="alert">Confira seu documento.</div>';  
+                            }else if(error[i].code == '325' || error[i].code == '326'){
+                                html += '<div class="alert alert-danger" role="alert">Confira a data.</div>';  
+                            }else{
+                                html += '<div class="alert alert-danger" role="alert">Confira os dados.</div>';  
                             }
                         }
 
@@ -226,7 +242,7 @@ echo'<pre>';print_r($_SESSION);
                     const {
                         paymentMethodId: payment_method_id,
                         issuerId: issuer_id,
-                        // cardholderEmail: email,
+                        cardholderEmail: email,
                         amount,
                         token,
                         installments,
@@ -241,11 +257,15 @@ echo'<pre>';print_r($_SESSION);
                         dataType: 'JSON',
                         type: 'POST',
                         data: {
-                            cardData
+                            cardData,
+                            parc: $('#form-checkout__installments').find('option:selected').text()
                         },
                         success:function(r){
-                            //$('#message').html("OK");
-                            console.log(r)
+                            // if(r.error == true){
+                            //     $('#message').html(r.message);
+                            //     return;
+                            // }
+                            //console.log(r)
                         } 
 
                     });
