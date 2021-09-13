@@ -151,7 +151,17 @@ class PgCheckTransPrincipalController extends Controller {
                 \PagSeguro\Configuration\Configure::getAccountCredentials()
             );
 
-            $comp->atuCompra($id_compra, $result->getCode());
+            // switch ($result->getStatus()) {
+            //     case '1':
+            //         # code...
+            //         break;
+                
+            //     default:
+            //         # code...
+            //         break;
+            // }
+
+            $comp->atuCompra($id_compra, $result->getCode(),'0', $result->getStatus());
 
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);
@@ -283,7 +293,7 @@ class PgCheckTransPrincipalController extends Controller {
             // print_r($result->getCode());
             // print_r($result->getPaymentLink());
 
-            $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink());
+            $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink(), $result->getStatus());
 
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);

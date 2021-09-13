@@ -27,7 +27,7 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
         </div>
         
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <?php 
                 if(isset($_SESSION['message'])){
                     echo $_SESSION['message'];

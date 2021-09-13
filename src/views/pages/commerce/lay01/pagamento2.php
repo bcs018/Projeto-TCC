@@ -261,10 +261,12 @@ echo'<pre>';print_r($_SESSION);
                             parc: $('#form-checkout__installments').find('option:selected').text()
                         },
                         success:function(r){
-                            // if(r.error == true){
-                            //     $('#message').html(r.message);
-                            //     return;
-                            // }
+                            if(r.error == true){
+                                $('#message').html(r.message);
+                                return;
+                            }else{
+                                window.location.href = '/pagamento/concluido/'+r.id_compra;
+                            }
                             //console.log(r)
                         } 
 

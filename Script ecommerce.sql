@@ -250,7 +250,7 @@ create table compra(
     tipo_pagamento varchar(50) not null,
     data_compra varchar(50) not null,
     enviado enum('0','1') not null default '0',
-    status_pagamento int not null,
+    status_pagamento varchar(100) default 0 not null,
     cep_entrega varchar(100) not null,
     rua_entrega varchar(100) not null,
     bairro_entrega varchar(100) not null,

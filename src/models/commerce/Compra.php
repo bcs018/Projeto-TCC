@@ -112,14 +112,23 @@ class Compra extends Model{
         return false;
     }
 
-    public function atuCompra($id, $code, $link='0'){
+    public function atuCompra($id, $code, $link='0', $status = '0'){
         $sql = 'UPDATE transacao_compra SET cod_transacao = ?, link_bol = ?
-                WHERE tc_id = ?';
+                WHERE compra_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $code);
         $sql->bindValue(2, $link);
         $sql->bindValue(3, $id);
 
+        if(!$sql->execute()){
+            return false;
+        }
+
+        $sql = 'UPDATE compra SET status_pagamento = ? WHERE compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $status);
+        $sql->bindValue(2, $id);
+        
         if($sql->execute()){
             return true;
         }

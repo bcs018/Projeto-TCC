@@ -31,31 +31,31 @@ class MpCheckTransPrincipalController extends Controller {
 
         if(empty($token) || empty($idEmissorBanco) || empty($emissorBanco) || empty($tipoDocumento) || empty($totalCompra) || empty($numParcela)){
             $erros .= '<div class="alert alert-danger" role="alert">
-                                        Erro 001 durante o pagamento, tente novamente atualizando a pagina!
-                                    </div>';
+                           Erro 001 durante o pagamento, tente novamente atualizando a pagina!
+                       </div>';
             $flag = true;
         }
 
         if(empty($numeroDocumento)){
             $erros .= '<div class="alert alert-danger" role="alert">
-                                        CPF em branco!
-                                    </div>';
+                            CPF em branco!
+                        </div>';
             $flag = true;
 
         }
 
         if(empty($email)){
             $erros .= '<div class="alert alert-danger" role="alert">
-                                        E-mail em branco!
-                                    </div>';
+                           E-mail em branco!
+                       </div>';
             $flag = true;
 
         }
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $erros .= '<div class="alert alert-danger" role="alert">
-                                        E-mail inválido!
-                                    </div>';
+                           E-mail inválido!
+                       </div>';
             $flag = true;
 
         }
@@ -81,6 +81,7 @@ class MpCheckTransPrincipalController extends Controller {
         $payment->installments = (int)$numParcela;
         $payment->payment_method_id = $emissorBanco;
         $payment->issuer_id = (int)$idEmissorBanco;
+        $payment->statement_descriptor = $dados['nome_fantasia'];
 
         $payer = new \MercadoPago\Payer();
         $payer->email = $email; //$_POST['email'];
@@ -91,31 +92,192 @@ class MpCheckTransPrincipalController extends Controller {
         $payment->payer = $payer;
 
         $payment->save(); 
+        $erros = '';
+
+        // echo '<pre>';
+        // print_r($payment);exit;
 
         if($payment->status == 'rejected'){
-            // ALTERAR O STATUS DA COMPRA DE ACORDO COM O STATUS DO PAGAMENTO
-            // FAZER ISSO TBM COM O PAGSEGURO
+            switch ($payment->status_detail) {
+                case 'cc_rejected_bad_filled_card_number':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Revise o número do cartão.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+
+                    break;
+                
+                case 'cc_rejected_bad_filled_date':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Revise a data de vencimento.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_bad_filled_other':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Revise os dados.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_bad_filled_security_code':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Revise o código de segurança do cartão.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+                
+                case 'cc_rejected_card_error':
+                case 'cc_rejected_blacklist':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Não pudemos processar seu pagamento.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_call_for_authorize':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Você deve autorizar a sua operadora do cartão ('.$emissorBanco.') 
+                                    o pagamento do valor ao Mercado Pago.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_card_disabled':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Ligue para a operadora para ativar seu cartão. 
+                                    O telefone está no verso do seu cartão.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_duplicated_payment':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Você já efetuou um pagamento com esse valor. 
+                                    Caso precise pagar novamente, utilize outro cartão 
+                                    ou outra forma de pagamento.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_high_risk':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Seu pagamento foi recusado. <br>
+                                    Escolha outra forma de pagamento. Recomendamos meios de pagamento em dinheiro.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_insufficient_amount':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                O '.$emissorBanco.' possui saldo insuficiente.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_invalid_installments':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                O '.$emissorBanco.' não processa pagamentos em '.$numParcela.' parcelas.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_max_attempts':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Você atingiu o limite de tentativas permitido.
+                                    <br>
+                                    Escolha outro cartão ou outra forma de pagamento.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                case 'cc_rejected_other_reason':
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                '.$emissorBanco.' não processa o pagamento.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+                    
+                    break;
+
+                default:
+                    $comp->delCompra($id_compra);
+                    $erros .= '<div class="alert alert-danger" role="alert">
+                                    Erro 003 ao processar pagamento, contate o administrador.
+                               </div>';
+                    echo json_encode(['error'=> true, 'message'=>$erros]);
+
+                    break;
+            }
+
+        }elseif($payment->status == 'in_process'){
+            unset($_SESSION['frete']);
+            unset($_SESSION['carrinho']);
+            unset($_SESSION['subtotal']);
+            unset($_SESSION['total']);
+            unset($_SESSION['dados_entrega']);
+
+            $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                        Estamos processando seu pagamento.
+                                        <br>
+                                        Não se preocupe, em menos de 2 dias úteis informaremos 
+                                        por e-mail se foi creditado ou se necessitamos de mais 
+                                        informação.
+                                    </div>';
+            $comp->atuCompra($id_compra, $payment->id,'0', $payment->status);
+
+            echo json_encode(['error'=> false, 'id_compra'=>$id_compra]);
+            exit;
+
+        }elseif($payment->status == 'approved'){
+            unset($_SESSION['frete']);
+            unset($_SESSION['carrinho']);
+            unset($_SESSION['subtotal']);
+            unset($_SESSION['total']);
+            unset($_SESSION['dados_entrega']);
+
+            $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                        Pronto, seu pagamento foi aprovado! 
+                                        No resumo, você verá a cobrança do valor 
+                                        como '.$payment->statement_descriptor.'
+                                    </div>';
+            $comp->atuCompra($id_compra, $payment->id,'0', $payment->status);
+
+            echo json_encode(['error'=> false, 'id_compra'=>$id_compra]);
+            exit;
+
+        }else{
+            $comp->delCompra($id_compra);
+            $erros .= '<div class="alert alert-danger" role="alert">
+                            Erro 004 ao processar pagamento, contate o administrador.
+                        </div>';
+            echo json_encode(['error'=> true, 'message'=>$erros]);
         }
 
-        // EXEMPLO DE RETORNO DO MERCADO PAGO = FAIL
-        // {
-        //     "status": "rejected",
-        //     "message": "cc_rejected_other_reason",
-        //     "id": 1240930604,
-        //     "error": false,
-        //     "id_compra": "47"
-        // }
-
-        $comp->atuCompra($id_compra, $payment->id);
-
-        $response = array(
-            'status' => $payment->status,
-            'message' => $payment->status_detail,
-            'id' => $payment->id,
-            'error' => false,
-            'id_compra' => $id_compra
-        );
-        echo json_encode($response);
         exit;
     }
 
