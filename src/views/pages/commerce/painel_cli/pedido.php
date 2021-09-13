@@ -76,7 +76,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
 
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Método de pagamento:</h5>
-                    <p><?php echo($p['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto' ?></p>
+                    <p><?php echo($p['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto<br> <a target="_blank" href="'.$p['link_bol'].'">Clique aqui </a>para acessar o boleto' ?></p>
                 </div>
 
                 <div class="col-md-6">
@@ -86,13 +86,13 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
 
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Status pagamento:</h5>
-                    <?php if($p['status_pagamento'] == '3'): ?>
+                    <?php if($p['status_pagamento'] == '3' || $p['status_pagamento'] == 'approved'): ?>
                         <p>Pago</p>
-                    <?php elseif($p['status_pagamento'] == '1'): ?>
+                    <?php elseif($p['status_pagamento'] == '1' || $p['status_pagamento'] == 'in_process' || $p['status_pagamento'] == 'pending_waiting_payment'): ?>
                         <p>Aguardando pagamento</p>
-                    <?php elseif($p['status_pagamento'] == '2'): ?>
+                    <?php elseif($p['status_pagamento'] == '2' || $p['status_pagamento'] == 'in_process'): ?>
                         <p>Em análise</p>
-                    <?php elseif($p['status_pagamento'] == '7'): ?>
+                    <?php elseif($p['status_pagamento'] == '7' || $p['status_pagamento'] == 'rejected'): ?>
                         <p>Compra cancelada</p>
                     <?php endif; ?>
                 </div>

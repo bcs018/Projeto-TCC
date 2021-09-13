@@ -43,4 +43,4 @@ $router->post('/painel/alterar-dados-pessoais/update', 'PainelController@alterar
 $router->get('/painel/novo-plano', 'PainelController@novoPlano');
 
 
-$router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
+//$router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');

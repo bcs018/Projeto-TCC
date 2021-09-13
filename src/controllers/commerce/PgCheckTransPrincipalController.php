@@ -310,7 +310,7 @@ class PgCheckTransPrincipalController extends Controller {
 
     public function notification(){
         header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
-        
+
         $comp = new Compra;
 
         try {
@@ -357,7 +357,16 @@ class PgCheckTransPrincipalController extends Controller {
 
             }
         } catch (Exception $e) {
-            //throw $th;
+            $arquivo = "retorno.txt";
+                
+            //Variável $fp armazena a conexão com o arquivo e o tipo de ação.
+            $fp = fopen($arquivo, "a+");
+
+            //Escreve no arquivo aberto.
+            fwrite($fp, 'ERRO');
+            
+            //Fecha o arquivo.
+            fclose($fp);
         }    
     }
 }

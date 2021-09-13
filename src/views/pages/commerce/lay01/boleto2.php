@@ -22,7 +22,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <center><h1>Você está prestes a finalizar, clique no botão "Gerar boleto" para concluir sua compra</h1></center> <br><br>
+                <center><h1>Você está prestes a finalizar, <?php echo ($dados['tp_recebimento']=='pagseguro')?'clique no botão "Gerar boleto" para concluir sua compra':'preencha os dados para concluir sua compra'; ?> </h1></center> <br><br>
                 <?php
                 if(isset($_SESSION['message'])){
                     echo $_SESSION['message'];
@@ -32,9 +32,13 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
 
             <div class="col-md-4">
-                <br>
-                <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br>
-                <div id="loading"></div>
+                <?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
+                    <br>
+                    <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br>
+                    <div id="loading"></div>
+                <?php else: ?>
+                    <?php require_once('fmr_boleto_mp.php'); ?>
+                <?php endif?>
             </div>
             <div id="teste"></div>
 

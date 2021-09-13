@@ -157,8 +157,9 @@ class PagamentoController extends Controller {
             $this->render('commerce/lay01/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
             exit;
 
-        }else if($dados['tp_recebimento'] == 'mercadopago'){
-            // ...
+        }else if($dados['tp_recebimento'] == 'mercadopago'){          
+            $this->render('commerce/lay01/boleto2',['dados'=>$dados,'produtos'=>$produtos]);
+            exit;
         }else{
             header("Location: /");
         }

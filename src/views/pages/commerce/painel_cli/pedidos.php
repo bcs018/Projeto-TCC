@@ -46,17 +46,17 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
                                     </div>
                                     <div class="col"> 
                                         <b><p style="margin-bottom: 0px;">Data da compra: <?php echo $compra['data_compra']; ?></p></b>
-                                        <?php if($compra['status_pagamento'] == '1'): ?>
+                                        <?php if($compra['status_pagamento'] == '1' || $compra['status_pagamento'] == 'in_process' || $compra['status_pagamento'] == 'pending_waiting_payment'): ?>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">Aguardando pagamento</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '2'): ?>
+                                        <?php elseif($compra['status_pagamento'] == '2' || $compra['status_pagamento'] == 'in_process'): ?>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">Em análise</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '3' && $compra['enviado'] == '0'): ?>
+                                        <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '0'): ?>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">O vendedor está preparando seu produto</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '3' && $compra['enviado'] == '1'): ?>
+                                        <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '1'): ?>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Produto enviado</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '7'): ?>
+                                        <?php elseif($compra['status_pagamento'] == '7' || $compra['status_pagamento'] == 'rejected'): ?>
                                             <b><p style="margin-bottom: 0px; color: #f55a42;">Compra cancelada</p></b>
                                         <?php endif; ?>
                                         <p><a href="/cliente/painel/meus-pedidos/<?php echo $compra['compra_id']; ?>">Visualizar</a></p>

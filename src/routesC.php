@@ -72,8 +72,9 @@ $router->get('/gerar-boleto', 'PagamentoController@gerarBoleto');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/checkoutBol', 'PgCheckTransPrincipalController@checkoutBol');
 $router->post('/checkout_mp', 'MpCheckTransPrincipalController@checkout');
+$router->post('/checkout_mpBol', 'MpCheckTransPrincipalController@checkout_mpBol');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
-$router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
+$router->get('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 
 // -- Cadastro de clientes do ecommerce
 $router->get('/cadastrar', 'CadastroController@index');

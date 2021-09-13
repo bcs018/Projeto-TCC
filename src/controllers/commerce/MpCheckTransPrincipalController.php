@@ -281,4 +281,69 @@ class MpCheckTransPrincipalController extends Controller {
         exit;
     }
 
+    public function checkout_mpBol(){
+        $nome = $_POST['payerFirstName'];
+        $sobrenome = $_POST['payerLastName'];
+        $email = $_POST['payerEmail'];
+
+        if(empty($nome) || empty($sobrenome) || empty($email)){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Existem campos obrigatórios em branco!
+                                    </div>';
+            header("Location: /gerar-boleto/2");
+            return false;
+        }
+
+        $info = new Info;
+        $carr = new Carrinho;
+        $cada = new Cadastro;
+        $comp = new Compra;
+
+        //$produtos = $carr->listaItens($_SESSION['carrinho']);
+        $id_compra = $comp->addCompra('boleto');
+        $usu = $cada->listaUsuario($_SESSION['login_cliente_ecommerce']);
+
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        \MercadoPago\SDK::setAccessToken($dados['mp_access_token']);
+
+        $payment = new \MercadoPago\Payment();
+        $payment->transaction_amount = $_SESSION['total'];
+        $payment->description = "Compra ".$dados['nome_fantasia'];
+        $payment->payment_method_id = "bolbradesco";
+        $payment->payer = array(
+            "email"      => $email,
+            "first_name" => $nome,
+            "last_name"  => $sobrenome,
+            "identification" => array(
+                "type"   => "CPF",
+                "number" => $usu['cpf_ue']
+            ),
+            "address"=>  array(
+                "zip_code"      => $_SESSION['dados_entrega']['cep'],
+                "street_name"   => $_SESSION['dados_entrega']['rua'],
+                "street_number" => $_SESSION['dados_entrega']['numero'],
+                "neighborhood"  => $_SESSION['dados_entrega']['bairro'],
+                "city"          => $_SESSION['dados_entrega']['cidade'],
+                "federal_unit"  => $_SESSION['dados_entrega']['estado']
+            )
+        );
+
+        $payment->save();
+
+        $comp->atuCompra($id_compra,$payment->id ,$payment->transaction_details->external_resource_url, $payment->status_detail);
+
+        unset($_SESSION['frete']);
+        unset($_SESSION['carrinho']);
+        unset($_SESSION['subtotal']);
+        unset($_SESSION['total']);
+        unset($_SESSION['dados_entrega']);
+
+        header("Location: /pagamento/concluido/".$id_compra);
+        exit;
+
+        echo '<pre>';
+        print_r($payment);exit;
+    }
+
 }
