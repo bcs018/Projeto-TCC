@@ -53,6 +53,10 @@ class CarrinhoController extends Controller {
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
+        // Este flag esta vindo da view produto para não calcular iniciar a sessão do frete
+        // para não ficar o valor do frete no header ao calcular na pagina de produtos
+        $flag = $_POST['flag'];
+
         $frete = [];
 
         if(isset($_POST['id']))
@@ -63,7 +67,9 @@ class CarrinhoController extends Controller {
         if(!empty($_POST['cep'])){
             $cep = intval(str_replace('-','', $_POST['cep']));
             $frete = $carr->calculaFrete($cep, $dados['cep'], $id);
-            $_SESSION['frete'] = $frete;
+            if($flag != '1'){
+                $_SESSION['frete'] = $frete;
+            }
         }
 
         // if(!empty($_SESSION['frete'])){

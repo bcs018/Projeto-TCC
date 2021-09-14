@@ -89,6 +89,7 @@
                                                     <label for="cep">Informe seu CEP</label> 
                                                     <input name="cepCalc" id="cepCalc" type="text">
                                                     <input value="<?php echo $produto[0][0]; ?>" name="id" id="id" type="hidden">
+                                                    <input value="1" name="flag" id="flag" type="hidden">
                                                 </p>
                                                 <p>
                                                     <input type="submit" value="Calcular">

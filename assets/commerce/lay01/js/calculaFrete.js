@@ -3,6 +3,12 @@ $(function(){
         e.preventDefault();
         cep = $('#cepCalc').val();
         id  = $('#id').val();
+        flag = 0;
+        if( $('#flag').val() == '1'){
+            flag = $('#flag').val();
+        }else{
+            flag = '0';
+        }
 
         if(cep == ''){
             $.ajax({
@@ -17,11 +23,11 @@ $(function(){
             $('#calcfrete').html('CEP não informado!');
             return
         }
-        
+         
         $.ajax({
             url: '/calcula-frete',
             type: 'POST',
-            data: {cep:cep, id:id},
+            data: {cep:cep, id:id, flag:flag},
             dataType: 'JSON',
             success:function(ret){
                 if(ret.erro != 0){
@@ -48,7 +54,9 @@ $(function(){
                 //console.log(ret.erro)
                 // console.log()
                 // console.log(ret.data)
-                calcSubtotal();
+                if(flag != '1'){
+                    calcSubtotal();
+                }
             }
         })
     })

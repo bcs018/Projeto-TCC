@@ -122,7 +122,7 @@
                                             <th>Frete</th>
                                             <td>
                                                 <div id="calcfrete">
-                                                    <?php //echo(isset($_SESSION['frete']))?'R$ '.$_SESSION['frete']['preco'].' Prazo: '.$_SESSION['frete']['data'].' dia(s)':''; ?>
+                                                    <?php echo(isset($_SESSION['frete']))?'R$ '.$_SESSION['frete']['preco'].' Prazo: '.$_SESSION['frete']['data'].' dia(s) para o CEP: '.$_SESSION['frete']['cep']:''; ?>
                                                 </div>
                                             </td>
                                         </tr>
@@ -200,6 +200,8 @@
         </div>
     </div>
 </div>
+
+<?php echo '<pre>';print_r($_SESSION); ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 

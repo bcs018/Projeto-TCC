@@ -4,6 +4,9 @@ if(isset($_SESSION['message'])){
     echo $_SESSION['message'];
     unset($_SESSION['message']);
 } 
+
+unset($_SESSION['frete']);
+
 ?>
 <?php if (!empty($prodBanner)) : ?>
     <div class="slider-area">
