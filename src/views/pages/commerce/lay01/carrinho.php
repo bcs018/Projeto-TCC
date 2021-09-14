@@ -27,7 +27,8 @@
                                     <th class="product-thumbnail">&nbsp;</th>
                                     <th class="product-name">Produto</th>
                                     <th class="product-price">Preço</th>
-                                    <th class="product-quantity">Quantidade</th>
+                                    <th class="product-quantity">Qtd.</th>
+                                    <th class="product-quantity">Estoque</th>
                                     <th class="product-subtotal">Total</th>
                                 </tr>
                             </thead>
@@ -73,6 +74,12 @@
                                         </div>
                                     </td>
 
+                                    <td class="product-quantity">
+                                        <div class="quantity buttons_added">
+                                            <center><p><?php echo $c['estoque']; ?></p></center>
+                                        </div>
+                                    </td>
+
                                     <td class="product-subtotal">
                                         <div id="v<?php echo $c[0]; ?>">
                                             <?php echo 'R$ ' . number_format($c['preco'] * $_SESSION['carrinho'][$c[0]], 2, ',', '.'); ?>
@@ -83,7 +90,7 @@
                                 <?php endforeach; ?>
                                 <?php endif; ?>
                                 <tr>
-                                    <td class="actions" colspan="6" style="text-align: right;">
+                                    <td class="actions" colspan="7" style="text-align: right;">
                                         <!-- <div class="coupon">
                                                     <label for="coupon_code">Coupon:</label>
                                                     <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">

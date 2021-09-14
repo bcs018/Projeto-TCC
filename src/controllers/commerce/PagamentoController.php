@@ -46,6 +46,35 @@ class PagamentoController extends Controller {
             exit;
         }
 
+        $carr = new Carrinho;
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+        // -- Verificando se a qtd solicitada é maior que a qtd no estoque
+        $i = false;
+        $_SESSION['message'] = '';
+
+        foreach($produtos as $p){
+            if($_SESSION['carrinho'][$p[0]] > $p['estoque']){
+                $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                            Produto '.$p['nome_pro'].' possui '.$p['estoque'].' em estoque 
+                                            e você solicitou '.$_SESSION['carrinho'][$p[0]].', por favor, 
+                                            revisse a quantidade e tente novamente!
+                                        </div>';
+                $i = true;
+            }
+        }
+
+        if($i){
+            if($flag['flag'] == 0)
+                header("Location: /pagamento");
+            else
+                header("Location: /gerar-boleto");
+            
+            exit;
+        }
+
+        // --
+
         if(!isset($_SESSION['frete'])){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Calcule o frete para continuar!

@@ -8,6 +8,7 @@ use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
 use Exception;
+use src\models\commerce\Produto;
 
 use function PHPSTORM_META\type;
 
@@ -27,6 +28,7 @@ class PgCheckTransPrincipalController extends Controller {
         $comp = new Compra;
         $carr = new Carrinho;
         $cada = new Cadastro;
+        $prod = new Produto;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $id_compra = $comp->addCompra('cartao', $parc);
@@ -162,6 +164,15 @@ class PgCheckTransPrincipalController extends Controller {
             // }
 
             $comp->atuCompra($id_compra, $result->getCode(),'0', $result->getStatus());
+            
+            // -- Atualizando o estoque
+            $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+            foreach($produtos as $p){
+                $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
+            }
+
+            // --
 
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);
@@ -186,6 +197,7 @@ class PgCheckTransPrincipalController extends Controller {
         $comp = new Compra;
         $carr = new Carrinho;
         $cada = new Cadastro;
+        $prod = new Produto;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $id_compra = $comp->addCompra('boleto');
@@ -294,6 +306,15 @@ class PgCheckTransPrincipalController extends Controller {
             // print_r($result->getPaymentLink());
 
             $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink(), $result->getStatus());
+
+            // -- Atualizando o estoque
+            $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+            foreach($produtos as $p){
+                $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
+            }
+        
+            // --
 
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);

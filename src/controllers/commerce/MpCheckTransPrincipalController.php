@@ -8,6 +8,7 @@ use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
 use Exception;
+use src\models\commerce\Produto;
 
 use function PHPSTORM_META\type;
 
@@ -67,6 +68,8 @@ class MpCheckTransPrincipalController extends Controller {
 
         $info = new Info;
         $comp = new Compra;
+        $carr = new Carrinho;
+        $prod = new Produto;
 
         $id_compra = $comp->addCompra('cartao', $parc, true);
 
@@ -235,6 +238,15 @@ class MpCheckTransPrincipalController extends Controller {
             }
 
         }elseif($payment->status == 'in_process'){
+            // -- Atualizando o estoque
+            $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+            foreach($produtos as $p){
+                $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
+            }
+
+            // --
+
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);
             unset($_SESSION['subtotal']);
@@ -254,6 +266,15 @@ class MpCheckTransPrincipalController extends Controller {
             exit;
 
         }elseif($payment->status == 'approved'){
+            // -- Atualizando o estoque
+            $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+            foreach($produtos as $p){
+                $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
+            }
+        
+            // --
+            
             unset($_SESSION['frete']);
             unset($_SESSION['carrinho']);
             unset($_SESSION['subtotal']);
@@ -296,6 +317,7 @@ class MpCheckTransPrincipalController extends Controller {
 
         $info = new Info;
         $carr = new Carrinho;
+        $prod = new Produto;
         $cada = new Cadastro;
         $comp = new Compra;
 
@@ -333,6 +355,15 @@ class MpCheckTransPrincipalController extends Controller {
 
         $comp->atuCompra($id_compra,$payment->id ,$payment->transaction_details->external_resource_url, $payment->status_detail);
 
+        // -- Atualizando o estoque
+        $produtos = $carr->listaItens($_SESSION['carrinho']);
+
+        foreach($produtos as $p){
+            $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
+        }
+    
+        // --
+        
         unset($_SESSION['frete']);
         unset($_SESSION['carrinho']);
         unset($_SESSION['subtotal']);

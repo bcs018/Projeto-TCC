@@ -520,4 +520,16 @@ class Produto extends Model{
         }
 
     }
+
+    public function ediEstoque($id, $estoque){
+        $sql = 'UPDATE produto SET estoque = ?
+                WHERE produto_id = ? AND ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $estoque);
+        $sql->bindValue(2, $id);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        return true;
+    }
 }
