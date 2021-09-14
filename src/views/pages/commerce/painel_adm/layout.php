@@ -32,6 +32,24 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                     <form role="form" name="detalheProduto" method="POST" enctype="multipart/form-data" action="/admin/painel/edi-layout">
                         <div class="card card-primary">
                             <div class="card-header">
+                                <h3 class="card-title"><b>Escolha do layout</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="bd-example">
+                                        <B><p style="color:crimson">NÃO ALTERAR, EM DESENVOLVIMENTO!</p></B>
+                                        <label for="banner">Esolha um layout para seu e-commerce</label>
+                                        <select class="form-control" style="width: 100%;" name="escolhaLay" id="escolhaLay">
+                                            <option value="lay01">Layout 01</option>
+                                            <option value="lay02">Layout 02</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card card-primary">
+                            <div class="card-header">
                                 <h3 class="card-title"><b>Banner da pagina principal</b></h3>
                             </div>
                             <div class="card-body">

@@ -91,6 +91,10 @@ class AdminController extends Controller {
         $ban = new Produto;
         $mar = new Marca;
 
+        // if(isset($_POST['escolhaLay']) && !empty($_POST['escolhaLay'])){
+
+        // }
+
         if(isset($_FILES['banner']) && !empty($_FILES['banner']['tmp_name'])){
             $ban->addBannerProdAction($_FILES['banner'], addslashes($_POST['produtoId']));
         }
