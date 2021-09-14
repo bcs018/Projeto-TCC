@@ -122,11 +122,14 @@ class CarrinhoController extends Controller {
                 if(isset($_SESSION['carrinho'][$idProd['id']])){
                     unset($_SESSION['carrinho'][$idProd['id']]);
 
+                    unset($_SESSION['frete']);
+
                     header("Location: /carrinho");
                     exit;
                 }
             }
         }
+        unset($_SESSION['frete']);
 
         header("Location: /carrinho");
     }
