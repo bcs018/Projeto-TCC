@@ -14,7 +14,7 @@ class CadastroController extends Controller {
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/lay01/cadastro',['dados'=>$dados, 'control_rec'=>$dados['tp_recebimento']]);
+        $this->render('commerce/'.$dados['layout'].'/cadastro',['dados'=>$dados, 'control_rec'=>$dados['tp_recebimento']]);
     }
 
     public function cadUsuarioAction(){

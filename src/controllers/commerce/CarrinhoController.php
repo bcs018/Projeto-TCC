@@ -26,7 +26,7 @@ class CarrinhoController extends Controller {
                             Não há produtos em seu carrinho!
                          </div>';
 
-            $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'control'=>true]);
+            $this->render('commerce/'.$dados['layout'].'/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'control'=>true]);
             exit;
         }
         //unset($_SESSION['login_cliente_ecommerce']);
@@ -36,7 +36,7 @@ class CarrinhoController extends Controller {
 
         //echo '<pre>'; print_r($_SESSION['frete']);
 
-        $this->render('commerce/lay01/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
+        $this->render('commerce/'.$dados['layout'].'/carrinho', ['dados'=>$dados, 'carrinho'=>$carrinho, 'valores'=>$valores, 'control'=>false]);
     }
 
     // public function pagamento(){

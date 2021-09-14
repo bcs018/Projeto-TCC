@@ -2,23 +2,24 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use \src\models\commerce\Admin;
-use \src\models\commerce\Produto;
 use \src\models\commerce\Info;
-use \src\models\commerce\Cadastro;
 use \src\models\commerce\Login;
 
 class LoginController extends Controller {
     // Login do Cliente do ecommerce
     public function loginC($control=[]){
-        //print_r($control);exit;
+        $info = new Info;
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/lay01/login_cliente', ['control'=>$control]);
+        $this->render('commerce/'.$dados['layout'].'/login_cliente', ['control'=>$control]);
     }
 
     // Login do Empreendedor
     public function login() {
-        $this->render('commerce/lay01/login_adm');
+        $info = new Info;
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        $this->render('commerce/'.$dados['layout'].'/login_adm');
     }
 
     // Login do Empreendedor

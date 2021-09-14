@@ -21,7 +21,7 @@ class PagamentoController extends Controller {
 
         //echo '<pre>';print_r($estados);
         
-        $this->render('commerce/lay01/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+        $this->render('commerce/'.$dados['layout'].'/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
     }
 
     // Recebe os dados da entrega referente a primeira parte da finalização da compra
@@ -141,11 +141,11 @@ class PagamentoController extends Controller {
                 exit;
             }
             
-            $this->render('commerce/lay01/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
             exit;
 
         }else if($dados['tp_recebimento'] == 'mercadopago'){
-            $this->render('commerce/lay01/pagamento2',['dados'=>$dados,'produtos'=>$produtos]);
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos]);
             exit;
         }else{
             header("Location: /");
@@ -183,11 +183,11 @@ class PagamentoController extends Controller {
                 exit;
             }
             
-            $this->render('commerce/lay01/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
             exit;
 
         }else if($dados['tp_recebimento'] == 'mercadopago'){          
-            $this->render('commerce/lay01/boleto2',['dados'=>$dados,'produtos'=>$produtos]);
+            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos]);
             exit;
         }else{
             header("Location: /");
@@ -206,7 +206,7 @@ class PagamentoController extends Controller {
 
         //echo '<pre>';print_r($estados);
         
-        $this->render('commerce/lay01/boleto1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+        $this->render('commerce/'.$dados['layout'].'/boleto1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
 
     }
 
@@ -219,7 +219,7 @@ class PagamentoController extends Controller {
         $produtos = $comp->listaProdCompra($id_compra['id']);
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/lay01/final_compra',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
+        $this->render('commerce/'.$dados['layout'].'/final_compra',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
     }
 
 
