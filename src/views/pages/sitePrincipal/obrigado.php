@@ -1,3 +1,5 @@
+<?php if(!isset($_SESSION['person']))header("Location: /"); ?>
+
 <?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Obrigado']); ?>
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
@@ -6,7 +8,7 @@
         <div class="row no-gutters slider-text align-items-end">
             <div class="col-md-9 ftco-animate pb-5">
                 <p class="breadcrumbs mb-2"><span class="mr-2">Home &nbsp;|</span> <span>Crie sua loja &nbsp;| &nbsp;</span> <span>Obrigado</span> </p>
-                <h1 class="mb-0 bread">Obrigado por finalizar seu boleto</h1>
+                <h1 class="mb-0 bread">Obrigado por finalizar seu cadastro</h1>
             </div>
         </div>
     </div>
@@ -22,11 +24,23 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h5>Geramos seu boleto para pagamento, lembrando que após o pagamento a confirmação será em até três dias úteis.</h5> <br>
-                <h5>Para acessar seu boleto clique <a target="_blank" href="<?php echo $link; ?>">aqui</a> ou faça login para emitir a segunda via.</h5><br>
-                <h5>A data do vencimento é após quatro dias a partir da data de compra.</h5>
+                <?php if(isset($_SESSION['messageFree'])): ?>
+                    <?php echo $_SESSION['messageFree']; ?>
+                <?php else: ?>
+                    <h5>Geramos seu boleto para pagamento, lembrando que após o pagamento a confirmação será em até três dias úteis.</h5> <br>
+                    <h5>Para acessar seu boleto clique <a target="_blank" href="<?php echo $link; ?>">aqui</a> ou faça login para emitir a segunda via.</h5><br>
+                    <h5>A data do vencimento é após quatro dias a partir da data de compra.</h5>
+                    <a target="_blank" class="btn btn-success" href="<?php echo $link ?>">Abrir boleto</a>
+                <?php endif; ?>
+
+                <h5> Faça Login <a href="/login">aqui</a> e verifique o campo "Endereço de sua loja"
+                     la contem o link de sua loja. <br><br>
+                     Para acessar o painel de controle de sua loja, coloque o endereço de sua loja
+                     informado no campo  "Endereço de sua loja" em seguida coloque <b> /admin</b>
+                </h5>
+                <h5>Exemplo: paqueta.bw.com.br/admin</h5>
+                <h5>Boas vendas!!!</h5>
                 <br><br>
-                <a target="_blank" class="btn btn-success" href="<?php echo $link ?>">Abrir boleto</a>
             </div>
         </div>
     </div>

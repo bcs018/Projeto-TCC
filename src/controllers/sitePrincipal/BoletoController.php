@@ -90,6 +90,7 @@ class BoletoController extends Controller {
             print_r($e->code);
             print_r($e->error);
             print_r($e->errorDescription);
+            exit;
         }catch(Exception $e){
             //Excluindo o ultimo registro inserido da assinatura pois houve erro no pagamento
             $assinatura->excluirItem($dados['id_assinatura']);
@@ -112,8 +113,8 @@ class BoletoController extends Controller {
         $body = [
             'payment' => [
                 'banking_billet' => [
-                    'expire_at' => date("Y-m-d", strtotime('+2 days')),
-                    //'expire_at' => date("Y-m-d"),
+                    //'expire_at' => date("Y-m-d", strtotime('+4 days')),
+                    'expire_at' => date("Y-m-d"),
                     'customer' => $customer
                 ]
             ]
@@ -123,6 +124,8 @@ class BoletoController extends Controller {
             $subscription = $api->paySubscription($params, $body);
             
             $assinatura->salvarLinkBoleto($subscription['data']['pdf']['charge'], $dados['id_assinatura']);
+
+            unset($_SESSION['messageFree']);
 
             echo json_encode(['retorno'=>1, 'idAss'=>$dados['id_assinatura']]);
             exit; 

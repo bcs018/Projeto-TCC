@@ -70,6 +70,11 @@ class CadastroController extends Controller {
         $pl->inserirPlano(1);
         $cd->ativarUsuario();
 
+        $_SESSION['messageFree'] = '<h5> Você acabou de escolher o nosso plano Free. </h5>
+                                    <h5> Agora você já pode entrar em seu painel de controle
+                                         e começar a vender!
+                                    </h5>';
+
         $this->render('sitePrincipal/obrigado');        
     }
 

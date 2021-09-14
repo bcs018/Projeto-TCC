@@ -81,7 +81,6 @@ if(!isset($_SESSION['person'])){
 				</div>
 			</div>
 			<?php endforeach; ?>
-
 		</div>
 	</div>
 

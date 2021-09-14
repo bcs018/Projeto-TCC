@@ -156,8 +156,6 @@
 </section>
 <br><br><br><br>
 
-
-
 <script type="text/javascript">
 	var times = "<?php echo time()+300; ?>";
 	times = parseInt(times);

@@ -37,7 +37,7 @@ class Cadastro extends Model{
         $POST['cidade']         = filter_var($POST['cidade'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['complemento']    = filter_var($POST['complemento'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['cep_usu']        = explode("-", $POST['cep_usu']); 
-        $POST['cep_usu']        = $POST['cep_usu'][0].$POST['cep_usu'][1];
+        $POST['cep_usu']        = (int)$POST['cep_usu'][0].$POST['cep_usu'][1];
         $POST['subdominio']     = strip_tags($POST['subdominio']);
         $POST['nome_fan']       = filter_var($POST['nome_fan'], FILTER_SANITIZE_SPECIAL_CHARS);
         $POST['senha']          = filter_var($POST['senha'], FILTER_SANITIZE_SPECIAL_CHARS);
