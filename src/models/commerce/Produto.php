@@ -441,10 +441,13 @@ class Produto extends Model{
 
         $produtos = $sql->fetchAll();
 
-        foreach($produtos as $img)
-            unlink('../assets/commerce/images_commerce/'.$img['url']);
+        foreach($produtos as $img){
+            if($img['url'] != null || !empty($img['url']))
+                unlink('../assets/commerce/images_commerce/'.$img['url']);
+        }
         
-        unlink('../assets/commerce/images_commerce/'.$produtos[0]['banner_img']);
+        if($produtos[0]['banner_img'] != '0')
+            unlink('../assets/commerce/images_commerce/'.$produtos[0]['banner_img']);
 
         $sql = "DELETE FROM produto_imagem WHERE produto_id = ?";
         $sql = $this->db->prepare($sql);

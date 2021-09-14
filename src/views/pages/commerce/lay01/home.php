@@ -97,7 +97,7 @@ if(isset($_SESSION['message'])){
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Mais vendidos</h2>
-                    <div class="single-wid-product">
+                    <!-- <div class="single-wid-product">
                         <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
                         <div class="product-wid-rating">
@@ -138,13 +138,13 @@ if(isset($_SESSION['message'])){
                         <div class="product-wid-price">
                             <ins>R$400.00</ins> <del>R$425.00</del>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="single-product-widget">
                     <h2 class="product-wid-title">Vistos recentemente</h2>
-                    <div class="single-wid-product">
+                    <!-- <div class="single-wid-product">
                         <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
                         <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
                         <div class="product-wid-rating">
@@ -185,7 +185,7 @@ if(isset($_SESSION['message'])){
                         <div class="product-wid-price">
                             <ins>R$400.00</ins> <del>R$425.00</del>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-md-4">
@@ -225,8 +225,8 @@ if(isset($_SESSION['message'])){
 </div> <!-- End product widget area -->
 
 <?php  
-echo '<pre>';
-print_r($_SESSION);
+// echo '<pre>';
+// print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
