@@ -126,5 +126,18 @@ class AdminC extends Model{
          return false;
     }
 
+    public function listaQtdProdCompra(){
+        $sql = 'SELECT count(*) as qtd FROM compra WHERE usuario_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['login_cliente_ecommerce']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return 0;
+    }
+
 }
 

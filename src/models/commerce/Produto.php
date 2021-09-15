@@ -247,16 +247,17 @@ class Produto extends Model{
     }
 
     // -- Lista um produto com suas imagens
-    public function listaProduto($id, $control=0){
+    public function listaProduto($id, $control=0, $ativo=1){
         $produtos = [];
 
         $sql = 'SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
-                WHERE p.ecommerce_id = ? AND p.produto_id = ?';
+                WHERE p.ecommerce_id = ? AND p.produto_id = ? AND p.ativo = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $id);
+        $sql->bindValue(3, $ativo);
         $sql->execute();
 
         if($control == 1){
@@ -283,10 +284,11 @@ class Produto extends Model{
     }
 
     // -- Lista todos os produtos sem as imagens
-    public function listaProdutos(){
-        $sql = 'SELECT * FROM produto WHERE ecommerce_id = ?';
+    public function listaProdutos($ativo='1'){
+        $sql = 'SELECT * FROM produto WHERE ecommerce_id = ? AND ativo = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $ativo);
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -297,13 +299,14 @@ class Produto extends Model{
     }
 
     // -- Lista todos produtos com suas imagens
-    public function listaProdutosImg($order){
+    public function listaProdutosImg($order, $ativo='1'){
         $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
-                WHERE p.ecommerce_id = ? ORDER BY p.produto_id $order";
+                WHERE p.ecommerce_id =?  AND p.ativo = ? ORDER BY p.produto_id $order";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $ativo);
         //$sql->bindValue(2, $order);
         $sql->execute();
 
@@ -327,7 +330,7 @@ class Produto extends Model{
     }
 
     // Lista produtos referenciados pela categoria
-    public function listaProdutosRelacionados($idCat){        
+    public function listaProdutosRelacionados($idCat, $ativo='1'){        
         $cat = new Categoria;
         $categorias = $cat->listaCategoriaOrganizada($idCat);
 
@@ -336,10 +339,11 @@ class Produto extends Model{
             $sql = "SELECT * FROM produto p
                     LEFT JOIN produto_imagem pi
                     ON pi.produto_id = p.produto_id
-                    WHERE p.categoria_id = ? AND p.ecommerce_id = ?";
+                    WHERE p.categoria_id = ? AND p.ecommerce_id = ? AND p.ativo = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $c['categoria_id']);
             $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->bindValue(3, $ativo);
             $sql->execute();
 
             if($sql->rowCount() > 0){
@@ -454,15 +458,16 @@ class Produto extends Model{
         
         if($produtos[0]['banner_img'] != '0')
             unlink('../assets/commerce/images_commerce/'.$produtos[0]['banner_img']);
-
+        
         $sql = "DELETE FROM produto_imagem WHERE produto_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
 
-        $sql = "DELETE FROM produto WHERE produto_id = ?";
+        $sql = "UPDATE produto SET ativo = ? WHERE produto_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $id);
+        $sql->bindValue(1, '0');
+        $sql->bindValue(2, $id);
         $sql->execute();
 
         $_SESSION['message'] = '<br><div class="alert alert-success" role="alert">

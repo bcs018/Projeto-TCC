@@ -179,13 +179,14 @@ class Cadastro extends Model{
         $sql = "SELECT last_insert_id() as 'ult'";
         $id_person = $this->db->query($sql)->fetch();
 
-        $sql = "INSERT INTO ecommerce_usu (sub_dominio, nome_fantasia, cnpj, layout)
-                VALUES(?,?,?,?)";
+        $sql = "INSERT INTO ecommerce_usu (sub_dominio, nome_fantasia, cnpj, layout, data_cad)
+                VALUES(?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['subdominio']);
         $sql->bindValue(2, $POST['nome_fan']);
         $sql->bindValue(3, $POST['cnpj']);
         $sql->bindValue(4, 'lay01');
+        $sql->bindValue(5, date("Y-m-d"));
         $sql->execute();
 
         $sql = "SELECT last_insert_id() as 'ult'";

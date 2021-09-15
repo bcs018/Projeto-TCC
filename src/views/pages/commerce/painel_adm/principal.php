@@ -29,9 +29,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>0</h3>
+                <h3><?php echo $qtdUsu; ?></h3>
 
-                <p>Todos clientes</p>
+                <p>Clientes cadastrados</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
@@ -59,7 +59,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>0</h3>
+                <h3><?php echo $qtdUsuHoje; ?></h3>
 
                 <p>Novos clientes p/ dia</p>
               </div>

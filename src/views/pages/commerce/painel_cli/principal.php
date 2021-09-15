@@ -29,14 +29,14 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Pri
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>0</h3>
+                <h3><?php echo $qtdCompra; ?></h3>
 
-                <p>Produtos adquiridos</p>
+                <p>Compras realizadas</p>
               </div>
               <div class="icon">
                 <i class="fas fa-shopping-cart"></i>
               </div>
-              <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/cliente/painel/meus-pedidos" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

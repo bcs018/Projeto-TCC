@@ -2,8 +2,6 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use \src\models\commerce\Admin;
-use \src\models\commerce\Produto;
 use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 

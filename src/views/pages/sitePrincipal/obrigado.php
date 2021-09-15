@@ -35,10 +35,10 @@
 
                 <h5> Faça Login <a href="/login">aqui</a> e verifique o campo "Endereço de sua loja"
                      la contem o link de sua loja. <br><br>
-                     Para acessar o painel de controle de sua loja, coloque o endereço de sua loja
-                     informado no campo  "Endereço de sua loja" em seguida coloque <b> /admin</b>
+                     Para acessar o painel de controle de sua loja, coloque no final do endereço 
+                     <b> /admin</b>
                 </h5>
-                <h5>Exemplo: paqueta.bw.com.br/admin</h5>
+                <h5><b>Exemplo:</b> paqueta.bw.com.br<b>/admin</b></h5> <br>
                 <h5>Boas vendas!!!</h5>
                 <br><br>
             </div>

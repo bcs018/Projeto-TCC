@@ -33,7 +33,12 @@ class AdminController extends Controller {
     public function painel() {
         $dados = $this->listaDadosEcommerce();
 
-        $this->render('commerce/painel_adm/principal', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $adm = new Admin;
+
+        $qtdUsu = $adm->listaQtdUsu();
+        $qtdUsuHoje = $adm->listaQtdUsuHoje();
+
+        $this->render('commerce/painel_adm/principal', ['qtdUsuHoje'=>$qtdUsuHoje, 'qtdUsu'=>$qtdUsu['qtd'],'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function ediDadosPessoais(){

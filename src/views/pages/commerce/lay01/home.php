@@ -33,8 +33,6 @@ unset($_SESSION['frete']);
 
 <br><br><br>
 
-<!- -->
-
 <div class="maincontent-area">
     <div class="zigzag-bottom"></div>
     <div class="container">

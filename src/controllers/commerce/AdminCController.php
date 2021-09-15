@@ -2,11 +2,7 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
-use PagSeguro\Resources\Responsibility\Configuration\File;
 use \src\models\commerce\AdminC;
-use \src\models\commerce\Produto;
-use \src\models\commerce\Marca;
-use \src\models\commerce\Info;
 
 /**
  * Controller destinado ao painel de controle dos clientes
@@ -31,8 +27,11 @@ class AdminCController extends Controller {
     // -- Pagina principal do painel de controle
     public function painel() {
         $dados = $this->listaDadosEcommerce();
+        $adm = new AdminC;
 
-        $this->render('commerce/painel_cli/principal'/*, ['dados'=>$dados]*/);
+        $qtdCompra = $adm->listaQtdProdCompra();
+
+        $this->render('commerce/painel_cli/principal', ['qtdCompra'=>$qtdCompra['qtd']] /*, ['dados'=>$dados]*/);
     }
 
     public function ediDadosPessoais(){

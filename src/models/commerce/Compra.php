@@ -32,7 +32,7 @@ class Compra extends Model{
         // echo $_SESSION['dados_entrega']['estado'].'<br>';
         // echo $_SESSION['dados_entrega']['cidade'].'<br>';
         // echo (isset($_SESSION['dados_entrega']['complemento'])?$_SESSION['dados_entrega']['complemento']:'');exit;
-
+        
         $sql = 'INSERT INTO compra (usuario_id, cupom_id, ecommerce_id, total_compra, subtotal_compra, frete, tipo_pagamento, data_compra, status_pagamento, cep_entrega, rua_entrega, bairro_entrega, numero_entrega, estado_entrega, cidade_entrega, complemento_entrega)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
         $sql = $this->db->prepare($sql);

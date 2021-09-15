@@ -481,4 +481,40 @@ class Admin extends Model{
 
         return false;
     }
+
+    public function listaQtdUsu(){
+        $sql = "SELECT count(*) as qtd FROM ecommerce_usu WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return 0;
+    }
+
+    // Lista a qtd de usuarios cadastrado HOJE
+    public function listaQtdUsuHoje(){
+        $sql = "SELECT * FROM ecommerce_usu WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        $qtd = 0;
+
+        if($sql->rowCount() > 0){
+            $usu = $sql->fetchAll();
+
+            foreach($usu as $u){
+                if(strtotime($u['data_cad']) == strtotime(date("Y-m-d"))){
+                    $qtd++;
+                }
+            }
+            return $qtd;
+        }
+
+        return 0;
+    }
 }
