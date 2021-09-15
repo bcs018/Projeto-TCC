@@ -122,7 +122,7 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
 </div>
 
 <?php 
-echo'<pre>';print_r($_SESSION);
+//echo'<pre>';print_r($_SESSION);
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
