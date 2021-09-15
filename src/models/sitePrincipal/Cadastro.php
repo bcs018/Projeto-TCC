@@ -198,6 +198,9 @@ class Cadastro extends Model{
         $sql->bindValue(2, $id_commerce['ult']);
         $sql->execute();
 
+        unset($_SESSION['login_cliente_ecommerce']);
+        unset($_SESSION['logo']);
+        
         $_SESSION['person']['id']   = $id_person['ult'];
         $_SESSION['person']['name'] = $POST['nome_usu'];
         $_SESSION['commerce']['id'] = $id_commerce['ult'];
