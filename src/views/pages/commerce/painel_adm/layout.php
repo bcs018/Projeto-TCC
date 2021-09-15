@@ -37,11 +37,12 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <B><p style="color:crimson">NÃO ALTERAR, EM DESENVOLVIMENTO!</p></B>
                                         <label for="banner">Esolha um layout para seu e-commerce</label>
                                         <select class="form-control" style="width: 100%;" name="escolhaLay" id="escolhaLay">
                                             <option value="lay01">Layout 01</option>
-                                            <option value="lay02">Layout 02</option>
+                                            <?php if($dados['plano_id'] != '1'): ?>
+                                                <option value="lay02">Layout 02</option>
+                                            <?php endif; ?>
                                         </select>
                                     </div>
                                 </div>
