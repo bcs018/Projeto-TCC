@@ -27,6 +27,12 @@ class Produto extends Model{
 
         $_SESSION['message'] = '';
         
+        /**
+         * Validação do cadastro de produtos de acordo com o plano do usuário
+         */
+        if(!$this->validaCadProduto())
+            $flag = 1;
+
         if(empty($nomeProd) || empty($descProd) || empty($estoque) || empty($preco) || empty($peso) || empty($altura) || empty($largura) || empty($comprimento) || empty($diametro)){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                         Existem campos não preenchidos!
@@ -73,7 +79,7 @@ class Produto extends Model{
         }
 
         if($flag == 1)
-            return ['insercao'=>false];
+            return ['insercao'=>false,'me'=>$_SESSION['message']];
 
         $sql = 'INSERT INTO produto (categoria_id, marca_id, ecommerce_id, nome_pro, descricao, estoque, preco, preco_antigo, promocao, novo_produto, peso, altura, largura, comprimento, diametro)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
@@ -530,6 +536,46 @@ class Produto extends Model{
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->execute();
 
+        return true;
+    }
+
+    // Valida o limite de qtd de produto para cadastro de acordo com o plano escolhido
+    private function validaCadProduto(){
+        $sql = 'SELECT count(*) AS qtd FROM produto
+                WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        $qtd = $sql->fetch();
+
+        $info = new Info;
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        if($dados['plano_id'] == '1'){
+            if($qtd['qtd'] >= 5){
+                $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                            Você já atingiu o limite de produtos cadastrados
+                                            de acordo com seu plano. Seu limite é de 5 produtos.<br>
+                                            Exclua outros produtos ou faça upgrade de seu plano.
+                                        </div>';
+                
+                return false;
+            }
+        }else if($dados['plano_id'] == '2'){
+            if($qtd['qtd'] >= 15){
+                $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                            Você já atingiu o limite de produtos cadastrados
+                                            de acordo com seu plano. Seu limite é de 15 produtos. <br>
+                                            Exclua outros produtos ou faça upgrade de seu plano.
+                                        </div>';
+
+                return false;
+            }
+        }else{
+            return true;
+        }      
+        
         return true;
     }
 }
