@@ -68,7 +68,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div><?php //echo'<pre>';print_r($_SESSION);?>
+          </div><?php echo'<pre>';print_r($_SESSION);?>
 
           <!-- ./col -->
           <!-- <div class="col-lg-3 col-6">

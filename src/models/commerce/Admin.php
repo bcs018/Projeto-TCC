@@ -483,7 +483,10 @@ class Admin extends Model{
     }
 
     public function listaQtdUsu(){
-        $sql = "SELECT count(*) as qtd FROM ecommerce_usu WHERE ecommerce_id = ?";
+        $sql = 'SELECT count(*) as qtd FROM usuario_ecommerce ue
+                JOIN eco_usu eu
+                ON ue.ue_id = eu.usuario_id
+                WHERE eu.ecommerce_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->execute();
@@ -497,7 +500,12 @@ class Admin extends Model{
 
     // Lista a qtd de usuarios cadastrado HOJE
     public function listaQtdUsuHoje(){
-        $sql = "SELECT * FROM ecommerce_usu WHERE ecommerce_id = ?";
+        $sql = "SELECT * FROM usuario_ecommerce ue
+                JOIN eco_usu eu
+                ON ue.ue_id = eu.usuario_id
+                JOIN ecommerce_usu eue
+                ON eue.ecommerce_id = eu.ecommerce_id
+                WHERE eu.ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->execute();

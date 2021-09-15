@@ -316,3 +316,6 @@ create table usuario_admin(
     
     primary key(usuarioadm_id)
 )default charset utf8;
+
+insert into usuario_admin (nome_user, login, senha) 
+values ('admin', 'admin', md5('admin'));
