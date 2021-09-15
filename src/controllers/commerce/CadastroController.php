@@ -14,6 +14,16 @@ class CadastroController extends Controller {
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
+        if($dados['ativo'] == '0'){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        <center><b>Este site está temporariamente desativado para as operações. <br>
+                                        Entre em contato com '.$dados['nome_fantasia'].' para melherores explicações!</center></b>
+                                    </div>';
+
+            header("Location: /");
+            exit;
+        }
+
         $this->render('commerce/'.$dados['layout'].'/cadastro',['dados'=>$dados, 'control_rec'=>$dados['tp_recebimento']]);
     }
 

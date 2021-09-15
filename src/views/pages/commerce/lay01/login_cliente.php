@@ -72,10 +72,10 @@
         </form>
 
         <p class="mb-1">
-          <a href="forgot-password.html">Esqueci minha senha</a>
+          <a href="">Esqueci minha senha</a>
         </p>
         <p class="mb-0">
-          <a href="register.html" class="text-center">Cadastre-se</a>
+          <a href="/cadastrar" class="text-center">Cadastre-se</a>
         </p>
       </div>
       <!-- /.login-card-body -->

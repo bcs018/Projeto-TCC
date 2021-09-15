@@ -170,7 +170,7 @@ class Cadastro extends Model{
         $sql->bindValue(11, $POST['cep_usu']);
         $sql->bindValue(12, $POST['cidade']);
         $sql->bindValue(13, $POST['complemento']);
-        $sql->bindValue(14, 0);
+        $sql->bindValue(14, 1);
         $sql->bindValue(15, md5($POST['senha']));
         $sql->bindValue(16, addslashes($POST['login']));
         $sql->bindValue(17, 1);

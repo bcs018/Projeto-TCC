@@ -25,9 +25,22 @@ class LoginController extends Controller {
     // Login do Empreendedor
     public function loginAction() {
         $log = new Login;
-        $dados = $log->loginAction($_SESSION['sub_dom'], $_POST['login'], $_POST['pass']);
+        $info = new Info;
+        
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        if($dados == false){
+        if($dados['ativo'] == '0'){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Você não possui mais acesso a plataforma. <br>
+                                        regularize seus débitos ou entre em contato com BW Commerce!
+                                    </div>';
+            header("Location: /admin");
+            exit;          
+        }
+
+        $ret = $log->loginAction($_SESSION['sub_dom'], $_POST['login'], $_POST['pass']);
+
+        if($ret == false){
             header("Location: /admin");
             exit;
         }
@@ -46,6 +59,19 @@ class LoginController extends Controller {
             $control = [];
         }else{
             $control['control'] = addslashes($_POST['control']);
+        }
+
+        $info = new Info;
+        
+        $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+
+        if($dados['ativo'] == '0'){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Este site está temporariamente desativado. <br>
+                                        Entre em contato com '.$dados['nome_fantasia'].' para melherores explicações!
+                                    </div>';
+            header("Location: /login");
+            exit;          
         }
 
         $log = new Login;

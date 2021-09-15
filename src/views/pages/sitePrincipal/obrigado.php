@@ -30,7 +30,7 @@
                     <h5>Geramos seu boleto para pagamento, lembrando que após o pagamento a confirmação será em até três dias úteis.</h5> <br>
                     <h5>Para acessar seu boleto clique <a target="_blank" href="<?php echo $link; ?>">aqui</a> ou faça login para emitir a segunda via.</h5><br>
                     <h5>A data do vencimento é após quatro dias a partir da data de compra.</h5>
-                    <a target="_blank" class="btn btn-success" href="<?php echo $link ?>">Abrir boleto</a>
+                    <a target="_blank" class="btn btn-success" href="<?php echo $link ?>">Abrir boleto</a><br><br>
                 <?php endif; ?>
 
                 <h5> Faça Login <a href="/login">aqui</a> e verifique o campo "Endereço de sua loja"
