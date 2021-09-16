@@ -43,4 +43,7 @@ $router->post('/painel/alterar-dados-pessoais/update', 'PainelController@alterar
 $router->get('/painel/novo-plano', 'PainelController@novoPlano');
 
 
+$router->get('/sub', 'HomeController@create_subdomain');
+
+
 //$router->post('/notification/cliente', 'PgCheckTransPrincipalController@notification');
