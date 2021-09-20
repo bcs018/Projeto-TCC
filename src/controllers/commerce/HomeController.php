@@ -2,6 +2,7 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
+use src\models\commerce\Carrinho;
 use \src\models\commerce\Info;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Marca;
@@ -13,11 +14,17 @@ class HomeController extends Controller {
         $info = new Info;
         $prod = new Produto;
         $marc = new Marca;
-        $cate = new Categoria;
+        $carr = new Carrinho;
 
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('DESC');
         $marcas   = $marc->listaMarcas();
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
         $produtosBanner = array();
         $imgMarcas = array();
 
@@ -50,7 +57,8 @@ class HomeController extends Controller {
                                                                 'dados'      => $dados, 
                                                                 'produtos'   => $produtos, 
                                                                 'prodBanner' => $produtosBanner,
-                                                                'marcasImg'  => $imgMarcas
+                                                                'marcasImg'  => $imgMarcas,
+                                                                'carrinho'   => $carrinho
                                                             ]);
     }
 

@@ -11,37 +11,149 @@ if(!$valores)$valores['total'] = '0,00';
 <head>
     <title><?php echo $title; ?></title>
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<?php if(isset($_SESSION['ico'])): ?>
+        <link rel="shortcut icon" href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['ico']; ?>">
+    <?php endif; ?>
+
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/css/main.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+	<style>
+		.bg3 {background-color: <?php echo $layout['cor_rodape']; ?>;}
+		.bgbutton {background-color: #545454;}
+		.hov-cl1:hover {color: <?php echo $layout['cor']; ?>;}
+		.hov-bg1:hover {background-color: <?php echo $layout['cor']; ?>;} 
+		.loader05 {
+			width: 56px;
+			height: 56px;
+			border: 4px solid <?php echo $layout['cor']; ?>;
+			border-radius: 50%;
+			position: relative;
+			animation: loader-scale 1s ease-out infinite;
+			top: 50%;
+			margin: -28px auto 0 auto; 
+		}
+		.btn-back-to-top {
+			display: none;
+			position: fixed;
+			width: 40px;
+			height: 38px;
+			bottom: 0px;
+			right: 40px;
+			background-color: <?php echo $layout['cor']; ?>;
+			opacity: 0.5;
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+			cursor: pointer;
+			transition: all 0.4s;
+			-webkit-transition: all 0.4s;
+			-o-transition: all 0.4s;
+			-moz-transition: all 0.4s;
+		}
+		.btn-back-to-top:hover {
+			opacity: 1;
+			background-color: <?php echo $layout['cor']; ?>;
+		}
+		.icon-header-noti::after {
+			content: attr(data-notify);
+			font-family: Poppins-Regular;
+			font-size: 12px;
+			color: #fff;
+			line-height: 15px;
+			text-align: center;
+
+			display: block;
+			position: absolute;
+			top: -7px;
+			right: 0;
+			min-width: 15px;
+			height: 15px;
+			padding: 0 3px;
+			background-color: <?php echo $layout['cor']; ?>;
+		}
+		.main-menu-m {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			background-color: <?php echo $layout['cor']; ?>;
+		}
+		.swal-button {
+			background-color: <?php echo $layout['cor']; ?>;
+			font-family: Poppins-Regular;
+			font-size: 16px;
+			color: white;
+			text-transform: uppercase;
+			font-weight: unset;
+			border-radius: 4px;
+			-webkit-transition: all 0.3s;
+			-o-transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			transition: all 0.3s;
+		}
+		.show-search:hover:after,
+		.show-filter:hover:after {
+			background-color: <?php echo $layout['cor']; ?>;
+			border-color: <?php echo $layout['cor']; ?>;
+		}
+		.cl1 {color: <?php echo $layout['cor']; ?>;}
+		.bg1 {background-color: <?php echo $layout['cor']; ?>;}
+		.hov-btn2:hover {
+			border-color: #fff;
+			background-color: #fff;
+			color: <?php echo $layout['cor']; ?>;
+		}
+		.hov-btn3:hover {
+			border-color: <?php echo $layout['cor']; ?>;
+			background-color: <?php echo $layout['cor']; ?>;
+			color: #fff;
+		}
+		.hov-tag1:hover {
+			color: <?php echo $layout['cor']; ?>;
+			border-color: <?php echo $layout['cor']; ?>;
+		}
+		.main-menu > li.active-menu > a {
+			color: <?php echo $layout['cor']; ?>;
+		}
+		.rs1-select2 .select2-container--default .select2-selection--single .select2-selection__arrow:hover:after {
+			color: <?php echo $layout['cor']; ?>;
+		}
+		.arrow-slick1:hover {
+			color: <?php echo $layout['cor']; ?>;
+		}
+		.rs2-slick1 .arrow-slick1:hover {
+			color: <?php echo $layout['cor']; ?>;
+		}
+		.filter-link:hover {
+			color: <?php echo $layout['cor']; ?>;
+			border-bottom: 1px solid <?php echo $layout['cor']; ?>;
+		}
+
+		.filter-link-active {
+			color: <?php echo $layout['cor']; ?>;
+			border-bottom: 1px solid <?php echo $layout['cor']; ?>;
+		}
+		.block1-txt:hover {
+			background-color: <?php echo $layout['cor']; ?>;
+		}
+		.main-menu > li:hover > a {
+			text-decoration: none;
+			color: <?php echo $layout['cor']; ?>;
+		}
+	</style>
 </head>
 <body class="animsition">
 	
@@ -54,22 +166,24 @@ if(!$valores)$valores['total'] = '0,00';
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<?php if(isset($_SESSION['logo'])): ?>
+							<img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>" alt="IMG-LOGO">
+						<?php endif; ?>
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
+								<a href="/">Home</a>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="/produtos">Produtos</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="#">Features</a>
 							</li>
 
 							<li>
@@ -95,7 +209,7 @@ if(!$valores)$valores['total'] = '0,00';
 						</div>
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+							<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo(isset($_SESSION['carrinho']))?count($_SESSION['carrinho']):'0'; ?>">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -114,7 +228,9 @@ if(!$valores)$valores['total'] = '0,00';
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<?php if(isset($_SESSION['logo'])): ?>
+					<a href="index.html"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>" alt="IMG-LOGO"></a>
+				<?php endif; ?>
 			</div>
 
 			<!-- Icon header -->
@@ -145,7 +261,7 @@ if(!$valores)$valores['total'] = '0,00';
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="/">Home</a>
 					<ul class="sub-menu-m">
 					</ul>
 					<span class="arrow-main-menu-m">
@@ -154,11 +270,11 @@ if(!$valores)$valores['total'] = '0,00';
 				</li>
 
 				<li>
-					<a href="product.html">Shop</a>
+					<a href="/produtos">Produtos</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="" class="label1 rs1" data-label1="hot">Features</a>
 				</li>
 
 				<li>
@@ -179,7 +295,7 @@ if(!$valores)$valores['total'] = '0,00';
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="images/icons/icon-close2.png" alt="CLOSE">
+					X
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -206,112 +322,46 @@ if(!$valores)$valores['total'] = '0,00';
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
-						<a href="index.html" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
 							Home
 						</a>
 					</li>
 
-					<li class="p-b-13">
+					<!-- <li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
 							My Wishlist
 						</a>
-					</li>
+					</li> -->
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Account
+						<a href="/cliente/painel" class="stext-102 cl2 hov-cl1 trans-04">
+							Minha conta
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Track Oder
+						<a href="/carrinho" class="stext-102 cl2 hov-cl1 trans-04">
+							Carrinho
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Refunds
+						<a href="/login/c" class="stext-102 cl2 hov-cl1 trans-04">
+							Login
 						</a>
 					</li>
 
-					<li class="p-b-13">
+					<!-- <li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
 							Help & FAQs
 						</a>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="sidebar-gallery w-full p-tb-30">
 					<span class="mtext-101 cl5">
-						@ CozaStore
+						<?php echo $title; ?>
 					</span>
-
-					<div class="flex-w flex-sb p-t-36 gallery-lb">
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-01.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-01.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-02.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-02.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-03.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-03.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-04.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-04.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-05.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-05.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-06.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-06.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-07.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-07.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-08.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-08.jpg');"></a>
-						</div>
-
-						<!-- item gallery sidebar -->
-						<div class="wrap-item-gallery m-b-10">
-							<a class="item-gallery bg-img1" href="images/gallery-09.jpg" data-lightbox="gallery" 
-							style="background-image: url('images/gallery-09.jpg');"></a>
-						</div>
-					</div>
-				</div>
-
-				<div class="sidebar-gallery w-full">
-					<span class="mtext-101 cl5">
-						About Us
-					</span>
-
-					<p class="stext-108 cl6 p-t-27">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis. 
-					</p>
 				</div>
 			</div>
 		</div>
@@ -325,7 +375,7 @@ if(!$valores)$valores['total'] = '0,00';
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Carrinho
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -335,70 +385,48 @@ if(!$valores)$valores['total'] = '0,00';
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
 
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
+					<?php if(!$carrinho): ?>	
+						<p>Não há produtos em seu carrinho.</p>
+					<?php else: ?>
+						<?php foreach($carrinho as $c): ?>
+							<li class="header-cart-item flex-w flex-t m-b-12">
+								<div class="header-cart-item-img">
+									<img src="/assets/commerce/images_commerce/<?php echo $c['url']; ?>" alt="Imagem Produto">
+								</div>
 
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
+								<div class="header-cart-item-txt p-t-8">
+									<a href="/visualizar/produto/<?php echo $c[0]; ?>" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										<?php echo $c['nome_pro']; ?>
+									</a>
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
+									<span class="header-cart-item-info">
+										<?php echo $c['preco']; ?>
+									</span>
+								</div>
+							</li>
+						<?php endforeach; ?>
+					<?php endif; ?>
 
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
 				</ul>
 				
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+					<?php echo 'R$ '. $valores['total'];  ?>
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
+						<a href="/carrinho" class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							Ir para carrinho
 						</a>
 
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
+						<a href="/carrinho" class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Comprar
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<?php //echo '<pre>';print_r($carrinho); ?>
