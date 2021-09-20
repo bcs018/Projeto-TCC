@@ -31,7 +31,7 @@
     placeholder="Nome impresso no cartão">
 <br>
 <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-<input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card"
+<input type="text" value="" class="form-control" name="cpf_card" id="cpf_card"
     placeholder="CPF do titular do cartão">
 <br>
 <hr>
