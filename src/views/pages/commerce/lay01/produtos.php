@@ -25,10 +25,10 @@
                                 </div>
                             </div>
 
-                            <h2><a href="/visualizar/produto/<?php echo $p[0]; ?>">Tenis pé baruel</a></h2>
+                            <h2><a href="/visualizar/produto/<?php echo $p[0]; ?>"><?php echo $p['nome_pro']; ?></a></h2>
 
                             <div class="product-carousel-price">
-                                <ins>R$566,66</ins> <del>R$600,00</del>
+                                <ins><?php echo 'R$' . number_format($p['preco'], 2, ',', '.'); ?></ins> <del><?php echo ($p['preco_antigo'] == 0.00) ? '' : 'R$' . number_format($p['preco_antigo'], 2, ',', '.'); ?></del>
                             </div>
                         </div>
                     </div>

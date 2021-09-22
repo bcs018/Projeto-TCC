@@ -33,6 +33,7 @@ if(!$valores)$valores['total'] = '0,00';
 	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/css/main.css">
 <!--===============================================================================================-->
 	<style>
+		ins{text-decoration: none;}
 		.bg3 {background-color: <?php echo $layout['cor_rodape']; ?>;}
 		.bgbutton {background-color: #545454;}
 		.hov-cl1:hover {color: <?php echo $layout['cor']; ?>;}

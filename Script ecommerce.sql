@@ -2,7 +2,7 @@
 * Script para criação do banco de dados do ecommerce
 */
 
-drop database ecommerce;
+drop database if exists ecommerce;
 
 /* Executar separadamente primeiro */
 create database if not exists ecommerce

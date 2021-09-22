@@ -66,9 +66,16 @@ class HomeController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $info = new Info;
+        $carr = new Carrinho;
 
         $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produto = $prod->listaProduto(addslashes($id['id']), 1);
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
         
         if(!$produto){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
@@ -89,7 +96,8 @@ class HomeController extends Controller {
                                                                 'produto'     => $produto,
                                                                 'produtosRel' => $produtoRel,
                                                                 'categoria'   => $categoriaProd,
-                                                                'dados'       => $dados
+                                                                'dados'       => $dados,
+                                                                'carrinho'    => $carrinho
                                                             ]);
 
     }
@@ -98,14 +106,22 @@ class HomeController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $info = new Info;
+        $carr = new Carrinho;
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
 
         $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('ASC');
 
         $this->render('commerce/'.$dados['layout'].'/produtos', [
-                                                                'produtos'    => $produtos,
-                                                                //'categoria'   => $categoriaProd,
-                                                                'dados'       => $dados
+                                                                'produtos' => $produtos,
+                                                                'carrinho' => $carrinho,
+                                                                'dados'    => $dados
                                                             ]);
 
     }
