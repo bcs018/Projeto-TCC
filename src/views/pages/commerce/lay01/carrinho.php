@@ -48,22 +48,20 @@
                                             <center><img width="145" height="145" alt="poster_1_up"
                                                     class="shop_thumbnail"
                                                     src="<?php if ($c['url'] == null) : ?>
-                                                                                                                                                                                                <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
-                                                                                                                                                                                            <?php else : ?>
-                                                                                                                                                                                                <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
-                                                                                                                                                                                            <?php endif; ?>">
-                                            </center>
+                                                            <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
+                                                         <?php else : ?>
+                                                                <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
+                                                         <?php endif; ?>">
+                                            </center>      
                                         </a>
                                     </td>
 
                                     <td class="product-name">
-                                        <a
-                                            href="/visualizar/produto/<?php echo $c[0]; ?>"><?php echo $c['nome_pro']; ?></a>
+                                        <a href="/visualizar/produto/<?php echo $c[0]; ?>"><?php echo $c['nome_pro']; ?></a>
                                     </td>
 
                                     <td class="product-price">
-                                        <span
-                                            class="amount"><?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?></span>
+                                        <span class="amount"><?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?></span>
                                     </td>
 
                                     <td class="product-quantity">

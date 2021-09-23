@@ -19,9 +19,15 @@ class PagamentoController extends Controller {
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
         //echo '<pre>';print_r($estados);
         
-        $this->render('commerce/'.$dados['layout'].'/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+        $this->render('commerce/'.$dados['layout'].'/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados, 'carrinho'=>$carrinho]);
     }
 
     // Recebe os dados da entrega referente a primeira parte da finalização da compra
@@ -125,6 +131,11 @@ class PagamentoController extends Controller {
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
         //echo '<pre>';print_r($dados);exit;
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
 
         if($dados['tp_recebimento'] == 'pagseguro'){
             //Pegando a sessão do pagseguro
@@ -141,11 +152,11 @@ class PagamentoController extends Controller {
                 exit;
             }
             
-            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session, 'carrinho'=>$carrinho]);
             exit;
 
         }else if($dados['tp_recebimento'] == 'mercadopago'){
-            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos]);
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
             exit;
         }else{
             header("Location: /");
@@ -167,6 +178,11 @@ class PagamentoController extends Controller {
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
         //echo '<pre>';print_r($dados);exit;
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
 
         if($dados['tp_recebimento'] == 'pagseguro'){
             //Pegando a sessão do pagseguro
@@ -183,11 +199,11 @@ class PagamentoController extends Controller {
                 exit;
             }
             
-            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session]);
+            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session, 'carrinho'=>$carrinho]);
             exit;
 
         }else if($dados['tp_recebimento'] == 'mercadopago'){          
-            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos]);
+            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
             exit;
         }else{
             header("Location: /");
@@ -204,9 +220,15 @@ class PagamentoController extends Controller {
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
         //echo '<pre>';print_r($estados);
         
-        $this->render('commerce/'.$dados['layout'].'/boleto1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados]);
+        $this->render('commerce/'.$dados['layout'].'/boleto1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados, 'carrinho'=>$carrinho]);
 
     }
 

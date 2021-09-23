@@ -1,5 +1,10 @@
 <?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
-
+<?php 
+if(isset($_SESSION['message'])){
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+} 
+?>
 <!-- Slider -->
 <section class="section-slide">
     <div class="wrap-slick1 rs1-slick1">
@@ -158,14 +163,14 @@
                                         <!-- Block2 -->
                                         <div class="block2">
                                             <div class="block2-pic hov-img0">
-                                                <?php if($produto['url'] == null): ?>
-                                                    <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" alt="IMG-PRODUCT">
-                                                <?php else: ?>
-                                                    <img id="prod-tam" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="Imagem produto">
-                                                <?php endif; ?>
-
-                                                <a href="/visualizar/produto/<?php echo $produto[0]; ?>"
-                                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                <a href="/visualizar/produto/<?php echo $produto[0]; ?>">
+                                                    <?php if($produto['url'] == null): ?>
+                                                        <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" alt="IMG-PRODUCT">
+                                                    <?php else: ?>
+                                                        <img id="prod-tam" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" alt="Imagem produto">
+                                                    <?php endif; ?>
+                                                </a>
+                                                <a href="/visualizar/produto/<?php echo $produto[0]; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                                     Visualizar
                                                 </a>
                                             </div>

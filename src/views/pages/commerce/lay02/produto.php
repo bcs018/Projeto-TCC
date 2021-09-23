@@ -11,13 +11,27 @@
 
                         <div class="slick3 gallery-lb">
                             <?php foreach ($produto as $p) : ?>
-                                <div class="item-slick3" data-thumb="<?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>">
+                                <div class="item-slick3" data-thumb="
+                                                                        <?php if($p['url'] == null): ?>
+                                                                            <?php echo BASE_ASS_C; ?>images/semfoto.jpg
+                                                                        <?php else: ?>
+                                                                            <?php echo BASE_ASS_C; ?>images_commerce/<?php echo $p['url']; ?>
+                                                                        <?php endif; ?>
+                                                                    ">
                                     <div class="wrap-pic-w pos-relative">
-                                        <img src="<?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>" alt="IMAGEM-PRODUTO">
-
+                                        <?php if($p['url'] == null): ?>
+                                            <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" alt="Sem Imagem">
+                                        <?php else: ?>
+                                            <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $p['url']; ?>" alt="IMAGEM-PRODUTO">
+                                        <?php endif; ?>
                                         <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                            href="<?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>">
-                                            <i class="fas fa-expand"></i>
+                                            href="
+                                                    <?php if($p['url'] == null): ?>
+                                                        <?php echo BASE_ASS_C; ?>images/semfoto.jpg">
+                                                    <?php else: ?>
+                                                        <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>">
+                                                    <?php endif; ?>
+                                            <i class="fa fa-expand"></i>
                                         </a>
                                     </div>
                                 </div>

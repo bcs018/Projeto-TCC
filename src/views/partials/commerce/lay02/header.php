@@ -393,7 +393,11 @@ if(!$valores)$valores['total'] = '0,00';
 						<?php foreach($carrinho as $c): ?>
 							<li class="header-cart-item flex-w flex-t m-b-12">
 								<div class="header-cart-item-img">
-									<img src="/assets/commerce/images_commerce/<?php echo $c['url']; ?>" alt="Imagem Produto">
+									<?php if ($c['url'] == null) : ?>
+										<img src="/assets/commerce/images/semfoto.jpg" alt="Sem Imagem Produto">
+                                     <?php else : ?>
+										<img src="/assets/commerce/images_commerce/<?php echo $c['url']; ?>" alt="Imagem Produto">
+                                     <?php endif; ?>
 								</div>
 
 								<div class="header-cart-item-txt p-t-8">
@@ -402,7 +406,7 @@ if(!$valores)$valores['total'] = '0,00';
 									</a>
 
 									<span class="header-cart-item-info">
-										<?php echo $c['preco']; ?>
+									<?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?>
 									</span>
 								</div>
 							</li>
@@ -412,7 +416,7 @@ if(!$valores)$valores['total'] = '0,00';
 				</ul>
 				
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
+					<div id="subtotHead" class="header-cart-total w-full p-tb-40">
 					<?php echo 'R$ '. $valores['total'];  ?>
 					</div>
 
@@ -421,9 +425,6 @@ if(!$valores)$valores['total'] = '0,00';
 							Ir para carrinho
 						</a>
 
-						<a href="/carrinho" class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Comprar
-						</a>
 					</div>
 				</div>
 			</div>

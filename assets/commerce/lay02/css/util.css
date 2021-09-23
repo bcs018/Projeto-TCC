@@ -54,6 +54,15 @@ button:focus {outline: none;}
 
 iframe {border: none;}
 
+#imgcard {
+    width: 50px;
+    height: 30px;
+}
+
+#imgbol {
+    width: 30px;
+    height: 20px;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT SIZE ]*/
