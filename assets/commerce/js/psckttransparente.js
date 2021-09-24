@@ -26,8 +26,10 @@ $('#finalizar').on('click', function(){
             expirationYear:v_ano,
             success:function(r){
                 window.cardToken = r.card.token;
+
+                //console.log("Cheguei aqui");
+                
                 //Finalizar o pagamento via ajax
-                console.log("Cheguei aqui");
                 $.ajax({
                     url: '/checkout',
                     type: 'POST',
@@ -60,8 +62,11 @@ $('#finalizar').on('click', function(){
             error:function(r){
                 console.log(r);
             },
-            complete:function(r){}
+            complete:function(r){
+                //checkout(id, nome_card, cpf_tit, window.cardToken, parc, cupom)             
+            }
         });
+        //checkout(id, nome_card, cpf_tit, window.cardToken, parc, cupom)
     }else{
         toastr.error ('Preencha todos os campos!');
     }
@@ -131,3 +136,35 @@ $('input[name=n_card]').on('keyup', function(e){
         });
     }
 });
+
+// function checkout(id, nome_card, cpf_tit, token, parc, cupom){
+//     $.ajax({
+//         url: '/checkout',
+//         type: 'POST',
+//         data:{
+//             id:id,
+//             nome_card:nome_card,
+//             cpf:cpf_tit,
+//             cartao_token:window.cardToken,
+//             parc:parc,
+//             cupom:cupom
+//         },
+//         dataType:'json',
+//         // beforeSend: function(){
+//         //     $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Finalizando pagamento...</span></div>');
+//         // },
+//         success:function(json){
+//             if(json.error == true){
+//                 console.log(json.calculo)
+//                 $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
+//                 return false;
+//             }
+//             window.location.href = '/pagamento/concluido/'+json.id_compra;
+//             //$('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
+//         },
+//         error:function(json){
+//             $('#loading').html('<div class="alert alert-danger" role="alert">002 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
+//             return false;
+//         }
+//     });
+// }

@@ -31,9 +31,9 @@
     placeholder="Nome impresso no cartão">
 <br>
 <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-<input type="text" value="38606845825" class="form-control" name="cpf_card" id="cpf_card"
+<input type="password" value="38663382871" class="form-control" name="cpf_card" id="cpf_card"
     placeholder="CPF do titular do cartão">
 <br>
 <hr>
 
-<button type="submit" id="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
+<button type="submit" class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" id="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>

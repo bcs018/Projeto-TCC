@@ -52,7 +52,7 @@
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
-                        <?php echo $produto[0]['descricao']; ?>
+                        Estoque: <b><?php echo $produto[0]['estoque']; ?></b>
                     </p>
 
                     <!--  -->
@@ -92,7 +92,7 @@
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
                                 </div> -->
-
+                                
 
                                 <form action="/add-carrinho" method="POST" class="cart">
                                     <input type="hidden" name="id_produto" value="<?php echo $produto[0][0]; ?>">
@@ -329,12 +329,13 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <?php if ($pr['url'] == null) : ?>
-                                <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" alt="Sem imagem">
-                            <?php else: ?>
-                                <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pr['url']; ?>" alt="Produto <?php echo $pr['nome_pro']; ?>">
-                            <?php endif; ?>
-
+                            <a href="/visualizar/produto/<?php echo $pr[0] ?>">
+                                <?php if ($pr['url'] == null) : ?>
+                                    <img src="<?php echo BASE_ASS_C; ?>images/semfoto.jpg" alt="Sem imagem">
+                                <?php else: ?>
+                                    <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $pr['url']; ?>" alt="Produto <?php echo $pr['nome_pro']; ?>">
+                                <?php endif; ?>
+                            </a>    
                             <a href="/visualizar/produto/<?php echo $pr[0] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                 Visualizar
                             </a>
@@ -342,7 +343,7 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="/visualizar/produto/<?php echo $pr[0] ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     <h4><?php echo $pr['nome_pro']; ?></h4>
                                 </a>
 

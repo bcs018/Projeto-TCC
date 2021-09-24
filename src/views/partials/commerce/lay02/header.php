@@ -166,7 +166,7 @@ if(!$valores)$valores['total'] = '0,00';
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="/" class="logo">
 						<?php if(isset($_SESSION['logo'])): ?>
 							<img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>" alt="IMG-LOGO">
 						<?php endif; ?>
@@ -230,7 +230,7 @@ if(!$valores)$valores['total'] = '0,00';
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
 				<?php if(isset($_SESSION['logo'])): ?>
-					<a href="index.html"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>" alt="IMG-LOGO"></a>
+					<a href="/"><img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $_SESSION['logo']; ?>" alt="IMG-LOGO"></a>
 				<?php endif; ?>
 			</div>
 
@@ -243,7 +243,7 @@ if(!$valores)$valores['total'] = '0,00';
 				</div>
 
 				<div class="flex-c-m h-full p-lr-10 bor5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo(isset($_SESSION['carrinho']))?count($_SESSION['carrinho']):'0'; ?>">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 				</div>

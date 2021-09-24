@@ -263,9 +263,9 @@
                             <div class="block2-pic hov-img0">
                                 <a href="/visualizar/produto/<?php echo $p[0]; ?>">
                                     <?php if($p['url'] == null): ?>
-                                        <img src="<?php echo BASE_ASS_C; ?>/images/semfoto.jpg" width="500px" height="400" alt="IMAGEM PRODUTO">
+                                        <img src="<?php echo BASE_ASS_C; ?>/images/semfoto.jpg" width="500px" height="280px" alt="Sem Imagem do Produto">
                                     <?php else: ?>
-                                        <img src="<?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>" width="500px" height="400" alt="IMAGEM PRODUTO">
+                                        <img src="<?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $p['url']; ?>" width="500px" height="280px" alt="IMAGEM PRODUTO">
                                     <?php endif; ?>
                                 </a>
                                 <a href="/visualizar/produto/<?php echo $p[0]; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">

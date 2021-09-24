@@ -122,10 +122,10 @@ if(isset($_SESSION['frete'])){
 <?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
     <script type="text/javascript"
         src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
     <script type="text/javascript">
         PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
     </script>
+    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
 <?php else: ?>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/mpckttransparente.js"></script>
