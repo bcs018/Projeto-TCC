@@ -409,6 +409,36 @@ class Admin extends Model{
         }
     }
 
+    public function ediLayout($layout){
+        if(($layout != 'lay01') && ($layout != 'lay02')){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Erro 005 ao editar layout!
+                                    </div>';
+
+            return false;
+        }
+
+        $sql = 'UPDATE ecommerce_usu SET layout = ?
+                WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $layout);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                       Layout alterado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
+        $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                    Erro 006 ao atualizar dados!
+                                </div>';
+
+        return false;
+    }
+
     public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago, $tknmpago){
         if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro) && empty($tknmpago))){
             
