@@ -530,7 +530,7 @@ class Admin extends Model{
 
     // Lista a qtd de usuarios cadastrado HOJE
     public function listaQtdUsuHoje(){
-        $sql = "SELECT * FROM usuario_ecommerce ue
+        $sql = "SELECT ue.data_cad FROM usuario_ecommerce ue
                 JOIN eco_usu eu
                 ON ue.ue_id = eu.usuario_id
                 JOIN ecommerce_usu eue

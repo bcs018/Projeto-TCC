@@ -14,7 +14,9 @@ class PainelController extends Controller {
             exit;
         }
 
-        $this->render('sitePrincipal/painel_adm/principal');
+        $pan = new Painel;
+
+        $this->render('sitePrincipal/painel_adm/principal', ['qtd'=>$pan->qtdClientes(), 'qtdHj'=>$pan->qtdClientesHoje()]);
 
     }
 
@@ -34,6 +36,15 @@ class PainelController extends Controller {
         }
 
         $this->render('sitePrincipal/painel_adm/novoPlano', ['titleView'=>'Criar novo plano']);
+    }
+
+    public function clientes(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-bwcommerce");
+            exit;
+        }
+
+        $this->render('sitePrincipal/painel_adm/clientes', ['titleView'=>'Clientes']);
     }
 
     public function alterarDadosPessoais(){

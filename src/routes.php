@@ -41,6 +41,7 @@ $router->get('/painel/admin', 'PainelController@index');
 $router->get('/painel/alterar-dados-pessoais', 'PainelController@alterarDadosPessoaisView');
 $router->post('/painel/alterar-dados-pessoais/update', 'PainelController@alterarDadosPessoais');
 $router->get('/painel/novo-plano', 'PainelController@novoPlano');
+$router->get('/painel/clientes', 'PainelController@clientes');
 
 
 $router->get('/sub', 'HomeController@create_subdomain');

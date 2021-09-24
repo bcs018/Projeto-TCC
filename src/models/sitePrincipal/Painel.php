@@ -79,4 +79,20 @@ class Painel extends Model{
 
         return $sql->fetch(); 
     }
+
+    public function qtdClientes(){
+        $sql = "SELECT COUNT(*) AS 'qtd' FROM ecommerce_usu";
+        $sql = $this->db->query($sql);
+
+        return $sql->fetch();
+    }
+
+    public function qtdClientesHoje(){
+        $sql = "SELECT COUNT(*) AS 'qtd' FROM ecommerce_usu WHERE data_cad = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, date('Y-m-d'));
+        $sql->execute();
+
+        return $sql->fetch();
+    }
 }

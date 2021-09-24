@@ -116,6 +116,7 @@ create table usuario_ecommerce(
     celular_ue varchar(30) not null,
     login_ue varchar(50) not null,
     senha_ue varchar(32) not null,
+    data_cad date not null,
     
     primary key(ue_id)
 )default charset utf8;

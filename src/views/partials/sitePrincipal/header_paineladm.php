@@ -182,7 +182,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="/painel/clientes" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                   <p>Clientes</p>
                 </a>
