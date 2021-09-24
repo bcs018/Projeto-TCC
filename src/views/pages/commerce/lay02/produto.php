@@ -1,4 +1,4 @@
-<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
+<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | '. $produto[0]['nome_pro'], 'layout' => $dados, 'carrinho' => $carrinho]); ?>
 
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">

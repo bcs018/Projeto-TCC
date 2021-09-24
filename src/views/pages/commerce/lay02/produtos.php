@@ -1,4 +1,4 @@
-<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
+<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Produtos', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
 
 <div class="bg0 m-t-23 p-b-140">
     <div class="container">
@@ -281,7 +281,7 @@
 
                                     <span class="stext-105 cl3">
                                         <h6>
-                                            <b></b> <del><?php echo ($p['preco_antigo'] == 0.00) ? '' : 'De: R$' . number_format($p['preco_antigo'], 2, ',', '.'); ?></del> <br><br>  <b>Por</b>: <ins><?php echo 'R$' . number_format($p['preco'], 2, ',', '.'); ?></ins> 
+                                            <b></b> <del style="color: #ab0b00;"><?php echo ($p['preco_antigo'] == 0.00) ? '' : 'De: R$' . number_format($p['preco_antigo'], 2, ',', '.'); ?></del> <br><br>  <b>Por</b>: <ins><?php echo 'R$' . number_format($p['preco'], 2, ',', '.'); ?></ins> 
                                         </h6>
                                     </span>
                                 </div>

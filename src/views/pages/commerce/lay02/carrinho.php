@@ -1,4 +1,4 @@
-<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
+<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Carrinho', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
 <br><br><br><br>
 
 <style>
@@ -11,6 +11,7 @@
 
 <!-- <form class="bg0 p-t-75 p-b-85"> -->
     <div class="container">
+        <center><h1>Carrinho</h1></center><br><br><br>
         <div class="row">
             <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -215,7 +216,7 @@
         </div>
     </div>
 </div>
-
+<br><br><br><br><br><br>
 <?php $render('commerce/lay02/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">

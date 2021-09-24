@@ -1,4 +1,4 @@
-<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Home', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
+<?php $render('commerce/lay02/header', ['title' => $dados['nome_fantasia'] . ' | Finalização da compra', 'layout' => $dados, 'carrinho' => $carrinho]); ?>
 
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('<?php echo BASE_ASS_C; ?>lay02/images/cardban.jpg');">
     <h2 class="ltext-105 cl0 txt-center">

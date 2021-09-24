@@ -264,4 +264,6 @@ if(isset($_SESSION['message'])){
     </section>
 <?php endif; ?>
 
+<?php echo '<pre>';print_r($_SESSION); ?>
+
 <?php $render('commerce/lay02/footer', ['dados' => $dados]); ?>

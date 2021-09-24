@@ -183,20 +183,20 @@ if(!$valores)$valores['total'] = '0,00';
 								<a href="/produtos">Produtos</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
+							<!-- <li class="label1" data-label1="hot">
 								<a href="#">Features</a>
+							</li> -->
+
+							<li>
+								<a href="/cadastrar">Cadastre-se</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="">Sobre</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
-							</li>
-
-							<li>
-								<a href="contact.html">Contact</a>
+								<a href="">Contato</a>
 							</li>
 						</ul>
 					</div>	
@@ -279,15 +279,15 @@ if(!$valores)$valores['total'] = '0,00';
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html">About</a>
+					<a href="">About</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="">Contact</a>
 				</li>
 			</ul>
 		</div>
@@ -322,6 +322,13 @@ if(!$valores)$valores['total'] = '0,00';
 
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
+					<!-- <li class="p-b-13">
+						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+							Usuario
+						</a>
+					</li>
+
+					<hr> -->
 					<li class="p-b-13">
 						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
 							Home
@@ -406,10 +413,14 @@ if(!$valores)$valores['total'] = '0,00';
 									</a>
 
 									<span class="header-cart-item-info">
-									<?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?>
+										<?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?>
+									</span>
+									<br>
+									<span class="header-cart-item-info">
+										<?php echo '<b>Qtd:</b> ' . $_SESSION['carrinho'][$c[0]]; ?>
 									</span>
 								</div>
-							</li>
+							</li> <hr>
 						<?php endforeach; ?>
 					<?php endif; ?>
 

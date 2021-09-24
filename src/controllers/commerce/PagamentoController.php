@@ -235,13 +235,19 @@ class PagamentoController extends Controller {
     public function fimPagamento($id_compra){
         $info = new Info;
         $comp = new Compra;
-        //$carr = new Carrinho;
+        $carr = new Carrinho;
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
 
         $compra   = $comp->listaCompra($id_compra['id']);
         $produtos = $comp->listaProdCompra($id_compra['id']);
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/'.$dados['layout'].'/final_compra',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos]);
+        $this->render('commerce/'.$dados['layout'].'/final_compra',['dados'=>$dados,'compra'=>$compra, 'produtos'=>$produtos, 'carrinho'=>$carrinho]);
     }
 
 
