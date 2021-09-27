@@ -55,7 +55,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
                           <td><?php echo 'R$'.number_format($dado['preco'], 2, ',','.'); ?></td>
                           <td><?php echo 'R$'.number_format($dado['preco_antigo'], 2, ',','.'); ?></td>
                           <td><?php echo $dado['banner_img'] != '0' ? 'SIM' : 'NÃO'; ?></td>
-                          <td> <a href="/admin/painel/excluir-produto/<?php echo $dado['produto_id']; ?>">Excluir</a> | <a href="/admin/painel/editar-produto/<?php echo $dado['produto_id']; ?>">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
+                          <td> <a id="e-<?php echo $dado['produto_id']; ?>" href="#">Excluir</a> | <a href="/admin/painel/editar-produto/<?php echo $dado['produto_id']; ?>">Editar</a> | <a href="/admin/painel/detalhes-produto/<?php echo $dado['produto_id']; ?>">Detalhes</a> </td>
                         </tr>
                       <?php endforeach; ?>
                     <?php else: ?>
@@ -106,4 +106,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
             $('#aviso').modal('show')
        }
     });
+</script>
+
+<script>
+  
+  $('a').click(function(){
+    id = $(this).attr('id').split("-")
+    $.confirm({
+        title: 'Confirma exclusão?',
+        content: '',
+        type: 'orange',
+        buttons: {
+            deleteUser: {
+                text: 'Sim',
+                action: function () {
+                  window.location.href = '/admin/painel/excluir-produto/'+id[1];
+                }
+            },
+            não: {
+                btnClass: 'btn-red any-other-class', // multiple classes.
+            },
+        }
+      });
+  })
+
 </script>

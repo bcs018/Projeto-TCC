@@ -39,6 +39,7 @@
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/altDadosPessoaisPainel.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>

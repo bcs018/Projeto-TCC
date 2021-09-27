@@ -40,6 +40,7 @@
   <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery Mask -->
   <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
 
   <!-- Select2 -->
