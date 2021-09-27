@@ -44,7 +44,9 @@ class PainelController extends Controller {
             exit;
         }
 
-        $this->render('sitePrincipal/painel_adm/clientes', ['titleView'=>'Clientes']);
+        $painel = new Painel;
+
+        $this->render('sitePrincipal/painel_adm/clientes', ['titleView'=>'Clientes','clientes'=>$painel->listaClientes()]);
     }
 
     public function alterarDadosPessoais(){
@@ -63,6 +65,30 @@ class PainelController extends Controller {
         $ret = $painel->alterarUsuario($_SESSION['log_admin']['id'], $nome, $senha_atu, $senha_nov, $senha_rep, $foto);
 
         echo json_encode($ret);
+        exit;
+    }
+
+    public function ativarUsu($id){
+        $painel = new Painel;
+
+        if($painel->altAtivo($id['id'], '1')){
+            echo json_encode(['ret'=>true]);
+            exit;
+        }
+        
+        echo json_encode(['ret'=>false]);
+        exit;
+    }
+
+    public function inativarUsu($id){
+        $painel = new Painel;
+
+        if($painel->altAtivo($id['id'], '0')){
+            echo json_encode(['ret'=>true]);
+            exit;
+        }
+        
+        echo json_encode(['ret'=>false]);
         exit;
     }
 

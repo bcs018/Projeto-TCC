@@ -30,6 +30,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.css">
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
   <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
 

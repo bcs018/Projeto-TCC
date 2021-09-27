@@ -80,6 +80,19 @@ class Painel extends Model{
         return $sql->fetch(); 
     }
 
+    public function listaClientes(){
+        $sql = 'SELECT * FROM ecommerce_usu eu
+                JOIN ecom_usua eus
+                ON eu.ecommerce_id = eus.ecommerce_id
+                JOIN usuario u 
+                ON u.usuario_id = eus.usuario_id
+                JOIN plano p
+                ON p.plano_id = eu.plano_id';
+        $sql = $this->db->query($sql);
+
+        return $sql->fetchAll();
+    }
+
     public function qtdClientes(){
         $sql = "SELECT COUNT(*) AS 'qtd' FROM ecommerce_usu";
         $sql = $this->db->query($sql);
@@ -94,5 +107,19 @@ class Painel extends Model{
         $sql->execute();
 
         return $sql->fetch();
+    }
+
+    public function altAtivo($id, $ativo){
+        $sql = "UPDATE usuario SET ativo = ?
+                WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $ativo);
+        $sql->bindValue(2, $id);
+        
+        if($sql->execute()){
+            return true;
+        }
+                
+        return false;
     }
 }
