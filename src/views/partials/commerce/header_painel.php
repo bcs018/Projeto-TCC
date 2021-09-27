@@ -220,7 +220,7 @@
                 </a>
               </li> -->
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/admin/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
                   <p>Relatório de Vendas</p>
                 </a>
