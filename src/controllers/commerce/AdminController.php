@@ -77,6 +77,11 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/dados_recebimento', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
+    // Relatórios de vendas
+    public function relVendas(){
+
+    }
+
     public function cadDadosRecebimentoAction(){
         $tknpagseguro   = addslashes($_POST['tknpagseguro']);
         $emailpagseguro = addslashes($_POST['emailpagseguro']);

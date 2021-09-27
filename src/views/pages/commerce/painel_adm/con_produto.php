@@ -113,7 +113,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Produtos'])
   $('a').click(function(){
     id = $(this).attr('id').split("-")
     $.confirm({
-        title: 'Confirma exclusão?',
+        title: 'Confirma exclusão do produto?',
         content: '',
         type: 'orange',
         buttons: {

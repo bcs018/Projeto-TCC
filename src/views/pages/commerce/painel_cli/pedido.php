@@ -71,7 +71,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
             <div class="row">
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Data da compra:</h5>
-                    <p><?php echo $p['data_compra']; ?></p>
+                    <p><?php echo date('d/m/Y', strtotime($p['data_compra'])).' às: '. $p['hora_compra']; ?></p>
                 </div>
 
                 <div class="col-md-6">
