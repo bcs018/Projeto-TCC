@@ -84,9 +84,11 @@ class AdminController extends Controller {
 
         $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
 
-        if($dados['plano_id'] == '1'){
-            $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia);
-        }
+        // if($dados['plano_id'] == '1'){
+        //     $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia, $dados['plano_id']);
+        // }else if($dados['plano_id'] == '2'){
+        //     $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia, $dados['plano_id']);
+        // }
 
         $this->render('commerce/painel_adm/relatorios', ['u'=>$ultimo_dia, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
 

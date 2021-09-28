@@ -556,7 +556,7 @@ class Admin extends Model{
         return 0;
     }
 
-    public function relatorioVendas($data_ini, $data_fim){
+    public function relatorioVendas($data_ini, $data_fim, $plano){
         $sql = "SELECT * FROM compra c 
                 JOIN ecommerce_usu eu
                 ON c.ecommerce_id = eu.ecommerce_id
@@ -567,6 +567,22 @@ class Admin extends Model{
         $sql->bindValue(2, $data_fim);
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->execute();
+
+        $relatorio['total'] = 0;
+        $relatorio['compras'] = $sql->fetchAll();
+
+        // Se for o plano 1, será somente relatório do mes, então o total e o por mes serão os mesmo
+        if($plano == '1'){
+            foreach($sql->fetchAll() as $r){
+                $relatorio['total'] += floatval($r['total_compra']);
+            }
+        }else if($plano == '2'){
+            foreach($sql->fetchAll() as $r){
+                $relatorio['total'] += floatval($r['total_compra']);
+            }
+        }
+
+        return $sql->fetchAll();
 
     }
 }
