@@ -80,13 +80,15 @@ class AdminController extends Controller {
     // Relatórios de vendas
     public function relVendas(){
         $dados = AdminController::listaDadosEcommerce();
+        $adm = new Admin;
 
-        $sql = "SELECT * FROM compra c 
-                JOIN ecommerce_usu eu
-                ON c.ecommerce_id = eu.ecommerce_id
-                where data_compra between date('2021-08-27') and date('2021-09-27')";
+        $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
 
-        $this->render('commerce/painel_adm/relatorios', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        if($dados['plano_id'] == '1'){
+            $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia);
+        }
+
+        $this->render('commerce/painel_adm/relatorios', ['u'=>$ultimo_dia, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
 
     }
 

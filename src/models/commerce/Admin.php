@@ -555,4 +555,18 @@ class Admin extends Model{
 
         return 0;
     }
+
+    public function relatorioVendas($data_ini, $data_fim){
+        $sql = "SELECT * FROM compra c 
+                JOIN ecommerce_usu eu
+                ON c.ecommerce_id = eu.ecommerce_id
+                WHERE data_compra BETWEEN date(?) AND date(?)
+                AND c.ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $data_ini);
+        $sql->bindValue(2, $data_fim);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+    }
 }

@@ -20,7 +20,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
                     }
                     ?>
 
-                    <div id='message'></div>
+                    <div id='message'><?php echo $u; ?></div>
 
                 </div>
             </div>
