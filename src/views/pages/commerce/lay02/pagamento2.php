@@ -211,35 +211,25 @@ if(isset($_SESSION['frete'])){
                     html = '';
                     for (i = 0; i < error.length; i++) {
                         if (error[i].code == '205') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert"> Número do cartão em branco </div>';
+                            html += '<div class="alert alert-danger" role="alert"> Número do cartão em branco </div>';
                         } else if (error[i].code == '208') {
                             html += '<div class="alert alert-danger" role="alert">Mês em branco </div>';
                         } else if (error[i].code == '209') {
                             html += '<div class="alert alert-danger" role="alert">Ano em branco </div>';
                         } else if (error[i].code == '316') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Por favor, digite um nome válido.</div>';
-                        } else if (error[i].code == '212' || error[i].code == '213' || error[i].code ==
-                            '214') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Informe seu documento..</div>';
+                            html += '<div class="alert alert-danger" role="alert">Por favor, digite um nome válido.</div>';
+                        } else if (error[i].code == '212' || error[i].code == '213' || error[i].code == '214') {
+                            html += '<div class="alert alert-danger" role="alert">Informe seu documento..</div>';
                         } else if (error[i].code == '221') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Por favor, digite o nome e sobrenome.</div>';
+                            html += '<div class="alert alert-danger" role="alert">Por favor, digite o nome e sobrenome.</div>';
                         } else if (error[i].code == '224') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Por favor, digite o código de segurança.</div>';
+                            html += '<div class="alert alert-danger" role="alert">Por favor, digite o código de segurança.</div>';
                         } else if (error[i].code == 'E301') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Há algo de errado com esse número de cartão. Digite novamente.</div>';
+                            html += '<div class="alert alert-danger" role="alert">Há algo de errado com esse número de cartão. Digite novamente.</div>';
                         } else if (error[i].code == 'E302') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Confira o código de segurança.</div>';
-                        } else if (error[i].code == '322' || error[i].code == '323' || error[i].code ==
-                            '324') {
-                            html +=
-                                '<div class="alert alert-danger" role="alert">Confira seu documento.</div>';
+                            html += '<div class="alert alert-danger" role="alert">Confira o código de segurança.</div>';
+                        } else if (error[i].code == '322' || error[i].code == '323' || error[i].code == '324') {
+                            html += '<div class="alert alert-danger" role="alert">Confira seu documento.</div>';
                         } else if (error[i].code == '325' || error[i].code == '326') {
                             html += '<div class="alert alert-danger" role="alert">Confira a data.</div>';
                         } else {

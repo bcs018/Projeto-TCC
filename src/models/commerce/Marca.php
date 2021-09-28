@@ -12,9 +12,10 @@ class Marca extends Model{
 
     // Lista todas as marcas
     public function listaMarcas(){
-        $sql = "SELECT * FROM marca WHERE ecommerce_id = ?";
+        $sql = "SELECT * FROM marca WHERE ecommerce_id = ? AND ativo = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, '1');
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -24,10 +25,11 @@ class Marca extends Model{
 
     // Lista uma marca
     public function listaMarca($id){
-        $sql = "SELECT * FROM marca WHERE ecommerce_id = ? AND marca_id = ?";
+        $sql = "SELECT * FROM marca WHERE ecommerce_id = ? AND marca_id = ? AND ativo = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $id);
+        $sql->bindValue(3, '1');
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -39,10 +41,11 @@ class Marca extends Model{
 
     // Cadastra marca
     public function cadMarca($nomeMarca){
-        $sql = "INSERT INTO marca (ecommerce_id, nome_mar) VALUES (?,?)";
+        $sql = "INSERT INTO marca (ecommerce_id, nome_mar, ativo) VALUES (?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, $nomeMarca);
+        $sql->bindValue(3, '1');
 
         if($sql->execute()){
             $_SESSION['message'] = '<div class="alert alert-success" role="alert">
@@ -68,10 +71,11 @@ class Marca extends Model{
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            $sql = "DELETE FROM marca WHERE marca_id = ? AND ecommerce_id = ?";
+            $sql = "UPDATE marca SET ativo = ? WHERE marca_id = ? AND ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $id);
-            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->bindValue(1, '0');
+            $sql->bindValue(2, $id);
+            $sql->bindValue(3, $_SESSION['id_sub_dom']);
             
             if($sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert">

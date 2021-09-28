@@ -136,6 +136,7 @@ create table categoria(
     ecommerce_id int not null,
     sub_cat int,
     nome_cat varchar(50) not null,
+    ativo enum('1','0') default '1',
     
     primary key(categoria_id),
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
@@ -146,6 +147,7 @@ create table marca(
     ecommerce_id int not null,
     nome_mar varchar(50) not null,
     marca_img varchar (50) default 0,
+    ativo enum('1','0') default '1',
     
     primary key(marca_id),
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
