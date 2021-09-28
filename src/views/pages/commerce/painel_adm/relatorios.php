@@ -73,7 +73,7 @@ $custos = array(8,15,37,23);
 
 <?php 
 
-$array['periodo']['jan']
+
 
 ?>
 
