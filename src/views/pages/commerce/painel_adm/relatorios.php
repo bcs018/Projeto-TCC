@@ -7,13 +7,6 @@ if(!isset($_SESSION['log_admin_c'])){
 $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório']); 
 ?>
 
-<?php 
-
-$vendas = array(10,20,30,50);
-$custos = array(8,15,37,23);
-
-?>
-
 <div class="content-wrapper" style="min-height: 1227.43px;">
     <section class="content-header">
         <div class="container-fluid">
@@ -26,9 +19,7 @@ $custos = array(8,15,37,23);
                         unset($_SESSION['message']);
                     }
                     ?>
-
-                    <div id='message'><?php echo $u; ?></div>
-
+                    <div id='message'></div>
                 </div>
             </div>
         </div>
@@ -36,10 +27,29 @@ $custos = array(8,15,37,23);
 
     <section class="content">
         <div class="container-fluid">
+          <label>Selecione o intervalo de datas</label><br>
+            <form method="POST" action="/admin/painel/relatorio-intervalo">
+              <div class="row">
+                <div class="col-3">
+                  <label>Data incio:</label><br>
+                  <input type="date" name="data_ini" class="form-control">
+                </div>
+                <div class="col-3">
+                  <label>Data final:</label><br>
+                  <input type="date" name="data_fim" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-5">
+                  <input type="submit" class="btn btn-success" value="Aplicar">
+                </div>
+              </div>
+            </form>
+            <br><br><br>
             <div class="row">
-                <div class="col">
-                <canvas id="grafico"></canvas>
-                
+                <div class="col">         
+                  <canvas id="grafico"></canvas>
                 </div>
             </div>
         </div>
@@ -73,40 +83,55 @@ $custos = array(8,15,37,23);
 
 <?php 
 
+//echo '<pre>';print_r($dados);
 
+
+// $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
+
+// echo $dados['plano_id'].'<br>';
+
+// echo $dados['data_cad'];
+
+// echo date("Y-m").'-'.$ultimo_dia
+
+$data1 = '2021-03-01';
+$data2 = '2021-04-02';
+
+$resul = strtotime($data2) - strtotime($data1);
+$dias = floor($resul/(60*60*24));
+
+echo $dias;
+
+//183 dias = 6 meses
 
 ?>
 
 <script type="text/javascript"> 
-    //Ao terminar de carregar a pagina ele mostra o grafico
     window.onload = function(){
-      //Pega o contexto que esta no canvas
       var contexto = document.getElementById("grafico").getContext("2d");
       new Chart(contexto, {
-          //Tipo do grafico
           type:'line',
-          //Dados do grafico
           data:{
-              labels:[['Janeiro','2021'], 'Fevereiro', 'Março', 'Abril'],
+              labels:[<?php echo $rel['mes']; ?>],
               datasets:[{
-                  //Tipo de dados
-                  label:'Vendas',
-                  backgroundColor:'#FF0000',
-                  borderColor:'#FF0000',
-                  //Dados que preencheram o grafico vindo do php
-                  data:[ <?php echo implode(',',$vendas);?> ],
-                  fill:false
-              },{
-                  label:'Custos',
-                  backgroundColor:'#00FF00',
-                  borderColor:'#00FF00',
-                  data:[ <?php echo implode(',',$custos); ?> ],
+                  label:'Valor das vendas R$',
+                  backgroundColor:<?php echo "'".$dados['cor']."'"; ?>,
+                  borderColor:<?php echo "'".$dados['cor']."'"; ?>,
+                  data:[ <?php echo implode(',',$rel['total']);?> ],
                   fill:false
               }],
-          }
+          },
       });
     }
-    
+</script>
+
+<script>
+  //Date range picker
+  $('#reservation').daterangepicker({
+    locale: {
+        format: 'MM/DD/YYYY'
+      }
+  })
 </script>
 
 <script>

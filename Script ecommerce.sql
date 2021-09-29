@@ -2,6 +2,10 @@
 * Script para criação do banco de dados do ecommerce
 */
 
+/* Seta o idioma como portugues - Brasil */
+set @@lc_time_names = 'pt_BR';
+set GLOBAL lc_time_names = 'pt_BR';
+
 drop database if exists ecommerce;
 
 /* Executar separadamente primeiro */

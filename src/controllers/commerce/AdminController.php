@@ -84,14 +84,134 @@ class AdminController extends Controller {
 
         $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
 
-        // if($dados['plano_id'] == '1'){
-        //     $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia, $dados['plano_id']);
-        // }else if($dados['plano_id'] == '2'){
-        //     $rel = $adm->relatorioVendas(date("Y").'/'.date("m").'/01', date("Y").'/'.date("m").'/'.$ultimo_dia, $dados['plano_id']);
+        /* Valores padrão para inicio do relatório */
+        $plan1_ini = date("Y-m").'-01';        
+        $plan2_ini = date('Y-m-d',strtotime(date('Y-m-d'). '-6 month'));
+        $plan3_ini = $dados['data_cad'];
+        $plan_fim  = date("Y-m").'-'.$ultimo_dia;
+        /* */
+
+        // Só vai entrar nesse if se mandar os POSTs com o intervalo entre datas
+        // if(isset($_POST['data_ini']) && !empty($_POST['data_ini']) && isset($_POST['data_fim']) && !empty($_POST['data_fim'])){
+        //     if($dados['plano_id'] == '1'){
+        //         if(date('m',strtotime($_POST['data_ini'])) < date('m')){
+        //             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+        //                                         Você não pode escolher esse intervalo de data pois seu plano não permite! <br>
+        //                                         Seu plano permite somente relatório do mês vigênte!
+        //                                     </div>';
+        
+        //             $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
+        //             $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        //             exit;
+        //         }
+
+        //         $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+        //         $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        //         exit;
+
+        //     }else if($dados['plano_id'] == '2'){
+        //         $resul = strtotime($_POST['data_fim']) - strtotime($_POST['data_ini']);
+        //         $resul = floor($resul/(60*60*24));
+
+        //         if($resul > 183){
+        //             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+        //                                         Você não pode escolher esse intervalo de data pois seu plano não permite! <br>
+        //                                         Seu plano permite somente relatório de até seis meses!
+        //                                     </div>';
+
+        //             $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
+        //             $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        //             exit;
+
+        //         }
+                
+        //         $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+        //         $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        //         exit;
+
+        //     }else if($dados['plano_id'] == 3){
+        //         $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+        //     }
         // }
 
-        $this->render('commerce/painel_adm/relatorios', ['u'=>$ultimo_dia, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        if($dados['plano_id'] == '1'){
+            // Se for plano 1, envia somente o relatório do mes como padrão
+            $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
+        }else if($dados['plano_id'] == '2'){
+            // Se for plano 2, envia 6 mes atras como padrão
+            $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
+        }else if($dados['plano_id'] == 3){
+            // Se for plano 3, mostra desde a criação da loja como padrão]
+            $rel = $adm->relatorioVendas($plan3_ini, $plan_fim, $dados['plano_id']);
+        }
 
+        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+    }
+
+    public function relVendasAction(){
+        $dados = AdminController::listaDadosEcommerce();
+        $adm = new Admin;
+
+        $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
+
+        /* Valores padrão para inicio do relatório */
+        $plan1_ini = date("Y-m").'-01';        
+        $plan2_ini = date('Y-m-d',strtotime(date('Y-m-d'). '-6 month'));
+        //$plan3_ini = $dados['data_cad'];
+        $plan_fim  = date("Y-m").'-'.$ultimo_dia;
+        /* */
+
+        // Só vai entrar nesse if se mandar os POSTs com o intervalo entre datas
+        if(isset($_POST['data_ini']) && !empty($_POST['data_ini']) && isset($_POST['data_fim']) && !empty($_POST['data_fim'])){
+            if($dados['plano_id'] == '1'){
+                if(date('m',strtotime($_POST['data_ini'])) < date('m')){
+                    $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                                Você não pode escolher esse intervalo de data pois seu plano não permite! <br>
+                                                Seu plano permite somente relatório do mês vigênte!
+                                            </div>';
+        
+                    $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
+                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    exit;
+                }
+
+                $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                exit;
+
+            }else if($dados['plano_id'] == '2'){
+                $resul = strtotime($_POST['data_fim']) - strtotime($_POST['data_ini']);
+                $resul = floor($resul/(60*60*24));
+
+                if($resul > 183){
+                    $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                                Você não pode escolher esse intervalo de data pois seu plano não permite! <br>
+                                                Seu plano permite somente relatório de até seis meses!
+                                            </div>';
+
+                    $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
+                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    exit;
+
+                }
+                
+                $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                exit;
+
+            }else if($dados['plano_id'] == 3){
+                $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                exit;
+            }
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Preencha o intervalo de datas!
+                                </div>';
+        $rel = $adm->relatorioVendas(date("Y-m-d"), date("Y-m-d"), $dados['plano_id']);
+        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        exit;
     }
 
     public function cadDadosRecebimentoAction(){

@@ -557,32 +557,50 @@ class Admin extends Model{
     }
 
     public function relatorioVendas($data_ini, $data_fim, $plano){
-        $sql = "SELECT * FROM compra c 
-                JOIN ecommerce_usu eu
-                ON c.ecommerce_id = eu.ecommerce_id
-                WHERE data_compra BETWEEN date(?) AND date(?)
-                AND c.ecommerce_id = ?";
+        $dados['compras'] = '';
+        $dados['mes']     = '';
+        
+        $sql = "SELECT SUM(total_compra) AS 'total', monthname(data_compra) AS 'mes', year(data_compra) AS 'ano' FROM compra
+                WHERE data_compra BETWEEN ? AND ?
+                AND ecommerce_id = ?
+                GROUP BY MONTH(data_compra), YEAR(data_compra)
+                ORDER BY YEAR(data_compra), MONTH(data_compra)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $data_ini);
         $sql->bindValue(2, $data_fim);
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->execute();
 
-        $relatorio['total'] = 0;
-        $relatorio['compras'] = $sql->fetchAll();
+        $mes = '';
 
-        // Se for o plano 1, será somente relatório do mes, então o total e o por mes serão os mesmo
-        if($plano == '1'){
-            foreach($sql->fetchAll() as $r){
-                $relatorio['total'] += floatval($r['total_compra']);
+        if($sql->rowCount() > 0){
+            foreach($sql->fetchAll() as $per){
+                $mes .= "['".$per['mes']."',".$per['ano'].'],';
+                $dados['total'][] = $per['total'];
             }
-        }else if($plano == '2'){
-            foreach($sql->fetchAll() as $r){
-                $relatorio['total'] += floatval($r['total_compra']);
-            }
+
+            $sql = "SELECT * FROM compra c 
+                    JOIN transacao_compra tc
+                    ON c.compra_id = tc.compra_id
+                    WHERE c.ecommerce_id = ? AND c.data_compra BETWEEN ? AND ?";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $_SESSION['id_sub_dom']);
+            $sql->bindValue(2, $data_ini);
+            $sql->bindValue(3, $data_fim);
+            $sql->execute();
+
+            $dados['compras'] = $sql->fetchAll();
+            $dados['mes']     = $mes;
+
+            return $dados;
         }
 
-        return $sql->fetchAll();
+        $dados['total'] = 0;
 
+        $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                    Sem resultados nesse período, verifique o intervalo de datas!
+                                </div>';
+
+        return $dados;
     }
 }
