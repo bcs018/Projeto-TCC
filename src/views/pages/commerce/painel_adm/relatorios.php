@@ -4,6 +4,12 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
+$total_geral = 0;
+
+foreach($rel['total'] as $r){
+   $total_geral += floatval($r);
+}
+
 $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório']); 
 ?>
 
@@ -46,10 +52,48 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
                 </div>
               </div>
             </form>
-            <br><br><br>
+            <br><br>
             <div class="row">
                 <div class="col">         
                   <canvas id="grafico"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"> 
+                  <br>
+                  <h2>Relatório detalhado</h2>
+                  <br>
+                  <h5>Total geral: R$<?php echo number_format($total_geral, 2, ',','.'); ?></h5>
+                  <br>
+                  <?php foreach($rel['compras'] as $compra): ?>        
+                    <fieldset class="border p-2">
+                      <div class="row">
+                          <div class="col-5">
+                              <p style="margin-bottom: 0px;"><strong>Compra n°:  <?php echo $compra['compra_id']; ?> </strong></p>
+                              <p style="margin-bottom: 0px;"><strong>Valor compra: R$<?php echo number_format($compra['total_compra'],2,',','.'); ?></strong></p>
+                              <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p>
+                          </div>
+                          <div class="col"> 
+                              <b><p style="margin-bottom: 0px;">Data da compra: <?php echo date('d/m/Y', strtotime($compra['data_compra'])). ' às: '. $compra['hora_compra']; ?></p></b>
+                              <?php if($compra['status_pagamento'] == '1' || $compra['status_pagamento'] == 'in_process' || $compra['status_pagamento'] == 'pending_waiting_payment'): ?>
+                                  <b><p style="margin-bottom: 0px; color: #c98d00;">Aguardando pagamento</p></b>
+                              <?php elseif($compra['status_pagamento'] == '2' || $compra['status_pagamento'] == 'in_process'): ?>
+                                  <b><p style="margin-bottom: 0px; color: #c98d00;">Em análise</p></b>
+                              <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '0'): ?>
+                                  <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
+                                  <b><p style="margin-bottom: 0px; color: #c98d00;">Produto em preparação</p></b>
+                              <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '1'): ?>
+                                  <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
+                                  <b><p style="margin-bottom: 0px; color: #0dc200;">Produto enviado</p></b>
+                              <?php elseif($compra['status_pagamento'] == '7' || $compra['status_pagamento'] == 'rejected'): ?>
+                                  <b><p style="margin-bottom: 0px; color: #f55a42;">Compra cancelada</p></b>
+                              <?php endif; ?>
+                              <p style="margin-bottom: 0px;"><strong>Cod. Transação:  <?php echo $compra['cod_transacao']; ?> </strong></p>
+                              <p style="margin-bottom: 0px;"><strong>Pagamento:  <?php echo $compra['parcela']; ?> </strong></p>
+                          </div>
+                      </div>
+                    </fieldset> <br>
+                  <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -81,31 +125,6 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
 
 <?php $render("commerce/footer_painel"); ?>
 
-<?php 
-
-//echo '<pre>';print_r($dados);
-
-
-// $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
-
-// echo $dados['plano_id'].'<br>';
-
-// echo $dados['data_cad'];
-
-// echo date("Y-m").'-'.$ultimo_dia
-
-$data1 = '2021-03-01';
-$data2 = '2021-04-02';
-
-$resul = strtotime($data2) - strtotime($data1);
-$dias = floor($resul/(60*60*24));
-
-echo $dias;
-
-//183 dias = 6 meses
-
-?>
-
 <script type="text/javascript"> 
     window.onload = function(){
       var contexto = document.getElementById("grafico").getContext("2d");
@@ -123,21 +142,6 @@ echo $dias;
           },
       });
     }
-</script>
-
-<script>
-  //Date range picker
-  $('#reservation').daterangepicker({
-    locale: {
-        format: 'MM/DD/YYYY'
-      }
-  })
-</script>
-
-<script>
-  $(function () {
-    $('.select2').select2()
-  })
 </script>
 
 <script>

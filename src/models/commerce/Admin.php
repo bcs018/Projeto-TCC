@@ -582,7 +582,8 @@ class Admin extends Model{
             $sql = "SELECT * FROM compra c 
                     JOIN transacao_compra tc
                     ON c.compra_id = tc.compra_id
-                    WHERE c.ecommerce_id = ? AND c.data_compra BETWEEN ? AND ?";
+                    WHERE c.ecommerce_id = ? AND c.data_compra BETWEEN ? AND ?
+                    ORDER BY YEAR(data_compra)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $_SESSION['id_sub_dom']);
             $sql->bindValue(2, $data_ini);
