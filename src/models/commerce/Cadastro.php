@@ -126,8 +126,8 @@ class Cadastro extends Model{
 
         if($flag == 1)return false;
 
-        $sql = "INSERT INTO usuario_ecommerce (nome_usu_ue, sobrenome, cpf_ue, email_ue, celular_ue, login_ue, senha_ue)
-                VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO usuario_ecommerce (nome_usu_ue, sobrenome, cpf_ue, email_ue, celular_ue, login_ue, senha_ue, data_cad)
+                VALUES (?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $nome);
         $sql->bindValue(2, $sobrenome);
@@ -136,6 +136,7 @@ class Cadastro extends Model{
         $sql->bindValue(5, $cel);
         $sql->bindValue(6, $login);
         $sql->bindValue(7, md5($senha));
+        $sql->bindValue(8, date('Y-m-d'));
 
         if($sql->execute()){
             $sql = "SELECT last_insert_id() as 'ult'";

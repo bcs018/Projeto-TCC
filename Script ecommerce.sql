@@ -2,7 +2,11 @@
 * Script para criação do banco de dados do ecommerce
 */
 
-drop database ecommerce;
+/* Seta o idioma como portugues - Brasil */
+set @@lc_time_names = 'pt_BR';
+set GLOBAL lc_time_names = 'pt_BR';
+
+drop database if exists ecommerce;
 
 /* Executar separadamente primeiro */
 create database if not exists ecommerce
@@ -116,6 +120,7 @@ create table usuario_ecommerce(
     celular_ue varchar(30) not null,
     login_ue varchar(50) not null,
     senha_ue varchar(32) not null,
+    data_cad date not null,
     
     primary key(ue_id)
 )default charset utf8;
@@ -135,6 +140,7 @@ create table categoria(
     ecommerce_id int not null,
     sub_cat int,
     nome_cat varchar(50) not null,
+    ativo enum('1','0') default '1',
     
     primary key(categoria_id),
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
@@ -145,6 +151,7 @@ create table marca(
     ecommerce_id int not null,
     nome_mar varchar(50) not null,
     marca_img varchar (50) default 0,
+    ativo enum('1','0') default '1',
     
     primary key(marca_id),
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
@@ -250,7 +257,8 @@ create table compra(
     subtotal_compra decimal(10,2) not null,
     frete decimal(10,2) not null,
     tipo_pagamento varchar(50) not null,
-    data_compra varchar(50) not null,
+    data_compra date not null,
+    hora_compra time not null,
     enviado enum('0','1') not null default '0',
     status_pagamento varchar(100) default 0 not null,
     cep_entrega varchar(100) not null,

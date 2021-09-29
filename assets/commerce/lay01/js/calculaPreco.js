@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    $(".product-quantity").find("input[name=qtd]").on("click",function(){
+    //$(".product-quantity").find("input[name=qtd]").on("click keypress input",function(){
+    $('input[name=qtd]').change("keypress",function(){  
         
         id = $(this).attr("id");
         qt = $('#'+id).val();

@@ -16,11 +16,11 @@
             <div class="col-md">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Preencha os campos</h3>
+                <h3 class="card-title">Em desenvolvimento</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" enctype="multipart/form-data" id="alt_dados_pessoais">
+              <!-- <form method="post" enctype="multipart/form-data" id="alt_dados_pessoais">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nome</label>
@@ -47,12 +47,11 @@
                     </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Alterar</button>
                 </div>
-              </form>
+              </form> -->
             </div>
             </div>
         </div>

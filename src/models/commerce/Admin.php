@@ -409,6 +409,36 @@ class Admin extends Model{
         }
     }
 
+    public function ediLayout($layout){
+        if(($layout != 'lay01') && ($layout != 'lay02')){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Erro 005 ao editar layout!
+                                    </div>';
+
+            return false;
+        }
+
+        $sql = 'UPDATE ecommerce_usu SET layout = ?
+                WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $layout);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                       Layout alterado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
+        $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                    Erro 006 ao atualizar dados!
+                                </div>';
+
+        return false;
+    }
+
     public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago, $tknmpago){
         if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro) && empty($tknmpago))){
             
@@ -500,7 +530,7 @@ class Admin extends Model{
 
     // Lista a qtd de usuarios cadastrado HOJE
     public function listaQtdUsuHoje(){
-        $sql = "SELECT * FROM usuario_ecommerce ue
+        $sql = "SELECT ue.data_cad FROM usuario_ecommerce ue
                 JOIN eco_usu eu
                 ON ue.ue_id = eu.usuario_id
                 JOIN ecommerce_usu eue
@@ -524,5 +554,54 @@ class Admin extends Model{
         }
 
         return 0;
+    }
+
+    public function relatorioVendas($data_ini, $data_fim, $plano){
+        $dados['compras'] = '';
+        $dados['mes']     = '';
+        
+        $sql = "SELECT SUM(total_compra) AS 'total', monthname(data_compra) AS 'mes', year(data_compra) AS 'ano' FROM compra
+                WHERE data_compra BETWEEN ? AND ?
+                AND ecommerce_id = ?
+                GROUP BY MONTH(data_compra), YEAR(data_compra)
+                ORDER BY YEAR(data_compra), MONTH(data_compra)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $data_ini);
+        $sql->bindValue(2, $data_fim);
+        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->execute();
+
+        $mes = '';
+
+        if($sql->rowCount() > 0){
+            foreach($sql->fetchAll() as $per){
+                $mes .= "['".$per['mes']."',".$per['ano'].'],';
+                $dados['total'][] = $per['total'];
+            }
+
+            $sql = "SELECT * FROM compra c 
+                    JOIN transacao_compra tc
+                    ON c.compra_id = tc.compra_id
+                    WHERE c.ecommerce_id = ? AND c.data_compra BETWEEN ? AND ?
+                    ORDER BY YEAR(data_compra)";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(1, $_SESSION['id_sub_dom']);
+            $sql->bindValue(2, $data_ini);
+            $sql->bindValue(3, $data_fim);
+            $sql->execute();
+
+            $dados['compras'] = $sql->fetchAll();
+            $dados['mes']     = $mes;
+
+            return $dados;
+        }
+
+        $dados['total'] = 0;
+
+        $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                    Sem resultados nesse período, verifique o intervalo de datas!
+                                </div>';
+
+        return $dados;
     }
 }

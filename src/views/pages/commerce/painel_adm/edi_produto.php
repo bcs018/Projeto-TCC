@@ -45,7 +45,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
                       <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" data-toggle="lightbox" data-gallery="gallery">
                         <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" class="img-fluid mb-2" alt="black sample">
                       </a>
-                      <a href="/admin/painel/excluir-img/<?php echo $produto['pi_id'] ?>/<?php echo $produtos[0][0]; ?>">Excluir</a>
+                      <a class="imgexc" id="e-<?php echo $produto['pi_id'] ?>-<?php echo $produtos[0][0]; ?>" href="#">Excluir</a>
                     </div>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -56,7 +56,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
       </div>
     </div>
   </section>
-
+  
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -76,7 +76,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
                     <a href="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" data-toggle="lightbox" data-gallery="gallery">
                       <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produtos[0]['banner_img']; ?>" class="img-fluid mb-2" alt="black sample">
                     </a>
-                    <a href="/admin/painel/excluir-ban/<?php echo $produtos[0][0]; ?>">Excluir</a>
+                    <a class="banexc" id="b-<?php echo $produtos[0][0]; ?>" href="#">Excluir</a>
                   </div>
                 <?php endif; ?>
               </div>
@@ -386,3 +386,47 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
        }
     });
 </script>
+
+<script>
+    $('.imgexc').click(function(){
+      id = $(this).attr('id').split("-")
+      $.confirm({
+          title: 'Confirma exclusão da imagem?',
+          content: '',
+          type: 'orange',
+          buttons: {
+              deleteUser: {
+                  text: 'Sim',
+                  action: function () {
+                    window.location.href = '/admin/painel/excluir-img/'+id[1]+'/'+id[2];
+                  }
+              },
+              não: {
+                  btnClass: 'btn-red any-other-class', // multiple classes.
+              },
+          }
+        });
+    })
+  </script>
+
+<script>
+    $('.banexc').click(function(){
+      id = $(this).attr('id').split("-")
+      $.confirm({
+          title: 'Confirma exclusão do banner?',
+          content: '',
+          type: 'orange',
+          buttons: {
+              deleteUser: {
+                  text: 'Sim',
+                  action: function () {
+                    window.location.href = '/admin/painel/excluir-ban/'+id[1];
+                  }
+              },
+              não: {
+                  btnClass: 'btn-red any-other-class', // multiple classes.
+              },
+          }
+        });
+    })
+  </script>

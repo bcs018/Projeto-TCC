@@ -30,6 +30,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.css">
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
   <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
 
@@ -182,7 +183,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="/painel/clientes" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                   <p>Clientes</p>
                 </a>

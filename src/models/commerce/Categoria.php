@@ -13,10 +13,11 @@ class Categoria extends Model{
         $haveChild = true;
 
         while($haveChild){
-            $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+            $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ativo = ? AND ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $id);
-            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->bindValue(2, '1');
+            $sql->bindValue(3, $_SESSION['id_sub_dom']);
             $sql->execute();
 
             if($sql->rowCount() > 0){
@@ -40,9 +41,10 @@ class Categoria extends Model{
     public function listaCategoriasOrganizadas(){
         $array = array();
 
-        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ? ORDER BY sub_cat DESC";
+        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ? AND ativo = ? ORDER BY sub_cat DESC";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, '1');
         $sql->execute();
 
         if($sql->rowCount() > 0){
@@ -61,19 +63,21 @@ class Categoria extends Model{
     }
 
     public function listaCategorias(){
-        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ?";
+        $sql = "SELECT * FROM categoria WHERE ecommerce_id = ? AND ativo = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, '1');
         $sql->execute();
 
         return $sql->fetchAll();
     }
 
     public function listaCategoria($id){
-        $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+        $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ecommerce_id = ? AND ativo = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1,$id);
         $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        $sql->bindValue(3, '1');
         $sql->execute();
 
         if($sql->rowCount() > 0)
@@ -107,10 +111,11 @@ class Categoria extends Model{
     public function cadCategoria($nomeCategoria, $subCategoria){
         // Incluindo categoria se for uma categoria PAI
         if($subCategoria == 0){
-            $sql = 'INSERT INTO categoria (nome_cat, ecommerce_id) VALUES (?,?)';
+            $sql = 'INSERT INTO categoria (nome_cat, ecommerce_id, ativo) VALUES (?,?,?)';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $nomeCategoria);
             $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->bindValue(3, '1');
 
             if($sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert">
@@ -136,11 +141,12 @@ class Categoria extends Model{
 
         // Se existir, insere a nova categoria
         if($sql->rowCount() > 0){
-            $sql = 'INSERT INTO categoria (ecommerce_id, sub_cat, nome_cat) VALUES (?,?,?)';
+            $sql = 'INSERT INTO categoria (ecommerce_id, sub_cat, nome_cat, ativo) VALUES (?,?,?,?)';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $_SESSION['id_sub_dom']);
             $sql->bindValue(2, $subCategoria);
             $sql->bindValue(3, $nomeCategoria);
+            $sql->bindValue(4, '1');
 
             if(!$sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -186,10 +192,11 @@ class Categoria extends Model{
 
             }
     
-            $sql = "DELETE FROM categoria WHERE categoria_id = ? AND ecommerce_id = ?";
+            $sql = "UPDATE categoria SET ativo = ? WHERE categoria_id = ? AND ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(1, $id);
-            $sql->bindValue(2, $_SESSION['id_sub_dom']);
+            $sql->bindValue(1, '0');
+            $sql->bindValue(2, $id);
+            $sql->bindValue(3, $_SESSION['id_sub_dom']);
             
             if($sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert">

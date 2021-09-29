@@ -45,7 +45,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
                                         <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p>
                                     </div>
                                     <div class="col"> 
-                                        <b><p style="margin-bottom: 0px;">Data da compra: <?php echo $compra['data_compra']; ?></p></b>
+                                        <b><p style="margin-bottom: 0px;">Data da compra: <?php echo date('d/m/Y', strtotime($compra['data_compra'])). ' às: '. $compra['hora_compra']; ?></p></b>
                                         <?php if($compra['status_pagamento'] == '1' || $compra['status_pagamento'] == 'in_process' || $compra['status_pagamento'] == 'pending_waiting_payment'): ?>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">Aguardando pagamento</p></b>
                                         <?php elseif($compra['status_pagamento'] == '2' || $compra['status_pagamento'] == 'in_process'): ?>

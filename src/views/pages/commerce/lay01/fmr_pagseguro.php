@@ -36,4 +36,4 @@
 <br>
 <hr>
 
-<button type="submit" class="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
+<button type="submit" id="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>

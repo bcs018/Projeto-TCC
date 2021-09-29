@@ -4,11 +4,13 @@ namespace src\controllers\commerce;
 use \core\Controller;
 use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
+use \src\models\commerce\Carrinho;
 
 class CadastroController extends Controller {
 
     public function index() {
         $info = new Info;
+        $carr = new Carrinho;
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
@@ -22,7 +24,13 @@ class CadastroController extends Controller {
             exit;
         }
 
-        $this->render('commerce/'.$dados['layout'].'/cadastro',['dados'=>$dados, 'control_rec'=>$dados['tp_recebimento']]);
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
+        $this->render('commerce/'.$dados['layout'].'/cadastro',['dados'=>$dados, 'control_rec'=>$dados['tp_recebimento'], 'carrinho'=>$carrinho]);
     }
 
     public function cadUsuarioAction(){

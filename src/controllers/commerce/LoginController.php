@@ -11,7 +11,8 @@ class LoginController extends Controller {
         $info = new Info;
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/'.$dados['layout'].'/login_cliente', ['control'=>$control]);
+        //$this->render('commerce/'.$dados['layout'].'/login_cliente', ['control'=>$control]);
+        $this->render('commerce/painel_cli/login_cliente', ['control'=>$control]);
     }
 
     // Login do Empreendedor
@@ -19,7 +20,8 @@ class LoginController extends Controller {
         $info = new Info;
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        $this->render('commerce/'.$dados['layout'].'/login_adm');
+        //$this->render('commerce/'.$dados['layout'].'/login_adm');
+        $this->render('commerce/painel_adm/login_adm');
     }
 
     // Login do Empreendedor

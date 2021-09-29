@@ -6,18 +6,18 @@ define('BASE_ASS_C', 'http://bw.com.br/assets/commerce/');
 define('BASE_URL', 'http://bw.com.br');
 
 //Configurações do paypal
-$GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
+// $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
 
-\PagSeguro\Library::initialize();
-\PagSeguro\Library::cmsVersion()->setName("BW Commerce")->setRelease("1.0.0");
-\PagSeguro\Library::moduleVersion()->setName("BW Commerce")->setRelease("1.0.0");
+// \PagSeguro\Library::initialize();
+// \PagSeguro\Library::cmsVersion()->setName("BW Commerce")->setRelease("1.0.0");
+// \PagSeguro\Library::moduleVersion()->setName("BW Commerce")->setRelease("1.0.0");
 
 //Ambiente de produção = sandbox(pgm de teste)
-\PagSeguro\Configuration\Configure::setEnvironment('sandbox');
-//O token voce pega na url sandbox.pagseguro.uol.com.br, faz login, em Perfis de integração clica em Vendedor, la vai ter o token
-\PagSeguro\Configuration\Configure::setAccountCredentials('bwcommerce@outlook.com', '23E3EEF82A4046C5826279C0A3D2A541');
-\PagSeguro\Configuration\Configure::setCharset('UTF-8');
-\PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
+// \PagSeguro\Configuration\Configure::setEnvironment('sandbox');
+// //O token voce pega na url sandbox.pagseguro.uol.com.br, faz login, em Perfis de integração clica em Vendedor, la vai ter o token
+// \PagSeguro\Configuration\Configure::setAccountCredentials('bwcommerce@outlook.com', '23E3EEF82A4046C5826279C0A3D2A541');
+// \PagSeguro\Configuration\Configure::setCharset('UTF-8');
+// \PagSeguro\Configuration\Configure::setLog(true, 'pagseguro.log');
 
 //Configurações do Gerencianet - Boleto
 $GLOBALS['gerencianet_clientid']     = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59';

@@ -2,6 +2,7 @@
 namespace src\controllers\commerce;
 
 use \core\Controller;
+use src\models\commerce\Carrinho;
 use \src\models\commerce\Info;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Marca;
@@ -13,11 +14,17 @@ class HomeController extends Controller {
         $info = new Info;
         $prod = new Produto;
         $marc = new Marca;
-        $cate = new Categoria;
+        $carr = new Carrinho;
 
         $dados    = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('DESC');
         $marcas   = $marc->listaMarcas();
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
         $produtosBanner = array();
         $imgMarcas = array();
 
@@ -50,7 +57,8 @@ class HomeController extends Controller {
                                                                 'dados'      => $dados, 
                                                                 'produtos'   => $produtos, 
                                                                 'prodBanner' => $produtosBanner,
-                                                                'marcasImg'  => $imgMarcas
+                                                                'marcasImg'  => $imgMarcas,
+                                                                'carrinho'   => $carrinho
                                                             ]);
     }
 
@@ -58,9 +66,16 @@ class HomeController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $info = new Info;
+        $carr = new Carrinho;
 
         $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produto = $prod->listaProduto(addslashes($id['id']), 1);
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
         
         if(!$produto){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
@@ -81,7 +96,8 @@ class HomeController extends Controller {
                                                                 'produto'     => $produto,
                                                                 'produtosRel' => $produtoRel,
                                                                 'categoria'   => $categoriaProd,
-                                                                'dados'       => $dados
+                                                                'dados'       => $dados,
+                                                                'carrinho'    => $carrinho
                                                             ]);
 
     }
@@ -90,14 +106,22 @@ class HomeController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $info = new Info;
+        $carr = new Carrinho;
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
 
         $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $prod->listaProdutosImg('ASC');
 
         $this->render('commerce/'.$dados['layout'].'/produtos', [
-                                                                'produtos'    => $produtos,
-                                                                //'categoria'   => $categoriaProd,
-                                                                'dados'       => $dados
+                                                                'produtos' => $produtos,
+                                                                'carrinho' => $carrinho,
+                                                                'dados'    => $dados
                                                             ]);
 
     }

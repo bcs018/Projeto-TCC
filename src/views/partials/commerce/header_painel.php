@@ -40,6 +40,7 @@
   <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery Mask -->
   <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
 
   <!-- Select2 -->
@@ -219,7 +220,7 @@
                 </a>
               </li> -->
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/admin/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
                   <p>Relatório de Vendas</p>
                 </a>
