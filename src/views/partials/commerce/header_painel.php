@@ -179,12 +179,12 @@ $notifi = $not->listaNotificacoes();
                   <p>Layout</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
-                <i class="fas fa-cog nav-icon"></i>
-                  <p>Criar categorias</p>
+              <li class="nav-item">
+                <a href="/admin/painel/vendas-pendentes" class="nav-link">
+                <i class="fas fa-dollar-sign nav-icon"></i>
+                  <p>Vendas pendendes</p>
                 </a>
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a href="/admin/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
