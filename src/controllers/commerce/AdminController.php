@@ -118,6 +118,17 @@ class AdminController extends Controller {
         $plan_fim  = date("Y-m").'-'.$ultimo_dia;
         /* */
 
+        if(isset($_POST['data_fim']) && isset($_POST['data_ini'])){
+            if(strtotime($_POST['data_fim']) < strtotime($_POST['data_ini'])){
+                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                            Data final anterior a Data inicial!
+                                        </div>';
+                $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                exit;
+            }
+        }
+
         // Só vai entrar nesse if se mandar os POSTs com o intervalo entre datas
         if(isset($_POST['data_ini']) && !empty($_POST['data_ini']) && isset($_POST['data_fim']) && !empty($_POST['data_fim'])){
             if($dados['plano_id'] == '1'){

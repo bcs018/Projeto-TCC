@@ -24,6 +24,7 @@ $router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDa
 $router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminController@cadDadosRecebimentoAction');
 $router->get('/admin/painel/relatorio', 'AdminController@relVendas');
 $router->post('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
+$router->get('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
 
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');
