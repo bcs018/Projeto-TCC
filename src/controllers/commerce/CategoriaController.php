@@ -3,6 +3,7 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\Categoria;
+use \src\models\commerce\Notificacao;
 use \src\controllers\commerce\AdminController;
 
 class CategoriaController extends Controller {
@@ -14,18 +15,24 @@ class CategoriaController extends Controller {
     public function conCategoria(){
         $dadosEco = AdminController::listaDadosEcommerce();
         $cate = new Categoria;
+        $noti  = new Notificacao;
 
-        $this->render('commerce/painel_adm/con_categoria', ['control_rec'=>$dadosEco['tp_recebimento'], 'dados'=>$cate->listaCategoriasOrganizadas()]);
+        $qtdNotifi = $noti->qtdNotificacao();
+
+        $this->render('commerce/painel_adm/con_categoria', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento'], 'dados'=>$cate->listaCategoriasOrganizadas()]);
 
     }
 
     // View para cadastro de categorias
     public function cadCategoria(){
         $dadosEco = AdminController::listaDadosEcommerce();
+        $noti  = new Notificacao;
+
+        $qtdNotifi = $noti->qtdNotificacao();
 
         $cate = new Categoria;
 
-        $this->render('commerce/painel_adm/cad_categoria', ['control_rec'=>$dadosEco['tp_recebimento'],'catOrga'=>$cate->listaCategoriasOrganizadas(), 'cat'=>$cate->listaCategorias()]);
+        $this->render('commerce/painel_adm/cad_categoria', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento'],'catOrga'=>$cate->listaCategoriasOrganizadas(), 'cat'=>$cate->listaCategorias()]);
 
     }
 
@@ -57,6 +64,9 @@ class CategoriaController extends Controller {
         $dados['categoria']     = $edit->listaCategoria(addslashes($id['id']));
         $dados['categoriasOrg'] = $edit->listaCategoriasOrganizadas();
         $dados['categorias']    = $edit->listaCategorias();
+        $noti  = new Notificacao;
+
+        $qtdNotifi = $noti->qtdNotificacao();
 
         if (!$dados['categoria']){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
@@ -66,7 +76,7 @@ class CategoriaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_categoria', $dados,['control_rec'=>$dadosEco['tp_recebimento']]);
+        $this->render('commerce/painel_adm/edi_categoria', $dados,['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento']]);
      }
 
      public function excCategoriaAction($id){

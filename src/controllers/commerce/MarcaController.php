@@ -3,6 +3,7 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\Marca;
+use \src\models\commerce\Notificacao;
 use \src\controllers\commerce\AdminController;
 
 class MarcaController extends Controller {
@@ -14,17 +15,24 @@ class MarcaController extends Controller {
      public function conMarca(){
         $dadosEco = AdminController::listaDadosEcommerce();
 
-        $mar = new Marca;
+        $mar = new Marca;        
+        $noti  = new Notificacao;
+
+        $qtdNotifi = $noti->qtdNotificacao();
+
         $dados = $mar->listaMarcas($_SESSION['sub_dom']);
 
-        $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
+        $this->render('commerce/painel_adm/con_marca', ['qtdNoti'=>$qtdNotifi,'dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
     }
 
     // View para cadastrar marca
     public function cadMarca(){
         $dadosEco = AdminController::listaDadosEcommerce();
+        $noti  = new Notificacao;
+
+        $qtdNotifi = $noti->qtdNotificacao();
     
-        $this->render('commerce/painel_adm/cad_marca',['control_rec'=>$dadosEco['tp_recebimento']]);
+        $this->render('commerce/painel_adm/cad_marca',['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento']]);
     }
 
     // View para editar marca
@@ -32,6 +40,9 @@ class MarcaController extends Controller {
         $dadosEco = AdminController::listaDadosEcommerce();
         
         $edit = new Marca;
+        $noti  = new Notificacao;
+
+        $qtdNotifi = $noti->qtdNotificacao();
         $dados = $edit->listaMarca(addslashes($id['id']));
 
         if (!$dados){
@@ -42,7 +53,7 @@ class MarcaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_marca', ['dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
+        $this->render('commerce/painel_adm/edi_marca', ['qtdNoti'=>$qtdNotifi,'dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);
 
     }
 

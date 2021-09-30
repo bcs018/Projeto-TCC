@@ -7,6 +7,7 @@ use \src\models\commerce\Compra;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
 use Exception;
+use src\models\commerce\Notificacao;
 use src\models\commerce\Produto;
 
 class PgCheckTransPrincipalController extends Controller {
@@ -26,6 +27,7 @@ class PgCheckTransPrincipalController extends Controller {
         $carr = new Carrinho;
         $cada = new Cadastro;
         $prod = new Produto;
+        $not  = new Notificacao;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $id_compra = $comp->addCompra('cartao', $parc);
@@ -161,7 +163,8 @@ class PgCheckTransPrincipalController extends Controller {
             // }
 
             $comp->atuCompra($id_compra, $result->getCode(),'0', $result->getStatus());
-            
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda-pendente/'.$id_compra);
+
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
 
@@ -195,6 +198,7 @@ class PgCheckTransPrincipalController extends Controller {
         $carr = new Carrinho;
         $cada = new Cadastro;
         $prod = new Produto;
+        $not  = new Notificacao;
 
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $id_compra = $comp->addCompra('boleto');
@@ -303,6 +307,7 @@ class PgCheckTransPrincipalController extends Controller {
             // print_r($result->getPaymentLink());
 
             $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink(), $result->getStatus());
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de boleto!', '/admin/painel/venda-pendente/'.$id_compra);
 
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
@@ -322,6 +327,7 @@ class PgCheckTransPrincipalController extends Controller {
             echo json_encode(['id_compra'=>$id_compra]);
         } catch (Exception $e) {
             echo "</br> <strong>";
+            $comp->delCompra($id_compra);
             die($e->getMessage());
         }
     }

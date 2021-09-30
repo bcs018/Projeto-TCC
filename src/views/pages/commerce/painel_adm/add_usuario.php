@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar novo usuário']); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Adicionar novo usuário', 'qtdNoti'=>$qtdNoti]); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">

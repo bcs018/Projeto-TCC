@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas']); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas', 'qtdNoti'=>$qtdNoti]); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1184.92px;">

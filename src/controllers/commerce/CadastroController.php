@@ -5,6 +5,7 @@ use \core\Controller;
 use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use \src\models\commerce\Carrinho;
+use src\models\commerce\Notificacao;
 
 class CadastroController extends Controller {
 
@@ -48,7 +49,9 @@ class CadastroController extends Controller {
         $cpf = intval($cpf);
 
         $cad = new Cadastro;
+        $not = new Notificacao;
 
+        $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Novo usuário cadastrado em sua loja!', '');
         $cad->cadUsuarioAction($nome, $sobrenome, $cpf, $email, $senha, $senhaRep, $cel, $login);
         
         header("Location: /cadastrar");

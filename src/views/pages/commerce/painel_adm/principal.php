@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Principal', 'qtdNoti'=>$qtdNoti]); 
 ?>
 
 <!-- Content Wrapper. Contains page content -->

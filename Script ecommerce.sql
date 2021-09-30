@@ -102,7 +102,7 @@ create table ecom_usua(
 )default charset utf8;
 
 create table notificacao(
-	notificacao_id int not null,
+	notificacao_id int not null auto_increment,
     ecommerce_id int not null,
     texto varchar(100) not null,
     link varchar(100) default '',
