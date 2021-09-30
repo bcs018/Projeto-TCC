@@ -101,6 +101,17 @@ create table ecom_usua(
     foreign key(ecommerce_id) references ecommerce_usu(ecommerce_id)
 )default charset utf8;
 
+create table notificacao(
+	notificacao_id int not null,
+    ecommerce_id int not null,
+    texto varchar(100) not null,
+    link varchar(100) default '',
+    lido enum('1','0'),
+    
+    primary key (notificacao_id),
+    foreign key (ecommerce_id) references ecommerce_usu(ecommerce_id)
+)default charset utf8;
+
 create table layout_imagem(
     li_id int not null auto_increment,
     ecommerce_usu_id int not null,
