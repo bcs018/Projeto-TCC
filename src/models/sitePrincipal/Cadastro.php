@@ -2,6 +2,7 @@
 
 namespace src\models\sitePrincipal;
 use \core\Model;
+use src\models\commerce\Notificacao;
 
 class Cadastro extends Model{
 
@@ -154,6 +155,8 @@ class Cadastro extends Model{
             return $message;
         }
 
+        $not = new Notificacao;
+
         $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
@@ -197,6 +200,8 @@ class Cadastro extends Model{
         $sql->bindValue(1, $id_person['ult']);
         $sql->bindValue(2, $id_commerce['ult']);
         $sql->execute();
+
+        $not->gravaNotificacao($id_commerce['ult'], 'Obrigado por se juntar conosco!', '');
 
         unset($_SESSION['login_cliente_ecommerce']);
         unset($_SESSION['logo']);
