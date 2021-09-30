@@ -46,6 +46,7 @@
 <script src="<?php echo BASE_ASS_C; ?>js/cadProduto.js"></script>
 <script src="<?php echo BASE_ASS_C; ?>js/getCep.js"></script>
 <script src="<?php echo BASE_ASS_C; ?>js/chart.min.js"></script>
+<script src="<?php echo BASE_ASS_C; ?>js/notificacao.js"></script>
 
 
 </body>

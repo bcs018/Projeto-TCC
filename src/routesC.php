@@ -27,6 +27,8 @@ $router->post('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAct
 $router->get('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
 $router->get('/admin/painel/vendas-pendentes', 'AdminController@vendasPendendes');
 $router->get('/admin/painel/venda-pendente/{id}', 'AdminController@vendaPendende');
+$router->post('/admin/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
+$router->post('/admin/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');
 
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');
