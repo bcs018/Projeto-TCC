@@ -1,5 +1,5 @@
 <form action="/checkout_mpBol" method="post" id="paymentForm">
-    <h3>Forma de Pagamento</h3>
+    <h3>Forma de Pagamento</h3><br><br>
     <div>
         <select class="form-control" class="form-control" id="paymentMethod" name="paymentMethod">
             <option>Selecione uma forma de pagamento</option>
@@ -37,7 +37,7 @@
             <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
             <input type="hidden" name="productDescription" id="productDescription" value="Nome do Produto" />
             <br>
-            <button type="submit">Pagar</button><br><br>
+            <button class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" type="submit">Gerar boleto</button><br><br>
             <br>
         </div>
     </div>
