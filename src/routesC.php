@@ -25,8 +25,10 @@ $router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminControll
 $router->get('/admin/painel/relatorio', 'AdminController@relVendas');
 $router->post('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
 $router->get('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
-$router->get('/admin/painel/vendas-pendentes', 'AdminController@vendasPendendes');
-$router->get('/admin/painel/venda-pendente/{id}', 'AdminController@vendaPendende');
+$router->get('/admin/painel/vendas-pendentes', 'VendaController@vendasPendendes');
+$router->get('/admin/painel/venda/{id}', 'VendaController@vendaPendente');
+$router->post('/admin/painel/marcar-enviado', 'VendaController@marcarEnviado');
+$router->post('/admin/painel/marcar-nao-enviado', 'VendaController@marcarNEnviado');
 $router->post('/admin/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
 $router->post('/admin/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');
 

@@ -61,14 +61,14 @@ class CategoriaController extends Controller {
         $dadosEco = AdminController::listaDadosEcommerce();
         
         $edit = new Categoria;
-        $dados['categoria']     = $edit->listaCategoria(addslashes($id['id']));
-        $dados['categoriasOrg'] = $edit->listaCategoriasOrganizadas();
-        $dados['categorias']    = $edit->listaCategorias();
+        $categoria     = $edit->listaCategoria(addslashes($id['id']));
+        $categoriasOrg = $edit->listaCategoriasOrganizadas();
+        $categorias    = $edit->listaCategorias();
         $noti  = new Notificacao;
 
         $qtdNotifi = $noti->qtdNotificacao();
 
-        if (!$dados['categoria']){
+        if (!$categoria){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Categoria não encontrada!
                                     </div>';
@@ -76,7 +76,7 @@ class CategoriaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_categoria', $dados,['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento']]);
+        $this->render('commerce/painel_adm/edi_categoria', ['categorias'=>$categorias,'categoriasOrg'=>$categoriasOrg,'categoria'=>$categoria,'qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento']]);
      }
 
      public function excCategoriaAction($id){

@@ -86,23 +86,6 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/layout', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
-    public function vendasPendendes(){
-        $dados = AdminController::listaDadosEcommerce();
-
-        $pro = new Produto;
-        $mar = new Marca;
-        $inf = new Info;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
-
-        $dados    = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
-        $produtos = $pro->listaProdutos();
-        $marcas   = $mar->listaMarcas();
-
-        $this->render('commerce/painel_adm/vendas_pendentes', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
-    }
-
     public function cadDadosRecebimento(){
         $dados = AdminController::listaDadosEcommerce();
         $noti  = new Notificacao;

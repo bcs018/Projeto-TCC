@@ -40,11 +40,11 @@ class ProdutoController extends Controller {
 
         $qtdNotifi = $noti->qtdNotificacao();
 
-        $dados['marcas']     = $mar->listaMarcas();
-        $dados['categorias'] = $cat->listaCategorias();
-        $dados['control_rec'] = $dadosEco['tp_recebimento'];
-
-        $this->render('commerce/painel_adm/cad_produto', $dados,['qtdNoti'=>$qtdNotifi]);
+        $marcas    = $mar->listaMarcas();
+        $categorias = $cat->listaCategorias();
+        $control_rec = $dadosEco['tp_recebimento'];
+ 
+        $this->render('commerce/painel_adm/cad_produto',['control_rec'=>$control_rec, 'categorias'=>$categorias, 'marcas'=>$marcas, 'qtdNoti'=>$qtdNotifi]);
 
     }
 
@@ -58,16 +58,16 @@ class ProdutoController extends Controller {
 
         $qtdNotifi = $noti->qtdNotificacao();
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']), 1);
-        $dados['categorias']  = $cate->listaCategorias();
-        $dados['marcas']      = $marc->listaMarcas(); 
-        $dados['control_rec'] = $dadosEco['tp_recebimento']; 
+        $produtos    = $prod->listaProduto(addslashes($id['id']), 1);
+        $categorias  = $cate->listaCategorias();
+        $marcas      = $marc->listaMarcas(); 
+        $control_rec = $dadosEco['tp_recebimento']; 
 
         //echo '<pre>';print_r($dados['produtos']);
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
-        if(!$dados){
+        if(!$produtos){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Produto inexistente!
                                     </div>';
@@ -77,7 +77,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_produto', $dados,['qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/edi_produto', ['control_rec'=>$control_rec, 'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos, 'qtdNoti'=>$qtdNotifi]);
     }
 
     // Edição de produtos da tela de detalhes
@@ -126,14 +126,14 @@ class ProdutoController extends Controller {
 
         $qtdNotifi = $noti->qtdNotificacao();
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']),1);
-        $dados['categorias']  = $cate->listaCategorias();
-        $dados['marcas']      = $marc->listaMarcas();
-        $dados['control_rec'] = $dadosEco['tp_recebimento'];
+        $produtos    = $prod->listaProduto(addslashes($id['id']),1);
+        $categorias  = $cate->listaCategorias();
+        $marcas      = $marc->listaMarcas();
+        $control_rec = $dadosEco['tp_recebimento'];
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
-        if(!$dados){
+        if(!$produtos){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Produto inexistente!
                                     </div>';
@@ -143,7 +143,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/con_detalhe_prod', $dados,['qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/con_detalhe_prod',['control_rec'=>$control_rec,'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos, 'qtdNoti'=>$qtdNotifi]);
     }
 
     // Cadastro de produtos
@@ -197,7 +197,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/cad_produto_2', $id,['qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/cad_produto_2', ['id'=>$id['id'], 'qtdNoti'=>$qtdNotifi]);
     }
 
     public function cadProdutoActionSecond(){

@@ -57,7 +57,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas', 'q
                       <tr>
                         <td><?php echo $dado['marca_id']; ?></td>
                         <td><?php echo $dado['nome_mar']; ?></td>
-                        <td> <a href="/admin/painel/excluir-marca/action/<?php echo $dado['marca_id']; ?>">Excluir</a> | <a href="/admin/painel/editar-marca/<?php echo $dado['marca_id']; ?>">Editar</a> </td>
+                        <td> <a id="e-<?php echo $dado['marca_id']; ?>" href="#">Excluir</a> | <a href="/admin/painel/editar-marca/<?php echo $dado['marca_id']; ?>">Editar</a> </td>
                       </tr>
                       <?php endforeach; ?>
                     <?php endif; ?>
@@ -105,4 +105,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Marcas', 'q
             $('#aviso').modal('show')
        }
     });
+</script>
+
+<script>
+  
+  $('a').click(function(){
+    id = $(this).attr('id').split("-")
+    $.confirm({
+        title: 'Confirma exclusão da marca?',
+        content: '',
+        type: 'orange',
+        buttons: {
+            deleteUser: {
+                text: 'Sim',
+                action: function () {
+                  window.location.href = '/admin/painel/excluir-marca/action/'+id[1];
+                }
+            },
+            não: {
+                btnClass: 'btn-red any-other-class', // multiple classes.
+            },
+        }
+      });
+  })
+
 </script>

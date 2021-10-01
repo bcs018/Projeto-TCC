@@ -77,7 +77,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
                             <div class="col-5">
                                 <p style="margin-bottom: 0px;"><strong>Compra n°:  <?php echo $compra['compra_id']; ?> </strong></p>
                                 <p style="margin-bottom: 0px;"><strong>Valor compra: R$<?php echo number_format($compra['total_compra'],2,',','.'); ?></strong></p>
-                                <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p>
+                                <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p><br>
+                                <br><a href="/admin/painel/venda/<?php echo $compra['compra_id']; ?>">DETALHES</a>
+
                             </div>
                             <div class="col"> 
                                 <b><p style="margin-bottom: 0px;">Data da compra: <?php echo date('d/m/Y', strtotime($compra['data_compra'])). ' às: '. $compra['hora_compra']; ?></p></b>
