@@ -330,6 +330,12 @@ if(!$valores)$valores['total'] = '0,00';
 
 					<hr> -->
 					<li class="p-b-13">
+						<a href="/cliente/painel" class="stext-102 cl2 hov-cl1 trans-04">
+							Minha conta <?php echo(isset($_SESSION['log_admin_c']) && !empty($_SESSION['log_admin_c']))?'- '.$_SESSION['log_admin_c']['nome']:''; ?>
+						</a>
+					</li>
+
+					<li class="p-b-13">
 						<a href="/" class="stext-102 cl2 hov-cl1 trans-04">
 							Home
 						</a>
@@ -340,12 +346,6 @@ if(!$valores)$valores['total'] = '0,00';
 							My Wishlist
 						</a>
 					</li> -->
-
-					<li class="p-b-13">
-						<a href="/cliente/painel" class="stext-102 cl2 hov-cl1 trans-04">
-							Minha conta
-						</a>
-					</li>
 
 					<li class="p-b-13">
 						<a href="/carrinho" class="stext-102 cl2 hov-cl1 trans-04">

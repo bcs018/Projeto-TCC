@@ -1,5 +1,6 @@
 <?php  
 use \src\models\commerce\Carrinho;
+use \src\models\commerce\Info;
 $carr = new Carrinho;
 $valores = $carr->somaValor();
 if(!$valores)$valores['total'] = '0,00';
@@ -177,7 +178,7 @@ if(!$valores)$valores['total'] = '0,00';
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="/cliente/painel"><i class="fa fa-user"></i>Minha conta</a></li>
+                            <li><a href="/cliente/painel"><i class="fa fa-user"></i>Minha conta <?php echo(isset($_SESSION['log_admin_c']) && !empty($_SESSION['log_admin_c']))?'- '.$_SESSION['log_admin_c']['nome']:''; ?></a></li>
                             <li><a href="/cadastrar"><i class="fa fa-edit"></i>Cadastre-se</a></li>
                             <!-- <li><a href="#"><i class="fa fa-heart"></i> Favoritos</a></li> -->
                             <li><a href="/login/c"><i class="fa fa-user"></i> Login</a></li>
