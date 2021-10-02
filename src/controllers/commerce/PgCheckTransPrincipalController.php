@@ -163,7 +163,7 @@ class PgCheckTransPrincipalController extends Controller {
             // }
 
             $comp->atuCompra($id_compra, $result->getCode(),'0', $result->getStatus());
-            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda-pendente/'.$id_compra);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
 
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
@@ -307,7 +307,7 @@ class PgCheckTransPrincipalController extends Controller {
             // print_r($result->getPaymentLink());
 
             $comp->atuCompra($id_compra, $result->getCode(), $result->getPaymentLink(), $result->getStatus());
-            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de boleto!', '/admin/painel/venda-pendente/'.$id_compra);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de boleto!', '/admin/painel/venda/'.$id_compra);
 
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);

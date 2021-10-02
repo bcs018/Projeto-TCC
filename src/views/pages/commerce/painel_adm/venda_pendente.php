@@ -93,7 +93,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                 <div class="row">
                     <div class="col-5">
                         <p style="margin-bottom: 0px;"><strong>Nome: </strong><?php echo $v['nome_pro']; ?> </p>
-                        <p style="margin-bottom: 0px;"><strong>Descricao do produto: </strong><?php echo $venda[0]['descricao']; ?> </p>
+                        <p style="margin-bottom: 0px;"><strong>Descricao do produto: </strong><?php echo $v['descricao']; ?> </p>
                     </div>
                     <div class="col">
                         <p style="margin-bottom: 0px;"><strong>Preço: </strong>R$<?php echo number_format($v['preco'],2,',','.'); ?></p>

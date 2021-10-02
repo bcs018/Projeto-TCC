@@ -238,7 +238,7 @@ class MpCheckTransPrincipalController extends Controller {
         }elseif($payment->status == 'in_process'){
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
-            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda-pendente/'.$id_compra);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
 
             foreach($produtos as $p){
                 $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
@@ -267,7 +267,7 @@ class MpCheckTransPrincipalController extends Controller {
         }elseif($payment->status == 'approved'){
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
-            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda-pendente/'.$id_compra);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
 
             foreach($produtos as $p){
                 $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
