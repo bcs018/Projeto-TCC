@@ -107,6 +107,7 @@ create table notificacao(
     texto varchar(100) not null,
     link varchar(100) default '',
     lido enum('1','0'),
+    usu_ecommerce enum('1','0') default '0',
     
     primary key (notificacao_id),
     foreign key (ecommerce_id) references ecommerce_usu(ecommerce_id)

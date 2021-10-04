@@ -4,6 +4,11 @@ use src\controllers\commerce\NotificacaoController;
 
 $not = new NotificacaoController;
 $notifi = $not->listaNotificacoes();
+if($notifi == 0){
+  $qtdNoti = 0;
+}else{
+  $qtdNoti = count($notifi);
+}
 
 ?>
 
@@ -79,11 +84,11 @@ $notifi = $not->listaNotificacoes();
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <?php if($qtdNoti > 0 && $notifi != 0): ?>
-            <span class="badge badge-warning navbar-badge"><?php echo $qtdNoti['qtd']; ?></span>
+            <span class="badge badge-warning navbar-badge"><?php echo $qtdNoti; ?></span>
           <?php endif; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header"><?php echo ($qtdNoti['qtd']==1)?$qtdNoti['qtd']." notificação":$qtdNoti['qtd']." notificações" ?></span>
+            <span class="dropdown-header"><?php echo ($qtdNoti==1)?$qtdNoti." notificação":$qtdNoti." notificações" ?></span>
             <div class="dropdown-divider"></div>
             <?php if($notifi != 0): ?>
               <?php foreach($notifi as $n): ?>

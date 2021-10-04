@@ -47,8 +47,12 @@ class VendaController extends Controller {
         $id = addslashes($_POST['id']);
 
         $ven = new Venda;
+        $com = new Compra;
+        $noti  = new Notificacao;
 
         $ven->marcarEnviado($id, '1');
+        $id_usu = $com->listaCompraNotify($id);
+        $noti->gravaNotificacao($_SESSION['id_sub_dom'], 'Sua compra foi despachada pelo vendedor!', '/cliente/painel/meus-pedidos/'.$id, $id_usu['usuario_id']);
 
         echo json_encode(['ret'=>true]);
     }

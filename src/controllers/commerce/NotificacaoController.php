@@ -11,6 +11,12 @@ class NotificacaoController extends Controller {
         return $not->listaNotificacoes();
     }
 
+    public function listanotificacoesCli(){
+        $not = new Notificacao;
+
+        return $not->listaNotificacoesCli();
+    }
+
     public function lerNotificacao(){
         $id = $_POST['id'];
 
@@ -26,6 +32,15 @@ class NotificacaoController extends Controller {
         $not = new Notificacao;
 
         $not->lerTdNotificacao();
+
+        echo json_encode(['ret'=>true]);
+        exit;
+    }
+
+    public function lerTdNotificacaoCli(){
+        $not = new Notificacao;
+
+        $not->lerTdNotificacaoCli();
 
         echo json_encode(['ret'=>true]);
         exit;

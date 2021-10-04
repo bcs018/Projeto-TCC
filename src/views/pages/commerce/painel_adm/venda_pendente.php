@@ -1,5 +1,5 @@
 <?php
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '.$venda[0]['compra_id'], 'qtdNoti'=>$qtdNoti]); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '.$venda[0]['compra_id']]); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">

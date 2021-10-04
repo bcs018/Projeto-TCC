@@ -18,15 +18,12 @@ class ProdutoController extends Controller {
         $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $dados = $prod->listaProdutos();
 
        // echo '<pre>';print_r($dados);exit;
 
-        $this->render('commerce/painel_adm/con_produto', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dadosEco['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/con_produto', ['control_rec'=>$dadosEco['tp_recebimento'],'dados'=>$dados]);
 
     }
 
@@ -36,16 +33,12 @@ class ProdutoController extends Controller {
 
         $mar = new Marca;
         $cat = new Categoria;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $marcas    = $mar->listaMarcas();
         $categorias = $cat->listaCategorias();
         $control_rec = $dadosEco['tp_recebimento'];
  
-        $this->render('commerce/painel_adm/cad_produto',['control_rec'=>$control_rec, 'categorias'=>$categorias, 'marcas'=>$marcas, 'qtdNoti'=>$qtdNotifi]);
-
+        $this->render('commerce/painel_adm/cad_produto',['control_rec'=>$control_rec, 'categorias'=>$categorias, 'marcas'=>$marcas]);
     }
 
     public function ediProduto($id){
@@ -54,9 +47,6 @@ class ProdutoController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $marc = new Marca;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $produtos    = $prod->listaProduto(addslashes($id['id']), 1);
         $categorias  = $cate->listaCategorias();
@@ -77,7 +67,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_produto', ['control_rec'=>$control_rec, 'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos, 'qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/edi_produto', ['control_rec'=>$control_rec, 'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos]);
     }
 
     // Edição de produtos da tela de detalhes
@@ -122,9 +112,6 @@ class ProdutoController extends Controller {
         $prod = new Produto;
         $cate = new Categoria;
         $marc = new Marca;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $produtos    = $prod->listaProduto(addslashes($id['id']),1);
         $categorias  = $cate->listaCategorias();
@@ -143,7 +130,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/con_detalhe_prod',['control_rec'=>$control_rec,'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos, 'qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/con_detalhe_prod',['control_rec'=>$control_rec,'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos]);
     }
 
     // Cadastro de produtos
@@ -183,9 +170,6 @@ class ProdutoController extends Controller {
         $dadosEco = AdminController::listaDadosEcommerce();
 
         $prod = new Produto;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         if(!$prod->listaProduto($id['id'])){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
@@ -197,7 +181,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/cad_produto_2', ['id'=>$id['id'], 'qtdNoti'=>$qtdNotifi]);
+        $this->render('commerce/painel_adm/cad_produto_2', ['id'=>$id['id']]);
     }
 
     public function cadProdutoActionSecond(){

@@ -31,6 +31,7 @@ $router->post('/admin/painel/marcar-enviado', 'VendaController@marcarEnviado');
 $router->post('/admin/painel/marcar-nao-enviado', 'VendaController@marcarNEnviado');
 $router->post('/admin/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
 $router->post('/admin/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');
+$router->post('/admin/painel/ler-todas-notificacao-cli', 'NotificacaoController@lerTdNotificacaoCli');
 
 // Painel Usuario Cliente
 $router->get('/login', 'LoginController@loginC');

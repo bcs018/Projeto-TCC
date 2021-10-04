@@ -31,3 +31,14 @@ $(".dropdown-footer").on("click", function(){
         }
     })
 })
+
+$(".readall").on("click", function(){
+    $.ajax({
+        url: '/admin/painel/ler-todas-notificacao-cli',
+        type: 'POST',
+        dataType: 'JSON',
+        success:function(r){
+            window.location.reload();
+        }
+    })
+})

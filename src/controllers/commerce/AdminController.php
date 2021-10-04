@@ -36,37 +36,29 @@ class AdminController extends Controller {
         $dados = $this->listaDadosEcommerce();
 
         $adm = new Admin;
-        $noti  = new Notificacao;
 
-        $qtdNotifi = $noti->qtdNotificacao();
         $qtdUsu = $adm->listaQtdUsu();
         $qtdUsuHoje = $adm->listaQtdUsuHoje();
 
-        $this->render('commerce/painel_adm/principal', ['qtdNoti'=>$qtdNotifi,'qtdUsuHoje'=>$qtdUsuHoje, 'qtdUsu'=>$qtdUsu['qtd'],'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/principal', ['qtdUsuHoje'=>$qtdUsuHoje, 'qtdUsu'=>$qtdUsu['qtd'],'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function ediDadosPessoais(){
         $dados = $this->listaDadosEcommerce();
         $est = new Admin;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
-
+        
         $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/edi_dados_pessoais', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados, 'estados'=>$estados]);
+        $this->render('commerce/painel_adm/edi_dados_pessoais', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados, 'estados'=>$estados]);
     }
 
     public function addNovoUsu(){
         $dados = $this->listaDadosEcommerce();
         $est = new Admin;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $estados = $est->lista_estados();
 
-        $this->render('commerce/painel_adm/add_usuario', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'], 'dados'=>$dados, 'estados'=>$estados]);
+        $this->render('commerce/painel_adm/add_usuario', ['control_rec'=>$dados['tp_recebimento'], 'dados'=>$dados, 'estados'=>$estados]);
     }
 
     public function layout(){
@@ -75,33 +67,24 @@ class AdminController extends Controller {
         $pro = new Produto;
         $mar = new Marca;
         $inf = new Info;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $dados    = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $pro->listaProdutos();
         $marcas   = $mar->listaMarcas();
 
-        $this->render('commerce/painel_adm/layout', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
+        $this->render('commerce/painel_adm/layout', ['control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
     public function cadDadosRecebimento(){
         $dados = AdminController::listaDadosEcommerce();
-        $noti  = new Notificacao;
 
-        $qtdNotifi = $noti->qtdNotificacao();
-
-        $this->render('commerce/painel_adm/dados_recebimento', ['qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/dados_recebimento', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     // Relatórios de vendas
     public function relVendas(){
         $dados = AdminController::listaDadosEcommerce();
         $adm = new Admin;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
 
@@ -123,15 +106,12 @@ class AdminController extends Controller {
             $rel = $adm->relatorioVendas($plan3_ini, $plan_fim, $dados['plano_id']);
         }
 
-        $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function relVendasAction(){
         $dados = AdminController::listaDadosEcommerce();
         $adm = new Admin;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
 
         $ultimo_dia = date("t", mktime(0,0,0, date("m"),'01', date("Y")));
 
@@ -148,7 +128,7 @@ class AdminController extends Controller {
                                             Data final anterior a Data inicial!
                                         </div>';
                 $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
             }
         }
@@ -163,12 +143,12 @@ class AdminController extends Controller {
                                             </div>';
         
                     $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
-                    $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                     exit;
                 }
 
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
 
             }else if($dados['plano_id'] == '2'){
@@ -182,18 +162,18 @@ class AdminController extends Controller {
                                             </div>';
 
                     $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
-                    $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                     exit;
 
                 }
                 
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
 
             }else if($dados['plano_id'] == 3){
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
             }
         }
@@ -202,7 +182,7 @@ class AdminController extends Controller {
                                     Preencha o intervalo de datas!
                                 </div>';
         $rel = $adm->relatorioVendas(date("Y-m-d"), date("Y-m-d"), $dados['plano_id']);
-        $this->render('commerce/painel_adm/relatorios', ['qtdNoti'=>$qtdNotifi,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
         exit;
     }
 

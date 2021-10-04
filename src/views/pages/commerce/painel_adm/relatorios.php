@@ -13,7 +13,7 @@ if($rel['total'] != 0){
   }
 }
 
-$render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório', 'qtdNoti'=>$qtdNoti]); 
+$render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório']); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
