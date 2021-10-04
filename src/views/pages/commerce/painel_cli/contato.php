@@ -27,10 +27,10 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Con
                         echo $_SESSION['message'];
                         unset($_SESSION['message']);
                     } 
-                    ?>
+                    ?> 
                     <fieldset class="border p-2">
-                        <h4><i class="fas fa-phone">&nbsp;&nbsp; </i>Telefone: <?php echo $dados['celular_ue']; ?></h4> <br>
-                        <h4><i class="fas fa-envelope-open-text">&nbsp;&nbsp;</i>E-mail: <?php echo $dados['email_ue']; ?></h4>
+                        <h4><i class="fas fa-phone">&nbsp;&nbsp; </i>Telefone: <?php echo $contato['celular']; ?></h4> <br>
+                        <h4><i class="fas fa-envelope-open-text">&nbsp;&nbsp;</i>E-mail: <?php echo $contato['email']; ?></h4>
                     </fieldset>
                 </div>
             </div>

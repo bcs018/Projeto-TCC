@@ -62,8 +62,12 @@ class AdminCController extends Controller {
 
     public function contato(){
         $dados = $this->listaDadosEcommerce();
+        
+        $con = new AdminC;
+
+        $contato = $con->listaContato();
     
-        $this->render('commerce/painel_cli/contato', ['dados'=>$dados]);
+        $this->render('commerce/painel_cli/contato', ['dados'=>$dados, 'contato'=>$contato]);
     }
 
     public function pedidos(){

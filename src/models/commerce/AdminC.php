@@ -139,5 +139,19 @@ class AdminC extends Model{
         return 0;
     }
 
+    public function listaContato(){
+        $sql = "SELECT * FROM ecommerce_usu eu
+                JOIN eco_usu eus
+                ON eu.ecommerce_id = eus.ecommerce_id
+                JOIN usuario u
+                ON u.usuario_id = eus.usuario_id
+                WHERE eu.ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $_SESSION['id_sub_dom']);
+        $sql->execute();
+        
+        return  $sql->fetch();
+    }
+
 }
 
