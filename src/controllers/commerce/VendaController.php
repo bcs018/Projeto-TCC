@@ -14,14 +14,12 @@ class VendaController extends Controller {
         $dados = AdminController::listaDadosEcommerce();
 
         $inf   = new Info;
-        $noti  = new Notificacao;
         $ven   = new Venda;
 
-        $qtdNotifi = $noti->qtdNotificacao();
         $dados     = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
         $vendas    = $ven->listaVendasPendentes();
 
-        $this->render('commerce/painel_adm/vendas_pendentes', ['vendas'=>$vendas, 'qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/vendas_pendentes', ['vendas'=>$vendas, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function vendaPendente($id){
@@ -29,9 +27,6 @@ class VendaController extends Controller {
 
         $inf   = new Info;
         $ven   = new Venda;
-        $noti  = new Notificacao;
-
-        $qtdNotifi = $noti->qtdNotificacao();
         $dados     = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
         $venda     = $ven->listaVendaPendente($id['id']);
 
@@ -40,7 +35,7 @@ class VendaController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/venda_pendente', ['venda'=>$venda, 'qtdNoti'=>$qtdNotifi,'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/venda_pendente', ['venda'=>$venda, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function marcarEnviado(){

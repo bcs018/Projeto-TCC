@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Editar dados pessoais']); 
+$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Contato']); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">

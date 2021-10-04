@@ -4,7 +4,7 @@ if(!isset($_SESSION['log_admin_c'])){
   exit;
 }
 
-$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Editar dados pessoais']); 
+$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meus pedidos']); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
@@ -50,10 +50,10 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">Aguardando pagamento</p></b>
                                         <?php elseif($compra['status_pagamento'] == '2' || $compra['status_pagamento'] == 'in_process'): ?>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">Em análise</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '0'): ?>
+                                        <?php elseif(($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved') && $compra['enviado'] == '0'): ?>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                             <b><p style="margin-bottom: 0px; color: #c98d00;">O vendedor está preparando seu produto</p></b>
-                                        <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '1'): ?>
+                                        <?php elseif(($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved') && $compra['enviado'] == '1'): ?>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                             <b><p style="margin-bottom: 0px; color: #0dc200;">Produto enviado</p></b>
                                         <?php elseif($compra['status_pagamento'] == '7' || $compra['status_pagamento'] == 'rejected'): ?>
