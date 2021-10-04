@@ -337,5 +337,16 @@ create table usuario_admin(
     primary key(usuarioadm_id)
 )default charset utf8;
 
+create table notificacao_admin(
+	notificacao_id int not null auto_increment,
+    ecommerce_id int not null,
+    texto varchar(100) not null,
+    link varchar(100) default '',
+    lido enum('1','0'),
+    sub_dominio varchar(100),
+    
+    primary key (notificacao_id)
+)default charset utf8;
+
 insert into usuario_admin (nome_user, login, senha) 
 values ('admin', 'admin', md5('admin'));

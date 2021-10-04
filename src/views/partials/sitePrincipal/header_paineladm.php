@@ -1,3 +1,17 @@
+<?php 
+
+use src\controllers\sitePrincipal\NotificacaoController;
+
+$not = new NotificacaoController;
+$notifi = $not->listaNotificacoes();
+if($notifi == 0){
+  $qtdNoti = 0;
+}else{
+  $qtdNoti = count($notifi);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,7 +47,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
   <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
-
+  <style>
+    .dropdown-menu-lg {
+      max-width: 300px;
+      min-width: 380px;
+      padding: 0;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -48,32 +68,28 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">      
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <?php if($qtdNoti > 0 && $notifi != 0): ?>
+            <span class="badge badge-warning navbar-badge"><?php echo $qtdNoti; ?></span>
+          <?php endif; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
+          <span class="dropdown-header"><?php echo($qtdNoti==1)?$qtdNoti.' notificação':$qtdNoti.' notificações'; ?></span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
+          <?php if($notifi != 0): ?>
+              <?php foreach($notifi as $n): ?>
+                <a id="n-<?php echo $n[0] ?>" href="#" data="<?php echo $n['link'] ?>" class="notify dropdown-item">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                  <?php echo $n['texto']; ?>
+                </a>
+              <?php endforeach; ?>
+            <?php endif; ?>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="#" class="dropdown-item dropdown-footer">Marcar todas como lida</a>
         </div>
       </li>
       <li class="nav-item">
@@ -82,7 +98,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/sair/admin" class="nav-link" style="color:red;">
+      <a href="/sair/admin" class="nav-link" style="color:red;">
           Sair
         </a>
       </li>
