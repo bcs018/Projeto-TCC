@@ -3,6 +3,7 @@ namespace src\controllers\commerce;
 
 use \core\Controller;
 use \src\models\commerce\Marca;
+use \src\models\commerce\Notificacao;
 use \src\controllers\commerce\AdminController;
 
 class MarcaController extends Controller {
@@ -14,7 +15,8 @@ class MarcaController extends Controller {
      public function conMarca(){
         $dadosEco = AdminController::listaDadosEcommerce();
 
-        $mar = new Marca;
+        $mar = new Marca;        
+
         $dados = $mar->listaMarcas($_SESSION['sub_dom']);
 
         $this->render('commerce/painel_adm/con_marca', ['dados'=>$dados, 'control_rec'=>$dadosEco['tp_recebimento']]);

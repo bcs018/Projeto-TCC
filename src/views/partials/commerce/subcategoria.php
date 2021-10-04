@@ -4,7 +4,7 @@
             <?php
             for($q=0; $q<$level; $q++) echo "----";
 
-            echo (!isset($edit)) ? " ".$sub['nome_cat'] : " ".$sub['nome_cat'].'.......[<a href="/admin/painel/editar-categoria/'.$sub['categoria_id'].'">Editar</a> | <a href="/admin/painel/excluir-categoria/action/'.$sub['categoria_id'].'">Excluir</a>]'; 
+            echo (!isset($edit)) ? " ".$sub['nome_cat'] : " ".$sub['nome_cat'].'.......[<a href="/admin/painel/editar-categoria/'.$sub['categoria_id'].'">Editar</a> | <a id="e-'. $sub['categoria_id'].'" href="#">Excluir</a>]'; 
             ?>
         <!-- </a> -->
     <!-- </li> -->
@@ -25,4 +25,4 @@ if(count($sub['subs'])>0){
     }
 }
 ?>
-<?php endforeach; ?>
+<?php endforeach; ?> 

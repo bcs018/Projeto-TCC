@@ -5,6 +5,7 @@ use \core\Controller;
 use \src\models\commerce\Produto;
 use \src\models\commerce\Marca;
 use \src\models\commerce\Categoria;
+use \src\models\commerce\Notificacao;
 use \src\controllers\commerce\AdminController;
 
 class ProdutoController extends Controller {
@@ -33,12 +34,11 @@ class ProdutoController extends Controller {
         $mar = new Marca;
         $cat = new Categoria;
 
-        $dados['marcas']     = $mar->listaMarcas();
-        $dados['categorias'] = $cat->listaCategorias();
-        $dados['control_rec'] = $dadosEco['tp_recebimento'];
-
-        $this->render('commerce/painel_adm/cad_produto', $dados);
-
+        $marcas    = $mar->listaMarcas();
+        $categorias = $cat->listaCategorias();
+        $control_rec = $dadosEco['tp_recebimento'];
+ 
+        $this->render('commerce/painel_adm/cad_produto',['control_rec'=>$control_rec, 'categorias'=>$categorias, 'marcas'=>$marcas]);
     }
 
     public function ediProduto($id){
@@ -48,16 +48,16 @@ class ProdutoController extends Controller {
         $cate = new Categoria;
         $marc = new Marca;
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']), 1);
-        $dados['categorias']  = $cate->listaCategorias();
-        $dados['marcas']      = $marc->listaMarcas(); 
-        $dados['control_rec'] = $dadosEco['tp_recebimento']; 
+        $produtos    = $prod->listaProduto(addslashes($id['id']), 1);
+        $categorias  = $cate->listaCategorias();
+        $marcas      = $marc->listaMarcas(); 
+        $control_rec = $dadosEco['tp_recebimento']; 
 
         //echo '<pre>';print_r($dados['produtos']);
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
-        if(!$dados){
+        if(!$produtos){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Produto inexistente!
                                     </div>';
@@ -67,7 +67,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/edi_produto', $dados);
+        $this->render('commerce/painel_adm/edi_produto', ['control_rec'=>$control_rec, 'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos]);
     }
 
     // Edição de produtos da tela de detalhes
@@ -113,14 +113,14 @@ class ProdutoController extends Controller {
         $cate = new Categoria;
         $marc = new Marca;
 
-        $dados['produtos']    = $prod->listaProduto(addslashes($id['id']),1);
-        $dados['categorias']  = $cate->listaCategorias();
-        $dados['marcas']      = $marc->listaMarcas();
-        $dados['control_rec'] = $dadosEco['tp_recebimento'];
+        $produtos    = $prod->listaProduto(addslashes($id['id']),1);
+        $categorias  = $cate->listaCategorias();
+        $marcas      = $marc->listaMarcas();
+        $control_rec = $dadosEco['tp_recebimento'];
 
         //echo '<pre>';print_r($dados['produtos']);exit;
 
-        if(!$dados){
+        if(!$produtos){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
                                         Produto inexistente!
                                     </div>';
@@ -130,7 +130,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/con_detalhe_prod', $dados);
+        $this->render('commerce/painel_adm/con_detalhe_prod',['control_rec'=>$control_rec,'marcas'=>$marcas, 'categorias'=>$categorias, 'produtos'=>$produtos]);
     }
 
     // Cadastro de produtos
@@ -181,7 +181,7 @@ class ProdutoController extends Controller {
             exit;
         }
 
-        $this->render('commerce/painel_adm/cad_produto_2', $id);
+        $this->render('commerce/painel_adm/cad_produto_2', ['id'=>$id['id']]);
     }
 
     public function cadProdutoActionSecond(){

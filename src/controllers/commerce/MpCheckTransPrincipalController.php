@@ -6,6 +6,7 @@ use \src\models\commerce\Compra;
 use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
+use src\models\commerce\Notificacao;
 use src\models\commerce\Produto;
 
 class MpCheckTransPrincipalController extends Controller {
@@ -66,6 +67,7 @@ class MpCheckTransPrincipalController extends Controller {
         $comp = new Compra;
         $carr = new Carrinho;
         $prod = new Produto;
+        $not  = new Notificacao;
 
         $id_compra = $comp->addCompra('cartao', $parc, true);
 
@@ -236,6 +238,7 @@ class MpCheckTransPrincipalController extends Controller {
         }elseif($payment->status == 'in_process'){
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
 
             foreach($produtos as $p){
                 $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
@@ -264,6 +267,7 @@ class MpCheckTransPrincipalController extends Controller {
         }elseif($payment->status == 'approved'){
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
+            $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
 
             foreach($produtos as $p){
                 $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));
@@ -316,6 +320,7 @@ class MpCheckTransPrincipalController extends Controller {
         $prod = new Produto;
         $cada = new Cadastro;
         $comp = new Compra;
+        $not  = new Notificacao;
 
         //$produtos = $carr->listaItens($_SESSION['carrinho']);
         $id_compra = $comp->addCompra('boleto');
@@ -353,6 +358,7 @@ class MpCheckTransPrincipalController extends Controller {
 
         // -- Atualizando o estoque
         $produtos = $carr->listaItens($_SESSION['carrinho']);
+        $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de boleto!', '/admin/painel/venda-pendente/'.$id_compra);
 
         foreach($produtos as $p){
             $prod->ediEstoque($p[0], intval($p['estoque'] - $_SESSION['carrinho'][$p[0]]));

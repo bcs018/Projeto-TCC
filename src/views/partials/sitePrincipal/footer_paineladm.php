@@ -16,6 +16,8 @@
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo BASE_ASS; ?>adminlte/dist/js/adminlte.min.js"></script>
+<!-- Bootstrap -->
+<script src="<?php echo BASE_ASS; ?>adminlte/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- daterangepicker -->
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/moment/moment.min.js"></script>
 <script src="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.js"></script>
@@ -37,6 +39,7 @@
 
 <script src="<?php echo BASE_ASS; ?>js/sitePrincipal/altDadosPessoaisPainel.js"></script>
 <script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
+<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/notificacao.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
 </body>

@@ -97,6 +97,10 @@ class Assinatura extends Model{
                     'estado'       => $estado['nome_estado'], 
                     'complemento'  => $usuario['complemento']
                 ];
+        
+        $not = new Notificacao;
+
+        $not->gravaNotificacao($idPlano['ecommerce_id'], 'Novo cliente cadastrado em sua loja!', '', $idPlano['sub_dominio']);
 
         return $dados;
     }

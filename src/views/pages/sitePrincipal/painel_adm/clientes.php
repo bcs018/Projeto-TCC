@@ -32,10 +32,10 @@
                             <br>
                             <div class="row">
                               <div class="col col-lg-2">
-                                <a id="i-<?php echo $c['usuario_id']; ?>" href="#">Inativar</a>
+                                <a class="ati" id="i-<?php echo $c['usuario_id']; ?>" href="#">Inativar</a>
                               </div>
                               <div class="col col-lg-2">
-                                <a id="a-<?php echo $c['usuario_id']; ?>" href="#">Ativar</a>
+                                <a class="ati" id="a-<?php echo $c['usuario_id']; ?>" href="#">Ativar</a>
                                 <!-- <input type="hidden" id="id" value="<?php echo $c['usuario_id'] ?>"> -->
                               </div>
                             </div>
@@ -57,7 +57,7 @@
 
 <script>
 
-  $('a').click(function(){
+  $('.ati').click(function(){
     id = $(this).attr('id').split("-")
 
     if(id[0] == 'a'){

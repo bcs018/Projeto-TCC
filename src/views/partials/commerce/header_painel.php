@@ -1,4 +1,16 @@
-<?php //unset($_SESSION['log_admin_c']); ?>
+<?php 
+
+use src\controllers\commerce\NotificacaoController;
+
+$not = new NotificacaoController;
+$notifi = $not->listaNotificacoes();
+if($notifi == 0){
+  $qtdNoti = 0;
+}else{
+  $qtdNoti = count($notifi);
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -47,6 +59,13 @@
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/select2/css/select2.min.css">
   <!-- <link rel="shortcut icon" href="<?php //echo BASE_ASS; ?>/images/ico.ico"> -->
 
+  <style>
+    .dropdown-menu-lg {
+      max-width: 300px;
+      min-width: 380px;
+      padding: 0;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -60,81 +79,33 @@
       </li>
     </ul>
 
-    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="<?php echo BASE_ASS; ?>adminlte/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="<?php echo BASE_ASS; ?>adminlte/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <?php if($qtdNoti > 0 && $notifi != 0): ?>
+            <span class="badge badge-warning navbar-badge"><?php echo $qtdNoti; ?></span>
+          <?php endif; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            <span class="dropdown-header"><?php echo ($qtdNoti==1)?$qtdNoti." notificação":$qtdNoti." notificações" ?></span>
+            <div class="dropdown-divider"></div>
+            <?php if($notifi != 0): ?>
+              <?php foreach($notifi as $n): ?>
+                <a id="n-<?php echo $n[0] ?>" href="#" data="<?php echo $n['link'] ?>" class="notify dropdown-item">
+                  <i class="fas fa-exclamation-circle mr-2"></i>
+                  <?php echo $n['texto'] ?>
+                </a>
+                <div class="dropdown-divider"></div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <a href="#" class="dropdown-item">  
+                  Não há notificações
+              </a>
+              <div class="dropdown-divider"></div>
+            <?php endif; ?>
+
+            <a href="#" class="dropdown-item dropdown-footer">Marcar todas como lida</a>
         </div>
       </li>
       <li class="nav-item">
@@ -213,12 +184,12 @@
                   <p>Layout</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
-                <i class="fas fa-cog nav-icon"></i>
-                  <p>Criar categorias</p>
+              <li class="nav-item">
+                <a href="/admin/painel/vendas-pendentes" class="nav-link">
+                <i class="fas fa-dollar-sign nav-icon"></i>
+                  <p>Vendas pendendes</p>
                 </a>
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a href="/admin/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>

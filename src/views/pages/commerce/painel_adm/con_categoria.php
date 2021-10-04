@@ -42,8 +42,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
           ?>
             <?php foreach($dados as $dado): ?>
             <?php echo '<br>- '.$dado['nome_cat']; ?>.......[<a
-              href="/admin/painel/editar-categoria/<?php echo $dado['categoria_id']; ?>">Editar</a> | <a
-              href="/admin/painel/excluir-categoria/action/<?php echo $dado['categoria_id']; ?>">Excluir</a>]
+              href="/admin/painel/editar-categoria/<?php echo $dado['categoria_id']; ?>">Editar</a> | 
+              <a id="e-<?php echo $dado['categoria_id']; ?>" href="#">Excluir</a>]
             <?php 
               if(count($dado['subs'])>0){
                   $render("commerce/subcategoria", array(
@@ -94,4 +94,28 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Categorias'
             $('#aviso').modal('show')
        }
     });
+</script>
+
+<script>
+  
+  $('a').click(function(){
+    id = $(this).attr('id').split("-")
+    $.confirm({
+        title: 'Confirma exclusão da categoria?',
+        content: '',
+        type: 'orange',
+        buttons: {
+            deleteUser: {
+                text: 'Sim',
+                action: function () {
+                  window.location.href = '/admin/painel/excluir-categoria/action/'+id[1];
+                }
+            },
+            não: {
+                btnClass: 'btn-red any-other-class', // multiple classes.
+            },
+        }
+      });
+  })
+
 </script>

@@ -137,6 +137,20 @@ class Compra extends Model{
         return false;
     }
 
+    // Lista somente uma compra para pegar o id do usuario para gerar a notificação
+    public function listaCompraNotify($id){
+        $sql = 'SELECT * FROM compra WHERE compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        if($sql->rowCount()>0){
+            return $sql->fetch();
+        }
+
+        return 0;
+    }
+
     public function listaCompra($id){
         $sql = 'SELECT * FROM compra c
                 JOIN transacao_compra tc

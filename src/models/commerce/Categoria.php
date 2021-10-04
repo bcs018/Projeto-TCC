@@ -13,11 +13,11 @@ class Categoria extends Model{
         $haveChild = true;
 
         while($haveChild){
-            $sql = "SELECT * FROM categoria WHERE categoria_id = ? AND ativo = ? AND ecommerce_id = ?";
+            $sql = "SELECT * FROM categoria WHERE categoria_id = ?  AND ecommerce_id = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $id);
-            $sql->bindValue(2, '1');
-            $sql->bindValue(3, $_SESSION['id_sub_dom']);
+            //$sql->bindValue(2, '1');
+            $sql->bindValue(2, $_SESSION['id_sub_dom']);
             $sql->execute();
 
             if($sql->rowCount() > 0){

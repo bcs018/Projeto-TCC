@@ -5,7 +5,7 @@ if(!isset($_SESSION['log_admin_c'])){
 }
 if(!$pedido)header("Location: /cliente/painel/meus-pedidos");
 
-$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Editar dados pessoais']); 
+$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Pedido n° '.$pedido[0]['compra_id']]); 
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
