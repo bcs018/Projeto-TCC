@@ -157,7 +157,7 @@ if($notifi == 0){
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
                   <p>Relatório de Vendas</p>
                 </a>

@@ -92,7 +92,39 @@ class PainelController extends Controller {
         exit;
     }
 
-    public function inserirUsu(){
+    public function relVendas(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-bwcommerce");
+            exit;
+        }
+
+        $painel = new Painel;
+
+        if(isset($_POST['data_ini']) && !empty($_POST['data_ini']) && isset($_POST['data_fim']) && !empty($_POST['data_fim'])){
+            $rel = $painel->relatorioVendas($_POST['data_ini'], $_POST['data_fim']);
+
+            $this->render('sitePrincipal/painel_adm/relVendas', ['rel'=>$rel, 'ini'=>$_POST['data_ini'], 'fim'=>$_POST['data_fim']]);
+            exit;
+        }
+
+
+        $rel = $painel->relatorioVendas('2000-01-01', date('Y-m-d'));
+
+        $this->render('sitePrincipal/painel_adm/relVendas', ['rel'=>$rel, 'ini'=>'2000-01-01', 'fim'=>date('Y-m-d')]);
+
+    }
+
+    public function relVendasAction(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-bwcommerce");
+            exit;
+        }
+
+        $painel = new Painel;
+
+        $rel = $painel->relatorioVendas('0000-00-00', date('Y-m-d'));
+
+        $this->render('sitePrincipal/painel_adm/relVendas', ['rel'=>$rel]);
 
     }
 
