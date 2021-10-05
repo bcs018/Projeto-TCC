@@ -98,15 +98,18 @@ class AdminController extends Controller {
         if($dados['plano_id'] == '1'){
             // Se for plano 1, envia somente o relatório do mes como padrão
             $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
+            $data_ini = $plan1_ini;
         }else if($dados['plano_id'] == '2'){
             // Se for plano 2, envia 6 mes atras como padrão
             $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
+            $data_ini = $plan2_ini;
         }else if($dados['plano_id'] == 3){
             // Se for plano 3, mostra desde a criação da loja como padrão]
             $rel = $adm->relatorioVendas($plan3_ini, $plan_fim, $dados['plano_id']);
+            $data_ini = $plan3_ini;
         }
 
-        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/relatorios', ['ini'=>$data_ini, 'fim'=>$plan_fim, 'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function relVendasAction(){
@@ -124,11 +127,12 @@ class AdminController extends Controller {
 
         if(isset($_POST['data_fim']) && isset($_POST['data_ini'])){
             if(strtotime($_POST['data_fim']) < strtotime($_POST['data_ini'])){
-                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                $rel = $adm->relatorioVendas(0, 0, $dados['plano_id']);
+                $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
                                             Data final anterior a Data inicial!
                                         </div>';
-                $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+
+                $this->render('commerce/painel_adm/relatorios', ['ini'=>$_POST['data_ini'], 'fim'=>$_POST['data_fim'], 'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
             }
         }
@@ -143,12 +147,12 @@ class AdminController extends Controller {
                                             </div>';
         
                     $rel = $adm->relatorioVendas($plan1_ini, $plan_fim, $dados['plano_id']);
-                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    $this->render('commerce/painel_adm/relatorios', ['ini'=>$plan1_ini, 'fim'=>$plan_fim, 'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                     exit;
                 }
 
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['ini'=>$_POST['data_ini'], 'fim'=>$_POST['data_fim'], 'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
 
             }else if($dados['plano_id'] == '2'){
@@ -162,18 +166,18 @@ class AdminController extends Controller {
                                             </div>';
 
                     $rel = $adm->relatorioVendas($plan2_ini, $plan_fim, $dados['plano_id']);
-                    $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                    $this->render('commerce/painel_adm/relatorios', ['ini'=>$plan2_ini, 'fim'=>$plan_fim,'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                     exit;
 
                 }
                 
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['ini'=>$_POST['data_ini'], 'fim'=>$_POST['data_fim'],'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
 
             }else if($dados['plano_id'] == 3){
                 $rel = $adm->relatorioVendas($_POST['data_ini'], $_POST['data_fim'], $dados['plano_id']);
-                $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+                $this->render('commerce/painel_adm/relatorios', ['ini'=>$_POST['data_ini'], 'fim'=>$_POST['data_fim'],'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
                 exit;
             }
         }
@@ -182,7 +186,7 @@ class AdminController extends Controller {
                                     Preencha o intervalo de datas!
                                 </div>';
         $rel = $adm->relatorioVendas(date("Y-m-d"), date("Y-m-d"), $dados['plano_id']);
-        $this->render('commerce/painel_adm/relatorios', ['rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/relatorios', ['ini'=>date("Y-m-d"), 'fim'=>date("Y-m-d"),'rel'=>$rel, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
         exit;
     }
 
