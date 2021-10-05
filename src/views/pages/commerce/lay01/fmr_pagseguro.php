@@ -27,11 +27,11 @@
     </div>
 </div> <br>
 <label for="nome_card" class="form-label">Nome impresso no cartão</label>
-<input type="text" value="BRUNO C SILVA" class="form-control" name="nome_card" id="nome_card"
+<input type="text" value="" class="form-control" name="nome_card" id="nome_card"
     placeholder="Nome impresso no cartão">
 <br>
 <label for="cpf_card" class="form-label">CPF do titular do cartão</label>
-<input type="text" value="" class="form-control" name="cpf_card" id="cpf_card"
+<input type="number" value="" class="form-control" name="cpf_card" id="cpf_card"
     placeholder="CPF do titular do cartão">
 <br>
 <hr>

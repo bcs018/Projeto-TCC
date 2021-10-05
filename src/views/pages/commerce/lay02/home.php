@@ -263,7 +263,6 @@ if(isset($_SESSION['message'])){
         </div>
     </section>
 <?php endif; ?>
-
-<?php echo '<pre>';print_r($_SESSION); ?>
-
+<br><br><br><br>
+<br>
 <?php $render('commerce/lay02/footer', ['dados' => $dados]); ?>

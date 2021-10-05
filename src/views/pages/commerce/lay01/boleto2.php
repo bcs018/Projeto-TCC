@@ -97,15 +97,7 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
     </div>
 </div>
 
-<?php 
-echo'<pre>';print_r($_SESSION);
-?>
-
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
-
-<?php
-echo '<pre>';print_r($dados);
-?>
 
 <?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>

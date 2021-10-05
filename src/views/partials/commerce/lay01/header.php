@@ -166,6 +166,17 @@ if(!$valores)$valores['total'] = '0,00';
             background: none repeat scroll 0 0 <?php echo $layout['cor']; ?>;
         }
         .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: <?php echo $layout['cor']; ?>; color:#FFF;}
+        .resultado {
+            position: absolute;
+            width: 90%;
+            text-align: left;
+            margin-top: -1px;
+            z-index: 989;
+            cursor: default;
+            -webkit-user-select: none;
+            background-color: white;
+            font-size: large;
+        }
     </style>
 
 </head>
@@ -201,15 +212,8 @@ if(!$valores)$valores['total'] = '0,00';
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <form>
-                        <input style="margin-top: 40px; padding: 22px;" class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Digite para pesquisar...">
-                        <datalist id="datalistOptions">
-                            <option value="San Francisco">
-                            <option value="New York">
-                            <option value="Seattle">
-                            <option value="Los Angeles">
-                            <option value="Chicago">
-                        </datalist>
+                    <form action="/pesquisa-produtos" method="POST">
+                        <input style="margin-top: 40px; padding: 22px;" class="form-control" list="datalistOptions" name="busca" id="busca" placeholder="Digite para pesquisar...">
                     </form>
                 </div>
                 <div class="col-sm-4">

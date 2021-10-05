@@ -4,11 +4,16 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-
+        <?php if(isset($txt)): ?>
+            <h4>Pesquisa por: <?php echo $txt ?></h4><br>
+        <?php endif; ?>
             <?php if(!$produtos): ?>
-                <div class="alert alert-info" role="alert">
-                    Não há produtos cadastrados nessa loja.
-                </div>
+                <?php
+                if(isset($_SESSION['message'])){
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
+                ?>
             <?php else: ?>
                 <?php foreach($produtos as $p): ?>
                     <div class="col-md-3 col-sm-6">
@@ -36,7 +41,7 @@
             <?php endif; ?>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12">
                 <div class="product-pagination text-center">
                     <nav>
@@ -60,7 +65,7 @@
                     </nav>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

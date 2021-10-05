@@ -53,7 +53,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Pri
               </div>
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>  <?php echo '<pre>';print_r($_SESSION); ?>
+          </div>  
 
           <!-- ./col -->
           <div class="col-lg-4 col-6">

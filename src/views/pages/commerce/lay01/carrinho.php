@@ -199,8 +199,6 @@
     </div>
 </div>
 
-<?php echo '<pre>';print_r($_SESSION); ?>
-
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script type="text/javascript">

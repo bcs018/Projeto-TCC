@@ -126,7 +126,7 @@ if($notifi == 0){
           <?php endif;  ?>
         </div>
         <div class="info">
-          <a href="" class="d-block"><?php echo $_SESSION['log_admin']['nome']; ?></a>
+          <a href="/painel/admin" class="d-block"><?php echo $_SESSION['log_admin']['nome']; ?></a>
         </div>
       </div>
 

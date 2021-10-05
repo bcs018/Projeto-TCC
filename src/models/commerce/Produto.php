@@ -326,6 +326,9 @@ class Produto extends Model{
             return $produtosNovo;
         }
 
+        $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                    Não há produtos cadastrados nessa loja
+                                </div>';
         return false;
     }
 
