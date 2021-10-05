@@ -95,9 +95,7 @@ if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset
         </div>
     </div>
 </div>
-
-<?php echo '<pre>';print_r($_SESSION);?>
-
+<br><br><br><br><br></br>
 <?php $render('commerce/lay02/footer', ['dados' => $dados]); ?>
 
 <?php if ($dados['tp_recebimento'] == 'pagseguro') : ?>

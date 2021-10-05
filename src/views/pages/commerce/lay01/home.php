@@ -51,7 +51,7 @@ unset($_SESSION['frete']);
                                             <img src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $produto['url']; ?>" width="500px" height="1000" alt="">
                                         <?php endif; ?>
                                         <div class="product-hover">
-                                            <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a>
+                                            <!-- <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Carrinho</a> -->
                                             <a href="/visualizar/produto/<?php echo $produto[0]; ?>" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
                                         </div>
                                     </div>

@@ -69,12 +69,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="pagseguro" role="tabpanel" aria-labelledby="pills-home-tab">
                                             <div class="form-group">
+                                                <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>
+                                                <input type="email" class="form-control" name="emailpagseguro" id="emailpagseguro" aria-describedby="emailHelp" placeholder="E-mail cadastrado no PagSeguro">
+                                                <br>
                                                 <label for="tknpagseguro">Token do PagSeguro</label>
                                                 <input type="text" class="form-control" name="tknpagseguro" id="tknpagseguro" aria-describedby="emailHelp" placeholder="Token PagSeguro">
                                                 <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small>
-                                                <br>
-                                                <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>
-                                                <input type="email" class="form-control" name="emailpagseguro" id="emailpagseguro" aria-describedby="emailHelp" placeholder="E-mail cadastrado no PagSeguro">
                                             </div>
                                         </div>
 
