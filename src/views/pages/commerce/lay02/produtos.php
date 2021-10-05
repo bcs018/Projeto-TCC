@@ -5,7 +5,7 @@
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                    All Products
+                    Todos produtos
                 </button>
 
                 <!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
@@ -49,9 +49,10 @@
                     <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                         <i class="zmdi zmdi-search"></i>
                     </button>
-
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
-                        placeholder="Search">
+                    <form action="/pesquisa-produtos" method="post">
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="busca"
+                            placeholder="Digite para procurar...">
+                    </form>
                 </div>
             </div>
 
@@ -249,13 +250,19 @@
                 </div>
             </div>
         </div>
+        <?php if(isset($txt)): ?>
+            <h4>Pesquisa por: <?php echo $txt ?></h4><br><br>
+        <?php endif; ?>
+
 
         <div class="row isotope-grid">
-
             <?php if(!$produtos): ?>
-                <div class="alert alert-info" role="alert">
-                    Não há produtos cadastrados nessa loja.
-                </div>
+                <?php
+                if(isset($_SESSION['message'])){
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
+                ?>
             <?php else: ?>
                 <?php foreach($produtos as $p): ?>
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">

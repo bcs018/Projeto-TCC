@@ -299,11 +299,11 @@ if(!$valores)$valores['total'] = '0,00';
 					X
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15">
+				<form action="/pesquisa-produtos" method="POST" class="wrap-search-header flex-w p-l-15">
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search" placeholder="Search...">
+					<input class="plh3" type="text" name="busca" placeholder="Digite para pesquisar...">
 				</form>
 			</div>
 		</div>

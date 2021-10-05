@@ -60,6 +60,9 @@ $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto
 $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 $router->get('/produtos', 'HomeController@produtos');
 
+// -- Pesquisa de produtos
+$router->post('/pesquisa-produtos', 'PesquisaController@pesquisa');
+
 // -- Carrinho
 $router->post('/add-carrinho', 'CarrinhoController@addCarrinho');
 $router->post('/calcular-subtotal', 'CarrinhoController@calTotalProduto');
