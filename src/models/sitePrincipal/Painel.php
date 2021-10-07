@@ -183,4 +183,32 @@ class Painel extends Model{
         return $dados;
     }
 
+    public function addUsuario($nome, $login, $senha){
+        $sql = "SELECT * FROM usuario_admin WHERE login = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $login);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Já existe um usuário com esse login! <br>Informe outro
+                                    </div>';
+            return false;
+        }
+
+        $sql = "INSERT INTO usuario_admin (nome_user,login,senha)
+                VALUES(?,?,?)";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nome);
+        $sql->bindValue(2, $login);
+        $sql->bindValue(3, md5($senha));
+        $sql->execute();
+
+        $_SESSION['message'] = '<div class="alert alert-success" role="alert">
+                                    Usuário cadastrado com sucesso!
+                                </div>';
+
+        return true;
+    }
+
 }

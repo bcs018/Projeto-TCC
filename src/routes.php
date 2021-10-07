@@ -46,7 +46,8 @@ $router->get('/ativar/cliente/{id}', 'PainelController@ativarUsu');
 $router->get('/inativar/cliente/{id}', 'PainelController@inativarUsu');
 $router->get('/painel/relatorio', 'PainelController@relVendas');
 $router->post('/painel/relatorio', 'PainelController@relVendas');
-//$router->get('/painel/relatorio-intervalo', 'PainelController@relVendasAction');
+$router->get('/painel/add-usuario', 'PainelController@addUsuario');
+$router->post('/painel/add-usuario/action', 'PainelController@addUsuarioAction');
 
 $router->post('/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
 $router->post('/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');

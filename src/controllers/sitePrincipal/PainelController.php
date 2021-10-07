@@ -2,6 +2,7 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
+use src\models\commerce\AdminC;
 use \src\models\sitePrincipal\Painel;
 use \src\models\sitePrincipal\Assinatura;
 
@@ -128,8 +129,40 @@ class PainelController extends Controller {
 
     }
 
-    public function alterarNome(){
+    public function addUsuario(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-potlid");
+            exit;
+        }
 
+        $this->render('sitePrincipal/painel_adm/add_usuario');
+    }
+
+    public function addUsuarioAction(){
+        if(!empty($_POST['nome']) && !empty($_POST['login']) && !empty($_POST['senha']) && !empty($_POST['senhaRep'])){
+            if($_POST['senha'] != $_POST['senhaRep']){
+                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                            Senhas não batem!
+                                        </div>';
+                header("Location: /painel/add-usuario");
+                exit;
+            }
+
+            $adm = new Painel;
+
+            $adm->addUsuario(addslashes($_POST['nome']), addslashes($_POST['login']), addslashes($_POST['senha']));
+
+            header("Location: /painel/add-usuario");
+            exit;
+        }
+
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                    Existem campos obrigatórios não preenchidos!
+                                </div>';
+                                
+        header("Location: /painel/add-usuario");
+        exit;
+                    
     }
 
     public function alterarSenha(){
