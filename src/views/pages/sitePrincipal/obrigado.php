@@ -1,6 +1,6 @@
 <?php if(!isset($_SESSION['person']))header("Location: /"); ?>
 
-<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Obrigado']); ?>
+<?php $render('sitePrincipal/header', ['title' => 'PotLid Commerce | Obrigado']); ?>
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/pg1.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>

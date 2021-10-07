@@ -135,7 +135,7 @@ class Admin extends Model{
 
             if(!$sql->execute()){
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                            Erro 001 ao editar usuário, contate o administrador BW Commerce!
+                                            Erro 001 ao editar usuário, contate o administrador PotLid Commerce!
                                         </div>';
                 return false;
             }
@@ -183,7 +183,7 @@ class Admin extends Model{
 
         if(!$sql->execute()){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Erro 002 ao editar usuário, contate o administrador BW Commerce!
+                                        Erro 002 ao editar usuário, contate o administrador PotLid Commerce!
                                     </div>';
             return false;
         }

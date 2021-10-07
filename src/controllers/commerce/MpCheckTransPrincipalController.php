@@ -78,7 +78,7 @@ class MpCheckTransPrincipalController extends Controller {
         $payment = new \MercadoPago\Payment();
         $payment->transaction_amount = (float)$totalCompra;
         $payment->token = $token;
-        $payment->description = 'BW Commerce'; //Razão do pagamento ou titulo do item
+        $payment->description = 'PotLid Commerce'; //Razão do pagamento ou titulo do item
         $payment->installments = (int)$numParcela;
         $payment->payment_method_id = $emissorBanco;
         $payment->issuer_id = (int)$idEmissorBanco;

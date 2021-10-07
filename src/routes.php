@@ -26,7 +26,7 @@ $router->get('/boleto/notification', 'BoletoController@notification');
 
 $router->post('/consulta-cep', 'CadastroController@consultarCep');
 
-$router->get('/admin-bwcommerce', 'LoginController@admin');
+$router->get('/admin-potlid', 'LoginController@admin');
 
 $router->get('/login', 'LoginController@index');
 $router->post('/login/validar/user', 'LoginController@validarUser');

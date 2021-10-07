@@ -104,7 +104,7 @@ class Produto extends Model{
             return ['insercao'=>true, 'id'=>$this->db->lastInsertId()];
 
         $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                    Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
+                                    Ocorreu erro interno 001 ao inserir o produto, contate o administrador PotLid Commerce.
                                  </div>';
         return ['insercao'=>false];
 
@@ -139,7 +139,7 @@ class Produto extends Model{
                 
                 if(!$sql->execute()){
                     $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                                Ocorreu erro interno 002 ao inserir o produto, contate o administrador BW Commerce. 
+                                                Ocorreu erro interno 002 ao inserir o produto, contate o administrador PotLid Commerce. 
                                             </div>';
                     return false;
                 }
@@ -239,7 +239,7 @@ class Produto extends Model{
         }
                 
         $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                    Ocorreu erro interno 001 ao inserir o produto, contate o administrador BW Commerce.
+                                    Ocorreu erro interno 001 ao inserir o produto, contate o administrador PotLid Commerce.
                                 </div>';
         return false;
 
@@ -394,7 +394,7 @@ class Produto extends Model{
 
         if($sql->rowCount() == 0){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                        Ocorreu erro interno 002 ao apagar uma imagem, contate o administrador BW Commerce.
+                                        Ocorreu erro interno 002 ao apagar uma imagem, contate o administrador PotLid Commerce.
                                     </div>';
             return false;
         }
@@ -452,7 +452,7 @@ class Produto extends Model{
 
         if($sql->rowCount() == 0){
             $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">
-                                        Ocorreu erro interno 003 ao excluir um produto, contate o administrador BW Commerce.
+                                        Ocorreu erro interno 003 ao excluir um produto, contate o administrador PotLid Commerce.
                                     </div>';
             return false;
         }

@@ -10,7 +10,7 @@ class PainelController extends Controller {
 
     public function index(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 
@@ -22,7 +22,7 @@ class PainelController extends Controller {
 
     public function alterarDadosPessoaisView(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 
@@ -31,7 +31,7 @@ class PainelController extends Controller {
 
     public function novoPlano(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 
@@ -40,7 +40,7 @@ class PainelController extends Controller {
 
     public function clientes(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 
@@ -94,7 +94,7 @@ class PainelController extends Controller {
 
     public function relVendas(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 
@@ -116,7 +116,7 @@ class PainelController extends Controller {
 
     public function relVendasAction(){
         if(!isset($_SESSION['log_admin'])){
-            header("Location: /admin-bwcommerce");
+            header("Location: /admin-potlid");
             exit;
         }
 

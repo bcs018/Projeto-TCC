@@ -39,7 +39,7 @@
                             <!--Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
-                            </script> Todos os direitos reservados | BW Commerce <br>
+                            </script> Todos os direitos reservados | PotLid Commerce <br>
                             modelo feito por <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
                             <!--Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>

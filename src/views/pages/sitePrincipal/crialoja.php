@@ -1,4 +1,4 @@
-<?php $render('sitePrincipal/header', ['title'=>'BW Commerce | Criar Loja']); ?>
+<?php $render('sitePrincipal/header', ['title'=>'PotLid Commerce | Criar Loja']); ?>
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/bg_cads2.jpg');"
     data-stellar-background-ratio="0.5">

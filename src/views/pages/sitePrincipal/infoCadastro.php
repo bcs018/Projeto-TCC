@@ -1,4 +1,4 @@
-<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Painel']); ?>
+<?php $render('sitePrincipal/header', ['title' => 'PotLid Commerce | Painel']); ?>
 
 <section class="ftco-section bg-light">
     <div class="container">

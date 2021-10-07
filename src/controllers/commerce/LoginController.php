@@ -34,7 +34,7 @@ class LoginController extends Controller {
         if($dados['ativo'] == '0'){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Você não possui mais acesso a plataforma. <br>
-                                        regularize seus débitos ou entre em contato com BW Commerce!
+                                        regularize seus débitos ou entre em contato com PotLid Commerce!
                                     </div>';
             header("Location: /admin");
             exit;          
