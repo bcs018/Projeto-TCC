@@ -19,11 +19,11 @@
                 <div class="footer-menu">
                     <h2 class="footer-wid-title">Confira também </h2>
                     <ul>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Order history</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Vendor contact</a></li>
-                        <li><a href="#">Front page</a></li>
+                        <li><a href="/cliente/painel">Minha conta</a></li>
+                        <li><a href="/carrinho">Carrinho</a></li>
+                        <li><a href="/produtos">Produtos</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="/login/c">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,30 +54,16 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to
-                            your inbox!</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Type your email">
-                                <input type="submit" value="Subscribe">
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
         </div>
     </div>
 </div> <!-- End footer top area -->
 
-<!-- <div class="footer-bottom-area">
+<div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com"
+                        <p>&copy; <?php echo date('Y').' '. $dados['nome_fantasia']; ?>. All Rights Reserved. <a href="http://www.freshdesignweb.com"
                                 target="_blank">freshDesignweb.com</a></p>
                     </div>
                 </div>
@@ -92,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </div> End footer bottom area -->
+    </div> 
 
 <!-- Jquery -->
 <!-- <script src="<?php //echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script> -->
