@@ -264,7 +264,7 @@ $cats = $cat->listaCategorias();
                             <li><a href="#">Categorias</a>
                                 <ul>
                                 <?php foreach($cats as $dado): ?>                               
-                                    <?php echo '<li><a href="#">'.$dado['nome_cat'].'</a></li>'; ?>
+                                    <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
                                     <?php 
                                     if(count($dado['subs'])>0){
                                         $render("commerce/lay01/subcategoria_footer", array(

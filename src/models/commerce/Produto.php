@@ -351,6 +351,11 @@ class Produto extends Model{
 
             if($sql->rowCount() > 0){
                 $produtosRel[] = $sql->fetchAll();
+            }else{
+                $_SESSION['message'] = '<div class="alert alert-info" role="alert">
+                                            Não há produtos nessa categoria!
+                                        </div>';
+                return false;
             }
         }
 

@@ -1,4 +1,10 @@
 <!-- Footer -->
+<?php 
+use src\controllers\commerce\CategoriaController;
+$cat = new CategoriaController;
+$cats = $cat->listaCategorias();
+?>
+
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
         <div class="row">
@@ -7,7 +13,18 @@
                     Categorias
                 </h4>
 
-                <!-- <ul>
+                <ul>
+                    <?php foreach($cats as $dado): ?>                               
+                        <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+                        <?php 
+                        if(count($dado['subs'])>0){
+                            $render("commerce/lay01/subcategoria_footer", array(
+                                'subs' => $dado['subs'],
+                                'level' => 1
+                            ));
+                        }
+                        ?>
+                    <?php endforeach; ?>
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 								Women
@@ -31,7 +48,7 @@
 								Watches
 							</a>
 						</li>
-					</ul> -->
+					</ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">

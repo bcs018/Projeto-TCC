@@ -197,6 +197,11 @@ div.coupon input[type="text"] {
   width: 100%;
 }  
     
+.dp-menu ul ul {
+  display: none;
+  left: 0;
+  /* position: absolute; */
+}
     
 }
 /* Wide Mobile Layout: 480px. */

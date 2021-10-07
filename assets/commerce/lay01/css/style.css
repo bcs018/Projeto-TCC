@@ -1171,6 +1171,8 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
   color: #5a88ca;
 }
 
+/* */
+
 .dp-menu ul {
     list-style-type: none;
     padding: 0;
@@ -1196,7 +1198,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 }
 
 .dp-menu ul ul {
-    width: 150px
+    width: 200px;
 }
 
 .dp-menu ul ul li a {
