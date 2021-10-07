@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['log_admin_c'])){
+if(!isset($_SESSION['login_cliente_ecommerce'])){
   header("Location: /admin");
   exit;
 }

@@ -1,9 +1,8 @@
 <?php
-if(!isset($_SESSION['login_cliente_ecommerce'])){
+if(!isset($_SESSION['log_admin_c'])){
   header("Location: /login/c");
   exit;
 }
-
 $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Principal']); 
 ?>
 

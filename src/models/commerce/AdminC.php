@@ -15,7 +15,7 @@ class AdminC extends Model{
                 WHERE eu.sub_dominio = ? AND ue.login_ue = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $sub);
-        $sql->bindValue(2, $_SESSION['credencial']);
+        $sql->bindValue(2, $_SESSION['credencial_c']);
         $sql->execute();
         //echo $_SERVER['REQUEST_URI']; exit;
 

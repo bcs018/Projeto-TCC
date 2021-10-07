@@ -19,8 +19,6 @@ class AdminCController extends Controller {
             exit;
         }
 
-        $_SESSION['log_admin_c']['nome'] = $dados['nome_usu_ue'];
-
         return $dados;
     } 
 
