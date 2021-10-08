@@ -99,6 +99,6 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
     $('#celular').mask("(00)00000-0000");
 </script>
 
-<?php $render("commerce/footer_painel"); ?>
+<?php $render("commerce/footer_painel_c"); ?>
 
 <script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>

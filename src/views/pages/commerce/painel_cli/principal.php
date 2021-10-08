@@ -95,4 +95,4 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Pri
   <!-- /.content-wrapper -->
 
 
-<?php $render("commerce/footer_painel"); ?>
+<?php $render("commerce/footer_painel_c"); ?>

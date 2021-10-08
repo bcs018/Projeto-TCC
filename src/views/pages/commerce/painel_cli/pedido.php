@@ -115,4 +115,4 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Ped
     </section>
 </div>
 
-<?php $render("commerce/footer_painel"); ?>
+<?php $render("commerce/footer_painel_c"); ?>
