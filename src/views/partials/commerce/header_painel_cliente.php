@@ -119,7 +119,7 @@ if($notifi == 0){
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="../../../../assets/commerce/images/cart.png" alt="BW Logo" class="brand-image">
+      <img src="../../../../assets/commerce/images/cart.png" alt="PotLid Logo" class="brand-image">
       <span class="brand-text font-weight-light"><?php echo $_SESSION['log_admin_c']['fantasia']; ?></span>
     </a>
 

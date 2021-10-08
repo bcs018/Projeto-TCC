@@ -105,4 +105,13 @@ class CategoriaController extends Controller {
         header("Location: /admin/painel/categorias");              
 
      }
+
+     // Usado no footer para listar as categorias
+     public function listaCategorias(){
+        $cat = new Categoria;
+
+        $categoriasOrg = $cat->listaCategoriasOrganizadas();
+
+        return $categoriasOrg;
+     }
 }

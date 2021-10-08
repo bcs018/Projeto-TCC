@@ -104,7 +104,6 @@ class HomeController extends Controller {
 
     public function produtos(){
         $prod = new Produto;
-        $cate = new Categoria;
         $info = new Info;
         $carr = new Carrinho;
 
@@ -123,6 +122,28 @@ class HomeController extends Controller {
                                                                 'carrinho' => $carrinho,
                                                                 'dados'    => $dados
                                                             ]);
+
+    }
+
+    public function produtosCategoria($id){
+        $prod = new Produto;
+        $info = new Info;
+        $carr = new Carrinho;
+
+        $dados   = $info->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produtos = $prod->listaProdutosRelacionados($id['id']);
+
+        if(isset($_SESSION['carrinho'])){
+            $carrinho = $carr->listaItens($_SESSION['carrinho']);
+        }else{
+            $carrinho = false;
+        }
+
+        $this->render('commerce/'.$dados['layout'].'/produtos', [
+            'produtos' => $produtos,
+            'carrinho' => $carrinho,
+            'dados'    => $dados
+        ]);
 
     }
 

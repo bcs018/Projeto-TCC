@@ -1,4 +1,4 @@
-<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Pagamento']); ?>
+<?php $render('sitePrincipal/header', ['title' => 'PotLid Commerce | Pagamento']); ?>
 
 <?php 
 if(!isset($_SESSION['person'])){

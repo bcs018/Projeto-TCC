@@ -225,9 +225,8 @@ unset($_SESSION['frete']);
     </div>
 </div> <!-- End product widget area -->
 
-<?php  
-// echo '<pre>';
-// print_r($_SESSION);
-?>
-
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
+
+<script>
+    $(".bx-viewport").css('height','180px');
+</script>

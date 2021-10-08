@@ -110,7 +110,7 @@ if($notifi == 0){
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="<?php echo BASE_ASS; ?>images/logobw.png" alt="BW Logo" class="brand-image">
+      <img src="<?php echo BASE_ASS; ?>images/logobw.png" alt="PotLid Logo" class="brand-image">
       <span class="brand-text font-weight-light">Commerce</span>
     </a>
 
@@ -183,7 +183,7 @@ if($notifi == 0){
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
+                <a href="/painel/add-usuario" class="nav-link">
                 <i class="fas fa-plus nav-icon"></i>
                   <p>Adicionar novo usuário</p>
                 </a>

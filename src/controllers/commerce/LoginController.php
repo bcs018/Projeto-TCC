@@ -34,7 +34,7 @@ class LoginController extends Controller {
         if($dados['ativo'] == '0'){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                         Você não possui mais acesso a plataforma. <br>
-                                        regularize seus débitos ou entre em contato com BW Commerce!
+                                        regularize seus débitos ou entre em contato com PotLid Commerce!
                                     </div>';
             header("Location: /admin");
             exit;          
@@ -82,13 +82,15 @@ class LoginController extends Controller {
     }
 
     public function sair(){
-        unset($_SESSION['log_admin_c']);
+        unset($_SESSION['log_admin']);
+        unset($_SESSION['credencial']);
         header("Location: /admin");
     }
 
     public function sairC(){
         unset($_SESSION['log_admin_c']);
         unset($_SESSION['login_cliente_ecommerce']);
+        unset($_SESSION['credencial_c']);
         header("Location: /login/c");
     }
 

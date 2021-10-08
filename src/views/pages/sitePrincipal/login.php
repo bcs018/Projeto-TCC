@@ -4,7 +4,7 @@ if(isset($_SESSION['log'])){
 }
 ?>
 
-<?php $render('sitePrincipal/header', ['title' => 'BW Commerce | Login']); ?>
+<?php $render('sitePrincipal/header', ['title' => 'PotLid Commerce | Login']); ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css/util.css">
 <link rel="stylesheet" type="text/css" href="<?php echo BASE_ASS; ?>css//main.css">

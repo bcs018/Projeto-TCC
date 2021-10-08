@@ -1,9 +1,15 @@
 <?php  
 use \src\models\commerce\Carrinho;
-use \src\models\commerce\Info;
+use src\controllers\commerce\CategoriaController;
+
 $carr = new Carrinho;
 $valores = $carr->somaValor();
 if(!$valores)$valores['total'] = '0,00';
+
+
+$cat = new CategoriaController;
+
+$cats = $cat->listaCategorias();
 ?>
 
 <!DOCTYPE html>
@@ -177,6 +183,19 @@ if(!$valores)$valores['total'] = '0,00';
             background-color: white;
             font-size: large;
         }
+        /*  */
+        .dp-menu ul li a {
+            color: <?php echo $layout['cor']; ?>;
+            text-decoration: none;
+            display: inline-block;
+            padding: 10px;
+            transition: .4s;
+        }
+        .mainmenu-area ul.navbar-nav li a:hover{
+            color: gray;
+        }
+
+       
     </style>
 
 </head>
@@ -238,12 +257,28 @@ if(!$valores)$valores['total'] = '0,00';
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="/produtos">Produtos</a></li>
-                        <li><a href="#">Categorias</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
+                    <nav class="dp-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/produtos">Produtos</a></li>
+                            <li><a href="#">Categorias</a>
+                                <ul>
+                                <?php foreach($cats as $dado): ?>                               
+                                    <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+                                    <?php 
+                                    if(count($dado['subs'])>0){
+                                        $render("commerce/lay01/subcategoria_footer", array(
+                                            'subs' => $dado['subs'],
+                                            'level' => 1
+                                        ));
+                                    }
+                                    ?>
+                                <?php endforeach; ?>
+                                </ul>
+                            </li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

@@ -349,4 +349,4 @@ create table notificacao_admin(
 )default charset utf8;
 
 insert into usuario_admin (nome_user, login, senha) 
-values ('admin', 'admin', md5('admin'));
+values ('admin', 'admin', md5('admin@potlid123'));

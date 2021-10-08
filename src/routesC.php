@@ -59,6 +59,7 @@ $router->get('/admin/painel/excluir-ban/{idprod}', 'ProdutoController@excBanner'
 $router->get('/admin/painel/excluir-produto/{id}', 'ProdutoController@excProduto');
 $router->get('/visualizar/produto/{id}', 'HomeController@visProduto');
 $router->get('/produtos', 'HomeController@produtos');
+$router->get('/produtos/categoria/{id}', 'HomeController@produtosCategoria');
 
 // -- Pesquisa de produtos
 $router->post('/pesquisa-produtos', 'PesquisaController@pesquisa');

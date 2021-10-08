@@ -1,4 +1,4 @@
-<?php $render('sitePrincipal/header', ['title'=>'BW Commerce | Página não encontrada']); ?>
+<?php $render('sitePrincipal/header', ['title'=>'PotLid Commerce | Página não encontrada']); ?>
 
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo BASE_ASS; ?>images/404.jpg');"
     data-stellar-background-ratio="0.5">

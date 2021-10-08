@@ -5,7 +5,7 @@
       Anything you want
     </div> -->
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 <a href="<?php echo BASE_URL; ?>">BW Commerce</a>.</strong> Todos os direitos reservados.
+    <strong>Copyright &copy; 2021 <a href="<?php echo BASE_URL; ?>">PotLid Commerce</a>.</strong> Todos os direitos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->

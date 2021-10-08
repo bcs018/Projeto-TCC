@@ -1,4 +1,9 @@
 <?php
+if(!isset($_SESSION['log_admin'])){
+  header("Location: /admin");
+  exit;
+}
+
 $render("commerce/header_painel", ['title'=>'Painel administrativo | Vendas pendentes']); 
 ?>
 

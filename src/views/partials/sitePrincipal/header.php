@@ -19,7 +19,7 @@
 
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/style.css">
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/opcaoPgm.css">
-	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
+	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico2.ico">
 	<script src="<?php echo BASE_ASS; ?>js/jquery.min.js"></script>
 	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
 
@@ -36,7 +36,7 @@
 							<div class="col-md-6 d-flex align-items-center">
 								<p class="mb-0 phone pl-md-2">
 									<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> (19) 01234-5678</a>
-									<a href="#"><span class="fa fa-paper-plane mr-1"></span> bwcommerce@outlook.com</a>
+									<a href="#"><span class="fa fa-paper-plane mr-1"></span> potlidcommerce@gmail.com</a>
 								</p>
 							</div>
 							<div class="col-md-6 d-flex justify-content-md-end">
@@ -60,7 +60,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
 			<a href="/">
-				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="210px" height="55px">
+				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="255px" height="70px">
 			</a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav"

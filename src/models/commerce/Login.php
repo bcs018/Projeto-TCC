@@ -23,7 +23,8 @@ class Login extends Model{
         $dados = $sql->fetch();
 
         if($sql->rowCount() > 0){
-            $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
+            $_SESSION['log_admin']['fantasia'] = $dados['nome_fantasia'];
+            $_SESSION['log_admin']['nome'] = $dados['nome'];
             $_SESSION['credencial'] = $login;
 
             return true;
@@ -32,9 +33,6 @@ class Login extends Model{
         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
                                     Login e/ou Senha inválidos!
                                 </div>';
-        $_SESSION['credencial'] = $login;
-        $_SESSION['log_admin_c'] = false;
-
         return false;
     }
 
@@ -58,9 +56,9 @@ class Login extends Model{
         if($sql->rowCount() > 0){
             $dados = $sql->fetch();
             $_SESSION['login_cliente_ecommerce'] = $dados['ue_id'];
-            //$_SESSION['nome_cliente_ecommerce'] = $dados['nome_usu_ue'];
             $_SESSION['log_admin_c']['fantasia'] = $dados['nome_fantasia'];
-            $_SESSION['credencial'] = $login;
+            $_SESSION['log_admin_c']['nome'] = $dados['nome_usu_ue'];
+            $_SESSION['credencial_c'] = $login;
 
             // Variavel de controle para quando o usuario clicar no LOGIN entrar no painel de controle, e quando ele for fazer uma compra e nao
             // estiver logado, o control vai ser '' e o levara para a pagina anterior

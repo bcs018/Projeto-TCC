@@ -1,10 +1,5 @@
 <?php
-if(!isset($_SESSION['login_cliente_ecommerce'])){
-  header("Location: /admin");
-  exit;
-}
-
-$render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Editar dados pessoais']); 
+$render("sitePrincipal/header_paineladm", ['title'=>'Painel administrativo - Criar novo usuário']);
 ?>
 
 <div class="content-wrapper" style="min-height: 1227.43px;">
@@ -12,7 +7,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Editar dados pessoais</h1><br>
+                    <h1>Adicionar novo usuário</h1><br>
 
                     <center><br><h6 style="color: #fa3200;font-weight: bold;">Campos marcados com asterisco
                                     (*) são obrigatórios.</h6></center>
@@ -35,48 +30,38 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
                         <div class="card-header">
                             <h3 class="card-title">Dados</h3>
                         </div>
-                        <form role="form" method="POST" action="/cliente/painel/alterar-dados-pessoais/action">
+                        <form role="form" method="POST" action="/painel/add-usuario/action">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Nome</label>
-                                            <input type="text" class="form-control" name="nome" id="nome"
-                                                value="<?php echo $dados['nome_usu_ue']; ?>">
-                                            <input type="hidden" value="<?php echo $dados['usuario_id']; ?>" name="id">
+                                            <input type="text" class="form-control" name="nome" id="nome">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
+ 
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                            <label for="exampleInputEmail1">Sobrenome</label>
-                                            <input type="text" class="form-control" name="sobrenome" id="sobrenome"
-                                                value="<?php echo $dados['sobrenome']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
-                                            <label for="exampleInputEmail1">Celular</label>
-                                            <input type="text" class="form-control" name="celular" id="celular"
-                                                value="<?php echo $dados['celular_ue']; ?>">
+                                            <label for="exampleInputEmail1">Login</label>
+                                            <input type="text" class="form-control" name="login" id="login">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Alterar senha</label>
-                                            <input type="password" class="form-control" name="altSenha" id="altSenha">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
+                                            <label for="exampleInputEmail1">Senha</label>
+                                            <input type="password" class="form-control" name="senha" id="altSenha">
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                             <label for="exampleInputEmail1">Repita a senha</label>
-                                            <input type="password" class="form-control" name="altSenhaRep"
+                                            <input type="password" class="form-control" name="senhaRep"
                                                 id="altSenhaRep">
                                         </div>
                                         <div id="message"></div>
@@ -85,7 +70,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Editar</button>
+                                <button type="submit" class="btn btn-success">Incluir</button>
                             </div>
                         </form>
                     </div>
@@ -95,10 +80,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Edi
     </section>
 </div>
 
-<script type="text/javascript">
-    $('#celular').mask("(00)00000-0000");
-</script>
-
-<?php $render("commerce/footer_painel"); ?>
+<?php $render("sitePrincipal/footer_paineladm"); ?>
 
 <script src="<?php echo BASE_ASS_C; ?>js/validaSenha.js"></script>
+

@@ -1,8 +1,15 @@
 <?php  
 use \src\models\commerce\Carrinho;
+use src\controllers\commerce\CategoriaController;
+
 $carr = new Carrinho;
 $valores = $carr->somaValor();
 if(!$valores)$valores['total'] = '0,00';
+
+$cat = new CategoriaController;
+
+$cats = $cat->listaCategorias();
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +25,7 @@ if(!$valores)$valores['total'] = '0,00';
     <?php endif; ?>
 
 	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/fonts/iconic/css/material-design-iconic-font.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/fonts/linearicons-v1.0.0/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php //echo BASE_ASS_C; ?>/assets/commerce/lay02/vendor/animate/animate.css">
@@ -183,6 +190,23 @@ if(!$valores)$valores['total'] = '0,00';
 								<a href="/produtos">Produtos</a>
 							</li>
 
+							<li>
+								<a href="#">Categorias</a>
+								<ul class="sub-menu">
+									<?php foreach($cats as $dado): ?>                               
+										<?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+										<?php 
+										if(count($dado['subs'])>0){
+											$render("commerce/lay02/subcategoria_footer", array(
+												'subs' => $dado['subs'],
+												'level' => 1
+											));
+										}
+										?>
+									<?php endforeach; ?>
+								</ul>
+							</li>
+
 							<!-- <li class="label1" data-label1="hot">
 								<a href="#">Features</a>
 							</li> -->
@@ -265,9 +289,6 @@ if(!$valores)$valores['total'] = '0,00';
 					<a href="/">Home</a>
 					<ul class="sub-menu-m">
 					</ul>
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
 				<li>
@@ -275,19 +296,36 @@ if(!$valores)$valores['total'] = '0,00';
 				</li>
 
 				<li>
-					<a href="" class="label1 rs1" data-label1="hot">Features</a>
+					<a class="turn-arrow-main-menu-m" href="">Categorias</a>
+					<ul class="sub-menu-m" style="display: none;">
+						<?php foreach($cats as $dado): ?>                               
+							<?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+							<?php 
+							if(count($dado['subs'])>0){
+								$render("commerce/lay02/subcategoria_footer", array(
+									'subs' => $dado['subs'],
+									'level' => 1
+								));
+							}
+							?>
+						<?php endforeach; ?>
+					</ul>
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+
 				</li>
 
 				<li>
-					<a href="">Blog</a>
+					<a href="/cadastrar">Cadastre-se</a>
 				</li>
 
 				<li>
-					<a href="">About</a>
+					<a href="">Sobre</a>
 				</li>
 
 				<li>
-					<a href="">Contact</a>
+					<a href="">Contato</a>
 				</li>
 			</ul>
 		</div>

@@ -48,6 +48,6 @@ class LoginController extends Controller {
 
     public function sairAdmin(){
         unset( $_SESSION['log_admin']);
-        header("Location: /admin-bwcommerce");
+        header("Location: /admin-potlid");
     }
 }
