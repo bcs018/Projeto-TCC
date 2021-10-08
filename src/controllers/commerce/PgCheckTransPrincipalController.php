@@ -143,7 +143,7 @@ class PgCheckTransPrincipalController extends Controller {
         $creditCard->setMode('DEFAULT');
 
         //Url para o pagseguro notificar que o pagamento foi aprovado
-        //$creditCard->setNotificationUrl('http://www.bw.com.br/notification');
+        $creditCard->setNotificationUrl('http://www.bw.com.br/notification');
 
         //$creditCard->setNotificationUrl();
 
@@ -291,6 +291,8 @@ class PgCheckTransPrincipalController extends Controller {
             'BRA',
             $_SESSION['dados_entrega']['complemento']
         );
+
+        $boleto->setNotificationUrl('http://www.bw.com.br/notification');
 
         // If your payment request don't need shipping information use:
         // $boleto->setShipping()->setAddressRequired()->withParameters('FALSE');
