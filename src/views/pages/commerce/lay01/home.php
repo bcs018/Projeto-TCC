@@ -228,5 +228,5 @@ unset($_SESSION['frete']);
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script>
-    $(".bx-viewport").css('height','180px');
+    $(".bx-viewport").css('height','200px');
 </script>

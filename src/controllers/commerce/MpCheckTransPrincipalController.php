@@ -77,6 +77,7 @@ class MpCheckTransPrincipalController extends Controller {
 
         $payment = new \MercadoPago\Payment();
         $payment->transaction_amount = (float)$totalCompra;
+        $payment->notification_url = 'http://potlid.com.br/notificacao/mp';
         $payment->token = $token;
         $payment->description = 'PotLid Commerce'; //Razão do pagamento ou titulo do item
         $payment->installments = (int)$numParcela;
