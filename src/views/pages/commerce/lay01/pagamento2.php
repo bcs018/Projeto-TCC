@@ -43,8 +43,10 @@ if(isset($_SESSION['frete'])){
                 
                 <?php if($dados['tp_recebimento'] == 'pagseguro'){
                     require_once('fmr_pagseguro.php');
-                }else{
+                }else if($dados['tp_recebimento'] == 'mercadopago'){
                     require_once('fmr_mpago.php');
+                }else{
+                    require_once('fmr_gerencianet.php');
                 }
                 ?>
 
@@ -108,7 +110,7 @@ if(isset($_SESSION['frete'])){
 </div>
 
 <?php 
-//echo'<pre>';print_r($_SESSION);
+
 ?>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
@@ -119,7 +121,7 @@ if(isset($_SESSION['frete'])){
     <script type="text/javascript">
         PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
     </script>
-<?php else: ?>
+<?php elseif($dados['tp_recebimento'] == 'mercadopago'): ?>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="<?php echo BASE_ASS_C; ?>js/mpckttransparente.js"></script>
     <script>
@@ -288,6 +290,76 @@ if(isset($_SESSION['frete'])){
             }
         })
     </script>
+<?php else: ?>
+    <script type='text/javascript'>
+        var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/4386237ea13697f289fe6b5504dd944a/'+v;s.async=false;s.id='4386237ea13697f289fe6b5504dd944a';if(!document.getElementById('4386237ea13697f289fe6b5504dd944a')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};
+
+        $gn.ready(function(checkout){
+            $('#brand').change(function (){
+                window.bandeira = $(this).val();
+                checkout.getInstallments(<?php echo $_SESSION['total']*100; ?>, window.bandeira, function(error, response){
+                    if(error) {
+                        // Trata o erro ocorrido
+                        console.log(error);
+                    } else {
+                        html = '';
+                        parc = response.data.installments;
+
+                        for(var i in parc){
+                            optionValue = parc[i].installment+';'+parc[i].currency;
+
+                            html += '<option value='+optionValue+'>'+parc[i].installment+' parcelas de R$'+parc[i].currency+'</option>'
+                        }
+                        $('select[name=parc]').html(html);
+                    }
+                });
+            });
+
+            $("#finalizar").on('click', function(){         
+                var callback = function(error, response) {
+                    if(error) {
+                        $("#message").html('<div class="alert alert-danger" role="alert">'+error.error_description+'</div>')
+                        console.error(error);
+                    } else {
+                        $.ajax({
+                            url: '/checkout_gere',
+                            type: 'POST',
+                            data:{
+                                paymentToken: response.data.payment_token,
+                                parcela:$("#parc option:selected").val()
+                            },
+                            dataType:'json',
+                            beforeSend: function(){
+                                $('#loading').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"></div><span class="visually-hidden"> &nbsp;&nbsp; Finalizando pagamento...</span></div>');
+                            },
+                            success:function(json){
+                                if(json.error == true){
+                                    console.log(json.calculo)
+                                    $('#loading').html('<div class="alert alert-danger" role="alert">001 - Houve erro durante o pagamento, tente novamente atualizando a pagina!<br>'+json.msg+'</div>');
+                                    return;
+                                }
+                                window.location.href = '/pagamento/concluido/'+json.id_compra;
+                                //$('#loading').html('<div class="alert alert-success" role="alert">Pagamento finalizado com sucesso</div>');
+                            },
+                            error:function(json){
+                                $('#loading').html('<div class="alert alert-danger" role="alert">002 - Houve erro durante o pagamento, tente novamente atualizando a pagina!</div>');
+                            }
+                        });
+                        console.log(response);
+                    }
+                };
+
+                checkout.getPaymentToken({
+                    brand: window.bandeira, // bandeira do cartão
+                    number: $("#n_card").val(), // número do cartão
+                    cvv: $("#cd_seg").val(), // código de segurança
+                    expiration_month: $("#cartao_mes option:selected").val(), // mês de vencimento
+                    expiration_year: $("#cartao_ano option:selected").val() // ano de vencimento
+                }, callback);
+            })
+        });        
+    </script>
+
 <?php endif; ?>
 
 <script type="text/javascript">

@@ -8,7 +8,7 @@ class Compra extends Model{
 
     public function addCompra($tp_pagamento, $parc='À vista', $flag = false){
 
-        // Se flag for false, é pq o pagamento está vindo do PagSeguro, então monta 
+        // Se flag for false, é pq o pagamento está vindo do PagSeguro ou Gerenciante, então monta 
         // a parcela atraves de um array, se flag for true, está vindo do Mercado Pago 
         // e a parcela ja vem montada
         if(!$flag){

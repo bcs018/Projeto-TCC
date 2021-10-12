@@ -64,6 +64,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                                                 href="#mercadopago" role="tab" aria-controls="mercadopago"
                                                 aria-selected="false">Mercado Pago</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="gerencianet-tab" data-toggle="pill"
+                                                href="#gerencianet" role="tab" aria-controls="gerencianet"
+                                                aria-selected="false">Gerencianet</a>
+                                        </li>
                                     </ul>
 
                                     <div class="tab-content" id="pills-tabContent">
@@ -85,6 +91,17 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                                                 <br>
                                                 <label for="tknmpago">Accsess Token do Mercado Pago</label>
                                                 <input type="text" class="form-control" name="tknmpago" id="tknmpago" aria-describedby="emailHelp" placeholder="Accsess Token Mercado Pago">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="gerencianet" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div class="form-group">
+                                                <label for="cliid">Cliente ID</label>
+                                                <input type="text" class="form-control" name="cliid" id="cliid" aria-describedby="emailHelp" placeholder="Public Key Mercado Pago">
+                                                <br>
+                                                <label for="clisecre">Client Secret</label>
+                                                <input type="text" class="form-control" name="clisecre" id="clisecre" aria-describedby="emailHelp" placeholder="Accsess Token Mercado Pago">
 
                                             </div>
                                         </div>

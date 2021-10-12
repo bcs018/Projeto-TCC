@@ -439,34 +439,44 @@ class Admin extends Model{
         return false;
     }
 
-    public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago, $tknmpago){
-        if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro) && empty($tknmpago))){
+    public function cadDadosRecebimentoAction($tknpagseguro, $emailpagseguro, $pkmpago, $tknmpago, $cliid, $clisecre){
+        if((empty($pkmpago) && empty($emailpagseguro) && empty($tknpagseguro) && empty($tknmpago) && empty($cliid) && empty($clisecre))){
             
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
-                                        Campos obrigátórios do PagSeguro ou Mercado Pago não preenchidos!
+                                        Campos obrigátórios do PagSeguro, Mercado Pago ou Gerencianet não preenchidos!
                                     </div>';
 
             return false;
         }
 
-        if((!empty($pkmpago) || !empty($tknmpago)) && (!empty($emailpagseguro) || !empty($tknpagseguro))){
+        if((!empty($pkmpago) || !empty($tknmpago)) && (!empty($emailpagseguro) || !empty($tknpagseguro))/* && (!empty($cliid) || !empty($clisecre))*/){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
-                                        Não deve preencher campos do PagSeguro e Mercado Pago juntos <br>
-                                        Preencha PagSeguro ou Mercado Pago!
+                                        Não deve preencher campos do PagSeguro, Mercado Pago ou Gerencianet juntos <br>
+                                        Preencha PagSeguro, Mercado Pago ou Gerencianet!
                                     </div>';
 
             return false;
         }
 
-        $sql = 'UPDATE ecommerce_usu SET tp_recebimento = ?, ps_token = ?, ps_email = ?, mp_public_key = ?, mp_access_token = ?
+        if(empty($pkmpago) && empty($emailpagseguro)){
+            $tp_pgm = 'gerencianet';
+        }else if(empty($cliid) && empty($emailpagseguro)){
+            $tp_pgm = 'mercadopago';
+        }else{
+            $tp_pgm = 'pagseguro';
+        }
+
+        $sql = 'UPDATE ecommerce_usu SET tp_recebimento = ?, ps_token = ?, ps_email = ?, mp_public_key = ?, mp_access_token = ?, client_id = ?, client_secret = ?
                 WHERE ecommerce_id = ?';
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, (empty($pkmpago)?'pagseguro':'mercadopago'));
+        $sql->bindValue(1, $tp_pgm);
         $sql->bindValue(2, (!empty($tknpagseguro)?$tknpagseguro:'0'));
         $sql->bindValue(3, (!empty($emailpagseguro)?$emailpagseguro:'0'));
         $sql->bindValue(4, (!empty($pkmpago)?$pkmpago:'0'));
         $sql->bindValue(5, (!empty($tknmpago)?$tknmpago:'0'));
-        $sql->bindValue(6, $_SESSION['id_sub_dom']);
+        $sql->bindValue(6, (!empty($cliid)?$cliid:'0'));
+        $sql->bindValue(7, (!empty($clisecre)?$clisecre:'0'));
+        $sql->bindValue(8, $_SESSION['id_sub_dom']);
         
         if($sql->execute()){
             $_SESSION['message'] .= '<div class="alert alert-success" role="alert">

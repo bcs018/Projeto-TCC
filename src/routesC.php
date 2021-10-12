@@ -87,6 +87,7 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/checkoutBol', 'PgCheckTransPrincipalController@checkoutBol');
 $router->post('/checkout_mp', 'MpCheckTransPrincipalController@checkout');
 $router->post('/checkout_mpBol', 'MpCheckTransPrincipalController@checkout_mpBol');
+$router->post('/checkout_gere', 'GereCheckTransPrincipalController@checkout_gere');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
 $router->get('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 

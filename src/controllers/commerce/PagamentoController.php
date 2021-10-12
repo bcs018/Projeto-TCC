@@ -158,6 +158,8 @@ class PagamentoController extends Controller {
         }else if($dados['tp_recebimento'] == 'mercadopago'){
             $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
             exit;
+        }else if ($dados['tp_recebimento'] == 'gerencianet'){
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
         }else{
             header("Location: /");
         }
