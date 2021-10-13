@@ -24,6 +24,9 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
 $router->get('/boleto/notification', 'BoletoController@notification');
 
+$router->post('/notificacao/gerencianet', 'NotificacaoClientesController@notificacaoGereCard');
+
+
 $router->post('/consulta-cep', 'CadastroController@consultarCep');
 
 $router->get('/admin-potlid', 'LoginController@admin');
