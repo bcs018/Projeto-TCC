@@ -194,8 +194,18 @@ class Compra extends Model{
 
     }
 
-    public function alteraStatusCompra(){
+    public function alteraStatusCompra($status, $id){
+        $sql = 'UPDATE compra SET status_pagamento = ? WHERE compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $status);
+        $sql->bindValue(2, $id);
         
+        if($sql->execute()){
+            return true;
+        }
+
+        return false;
+
     }
 
 }

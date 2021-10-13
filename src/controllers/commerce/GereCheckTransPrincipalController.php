@@ -49,7 +49,7 @@ class GereCheckTransPrincipalController extends Controller {
             $items[] = [
                 'name' => $p['nome_pro'], // nome do item, produto ou serviço
                 'amount' => intval($_SESSION['carrinho'][$p[0]]), // quantidade
-                'value' => floatval($p['preco'])*100 // valor (1000 = R$ 10,00) (Obs: É possível a criação de itens com valores negativos. Porém, o valor total da fatura deve ser superior ao valor mínimo para geração de transações.)
+                'value' => intval($p['preco'])*100 // valor (1000 = R$ 10,00) (Obs: É possível a criação de itens com valores negativos. Porém, o valor total da fatura deve ser superior ao valor mínimo para geração de transações.)
             ];
         }
 
@@ -60,7 +60,10 @@ class GereCheckTransPrincipalController extends Controller {
             "value"=>$frete*100
         ];
 
-        $metadata = array('notification_url'=>'http://potlid.com.br/notificacao/gerencianet');
+        $metadata = array(
+                            'custom_id' => $id_compra,
+                            'notification_url'=>'http://potlid.com.br/notificacao/gerencianet'
+                        );
        
         $ddd_usu = substr($usuario['celular_ue'],1,2);
         $cel_usu = substr($usuario['celular_ue'],4,5).substr($usuario['celular_ue'],10,4);

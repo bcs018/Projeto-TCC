@@ -2,9 +2,7 @@
 namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
-use \src\models\sitePrincipal\Login;
 use \src\models\commerce\Compra;
-use \src\models\commerce\PagSeguro;
 
 class NotificacaoClientesController extends Controller {
     public function notificacaoGereCard(){
@@ -19,7 +17,7 @@ class NotificacaoClientesController extends Controller {
         ];
 
         $token = $_POST['notification'];
-        //$token = '6bfb0b38-f8d1-44a9-bc57-636fd963e12a';
+
         $params = [
             'token' => $token,
         ];
@@ -29,8 +27,6 @@ class NotificacaoClientesController extends Controller {
             $c = $api->getNotification($params, []);
             //echo '<pre>';
             //print_r($c);exit;
-
-            file_put_contents('retornoGere.txt', print_r($c));exit;
 
             //Pega a ultima chave do array
             $ultimoIte = end($c['data']);
@@ -44,7 +40,9 @@ class NotificacaoClientesController extends Controller {
             // echo $status;
             // exit;
 
-            //$assinatura = new Assinatura;
+            $compra = new Compra;
+
+            $compra->alteraStatusCompra($status, $custo_id);
 
             // switch ($status) {
             //     // Assinatura criada, porém nenhuma cobrança foi paga
@@ -54,7 +52,7 @@ class NotificacaoClientesController extends Controller {
                 
             //     // Forma de pagamento selecionada, aguardando a confirmação do pagamento
             //     case 'waiting':
-            //         $assinatura->atualizaStatus($custo_id, $status, 1);
+            //         $compra->alteraStatusCompra($status, $custo_id);
             //         break;
 
             //     // Assinatura ativa. Todas as cobranças estão sendo geradas
