@@ -42,7 +42,9 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meu
                                             <p style="margin-bottom: 0px;"><strong>Compra n°:  <?php echo $compra['compra_id']; ?> </strong></p>
                                         </a>
                                         <p style="margin-bottom: 0px;"><strong>Valor compra: R$<?php echo number_format($compra['total_compra'],2,',','.'); ?></strong></p>
-                                        <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p>
+                                        <p style="margin-bottom: 0px;"><strong>Método pagamento: <?php echo ($compra['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></strong></p><br>
+                                        <p><a class="btn btn-info" href="/cliente/painel/meus-pedidos/<?php echo $compra['compra_id']; ?>">Visualizar</a></p>
+
                                     </div>
                                     <div class="col"> 
                                         <b><p style="margin-bottom: 0px;">Data da compra: <?php echo date('d/m/Y', strtotime($compra['data_compra'])). ' às: '. $compra['hora_compra']; ?></p></b>
@@ -59,7 +61,9 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meu
                                         <?php elseif($compra['status_pagamento'] == '7' || $compra['status_pagamento'] == 'rejected'): ?>
                                             <b><p style="margin-bottom: 0px; color: #f55a42;">Compra cancelada</p></b>
                                         <?php endif; ?>
-                                        <p><a href="/cliente/painel/meus-pedidos/<?php echo $compra['compra_id']; ?>">Visualizar</a></p>
+                                        <br>
+                                        <button id="r-<?php echo $compra['compra_id']; ?>" class="btn btn-success">Marcar como recebido</button>
+                                        <!-- <input type="hidden" value="<?php //echo $compra['compra_id']; ?>" id="idcompra"> -->
                                     </div>
                                 </div>
                             </fieldset> <br>
@@ -75,3 +79,40 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meu
 </div>
 
 <?php $render("commerce/footer_painel"); ?>
+
+<script>
+
+$('button').click(function(){
+    id = $(this).attr('id').split("-")
+    $.confirm({
+      title: 'Marcar como Recebido?',
+      content: '',
+      type: 'orange',
+      buttons: {
+          deleteUser: {
+              text: 'SIM',
+              action: function () {
+                $.ajax({
+                  url: '/cliente/painel/marcar-recebido',
+                  type: 'POST',
+                  dataType: 'JSON',
+                  data:{
+                    id:id[1]
+                  },
+                  success:function(r){
+                    if(r.ret == true){
+                      $.alert('Marcado como Recebido!');
+                    }else{
+                      $.alert('Ocorreu erro interno!');
+                    }
+                  }
+                })
+              }
+          },
+          cancelar: {
+              btnClass: 'btn-red any-other-class', // multiple classes.
+          },
+      }
+    });
+  });
+</script>

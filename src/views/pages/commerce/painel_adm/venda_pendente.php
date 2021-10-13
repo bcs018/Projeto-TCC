@@ -56,6 +56,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                             <p style="margin-bottom: 0px;"><strong>Valor compra:</strong> R$<?php echo number_format($venda[0]['total_compra'],2,',','.'); ?></p>
                             <p style="margin-bottom: 0px;"><strong>Valor subtotal:</strong> R$<?php echo number_format($venda[0]['subtotal_compra'],2,',','.'); ?></p>
                             <p style="margin-bottom: 0px;"><strong>Valor frete: </strong>R$<?php echo number_format($venda[0]['frete'],2,',','.'); ?></p>
+                            <p style="margin-bottom: 0px;"><strong>Venda recebida? </strong><?php echo ($venda[0]['transferido']=='0')?'NÃO':'SIM'; ?></p>
                         </div>
                         <div class="col"> 
                             <p style="margin-bottom: 0px;"><strong>Método pagamento:</strong> <?php echo ($venda[0]['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></p>

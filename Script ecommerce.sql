@@ -78,12 +78,13 @@ create table ecommerce_usu(
     ico varchar(50) not null default 0,
     cor varchar (50) default '#adadad',
     cor_rodape varchar (50) default '#adadad',
-    tp_recebimento ENUM ('pagseguro','mercadopago','0') default '0' not null,
+    tp_recebimento varchar(50) default '0' not null,
     data_cad date not null,
-    ps_token varchar(200) default 0 not null, 
-    ps_email varchar(100) default 0 not null, 
-    mp_public_key varchar(300) default 0 not null,
-    mp_access_token varchar(300) default 0 not null,
+    -- ps_token varchar(200) default 0 not null, 
+    -- ps_email varchar(100) default 0 not null, 
+    -- mp_public_key varchar(300) default 0 not null,
+    -- mp_access_token varchar(300) default 0 not null,
+    chave_pix varchar(100) default '0',
 
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/
@@ -280,6 +281,9 @@ create table compra(
     estado_entrega varchar(100) not null,
     cidade_entrega varchar(100) not null,
     complemento_entrega varchar(100) not null,
+    recebido tinyint default 0,
+    data_recebimento date not null,
+    transferido tinyint default 0,
 
     primary key(compra_id),
 	foreign key(usuario_id) references usuario_ecommerce(ue_id),

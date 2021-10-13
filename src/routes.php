@@ -47,7 +47,10 @@ $router->get('/inativar/cliente/{id}', 'PainelController@inativarUsu');
 $router->get('/painel/relatorio', 'PainelController@relVendas');
 $router->post('/painel/relatorio', 'PainelController@relVendas');
 $router->get('/painel/add-usuario', 'PainelController@addUsuario');
+$router->get('/painel/vendas-a-pagar', 'PainelController@vendasPagar');
+$router->get('/painel/vendas-a-pagar/{id}', 'PainelController@vendaPagar');
 $router->post('/painel/add-usuario/action', 'PainelController@addUsuarioAction');
+$router->post('/transferir/compra', 'PainelController@transferirVenda');
 
 $router->post('/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
 $router->post('/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');

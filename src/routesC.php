@@ -44,6 +44,7 @@ $router->get('/cliente/sair/c', 'LoginController@sairC');
 $router->get('/cliente/painel/contato', 'AdminCController@contato');
 $router->get('/cliente/painel/meus-pedidos', 'AdminCController@pedidos');
 $router->get('/cliente/painel/meus-pedidos/{id}', 'AdminCController@pedido');
+$router->post('/cliente/painel/marcar-recebido', 'AdminCController@marcarRecebido');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');

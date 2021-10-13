@@ -153,5 +153,13 @@ class AdminC extends Model{
         return  $sql->fetch();
     }
 
+    public function marcarRecebido($id){
+        $sql = 'UPDATE compra SET recebido = ? WHERE compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+    }
+
 }
 

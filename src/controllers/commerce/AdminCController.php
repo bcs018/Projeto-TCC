@@ -87,4 +87,16 @@ class AdminCController extends Controller {
 
         $this->render('commerce/painel_cli/pedido', ['dados'=>$dados, 'pedido'=>$pedido]);
     }
+
+    public function marcarRecebido(){
+        $adm = new AdminC;
+
+        $dados = $this->listaDadosEcommerce();
+
+        $id = addslashes($_POST['id']);
+
+        $adm->marcarRecebido($id);
+
+        echo json_encode(['ret'=>true]);
+    }
 }

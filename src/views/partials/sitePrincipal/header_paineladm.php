@@ -162,6 +162,13 @@ if($notifi == 0){
                   <p>Relatório de Vendas</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/painel/vendas-a-pagar" class="nav-link">
+                <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Vendas à pagar</p>
+                </a>
+              </li>
             </ul>
           </li>
 

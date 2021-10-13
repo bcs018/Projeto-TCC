@@ -211,4 +211,56 @@ class Painel extends Model{
         return true;
     }
 
+    public function vendasPagar(){
+        $sql = 'SELECT * FROM ecommerce_usu eu
+                JOIN compra c
+                ON eu.ecommerce_id = c.ecommerce_id
+                JOIN ecom_usua eus
+                ON eus.ecommerce_id = eu.ecommerce_id
+                JOIN usuario u 
+                ON eus.usuario_id = u.usuario_id
+                WHERE c.recebido = ? AND c.transferido = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, 0);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }
+
+        return false;               
+    }
+
+    public function vendaPagar($id){
+        $sql = 'SELECT * FROM ecommerce_usu eu
+                JOIN compra c
+                ON eu.ecommerce_id = c.ecommerce_id
+                JOIN ecom_usua eus
+                ON eus.ecommerce_id = eu.ecommerce_id
+                JOIN usuario u 
+                ON eus.usuario_id = u.usuario_id
+                WHERE c.recebido = ? AND c.compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return $sql->fetch();
+        }
+
+        return false;               
+
+    }
+
+    public function marcarTransferido($id, $tran){
+        $sql = 'UPDATE compra SET transferido = ?
+                WHERE compra_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $tran);
+        $sql->bindValue(2, $id);
+        $sql->execute();
+    }
+
 }

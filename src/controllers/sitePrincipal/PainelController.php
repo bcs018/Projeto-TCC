@@ -3,6 +3,7 @@ namespace src\controllers\sitePrincipal;
 
 use \core\Controller;
 use src\models\commerce\AdminC;
+use src\models\commerce\Notificacao;
 use \src\models\sitePrincipal\Painel;
 use \src\models\sitePrincipal\Assinatura;
 
@@ -48,6 +49,50 @@ class PainelController extends Controller {
         $painel = new Painel;
 
         $this->render('sitePrincipal/painel_adm/clientes', ['titleView'=>'Clientes','clientes'=>$painel->listaClientes()]);
+    }
+
+    public function vendasPagar(){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-potlid");
+            exit;
+        }
+
+        $ven = new Painel;
+
+        $vendas = $ven->vendasPagar();
+
+        $this->render('sitePrincipal/painel_adm/vendas_pagar', ['titleView'=>'Vendas à pagar','vendas'=>$vendas]);
+    }
+
+    public function vendaPagar($id){
+        if(!isset($_SESSION['log_admin'])){
+            header("Location: /admin-potlid");
+            exit;
+        }
+
+        $ven = new Painel;
+
+        $venda = $ven->vendaPagar($id['id']);
+
+        $this->render('sitePrincipal/painel_adm/venda_pagar', ['venda'=>$venda]);
+
+    }
+
+    public function transferirVenda(){
+        $id = addslashes($_POST['id']);
+        $tran = addslashes($_POST['tran']);
+        $valor = (isset($_POST['valor']))?$_POST['valor']:'';
+        
+        $ven = new Painel;
+        $not = new Notificacao;
+
+        $ven->marcarTransferido($id, $tran);
+
+        if(isset($_POST['valor'])){
+            $not->gravaNotificacao(intval($_POST['idEco']), 'Você recebeu o valor de '.$_POST['valor'].' referente a venda '.$id.'!', '/admin/painel/venda/'.$id);
+        }
+
+        echo json_encode(['ret'=>true]);
     }
 
     public function alterarDadosPessoais(){
