@@ -33,8 +33,8 @@ class GereCheckTransPrincipalController extends Controller {
 
         $id_compra = $comp->addCompra('cartao', $parc);    
 
-        $clientId = $dados['client_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-        $clientSecret = $dados['client_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+        $clientId = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+        $clientSecret = 'Client_Secret_6d7692cf8197942b09eceea1b155981c39825d29'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
         
 
         $options = [
@@ -119,7 +119,9 @@ class GereCheckTransPrincipalController extends Controller {
 
             $comp->atuCompra($id_compra, $pay_charge['data']['charge_id'],'0', $pay_charge['data']['status']);
             $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
-            
+            // echo '<pre>';
+            // print_r($pay_charge);
+            // echo '<pre>';exit;
             // -- Atualizando o estoque
             $produtos = $carr->listaItens($_SESSION['carrinho']);
 

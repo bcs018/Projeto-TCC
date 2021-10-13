@@ -136,7 +136,7 @@ class PagamentoController extends Controller {
         }else{
             $carrinho = false;
         }
-
+/*
         if($dados['tp_recebimento'] == 'pagseguro'){
             //Pegando a sessão do pagseguro
             PagSeguro::setDados();
@@ -158,11 +158,11 @@ class PagamentoController extends Controller {
         }else if($dados['tp_recebimento'] == 'mercadopago'){
             $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
             exit;
-        }else if ($dados['tp_recebimento'] == 'gerencianet'){
+        }else if ($dados['tp_recebimento'] == 'gerencianet'){*/
             $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
-        }else{
-            header("Location: /");
-        }
+        // }else{
+        //     header("Location: /");
+        // }
 
     }
 

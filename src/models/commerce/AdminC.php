@@ -154,10 +154,11 @@ class AdminC extends Model{
     }
 
     public function marcarRecebido($id){
-        $sql = 'UPDATE compra SET recebido = ? WHERE compra_id = ?';
+        $sql = 'UPDATE compra SET recebido = ?, data_recebimento = ? WHERE compra_id = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, 1);
-        $sql->bindValue(2, $id);
+        $sql->bindValue(2, date('Y-m-d'));
+        $sql->bindValue(3, $id);
         $sql->execute();
     }
 

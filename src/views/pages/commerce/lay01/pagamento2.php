@@ -41,13 +41,8 @@ if(isset($_SESSION['frete'])){
                 }
                 ?>
                 
-                <?php if($dados['tp_recebimento'] == 'pagseguro'){
-                    require_once('fmr_pagseguro.php');
-                }else if($dados['tp_recebimento'] == 'mercadopago'){
-                    require_once('fmr_mpago.php');
-                }else{
+                <?php
                     require_once('fmr_gerencianet.php');
-                }
                 ?>
 
                 <div id="loading"></div>
