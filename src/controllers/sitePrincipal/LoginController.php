@@ -11,7 +11,7 @@ class LoginController extends Controller {
     }
 
     public function admin(){
-        $this->render('sitePrincipal\login', ['tpLogin'=>'Informe seu login', 'user'=>'admin', 'tpText'=>'text']);    
+        $this->render('sitePrincipal/login', ['tpLogin'=>'Informe seu login', 'user'=>'admin', 'tpText'=>'text']);    
     }
 
     public function validarUser(){
@@ -36,7 +36,7 @@ class LoginController extends Controller {
         }
 
         $_SESSION['message'] = '<br><div class="alert alert-danger" role="alert">Usuário e/ou senha incorretos!</div>';
-        header("Location: /login");
+        header("Location: /admin-potlid");
         exit;
     }
 

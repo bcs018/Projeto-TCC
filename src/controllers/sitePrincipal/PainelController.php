@@ -11,7 +11,7 @@ use \src\models\sitePrincipal\Assinatura;
 class PainelController extends Controller {
 
     public function index(){
-        if(!isset($_SESSION['log_admin'])){
+        if(!isset($_SESSION['log_admin']['id'])){
             header("Location: /admin-potlid");
             exit;
         }

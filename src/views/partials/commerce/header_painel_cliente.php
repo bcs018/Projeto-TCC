@@ -59,7 +59,7 @@ if($notifi == 0){
   <style>
     .dropdown-menu-lg {
       max-width: 300px;
-      min-width: 380px;
+      min-width: 430px;
       padding: 0;
     }
   </style>

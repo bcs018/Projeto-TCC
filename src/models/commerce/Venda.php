@@ -15,13 +15,12 @@ class Venda extends Model{
                 ON c.usuario_id = ue.ue_id
                 JOIN transacao_compra tc
                 ON tc.compra_id = c.compra_id
-                WHERE c.ecommerce_id = ? AND c.enviado = ? AND (c.status_pagamento = ? OR c.status_pagamento = ?)
+                WHERE c.ecommerce_id = ? AND c.enviado = ? AND c.status_pagamento = ? 
                 GROUP BY c.compra_id;";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
         $sql->bindValue(2, '0');
-        $sql->bindValue(3, 'approved');
-        $sql->bindValue(4, '3');
+        $sql->bindValue(3, 'paid');
         $sql->execute();
 
         if($sql->rowCount() > 0){

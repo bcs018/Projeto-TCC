@@ -44,7 +44,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Vendas pend
                             </div>
                             <div class="col"> 
                                 <p style="margin-bottom: 0px;"><strong>Data da compra: </strong><?php echo date('d/m/Y', strtotime($v['data_compra'])). ' às: '. $v['hora_compra']; ?></p>
-                                <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($v['status_pagamento']=='approved' || $v['status_pagamento'] == '3')?'Aprovado':''; ?></p>
+                                <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($v['status_pagamento']=='paid')?'Aprovado':''; ?></p>
                                 <p style="margin-bottom: 0px;"><strong>Cod. Transação:  </strong><?php echo $v['cod_transacao']; ?> </p>
                                 <p style="margin-bottom: 0px;"><strong>Pagamento:  </strong><?php echo $v['parcela']; ?> </p>
                             </div>

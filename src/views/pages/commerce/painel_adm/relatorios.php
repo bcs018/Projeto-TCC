@@ -85,17 +85,15 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
                             </div>
                             <div class="col"> 
                                 <b><p style="margin-bottom: 0px;">Data da compra: <?php echo date('d/m/Y', strtotime($compra['data_compra'])). ' às: '. $compra['hora_compra']; ?></p></b>
-                                <?php if($compra['status_pagamento'] == '1' || $compra['status_pagamento'] == 'in_process' || $compra['status_pagamento'] == 'pending_waiting_payment'): ?>
+                                <?php if($compra['status_pagamento'] == 'waiting'): ?>
                                     <b><p style="margin-bottom: 0px; color: #c98d00;">Aguardando pagamento</p></b>
-                                <?php elseif($compra['status_pagamento'] == '2' || $compra['status_pagamento'] == 'in_process'): ?>
-                                    <b><p style="margin-bottom: 0px; color: #c98d00;">Em análise</p></b>
-                                <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '0'): ?>
+                                <?php elseif($compra['status_pagamento'] == 'paid' && $compra['enviado'] == '0'): ?>
                                     <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                     <b><p style="margin-bottom: 0px; color: #c98d00;">Produto em preparação</p></b>
-                                <?php elseif($compra['status_pagamento'] == '3' || $compra['status_pagamento'] == 'approved' && $compra['enviado'] == '1'): ?>
+                                <?php elseif($compra['status_pagamento'] == 'paid' && $compra['enviado'] == '1'): ?>
                                     <b><p style="margin-bottom: 0px; color: #0dc200;">Paga</p></b>
                                     <b><p style="margin-bottom: 0px; color: #0dc200;">Produto enviado</p></b>
-                                <?php elseif($compra['status_pagamento'] == '7' || $compra['status_pagamento'] == 'rejected'): ?>
+                                <?php elseif($compra['status_pagamento'] == 'unpaid'): ?>
                                     <b><p style="margin-bottom: 0px; color: #f55a42;">Compra cancelada</p></b>
                                 <?php endif; ?>
                                 <p style="margin-bottom: 0px;"><strong>Cod. Transação:  <?php echo $compra['cod_transacao']; ?> </strong></p>
