@@ -44,8 +44,11 @@ if(isset($_SESSION['frete'])){
                 <?php
                     require_once('fmr_gerencianet.php');
                 ?>
-
+                <button type="submit" id="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
+                <br>
                 <div id="loading"></div>
+
+                <br><br>
             </div>
 
             <div class="col-md-1"></div>

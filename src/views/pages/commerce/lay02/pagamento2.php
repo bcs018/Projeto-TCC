@@ -39,11 +39,13 @@ if(isset($_SESSION['frete'])){
                 }
             ?>
 
-            <?php
+            <?php 
                 require_once('fmr_gerencianet.php');
             ?>
+            <button type="submit" class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" id="finalizar" style="float: right;">Finalizar Compra</button> <br><br><br><br>
 
             <div id="loading"></div>
+            <br><br>
         </div>
 
         <div class="col-md-1"></div>
@@ -180,7 +182,7 @@ if(isset($_SESSION['frete'])){
                 cvv: $("#cd_seg").val(), // código de segurança
                 expiration_month: $("#cartao_mes option:selected").val(), // mês de vencimento
                 expiration_year: $("#cartao_ano option:selected").val() // ano de vencimento
-                }, callback);
-            })
-        });        
+            }, callback);
+        })
+    });        
 </script>
