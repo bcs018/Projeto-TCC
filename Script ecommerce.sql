@@ -177,7 +177,7 @@ create table produto(
     marca_id int not null,
     ecommerce_id int not null,
     nome_pro varchar(50) not null,
-    descricao varchar(100),
+    descricao LONGTEXT,
     estoque int not null,
     preco decimal(10,2) not null,
     preco_antigo decimal(10,2) not null default 0,

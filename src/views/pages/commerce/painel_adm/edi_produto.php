@@ -113,7 +113,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Editar pr
                 <div class="form-group">
                   <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                   <label for="descProd">Descrição do produto</label>
-                  <textarea name="descProd" id="descProd" rows="6" class="form-control"><?php echo $produtos[0]['descricao']; ?></textarea>
+                  <textarea name="descProd" id="descProd" rows="6" class="form-control"><?php echo $produtos[0]['descricao']; ?></textarea> 
                 </div>
 
                 <div class="form-group">
