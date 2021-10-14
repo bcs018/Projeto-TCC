@@ -124,23 +124,4 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
     </div>
 </div>
 
-<?php 
-//echo'<pre>';print_r($_SESSION);
-?>
-
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
-
-<?php if(isset($sessionCode)): ?>
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparente.js"></script>
-    <script type="text/javascript">
-        PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-    </script>
-<?php endif; ?>
-
-
-<script type="text/javascript">
-    $('#cepCalc').mask("00000000");
-    $('#cep').mask("00000-000");
-    $('#cpf').mask("00000000000");
-</script>
