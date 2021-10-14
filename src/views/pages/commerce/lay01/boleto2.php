@@ -32,13 +32,11 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
             </div>
 
             <div class="col-md-4">
-                <?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
-                    <br>
+                <br>
+                <form action="/checkout_gere_bol" method="post">
                     <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br>
-                    <div id="loading"></div>
-                <?php else: ?>
-                    <?php require_once('fmr_boleto_mp.php'); ?>
-                <?php endif?>
+                </form>
+                <div id="loading"></div>
             </div>
             <div id="teste"></div>
 
@@ -98,17 +96,3 @@ if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset(
 </div>
 
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
-
-<?php if($dados['tp_recebimento'] == 'pagseguro'): ?>
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparenteBol.js"></script>
-    <script type="text/javascript">
-        PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-    </script>
-<?php else: ?>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-   <script>
-       const mp = new MercadoPago("<?php echo $dados['mp_token'] ?>");
-       // Add step #3
-   </script>
-<?php endif; ?>

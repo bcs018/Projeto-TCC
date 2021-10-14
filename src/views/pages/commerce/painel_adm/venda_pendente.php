@@ -65,7 +65,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                         <div class="col"> 
                             <p style="margin-bottom: 0px;"><strong>Método pagamento:</strong> <?php echo ($venda[0]['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></p>
                             <p style="margin-bottom: 0px;"><strong>Data da compra: </strong><?php echo date('d/m/Y', strtotime($venda[0]['data_compra'])). ' às: '. $venda[0]['hora_compra']; ?></p>
-                            <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($venda[0]['status_pagamento']=='paid')?'Aprovado':''; ?></p>
+                            <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($venda[0]['status_pagamento']=='paid' || $venda[0]['status_pagamento']=='settled')?'Aprovado':''; ?></p>
                             <p style="margin-bottom: 0px;"><strong>Cod. Transação:  </strong><?php echo $venda[0]['cod_transacao']; ?> </p>
                             <p style="margin-bottom: 0px;"><strong>Pagamento:  </strong><?php echo $venda[0]['parcela']; ?> </p>
                         </div>
