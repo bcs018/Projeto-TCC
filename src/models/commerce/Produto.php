@@ -350,7 +350,7 @@ class Produto extends Model{
             $sql->execute();
 
             if($sql->rowCount() > 0){
-                $produtosRel[] = $sql->fetchAll();
+                $produtosRel = $sql->fetchAll();
             }else{
                 $_SESSION['message'] = '<div class="alert alert-info" role="alert">
                                             Não há produtos nessa categoria!
@@ -358,26 +358,38 @@ class Produto extends Model{
                 return false;
             }
         }
+        // echo '---------rel original';
+        // echo '<pre>';
+        // print_r($produtosRel);
+
 
         // Arrumando o array pois estava ficando com 3 array um dentro do outro e o certo é ficar somente 2 arrays
-        for($i=0; $i<count($produtosRel); $i++){
-            $prodRelNovo[] = $produtosRel[$i][0];
-        }
+        // for($i=0; $i<count($produtosRel); $i++){
+        //     $prodRelNovo[] = $produtosRel[$i][0];
+        // }
         
         $i = null;
 
-        $produtosRel = array();
+        // echo '---------rel novo';
+        // echo '<pre>';
+        // print_r($prodRelNovo);
+
+        //$produtosRel2 = array();
 
         // Deixando sem produtos repetidos dentro do array
-        foreach($prodRelNovo as $pr){
+        foreach($produtosRel as $pr){
             // Colocando o p[0] porque nao está vindo o id no primeiro array
             if($i != $pr[0]){
                 $i = $pr[0];
-                $produtosRel[] = $pr;
+                $produtosRel2[] = $pr;
             }
         }
+        // echo '---------rel return';
+        // echo '<pre>';
+        // print_r($produtosRel2);exit;
 
-        return $produtosRel;
+
+        return $produtosRel2;
     }
 
 

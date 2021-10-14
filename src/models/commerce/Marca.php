@@ -138,7 +138,7 @@ class Marca extends Model{
 
         if($altura < 100 || $altura > 120 || $largura < 250 || $largura > 270){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Imagem do banner não está entre 250x100 e 270x120 mega pixels!
+                                        Imagem da marca não está entre 250x100 e 270x120 mega pixels!
                                     </div>';
             return false;
         }
