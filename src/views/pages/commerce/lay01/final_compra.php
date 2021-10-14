@@ -40,6 +40,9 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
         <div class="row">
             <div class="col-md-12">
                 <center><h4>Agradecemos por sua compra, segue abaixo os detalhes:</h4></center> <br><br>
+                <br>
+                <h5>Acompanhe sua compra no painel de controle clicando <a href="/cliente/painel">aqui!</a></h5>
+
             </div>
         </div>
 

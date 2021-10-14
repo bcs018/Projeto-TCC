@@ -511,9 +511,9 @@ class Produto extends Model{
         
         list($largura, $altura) = getimagesize($banner['tmp_name']);
 
-        if($altura < 360 || $altura > 363 || $largura < 1160 || $largura > 1163){
+        if($altura < 350 || $altura > 399 || $largura < 1160 || $largura > 1163){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Imagem do banner não está entre 1160x360 e 1163x363 mega pixels!
+                                        Imagem do banner não está entre 1160x350 e 1163x399 mega pixels!
                                     </div>';
             return false;
         }

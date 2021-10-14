@@ -119,6 +119,12 @@ class GereCheckTransPrincipalController extends Controller {
         try {
             $api = new Gerencianet($options);
             $pay_charge = $api->oneStep([],$body);
+            
+            if(!isset($pay_charge['data'])){
+                $comp->delCompra($id_compra);
+                echo json_encode(array('error'=>true, 'msg'=>'Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'));
+                exit;
+            }
 
             $comp->atuCompra($id_compra, $pay_charge['data']['charge_id'],'0', $pay_charge['data']['status']);
             $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
