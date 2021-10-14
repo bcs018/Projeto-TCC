@@ -151,7 +151,7 @@ class Cadastro extends Model{
                 $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
                                             Usuário cadastrado com sucesso!
                                         </div>';
-                $_SESSION['login_cliente_ecommerce'] = $idUsu['ult'];
+                //$_SESSION['login_cliente_ecommerce'] = $idUsu['ult'];
 
                return true;
             }
