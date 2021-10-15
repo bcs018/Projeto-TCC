@@ -11,17 +11,17 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/animate.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/animate.css">
 
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/owl.carousel.min.css">
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/magnific-popup.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/magnific-popup.css">
 
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/style.css">
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/opcaoPgm.css">
-	<link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico2.ico">
-	<script src="<?php echo BASE_ASS; ?>js/jquery.min.js"></script>
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/style.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/opcaoPgm.css">
+	<link rel="shortcut icon" href="/assets/sitePrincipal/images/ico2.ico">
+	<script src="/assets/sitePrincipal/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/toastr.min.css">
 
 </head>
 
@@ -60,7 +60,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
 			<a href="/">
-				<img alt="Logo BW commerce" src="<?php echo BASE_ASS; ?>images/logo.png" id="logo" width="255px" height="70px">
+				<img alt="Logo BW commerce" src="/assets/sitePrincipal/images/logo.png" id="logo" width="255px" height="70px">
 			</a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav"

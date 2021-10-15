@@ -3,6 +3,7 @@
 namespace src\models\commerce;
 
 use \core\Model;
+use src\models\sitePrincipal\Email;
 
 class Cadastro extends Model{
 
@@ -153,7 +154,14 @@ class Cadastro extends Model{
                                         </div>';
                 //$_SESSION['login_cliente_ecommerce'] = $idUsu['ult'];
 
-               return true;
+                $mail = new Email;
+
+                // Enviando email ao cliente
+                $mail->enviarEmail($_SESSION['nome_fantasia'], $email, 'Novo cadastro em '.$_SESSION['nome_fantasia'], 'Parabens, você acabou de realizar um novo cadastro, segue seus dados: <br><br> <b>Login:</b> '.$login.'<br><b>Senha: </b>Verificar no painel de controle ');
+            
+                unset($_SESSION['nome_fantasia']);
+                
+                return true;
             }
         }
 

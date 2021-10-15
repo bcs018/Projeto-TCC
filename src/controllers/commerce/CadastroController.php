@@ -25,6 +25,8 @@ class CadastroController extends Controller {
             exit;
         }
 
+        $_SESSION['nome_fantasia'] = $dados['nome_fantasia'];
+
         if(isset($_SESSION['carrinho'])){
             $carrinho = $carr->listaItens($_SESSION['carrinho']);
         }else{
@@ -54,6 +56,8 @@ class CadastroController extends Controller {
         $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Novo usuário cadastrado em sua loja!', '');
         $cad->cadUsuarioAction($nome, $sobrenome, $cpf, $email, $senha, $senhaRep, $cel, $login);
         
+
+
         header("Location: /cadastrar");
         exit;
     }

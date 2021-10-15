@@ -3,6 +3,7 @@
 namespace src\models\sitePrincipal;
 use \core\Model;
 use \src\models\sitePrincipal\Plano;
+use \src\models\sitePrincipal\Email;
 
 class Assinatura extends Model{
 
@@ -99,6 +100,9 @@ class Assinatura extends Model{
                 ];
         
         $not = new Notificacao;
+        $mail = new Email;
+
+        $mail->enviarEmail( $usuario['nome']." ".$usuario['sobrenome'],$usuario['email'],$usuario['nome'].' obrigado por se juntar conosco!', $_POST['nome_usu'].', é uma honra ter você como cliente, acesse seu painel de controle atraves do endereço: '.$idPlano['sub_dominio'].'.potlid.com.br/admin e começe a vender hoje mesmo!');
 
         $not->gravaNotificacao($idPlano['ecommerce_id'], 'Novo cliente cadastrado em sua loja!', '', $idPlano['sub_dominio']);
 

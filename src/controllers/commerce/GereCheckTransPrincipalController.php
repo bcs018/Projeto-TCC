@@ -11,6 +11,7 @@ use \src\models\commerce\Info;
 use \src\models\commerce\Cadastro;
 use src\models\commerce\Carrinho;
 use src\models\commerce\Notificacao;
+use src\models\sitePrincipal\Email;
 
 class GereCheckTransPrincipalController extends Controller {
     public function checkout_gere(){
@@ -20,6 +21,7 @@ class GereCheckTransPrincipalController extends Controller {
         $comp = new Compra;
         $not  = new Notificacao;
         $prod = new Produto;
+        $mail = new Email;
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $carr->listaItens($_SESSION['carrinho']);
@@ -102,7 +104,7 @@ class GereCheckTransPrincipalController extends Controller {
             'discount' =>$discount,
             'billing_address' => $billingAddress,
             'payment_token' => $paymentToken,
-            'message' => 'teste\nteste\nteste\nteste'
+            'message' => 'Cobrança de teste'
         ];
 
         $payment = [
@@ -122,12 +124,18 @@ class GereCheckTransPrincipalController extends Controller {
             
             if(!isset($pay_charge['data'])){
                 $comp->delCompra($id_compra);
-                echo json_encode(array('error'=>true, 'msg'=>'Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'));
+                echo json_encode(array('error'=>true, 'msg'=>'<br>Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'));
                 exit;
             }
 
             $comp->atuCompra($id_compra, $pay_charge['data']['charge_id'],'0', $pay_charge['data']['status']);
             $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
+            // Enviando email ao empreendedor
+            $mail->enviarEmail($dados['nome_fantasia'], $dados['email'], 'Nova venda realizada n°: ',$id_compra, 'Parabens, você acabou de realizar uma venda no valor de R$'.number_format($_SESSION['total'],2,',','.'));
+            
+            // Enviando email ao consumidor
+            $mail->enviarEmail($dados['nome_fantasia'], $usuario['email_ue'], 'Nova compra', $usuario['nome_usu_ue'].' você acabou de realizar uma compra no valor de R$'.number_format($_SESSION['total'],2,',','.').', acesse seu painel de controle, e confira as demais informações!');
+
             // echo '<pre>';
             // print_r($pay_charge);
             // echo '<pre>';exit;
@@ -177,6 +185,7 @@ class GereCheckTransPrincipalController extends Controller {
         $comp = new Compra;
         $not  = new Notificacao;
         $prod = new Produto;
+        $mail = new Email;
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
         $produtos = $carr->listaItens($_SESSION['carrinho']);
@@ -272,6 +281,13 @@ class GereCheckTransPrincipalController extends Controller {
             
             $comp->atuCompra($id_compra, $pay_charge['data']['charge_id'],$pay_charge['data']['pdf']['charge'], $pay_charge['data']['status']);
             $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de boleto!', '/admin/painel/venda/'.$id_compra);
+
+            // Enviando email ao empreendedor
+            $mail->enviarEmail($dados['nome_fantasia'], $dados['email'], 'Nova venda realizada n°: ',$id_compra, 'Parabens, você acabou de realizar uma venda no valor de R$'.number_format($_SESSION['total'],2,',','.'));
+        
+            // Enviando email ao consumidor
+            $mail->enviarEmail($dados['nome_fantasia'], $usuario['email_ue'], 'Nova compra', $usuario['nome_usu_ue'].' você acabou de realizar uma compra no valor de R$'.number_format($_SESSION['total'],2,',','.').', acesse seu painel de controle, e confira as demais informações!');
+            
             // echo '<pre>';
             // print_r($pay_charge);
             // echo '<pre>';exit;

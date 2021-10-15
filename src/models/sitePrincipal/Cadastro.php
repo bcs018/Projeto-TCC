@@ -26,6 +26,8 @@ class Cadastro extends Model{
         /**
          * Validação dos dados enviado do usuário
          */
+        ini_set('default_charset','UTF-8');
+
         $message['message']='';
         $flag = false;
 

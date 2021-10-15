@@ -3,6 +3,7 @@
 namespace src\models\commerce;
 
 use \core\Model;
+use src\models\sitePrincipal\Email;
 
 class Venda extends Model{
     public function listaVendasPendentes(){
@@ -61,5 +62,21 @@ class Venda extends Model{
         $sql->bindValue(2, $id);
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->execute();
+
+        $sql = "SELECT * FROM compra c
+                JOIN usuario_ecommerce ue
+                ON c.usuario_id = ue.ue_id
+                JOIN ecommerce_usu eu
+                ON c.ecommerce_id = eu.ecommerce_id
+                where c.compra_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+
+        $sql = $sql->fetch();
+
+        $mail = new Email;
+
+        $mail->enviarEmail($sql['nome_fantasia'], $sql['email_ue'], 'Compra n° '.$sql['compra_id'].' enviada', $sql['nome_usu_ue'].' sua compra '.$sql['compra_id'].' acabou de ser despachada pelo vendedor!');
     }
 }

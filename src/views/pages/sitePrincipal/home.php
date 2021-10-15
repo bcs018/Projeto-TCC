@@ -160,7 +160,7 @@
 							<?php $descricoes = explode(";", $plano['descricao_plano']);
 							echo '<ul class="pricing-text mb-5">';
 							foreach ($descricoes as $descricao) : ?>
-								<li><span class="fa fa-check mr-2"></span><?php echo $descricao; ?></li>
+								<li><span class="fa fa-check mr-2"></span><?php echo utf8_encode($descricao); ?></li>
 							<?php endforeach; ?>
 							</ul>
 							<a href="/crie-sua-loja" class="btn btn-primary d-block px-2 py-3">Adquirir</a>
