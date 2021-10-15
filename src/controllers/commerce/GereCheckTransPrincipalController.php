@@ -131,7 +131,7 @@ class GereCheckTransPrincipalController extends Controller {
             $comp->atuCompra($id_compra, $pay_charge['data']['charge_id'],'0', $pay_charge['data']['status']);
             $not->gravaNotificacao($_SESSION['id_sub_dom'], 'Nova venda realizada através de cartão!', '/admin/painel/venda/'.$id_compra);
             // Enviando email ao empreendedor
-            $mail->enviarEmail($dados['nome_fantasia'], $dados['email'], 'Nova venda realizada n°: ',$id_compra, 'Parabens, você acabou de realizar uma venda no valor de R$'.number_format($_SESSION['total'],2,',','.'));
+            $mail->enviarEmail($dados['nome_fantasia'], $dados['email'], 'Nova venda realizada n°: '.$id_compra, 'Parabens, você acabou de realizar uma venda no valor de R$'.number_format($_SESSION['total'],2,',','.'));
             
             // Enviando email ao consumidor
             $mail->enviarEmail($dados['nome_fantasia'], $usuario['email_ue'], 'Nova compra', $usuario['nome_usu_ue'].' você acabou de realizar uma compra no valor de R$'.number_format($_SESSION['total'],2,',','.').', acesse seu painel de controle, e confira as demais informações!');
