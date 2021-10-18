@@ -64,6 +64,7 @@ unset($_SESSION['frete']);
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                        <div class="single-product"></div>
                     </div>
                 </div>
             </div>

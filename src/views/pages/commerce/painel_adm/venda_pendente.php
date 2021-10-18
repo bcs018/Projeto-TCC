@@ -116,7 +116,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -137,7 +137,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 

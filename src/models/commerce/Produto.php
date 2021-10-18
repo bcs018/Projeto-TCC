@@ -88,7 +88,7 @@ class Produto extends Model{
         $sql->bindValue(2, $marca);
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->bindValue(4, $nomeProd);
-        $sql->bindValue(5, $descProd);
+        $sql->bindValue(5, nl2br($descProd));
         $sql->bindValue(6, $estoque);
         $sql->bindValue(7, $preco);
         $sql->bindValue(8, $precoAnt);
@@ -217,7 +217,7 @@ class Produto extends Model{
         $sql->bindValue(1, $categoria);
         $sql->bindValue(2, $marca);
         $sql->bindValue(3, $nomeProd);
-        $sql->bindValue(4, $descProd);
+        $sql->bindValue(4, nl2br($descProd));
         $sql->bindValue(5, $estoque);
         $sql->bindValue(6, $preco);
         $sql->bindValue(7, $precoAnt);

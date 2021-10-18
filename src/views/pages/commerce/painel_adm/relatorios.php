@@ -39,11 +39,11 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
           <label>Selecione o intervalo de datas</label><br>
             <form method="POST" action="/admin/painel/relatorio-intervalo">
               <div class="row">
-                <div class="col-3">
+                <div class="col-6">
                   <label>Data incio:</label><br>
                   <input type="date" name="data_ini" class="form-control">
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                   <label>Data final:</label><br>
                   <input type="date" name="data_fim" class="form-control">
                 </div>
@@ -109,7 +109,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -130,7 +130,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Relatório'
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 
