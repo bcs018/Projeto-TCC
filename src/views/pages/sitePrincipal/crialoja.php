@@ -248,6 +248,10 @@
                                                         <input type="text" class="form-control" name="subdominio"
                                                             id="subdominio" placeholder="Subdomínio">
                                                         <div id="error12"></div>
+                                                        <span id="passwordHelpInline" class="form-text">
+                                                            (O nome do subdominio será o endereço do seu site, ex: você informa o subdominio 'capas', então seu endereço será capas.potlid.com.br)
+                                                        </span>
+
                                                     </div>
                                                 </div>
 

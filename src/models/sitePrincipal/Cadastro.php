@@ -129,6 +129,21 @@ class Cadastro extends Model{
             $flag = true;
         }
 
+        if(is_numeric($POST['subdominio'])){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Subdomínio não pode ser numérico!
+                                                        </div>';
+            $flag = true;
+        }
+
+        if(strlen($POST['subdominio']) > 20){
+            $message['message'] =  $message['message'].'<div class="alert alert-danger" role="alert">
+                                                            Subdomínio não pode ser maior que 20 caracteres!
+                                                        </div>';
+            $flag = true;
+
+        }
+
         $sql = "SELECT * FROM usuario WHERE cpf = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $POST['cpf_usu']);
@@ -157,6 +172,9 @@ class Cadastro extends Model{
             return $message;
         }
 
+        $POST['subdominio'] = strtolower(str_replace(' ','-',trim($POST['subdominio'])));
+        $POST['subdominio'] = str_replace('.','-',$POST['subdominio']);
+
         $not = new Notificacao;
 
         $sql = "INSERT INTO usuario (estado_id, nome, sobrenome, celular, dt_nascimento, cpf, email, rua, bairro, numero, cep, cidade, complemento, ativo, senha, login, tp_usuario)
@@ -175,7 +193,7 @@ class Cadastro extends Model{
         $sql->bindValue(11, $POST['cep_usu']);
         $sql->bindValue(12, $POST['cidade']);
         $sql->bindValue(13, $POST['complemento']);
-        $sql->bindValue(14, 1);
+        $sql->bindValue(14, 0);
         $sql->bindValue(15, md5($POST['senha']));
         $sql->bindValue(16, addslashes($POST['login']));
         $sql->bindValue(17, 1);
@@ -213,10 +231,10 @@ class Cadastro extends Model{
         $_SESSION['commerce']['id'] = $id_commerce['ult'];
     }
 
-    public function ativarUsuario(){
+    public function ativarUsuario($ativo = 1){
         $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, 1);
+        $sql->bindValue(1, $ativo);
         $sql->bindValue(2, $_SESSION['person']['id']);
         $sql->execute();
     }

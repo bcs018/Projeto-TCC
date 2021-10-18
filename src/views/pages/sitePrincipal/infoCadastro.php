@@ -33,7 +33,7 @@
 
                         <div class="col-md-6">
                             <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Endereço de sua loja:</label>
-                            <p><?php echo $plano['sub_dominio'].'.bw.com.br'; ?></p>
+                            <p> <a target="_blank" href="http://<?php echo $plano['sub_dominio'].'.potlid.com.br'; ?>"> <?php echo $plano['sub_dominio'].'.potlid.com.br'; ?></a></p>
                         </div>
 
                         <div class="col-md-6">
