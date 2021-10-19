@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <?php //echo '<pre>';print_r($produtosRel); ?>
                     <div class="related-products-wrapper">
                         <h2 class="related-products-title">PRODUTOS RELACIONADOS</h2>
                         <div class="related-products-carousel">
@@ -128,6 +128,7 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <div class="single-product"></div>
                         </div>
                     </div>
                 </div>
