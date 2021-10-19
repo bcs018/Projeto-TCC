@@ -6,14 +6,13 @@ use \src\models\commerce\Compra;
 
 class NotificacaoClientesController extends Controller {
     public function notificacaoGereCard(){
-        global $gerencianet_clientid;
-        global $gerencianet_clientsecret;
-        global $gerencianet_sandbox;
+        $clientId = 'Client_Id_7f2b5ff7f47702b5fe0c84969d8a91856f5001e2';
+        $clientSecret = 'Client_Secret_7e62717a7fe772aef6c6afd5ee173376a63e6cee';
 
         $options = [
-            'client_id'=>$gerencianet_clientid,
-            'client_secret'=>$gerencianet_clientsecret,
-            'sandbox'=>$gerencianet_sandbox
+            'client_id'=>$clientId,
+            'client_secret'=>$clientSecret,
+            'sandbox'=> true
         ];
 
         $token = $_POST['notification'];

@@ -35,8 +35,8 @@ class GereCheckTransPrincipalController extends Controller {
 
         $id_compra = $comp->addCompra('cartao', $parc);    
 
-        $clientId = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-        $clientSecret = 'Client_Secret_6d7692cf8197942b09eceea1b155981c39825d29'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+        $clientId = 'Client_Id_7f2b5ff7f47702b5fe0c84969d8a91856f5001e2'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+        $clientSecret = 'Client_Secret_7e62717a7fe772aef6c6afd5ee173376a63e6cee'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
         
 
         $options = [
@@ -121,7 +121,10 @@ class GereCheckTransPrincipalController extends Controller {
         try {
             $api = new Gerencianet($options);
             $pay_charge = $api->oneStep([],$body);
-            
+            // //echo '<pre>';
+            // print_r($pay_charge);
+            // exit;
+
             if(!isset($pay_charge['data'])){
                 $comp->delCompra($id_compra);
                 echo json_encode(array('error'=>true, 'msg'=>'<br>Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'));
@@ -176,8 +179,8 @@ class GereCheckTransPrincipalController extends Controller {
     }
 
     public function checkoutbol_gere(){
-        $clientId = 'Client_Id_45d786d57022418c71a1feb6ad04879689729f59'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-        $clientSecret = 'Client_Secret_6d7692cf8197942b09eceea1b155981c39825d29'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+        $clientId = 'Client_Id_7f2b5ff7f47702b5fe0c84969d8a91856f5001e2'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+        $clientSecret = 'Client_Secret_7e62717a7fe772aef6c6afd5ee173376a63e6cee'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 
         $info = new Info;
         $carr = new Carrinho;
