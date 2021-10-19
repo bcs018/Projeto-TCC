@@ -3,6 +3,7 @@
 namespace src\models\sitePrincipal;
 use \core\Model;
 use \src\models\sitePrincipal\Plano;
+use \src\models\sitePrincipal\Email;
 
 class Assinatura extends Model{
 
@@ -75,7 +76,6 @@ class Assinatura extends Model{
         $sql->bindValue(8, date("H:i:s"));
         $sql->execute();
 
-
         //echo "Id_usu: ".gettype($id_usu). " Cupom: ". $cupom. " Preco plano: ".gettype(floatval($plano['preco'])). " Tp pgm: ".gettype($tp_pgm). " StatusPgm: ".$statusPgm. " Id_transacao: ".$id_transacao;exit;
         
         $dados = [
@@ -97,8 +97,17 @@ class Assinatura extends Model{
                     'estado'       => $estado['nome_estado'], 
                     'complemento'  => $usuario['complemento']
                 ];
+
+        $sql = "UPDATE usuario SET ativo = ? WHERE usuario_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, 1);
+        $sql->bindValue(2, $id_usu);
+        $sql->execute();
         
         $not = new Notificacao;
+        $mail = new Email;
+
+        $mail->enviarEmail( $usuario['nome']." ".$usuario['sobrenome'],$usuario['email'],$usuario['nome'].' obrigado por se juntar conosco!', $usuario['nome'].', é uma honra ter você como cliente, acesse seu painel de controle atraves do endereço: '.$idPlano['sub_dominio'].'.potlid.com.br/admin e começe a vender hoje mesmo!');
 
         $not->gravaNotificacao($idPlano['ecommerce_id'], 'Novo cliente cadastrado em sua loja!', '', $idPlano['sub_dominio']);
 

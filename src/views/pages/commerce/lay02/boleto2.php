@@ -28,17 +28,11 @@ if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset
         </div>
 
         <div class="col-md-4">
-            <?php if ($dados['tp_recebimento'] == 'pagseguro') : ?>
                 <br>
-                <button type="submit" class="finalizar flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                    Gerar boleto
-                </button>
-
-                <!-- <button type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br> -->
-                <div id="loading"></div>
-            <?php else : ?>
-                <?php require_once('fmr_boleto_mp.php'); ?>
-            <?php endif ?>
+                <form action="/checkout_gere_bol" method="post">
+                    <button class="finalizar flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" type="submit" class="finalizar" style="float: left;">Gerar boleto</button> <br><br><br>
+                </form>
+                <br>
         </div>
         <div id="teste"></div>
 
@@ -97,17 +91,3 @@ if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset
 </div>
 <br><br><br><br><br></br>
 <?php $render('commerce/lay02/footer', ['dados' => $dados]); ?>
-
-<?php if ($dados['tp_recebimento'] == 'pagseguro') : ?>
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
-    <script src="<?php echo BASE_ASS_C; ?>js/psckttransparenteBol.js"></script>
-    <script type="text/javascript">
-        PagSeguroDirectPayment.setSessionId("<?php echo $sessionCode; ?>");
-    </script>
-<?php else : ?>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script>
-        const mp = new MercadoPago("<?php echo $dados['mp_token'] ?>");
-        // Add step #3
-    </script>
-<?php endif; ?>

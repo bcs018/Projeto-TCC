@@ -88,7 +88,7 @@ class Produto extends Model{
         $sql->bindValue(2, $marca);
         $sql->bindValue(3, $_SESSION['id_sub_dom']);
         $sql->bindValue(4, $nomeProd);
-        $sql->bindValue(5, $descProd);
+        $sql->bindValue(5, nl2br($descProd));
         $sql->bindValue(6, $estoque);
         $sql->bindValue(7, $preco);
         $sql->bindValue(8, $precoAnt);
@@ -217,7 +217,7 @@ class Produto extends Model{
         $sql->bindValue(1, $categoria);
         $sql->bindValue(2, $marca);
         $sql->bindValue(3, $nomeProd);
-        $sql->bindValue(4, $descProd);
+        $sql->bindValue(4, nl2br($descProd));
         $sql->bindValue(5, $estoque);
         $sql->bindValue(6, $preco);
         $sql->bindValue(7, $precoAnt);
@@ -350,7 +350,7 @@ class Produto extends Model{
             $sql->execute();
 
             if($sql->rowCount() > 0){
-                $produtosRel[] = $sql->fetchAll();
+                $produtosRel = $sql->fetchAll();
             }else{
                 $_SESSION['message'] = '<div class="alert alert-info" role="alert">
                                             Não há produtos nessa categoria!
@@ -358,26 +358,38 @@ class Produto extends Model{
                 return false;
             }
         }
+        // echo '---------rel original';
+        // echo '<pre>';
+        // print_r($produtosRel);
+
 
         // Arrumando o array pois estava ficando com 3 array um dentro do outro e o certo é ficar somente 2 arrays
-        for($i=0; $i<count($produtosRel); $i++){
-            $prodRelNovo[] = $produtosRel[$i][0];
-        }
+        // for($i=0; $i<count($produtosRel); $i++){
+        //     $prodRelNovo[] = $produtosRel[$i][0];
+        // }
         
         $i = null;
 
-        $produtosRel = array();
+        // echo '---------rel novo';
+        // echo '<pre>';
+        // print_r($prodRelNovo);
+
+        //$produtosRel2 = array();
 
         // Deixando sem produtos repetidos dentro do array
-        foreach($prodRelNovo as $pr){
+        foreach($produtosRel as $pr){
             // Colocando o p[0] porque nao está vindo o id no primeiro array
             if($i != $pr[0]){
                 $i = $pr[0];
-                $produtosRel[] = $pr;
+                $produtosRel2[] = $pr;
             }
         }
+        // echo '---------rel return';
+        // echo '<pre>';
+        // print_r($produtosRel2);exit;
 
-        return $produtosRel;
+
+        return $produtosRel2;
     }
 
 
@@ -499,9 +511,9 @@ class Produto extends Model{
         
         list($largura, $altura) = getimagesize($banner['tmp_name']);
 
-        if($altura < 360 || $altura > 363 || $largura < 1160 || $largura > 1163){
+        if($altura < 350 || $altura > 399 || $largura < 1160 || $largura > 1163){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Imagem do banner não está entre 1160x360 e 1163x363 mega pixels!
+                                        Imagem do banner não está entre 1160x350 e 1163x399 mega pixels!
                                     </div>';
             return false;
         }

@@ -51,7 +51,7 @@ if($notifi == 0){
   <script src="<?php echo BASE_ASS; ?>adminlte/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery Mask -->
   <script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
   <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/select2/css/select2.min.css">
@@ -59,7 +59,7 @@ if($notifi == 0){
   <style>
     .dropdown-menu-lg {
       max-width: 300px;
-      min-width: 380px;
+      min-width: 430px;
       padding: 0;
     }
   </style>

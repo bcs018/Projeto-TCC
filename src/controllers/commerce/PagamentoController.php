@@ -136,7 +136,7 @@ class PagamentoController extends Controller {
         }else{
             $carrinho = false;
         }
-
+/*
         if($dados['tp_recebimento'] == 'pagseguro'){
             //Pegando a sessão do pagseguro
             PagSeguro::setDados();
@@ -158,9 +158,11 @@ class PagamentoController extends Controller {
         }else if($dados['tp_recebimento'] == 'mercadopago'){
             $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
             exit;
-        }else{
-            header("Location: /");
-        }
+        }else if ($dados['tp_recebimento'] == 'gerencianet'){*/
+            $this->render('commerce/'.$dados['layout'].'/pagamento2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
+        // }else{
+        //     header("Location: /");
+        // }
 
     }
 
@@ -184,30 +186,30 @@ class PagamentoController extends Controller {
             $carrinho = false;
         }
 
-        if($dados['tp_recebimento'] == 'pagseguro'){
-            //Pegando a sessão do pagseguro
-            PagSeguro::setDados();
+        // if($dados['tp_recebimento'] == 'pagseguro'){
+        //     //Pegando a sessão do pagseguro
+        //     PagSeguro::setDados();
 
-            try {
-                $sessionCode = \PagSeguro\Services\Session::create(
-                    \PagSeguro\Configuration\Configure::getAccountCredentials()
-                );
+        //     try {
+        //         $sessionCode = \PagSeguro\Services\Session::create(
+        //             \PagSeguro\Configuration\Configure::getAccountCredentials()
+        //         );
 
-                $session = $sessionCode->getResult();
-            } catch (\Exception $e) {
-                echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
-                exit;
-            }
+        //         $session = $sessionCode->getResult();
+        //     } catch (\Exception $e) {
+        //         echo "OCORREU ERRO DURANTE O PROCESSO: ".$e->getMessage();
+        //         exit;
+        //     }
             
-            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session, 'carrinho'=>$carrinho]);
-            exit;
+        //     $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'sessionCode'=>$session, 'carrinho'=>$carrinho]);
+        //     exit;
 
-        }else if($dados['tp_recebimento'] == 'mercadopago'){          
-            $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
-            exit;
-        }else{
-            header("Location: /");
-        }
+        // }else if($dados['tp_recebimento'] == 'mercadopago'){          
+             $this->render('commerce/'.$dados['layout'].'/boleto2',['dados'=>$dados,'produtos'=>$produtos, 'carrinho'=>$carrinho]);
+        //     exit;
+        // }else{
+        //     header("Location: /");
+        // }
     }
 
     // Primeira pagina da geração do boleto (calculo do frete)

@@ -86,13 +86,11 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Ped
 
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Status pagamento:</h5>
-                    <?php if($p['status_pagamento'] == '3' || $p['status_pagamento'] == 'approved'): ?>
+                    <?php if($p['status_pagamento'] == 'paid'): ?>
                         <p>Pago</p>
-                    <?php elseif($p['status_pagamento'] == '1' || $p['status_pagamento'] == 'in_process' || $p['status_pagamento'] == 'pending_waiting_payment'): ?>
+                    <?php elseif($p['status_pagamento'] == 'waiting'): ?>
                         <p>Aguardando pagamento</p>
-                    <?php elseif($p['status_pagamento'] == '2' || $p['status_pagamento'] == 'in_process'): ?>
-                        <p>Em análise</p>
-                    <?php elseif($p['status_pagamento'] == '7' || $p['status_pagamento'] == 'rejected'): ?>
+                    <?php elseif($p['status_pagamento'] == 'unpaid'): ?>
                         <p>Compra cancelada</p>
                     <?php endif; ?>
                 </div>

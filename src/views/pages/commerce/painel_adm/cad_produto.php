@@ -255,7 +255,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
     <!-- /.content -->
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -276,7 +276,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <script type="text/javascript">
     $('#preco').mask("# ##0,00", {

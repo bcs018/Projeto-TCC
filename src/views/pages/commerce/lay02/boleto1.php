@@ -28,35 +28,43 @@ if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset
         </div>
 
         <div class="col-md-4">
+            <form id="frete">
+                <label for="cep" class="form-label">Cálculo do frete</label>
+                <input type="text" class="form-control" id="cepCalc" name="cepCalc" placeholder="Insira o CEP de entrega">
+                <br><button class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" type="submit">Calcular</button>
+            </form>
+            <br>
+
             <form action="/pagamento/action/1" method="POST">
-                <h4>Dados para entrega</h4><br><br>
+                <h4>Dados para entrega</h4><br>
+                <small>Campos marcados com asterisco (*) são obrigatórios</small><br><br>
 
-                <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" name="cep" id="cep" placeholder="Informe seu CEP">
+                <label for="cep" class="form-label">* CEP</label>
+                <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" readonly>
                 <br>
 
-                <label for="rua" class="form-label">Rua</label>
-                <input type="text" class="form-control" name="rua" id="rua" placeholder="Informe sua rua">
+                <label for="rua" class="form-label">* Rua</label>
+                <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua" readonly>
                 <br>
 
-                <label for="bairro" class="form-label">Bairro</label>
-                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Informe seu bairro">
+                <label for="bairro" class="form-label">* Bairro</label>
+                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" readonly>
                 <br>
 
-                <label for="numero" class="form-label">Número</label>
+                <label for="numero" class="form-label">* Número</label>
                 <input type="text" class="form-control" name="numero" id="numero" name="numero" placeholder="Informe seu número">
                 <br>
 
-                <label for="estado" class="form-label">Estado</label>
-                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado" id="estado">
+                <label for="estado" class="form-label">* Estado</label>
+                <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" name="estado" id="estado" readonly>
                     <?php foreach ($estados as $estado) : ?>
                         <option value="<?php echo $estado['estado_id']; ?>"><?php echo $estado['nome_estado']; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <br>
 
-                <label for="cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Informe sua cidade">
+                <label for="cidade" class="form-label">* Cidade</label>
+                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" readonly>
                 <br>
                 <input type="hidden" id="plan" value="<?php echo number_format($_SESSION['total'], 2, '.', ','); ?>">
 
@@ -118,12 +126,6 @@ if (!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset
                     </tbody>
                 </table>
             </div>
-            <form id="frete">
-                <label for="cep" class="form-label">Cálculo do frete</label>
-                <input type="text" class="form-control" id="cepCalc" name="cepCalc" placeholder="Insira o CEP de entrega">
-                <br><button class="flex-c-m stext-101 cl0 size-107 bgbutton bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10" type="submit">Calcular</button>
-            </form>
-            <br>
 
         </div>
     </div>

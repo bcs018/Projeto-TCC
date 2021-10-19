@@ -33,7 +33,7 @@
 
                         <div class="col-md-6">
                             <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Endereço de sua loja:</label>
-                            <p><?php echo $plano['sub_dominio'].'.bw.com.br'; ?></p>
+                            <p> <a target="_blank" href="http://<?php echo $plano['sub_dominio'].'.potlid.com.br'; ?>"> <?php echo $plano['sub_dominio'].'.potlid.com.br'; ?></a></p>
                         </div>
 
                         <div class="col-md-6">
@@ -45,7 +45,7 @@
                             <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Direitos:</label>
                             <?php $planos = explode(';', $plano['descricao_plano']); ?>
                             <?php foreach($planos as $item): ?>
-                                <p style="margin-bottom:0;"> <?php echo $item ?> <br></p>
+                                <p style="margin-bottom:0;"> <?php echo utf8_encode($item) ?> <br></p>
                             <?php endforeach; ?>
                         </div>
                    </div>
@@ -68,7 +68,7 @@
                             
                             <div class="col-md-6">
                                 <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Tipo de pagamento:</label>
-                                <p><?php echo ($assinatura['tipo_pagamento']=='pagsegurockttransparente')?'Cartão de crédito':'Boleto'; ?></p>
+                                <p><?php echo ($assinatura['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></p>
                             </div>
 
                             <div class="col-md-6">

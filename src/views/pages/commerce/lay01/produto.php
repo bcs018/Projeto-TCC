@@ -128,6 +128,7 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <div class="single-product"></div>
                         </div>
                     </div>
                 </div>

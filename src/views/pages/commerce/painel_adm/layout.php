@@ -56,7 +56,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <label for="banner">Adicione imagem ao seu banner (Banners de 1160x360 até 1163x363 mega pixels) </label>
+                                        <label for="banner">Adicione imagem ao seu banner (Banners de 1160x350 até 1163x399 mega pixels) </label>
                                         <input type="file" class="form-control" name="banner">
                                     </div>
                                 </div>
@@ -182,7 +182,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
 
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -203,7 +203,9 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 

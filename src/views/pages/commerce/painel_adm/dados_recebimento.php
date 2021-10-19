@@ -27,12 +27,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                             <h3 class="card-title"><b>AVISO!!! </b></h3>
                         </div>
                             <div class="card-body">                           
-                                <h5>Se você possuir cadastro no PagSeguro, cadastre seu E-mail e seu Token.</h5>
-                                <h5>Se você possuir cadastro no Mercado Pago, cadastre sua Public Key e seu Access Token.</h5>
-                                <br><h4>Jamais cadastre somente seu E-mail ou somente seu Token do PagSeguro ou somente sua Public Key ou somente 
-                                    Access Token do Mercado Pago.
-                                </h4> 
-                                <h4>Essas informações são responsáveis pelo seu recebimento das vendas!</h4>
+                                <h5>Crie sua chave PIX em sua instituição bancaria para receber os valores das suas vendas!</h5>
 
                             </div>
                     </div>
@@ -40,8 +35,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Selecione o método em que você quer trabalhar: <b>PagSeguro</b> ou
-                                <b>Mercado Pago</b></h3>
+                            <h3 class="card-title">Cadastre sua chave PIX</h3>
                         </div>
                         <form role="form" method="POST" action="/admin/painel/cadastrar-dados-recebimento/action">
                             <div class="card-body">
@@ -54,31 +48,34 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
                                     ?>
                                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="pagseguro-tab" data-toggle="pill"
-                                                href="#pagseguro" role="tab" aria-controls="pagseguro"
-                                                aria-selected="true">PagSeguro</a>
+                                            <a class="nav-link active" id="pix-tab" data-toggle="pill"
+                                                href="#pix" role="tab" aria-controls="pix"
+                                                aria-selected="true">Chave PIX</a>
                                         </li>
 
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link" id="mercadopago-tab" data-toggle="pill"
                                                 href="#mercadopago" role="tab" aria-controls="mercadopago"
                                                 aria-selected="false">Mercado Pago</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="gerencianet-tab" data-toggle="pill"
+                                                href="#gerencianet" role="tab" aria-controls="gerencianet"
+                                                aria-selected="false">Gerencianet</a>
+                                        </li> -->
                                     </ul>
 
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pagseguro" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        <div class="tab-pane fade show active" id="pix" role="tabpanel" aria-labelledby="pills-home-tab">
                                             <div class="form-group">
-                                                <label for="emailpagseguro">E-mail cadastrado no PagSeguro</label>
-                                                <input type="email" class="form-control" name="emailpagseguro" id="emailpagseguro" aria-describedby="emailHelp" placeholder="E-mail cadastrado no PagSeguro">
+                                                <label for="pix">Chave PIX</label>
+                                                <input type="text" class="form-control" name="pix" id="pix" aria-describedby="emailHelp" placeholder="Informe a chave PIX">
                                                 <br>
-                                                <label for="tknpagseguro">Token do PagSeguro</label>
-                                                <input type="text" class="form-control" name="tknpagseguro" id="tknpagseguro" aria-describedby="emailHelp" placeholder="Token PagSeguro">
-                                                <small id="emailHelp" class="form-text text-muted">Esse token você consegue entrando <a target="_blank" href="https://www.sandbox.pagseguro.uol.com.br">aqui</a>, faz o login, em Perfis de integração clica em Vendedor, la vai ter o token.</small>
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="mercadopago" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <!-- <div class="tab-pane fade" id="mercadopago" role="tabpanel" aria-labelledby="pills-profile-tab">
                                             <div class="form-group">
                                                 <label for="pkmpago">Public Key do Mercado Pago</label>
                                                 <input type="text" class="form-control" name="pkmpago" id="pkmpago" aria-describedby="emailHelp" placeholder="Public Key Mercado Pago">
@@ -88,6 +85,17 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
 
                                             </div>
                                         </div>
+
+                                        <div class="tab-pane fade" id="gerencianet" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div class="form-group">
+                                                <label for="cliid">Cliente ID</label>
+                                                <input type="text" class="form-control" name="cliid" id="cliid" aria-describedby="emailHelp" placeholder="Public Key Mercado Pago">
+                                                <br>
+                                                <label for="clisecre">Client Secret</label>
+                                                <input type="text" class="form-control" name="clisecre" id="clisecre" aria-describedby="emailHelp" placeholder="Accsess Token Mercado Pago">
+
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>  
 
@@ -103,7 +111,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -124,7 +132,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar d
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 <script>

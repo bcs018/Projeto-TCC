@@ -162,7 +162,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -183,7 +183,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Editar dado
       </div>
     </div>
   </div>
-</div>
+
+</div> -->
+<?php require_once('aviso.php'); ?>
 
 <script type="text/javascript">
     $('#cep').mask("00000-000");

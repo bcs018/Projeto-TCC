@@ -50,9 +50,10 @@ if($notifi == 0){
   <style>
     .dropdown-menu-lg {
       max-width: 300px;
-      min-width: 380px;
+      min-width: 430px;
       padding: 0;
     }
+  </style>
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -160,6 +161,13 @@ if($notifi == 0){
                 <a href="/painel/relatorio" class="nav-link">
                 <i class="fas fa-search-dollar nav-icon"></i>
                   <p>Relatório de Vendas</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="/painel/vendas-a-pagar" class="nav-link">
+                <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Vendas à pagar</p>
                 </a>
               </li>
             </ul>

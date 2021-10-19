@@ -61,24 +61,24 @@
     </svg>
 </div>
 
-<script src="<?php echo BASE_ASS; ?>js/jquery.mask.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery-migrate-3.0.1.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/popper.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery.easing.1.3.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery.waypoints.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery.stellar.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery.animateNumber.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/owl.carousel.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/jquery.magnific-popup.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/scrollax.min.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/toastr.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.mask.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/assets/sitePrincipal/js/popper.min.js"></script>
+<script src="/assets/sitePrincipal/js/bootstrap.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.easing.1.3.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.waypoints.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.stellar.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.animateNumber.min.js"></script>
+<script src="/assets/sitePrincipal/js/owl.carousel.min.js"></script>
+<script src="/assets/sitePrincipal/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/sitePrincipal/js/scrollax.min.js"></script>
+<script src="/assets/sitePrincipal/js/toastr.min.js"></script>
 
-<script src="<?php echo BASE_ASS; ?>js/main.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/validaCadastro.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/validaPgm.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/getCep.js"></script>
-<script src="<?php echo BASE_ASS; ?>js/sitePrincipal/selecionaPlPagamento.js"></script>
+<script src="/assets/sitePrincipal/js/main.js"></script>
+<script src="/assets/sitePrincipal/js/sitePrincipal/validaCadastro.js"></script>
+<script src="/assets/sitePrincipal/js/sitePrincipal/validaPgm.js"></script>
+<script src="/assets/sitePrincipal/js/sitePrincipal/getCep.js"></script>
+<script src="/assets/sitePrincipal/js/sitePrincipal/selecionaPlPagamento.js"></script>
 <script src=" https://kit.fontawesome.com/2ebeb81d35.js"></script>
 
 </body>

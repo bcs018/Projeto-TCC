@@ -34,14 +34,18 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                   <br>
                   <hr>
                   <br>
-                  <div class="row">
-                      <div class="col-2">
-                          <button data="<?php echo $venda[0]['compra_id']; ?>" id="enviar" class="btn btn-info">Enviado</button>
-                      </div>
-                      <div class="col">
-                          <button data="<?php echo $venda[0]['compra_id']; ?>" id="naoenviar" class="btn btn-info">Não enviado</button>
-                      </div>
-                  </div><br>
+                  <?php if($venda != 0): ?>
+                    <?php if($venda[0]['transferido']=='0'): ?>
+                        <div class="row">
+                            <div class="col-2">
+                                <button data="<?php echo $venda[0]['compra_id']; ?>" id="enviar" class="btn btn-info">Enviado</button>
+                            </div>
+                            <div class="col">
+                                <button data="<?php echo $venda[0]['compra_id']; ?>" id="naoenviar" class="btn btn-info">Não enviado</button>
+                            </div>
+                        </div><br>
+                    <?php endif; ?>
+                  <?php endif; ?>
                   <div class="row">
                       <div class="col">
                           <b><p id="enviado"><?php echo($venda[0]['enviado']=='0')?'Não enviado':'Enviado'; ?></p></b>
@@ -56,11 +60,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                             <p style="margin-bottom: 0px;"><strong>Valor compra:</strong> R$<?php echo number_format($venda[0]['total_compra'],2,',','.'); ?></p>
                             <p style="margin-bottom: 0px;"><strong>Valor subtotal:</strong> R$<?php echo number_format($venda[0]['subtotal_compra'],2,',','.'); ?></p>
                             <p style="margin-bottom: 0px;"><strong>Valor frete: </strong>R$<?php echo number_format($venda[0]['frete'],2,',','.'); ?></p>
+                            <p style="margin-bottom: 0px;"><strong>Venda recebida? </strong><?php echo ($venda[0]['transferido']=='0')?'NÃO':'SIM'; ?></p>
                         </div>
                         <div class="col"> 
                             <p style="margin-bottom: 0px;"><strong>Método pagamento:</strong> <?php echo ($venda[0]['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto'; ?></p>
                             <p style="margin-bottom: 0px;"><strong>Data da compra: </strong><?php echo date('d/m/Y', strtotime($venda[0]['data_compra'])). ' às: '. $venda[0]['hora_compra']; ?></p>
-                            <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($venda[0]['status_pagamento']=='approved' || $venda[0]['status_pagamento'] == '3')?'Aprovado':''; ?></p>
+                            <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($venda[0]['status_pagamento']=='paid' || $venda[0]['status_pagamento']=='settled')?'Aprovado':''; ?></p>
                             <p style="margin-bottom: 0px;"><strong>Cod. Transação:  </strong><?php echo $venda[0]['cod_transacao']; ?> </p>
                             <p style="margin-bottom: 0px;"><strong>Pagamento:  </strong><?php echo $venda[0]['parcela']; ?> </p>
                         </div>
@@ -111,7 +116,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -132,7 +137,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 

@@ -7,6 +7,7 @@ use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 use \src\models\sitePrincipal\Plano;
 use \src\models\sitePrincipal\Assinatura;
+use src\models\sitePrincipal\Cadastro;
 
 class BoletoController extends Controller {
 
@@ -122,7 +123,31 @@ class BoletoController extends Controller {
 
         try{
             $subscription = $api->paySubscription($params, $body);
-            
+
+            if(isset($subscription['error'])){
+                $cad = new Cadastro;
+
+                if($subscription['code'] == 3500034){
+                    $cad->ativarUsuario(0);
+                    $assinatura->excluirItem(intval($dados['id_assinatura']));
+
+                    $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                                <center><b>O número de telefone está inválido, entre em contato com o administrador</center></b>
+                                            </div>';
+                    echo json_encode(['retorno'=>0, 'idAss'=>$dados['id_assinatura']]);
+                    exit;
+                }
+                $cad->ativarUsuario(0);
+                $assinatura->excluirItem($dados['id_assinatura']);
+
+                $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                            <center><b>Erro ao emitir boleto: '.$subscription['error_description']['message'].'</center></b>
+                                        </div>';
+                echo json_encode(['retorno'=>0, 'idAss'=>$dados['id_assinatura']]);
+                exit;
+
+            }
+
             $assinatura->salvarLinkBoleto($subscription['data']['pdf']['charge'], $dados['id_assinatura']);
 
             unset($_SESSION['messageFree']);

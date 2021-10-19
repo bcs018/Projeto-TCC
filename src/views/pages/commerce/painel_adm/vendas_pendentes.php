@@ -44,7 +44,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Vendas pend
                             </div>
                             <div class="col"> 
                                 <p style="margin-bottom: 0px;"><strong>Data da compra: </strong><?php echo date('d/m/Y', strtotime($v['data_compra'])). ' às: '. $v['hora_compra']; ?></p>
-                                <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($v['status_pagamento']=='approved' || $v['status_pagamento'] == '3')?'Aprovado':''; ?></p>
+                                <p style="margin-bottom: 0px;"><strong>Status: </strong><?php echo ($v['status_pagamento']=='paid' || $v['status_pagamento']=='settled')?'Aprovado':''; ?></p>
                                 <p style="margin-bottom: 0px;"><strong>Cod. Transação:  </strong><?php echo $v['cod_transacao']; ?> </p>
                                 <p style="margin-bottom: 0px;"><strong>Pagamento:  </strong><?php echo $v['parcela']; ?> </p>
                             </div>
@@ -58,7 +58,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Vendas pend
     </section>
 </div>
 
-<div class="modal" id="aviso" tabindex="-1" role="dialog">
+<!-- <div class="modal" id="aviso" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,7 +79,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Vendas pend
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<?php require_once('aviso.php'); ?>
 
 <?php $render("commerce/footer_painel"); ?>
 

@@ -44,6 +44,7 @@ $router->get('/cliente/sair/c', 'LoginController@sairC');
 $router->get('/cliente/painel/contato', 'AdminCController@contato');
 $router->get('/cliente/painel/meus-pedidos', 'AdminCController@pedidos');
 $router->get('/cliente/painel/meus-pedidos/{id}', 'AdminCController@pedido');
+$router->post('/cliente/painel/marcar-recebido', 'AdminCController@marcarRecebido');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
@@ -87,6 +88,8 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/checkoutBol', 'PgCheckTransPrincipalController@checkoutBol');
 $router->post('/checkout_mp', 'MpCheckTransPrincipalController@checkout');
 $router->post('/checkout_mpBol', 'MpCheckTransPrincipalController@checkout_mpBol');
+$router->post('/checkout_gere', 'GereCheckTransPrincipalController@checkout_gere');
+$router->post('/checkout_gere_bol', 'GereCheckTransPrincipalController@checkoutbol_gere');
 $router->get('/pagamento/concluido/{id}', 'PagamentoController@fimPagamento');
 $router->get('/notification/cliente', 'PgCheckTransPrincipalController@notification');
 

@@ -24,6 +24,9 @@ $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
 $router->get('/boleto/notification', 'BoletoController@notification');
 
+$router->post('/notificacao/gerencianet', 'NotificacaoClientesController@notificacaoGereCard');
+
+
 $router->post('/consulta-cep', 'CadastroController@consultarCep');
 
 $router->get('/admin-potlid', 'LoginController@admin');
@@ -47,7 +50,10 @@ $router->get('/inativar/cliente/{id}', 'PainelController@inativarUsu');
 $router->get('/painel/relatorio', 'PainelController@relVendas');
 $router->post('/painel/relatorio', 'PainelController@relVendas');
 $router->get('/painel/add-usuario', 'PainelController@addUsuario');
+$router->get('/painel/vendas-a-pagar', 'PainelController@vendasPagar');
+$router->get('/painel/vendas-a-pagar/{id}', 'PainelController@vendaPagar');
 $router->post('/painel/add-usuario/action', 'PainelController@addUsuarioAction');
+$router->post('/transferir/compra', 'PainelController@transferirVenda');
 
 $router->post('/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');
 $router->post('/painel/ler-todas-notificacao', 'NotificacaoController@lerTdNotificacao');

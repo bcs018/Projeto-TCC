@@ -9,7 +9,7 @@ class Notificacao extends Model{
         $sql = "INSERT INTO notificacao (ecommerce_id, texto, link, lido, usu_ecommerce)
                 VALUES (?,?,?,?,?)";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(1, $ecommerce_id);
+        $sql->bindValue(1, intval($ecommerce_id));
         $sql->bindValue(2, $texto);
         $sql->bindValue(3, $link);
         $sql->bindValue(4, '0');

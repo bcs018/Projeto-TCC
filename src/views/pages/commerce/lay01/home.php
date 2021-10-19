@@ -64,6 +64,7 @@ unset($_SESSION['frete']);
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                        <div class="single-product"></div>
                     </div>
                 </div>
             </div>
@@ -228,5 +229,5 @@ unset($_SESSION['frete']);
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script>
-    $(".bx-viewport").css('height','180px');
+    $(".bx-viewport").css('height','200px');
 </script>

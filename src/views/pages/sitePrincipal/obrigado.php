@@ -29,7 +29,7 @@
                 <?php else: ?>
                     <h5>Geramos seu boleto para pagamento, lembrando que após o pagamento a confirmação será em até três dias úteis.</h5> <br>
                     <h5>Para acessar seu boleto clique <a target="_blank" href="<?php echo $link; ?>">aqui</a> ou faça login para emitir a segunda via.</h5><br>
-                    <h5>A data do vencimento é após quatro dias a partir da data de compra.</h5>
+                    <h5>A data do vencimento é após quatro dias a partir da data da compra.</h5>
                     <a target="_blank" class="btn btn-success" href="<?php echo $link ?>">Abrir boleto</a><br><br>
                 <?php endif; ?>
 
@@ -38,7 +38,7 @@
                      Para acessar o painel de controle de sua loja, coloque no final do endereço 
                      <b> /admin</b>
                 </h5>
-                <h5><b>Exemplo:</b> paqueta.bw.com.br<b>/admin</b></h5> <br>
+                <h5><b>Exemplo:</b> paqueta.potlid.com.br<b>/admin</b></h5> <br>
                 <h5>Boas vendas!!!</h5>
                 <br><br>
             </div>
