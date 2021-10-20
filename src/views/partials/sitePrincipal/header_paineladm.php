@@ -22,31 +22,31 @@ if($notifi == 0){
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/dist/css/adminlte.min.css">
   <!-- Ion Icons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- daterangepicker -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="<?php echo BASE_ASS; ?>adminlte/plugins/summernote/summernote-bs4.min.css">
-	<link rel="stylesheet" href="<?php echo BASE_ASS; ?>css/toastr.min.css">
+  <link rel="stylesheet" href="/assets/sitePrincipal/adminlte/plugins/summernote/summernote-bs4.min.css">
+	<link rel="stylesheet" href="/assets/sitePrincipal/css/toastr.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
-  <link rel="shortcut icon" href="<?php echo BASE_ASS; ?>/images/ico.ico">
+  <link rel="shortcut icon" href="/assets/sitePrincipal//images/ico.ico">
   <style>
     .dropdown-menu-lg {
       max-width: 300px;
@@ -111,7 +111,7 @@ if($notifi == 0){
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="<?php echo BASE_ASS; ?>images/logobw.png" alt="PotLid Logo" class="brand-image">
+      <img src="/assets/sitePrincipal/images/logobw.png" alt="PotLid Logo" class="brand-image">
       <span class="brand-text font-weight-light">Commerce</span>
     </a>
 
@@ -121,9 +121,9 @@ if($notifi == 0){
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php if($_SESSION['log_admin']['url_foto'] != null): ?>
-            <img src="<?php echo BASE_ASS.'images/user_photo/'.$_SESSION['log_admin']['url_foto']; ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="/assets/sitePrincipal/images/user_photo/'.$_SESSION['log_admin']['url_foto']; ?>" class="img-circle elevation-2" alt="User Image">
           <?php else: ?>
-            <img src="<?php echo BASE_ASS; ?>images/user_photo/user_default.png" class="img-circle elevation-2" alt="User Image">
+            <img src="/assets/sitePrincipal/images/user_photo/user_default.png" class="img-circle elevation-2" alt="User Image">
           <?php endif;  ?>
         </div>
         <div class="info">
