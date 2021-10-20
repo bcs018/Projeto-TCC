@@ -31,6 +31,7 @@
                             </div>
 
                             <h2><a href="/visualizar/produto/<?php echo $p[0]; ?>"><?php echo $p['nome_pro']; ?></a></h2>
+                            <h5><?php echo $p['nome_mar']; ?></h5>
 
                             <div class="product-carousel-price">
                                 <ins><?php echo 'R$' . number_format($p['preco'], 2, ',', '.'); ?></ins> <del><?php echo ($p['preco_antigo'] == 0.00) ? '' : 'R$' . number_format($p['preco_antigo'], 2, ',', '.'); ?></del>

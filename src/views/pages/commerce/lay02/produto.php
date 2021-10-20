@@ -47,6 +47,8 @@
                         <?php echo $produto[0]['nome_pro']; ?>
                     </h4>
 
+                    <p style="margin-bottom: 5px;"><?php echo $produto[0]['nome_mar']; ?></p>
+
                     <span class="mtext-106 cl2">
                         <del><?php echo ($produto[0]['preco_antigo'] == 0.00) ? '' : 'De: R$' . number_format($produto[0]['preco_antigo'], 2, ',', '.'); ?></del> <br><br> <ins style="font-size:x-large;"><?php echo 'Por: R$' . number_format($produto[0]['preco'], 2, ',', '.'); ?></ins> 
                     </span>
@@ -346,6 +348,8 @@
                                 <a href="/visualizar/produto/<?php echo $pr[0] ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     <h4><?php echo $pr['nome_pro']; ?></h4>
                                 </a>
+
+                                <p style="margin-bottom: 5px;"><?php echo $pr['nome_mar']; ?></p>
 
                                 <span class="stext-105 cl3">
                                 <h6>

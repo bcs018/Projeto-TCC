@@ -181,6 +181,7 @@ if(isset($_SESSION['message'])){
                                                         class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                                         <?php echo $produto['nome_pro']; ?>
                                                     </a>
+                                                    <p style="margin-bottom: 5px;"><?php echo $produto['nome_mar']; ?></p>
 
                                                     <span class="stext-105 cl3">
                                                         <?php echo 'R$' . number_format($produto['preco'], 2, ',', '.'); ?> &nbsp; &nbsp;

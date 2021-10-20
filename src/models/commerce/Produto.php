@@ -253,6 +253,8 @@ class Produto extends Model{
         $sql = 'SELECT * FROM produto p
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
+                JOIN marca m 
+                ON m.marca_id = p.marca_id
                 WHERE p.ecommerce_id = ? AND p.produto_id = ? AND p.ativo = ?';
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
@@ -300,9 +302,11 @@ class Produto extends Model{
 
     // -- Lista todos produtos com suas imagens
     public function listaProdutosImg($order, $ativo='1'){
-        $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+        $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url, m.nome_mar FROM produto p 
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
+                JOIN marca m 
+                ON m.marca_id = p.marca_id
                 WHERE p.ecommerce_id =?  AND p.ativo = ? ORDER BY p.produto_id $order";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);
@@ -342,6 +346,8 @@ class Produto extends Model{
             $sql = "SELECT * FROM produto p
                     LEFT JOIN produto_imagem pi
                     ON pi.produto_id = p.produto_id
+                    JOIN marca m 
+                    ON m.marca_id = p.marca_id
                     WHERE p.categoria_id = ? AND p.ecommerce_id = ? AND p.ativo = ?";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(1, $c['categoria_id']);

@@ -286,6 +286,8 @@
                                         <h4> <?php echo $p['nome_pro']; ?></h4>
                                     </a>
 
+                                    <p style="margin-bottom: 5px;"><?php echo $p['nome_mar']; ?></p>
+
                                     <span class="stext-105 cl3">
                                         <h6>
                                             <b></b> <del style="color: #ab0b00;"><?php echo ($p['preco_antigo'] == 0.00) ? '' : 'De: R$' . number_format($p['preco_antigo'], 2, ',', '.'); ?></del> <br><br>  <b>Por</b>: <ins><?php echo 'R$' . number_format($p['preco'], 2, ',', '.'); ?></ins> 

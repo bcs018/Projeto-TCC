@@ -11,9 +11,11 @@ use \src\models\commerce\Info;
 
 class Pesquisa extends Model{
     public function pesquisa($txt){
-        $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url FROM produto p 
+        $sql = "SELECT p.produto_id, p.nome_pro, p.ecommerce_id, p.preco, p.preco_antigo, p.banner_img, pi.pi_id, pi.produto_id, pi.url, m.nome_mar FROM produto p 
                 LEFT JOIN produto_imagem pi
                 ON pi.produto_id = p.produto_id
+                JOIN marca m 
+                ON m.marca_id = p.marca_id
                 WHERE p.ecommerce_id = ?  AND p.ativo = ? and nome_pro LIKE ? ORDER BY p.produto_id asc;";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $_SESSION['id_sub_dom']);

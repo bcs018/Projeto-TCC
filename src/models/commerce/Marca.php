@@ -136,9 +136,9 @@ class Marca extends Model{
         
         list($largura, $altura) = getimagesize($img['tmp_name']);
 
-        if($altura < 100 || $altura > 120 || $largura < 250 || $largura > 270){
+        if($altura < 100 || $altura > 700 || $largura < 250 || $largura > 950){
             $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-                                        Imagem da marca não está entre 250x100 e 270x120 mega pixels!
+                                        Imagem da marca não está entre 250x100 e 950x700 mega pixels!
                                     </div>';
             return false;
         }

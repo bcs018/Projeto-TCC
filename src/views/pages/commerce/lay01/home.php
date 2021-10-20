@@ -84,6 +84,7 @@ unset($_SESSION['frete']);
                             <?php foreach ($marcasImg as $img) : ?>
                                 <img id="imagem" src="<?php echo BASE_ASS_C; ?>images_commerce/<?php echo $img['marca_img']; ?>" alt="Nossas marcas">
                             <?php endforeach; ?>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -229,5 +230,5 @@ unset($_SESSION['frete']);
 <?php $render('commerce/lay01/footer', ['dados' => $dados]); ?>
 
 <script>
-    $(".bx-viewport").css('height','200px');
+    $(".bx-viewport").css('height','300px');
 </script>

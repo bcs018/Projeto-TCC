@@ -123,7 +123,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="bd-example">
-                                        <label for="marca">Adicione imagem das marcas em que você trabalha (Imagens de 250x100 até 270x120 mega pixels) </label>
+                                        <label for="marca">Adicione imagem das marcas em que você trabalha (Imagens de 250x100 até 950x700 mega pixels) </label>
                                         <input type="file" class="form-control" name="marca">
                                     </div>
                                 </div>

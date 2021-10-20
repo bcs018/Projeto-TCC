@@ -68,6 +68,7 @@
                                     <button class="add_to_cart_button" type="submit">Comprar</button>
                                 </form>
                                 <h5>Estoque: <b><?php echo $produto[0]['estoque']; ?></b></h5>
+                                <h5>Marca: <b><?php echo $produto[0]['nome_mar']; ?></b></h5>
                                 <br><br>
                                 <div role="tabpanel">
                                     <ul class="product-tab" role="tablist">
@@ -121,6 +122,7 @@
                                     </div>
 
                                     <h2><a href="/visualizar/produto/<?php echo $pr[0] ?>"><?php echo $pr['nome_pro']; ?></a></h2>
+                                    <h5><?php echo $pr['nome_mar']; ?></h5>
 
                                     <div class="product-carousel-price">
                                         <ins><?php echo 'R$' . number_format($pr['preco'], 2, ',', '.'); ?></ins>
