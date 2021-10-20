@@ -13,13 +13,13 @@ class Email extends Model{
         $mail->Encoding = 'base64';
         $mail->isSMTP();
         //$mail->SMTPDebug = 2;
-        $mail->Host = 'mail.potlid.com.br';
-        $mail->Port = 587;
+        $mail->Host = '******';
+        $mail->Port = '**';
         
         /*  */
 
         $mail->Username = 'sac@potlid.com.br';
-        $mail->Password = 'b321r99uNO111';
+        $mail->Password = 'emailsac@potlid123';
         $mail->setFrom('sac@potlid.com.br',  utf8_decode($nomeEcommerce).' Commerce');
         $mail->addReplyTo('sac@potlid.com.br',  utf8_decode($nomeEcommerce).' Commerce');
         $mail->addAddress($emailDestino); // Para quem recebera o email
