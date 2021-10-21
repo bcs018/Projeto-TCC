@@ -33,12 +33,6 @@ class Config {
     const DB_USER     = 'root';
     const DB_PASS     = '';
 
-    // const DB_DRIVER = 'mysql';
-    // const DB_HOST = 'localhost';
-    // const DB_DATABASE = 'id8436199_bwcommerce';
-    // const DB_USER = 'id8436199_bw';
-    // const DB_PASS = '9ygmlc]\@o2DdSXJ';
-
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION   = 'index';    
     const URL_DEFAULT      = 'bw.com.br';

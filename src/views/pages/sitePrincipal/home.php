@@ -2,7 +2,7 @@
 
 <div class="hero-wrap">
 	<div class="home-slider owl-carousel">
-		<div class="slider-item" style="background-image:url(<?php echo BASE_ASS; ?>images/bg_11.png);">
+		<div class="slider-item" style="background-image:url(/assets/sitePrincipal/images/bg_11.png);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 
-		<div class="slider-item" style="background-image:url(<?php echo BASE_ASS; ?>images/bg_2.jpg);">
+		<div class="slider-item" style="background-image:url(/assets/sitePrincipal/images/bg_2.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 
-		<div class="slider-item" style="background-image:url(<?php echo BASE_ASS; ?>images/bg_3.jpg);">
+		<div class="slider-item" style="background-image:url(/assets/sitePrincipal/images/bg_3.jpg);">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -56,7 +56,7 @@
 					<h1 class="mb-4">Nós temos a melhor solução para criar sua loja virtual!</h1><br>
 				</div>
 				<div class="services-2 w-100 d-flex">
-					<div class="icon d-flex align-items-center justify-content-center"><img src="<?php echo BASE_ASS; ?>images/icon/graf.png" alt="" width="40px" height="40px"></span></div>
+					<div class="icon d-flex align-items-center justify-content-center"><img src="/assets/sitePrincipal/images/icon/graf.png" alt="" width="40px" height="40px"></span></div>
 					<div class="text pl-4">
 						<h4>Feito para microempreendedor e pequenas empresas</h4>
 						<p>Para microempreendedores e pequenas empresas que desejam criar sua loja virtual sem
@@ -64,7 +64,7 @@
 					</div>
 				</div>
 				<div class="services-2 w-100 d-flex">
-					<div class="icon d-flex align-items-center justify-content-center"> <img src="<?php echo BASE_ASS; ?>images/icon/prog.png" alt="" width="40px" height="40px">
+					<div class="icon d-flex align-items-center justify-content-center"> <img src="/assets/sitePrincipal/images/icon/prog.png" alt="" width="40px" height="40px">
 					</div>
 					<div class="text pl-4">
 						<h4>Crie sua loja sem conhecimento algum de programação!</h4>
@@ -73,7 +73,7 @@
 					</div>
 				</div>
 				<div class="services-2 w-100 d-flex">
-					<div class="icon d-flex align-items-center justify-content-center"><img src="<?php echo BASE_ASS; ?>images/icon/van.png" alt="" width="40px" height="40px"></div>
+					<div class="icon d-flex align-items-center justify-content-center"><img src="/assets/sitePrincipal/images/icon/van.png" alt="" width="40px" height="40px"></div>
 					<div class="text pl-4">
 						<h4>Integração com o Correios</h4>
 						<p>Seus clientes poderam consultar o valor do frete com os Correios antes de finalizar uma
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div class="services-2 w-100 d-flex">
-					<div class="icon d-flex align-items-center justify-content-center"><img src="<?php echo BASE_ASS; ?>images/icon/card.png" alt="" width="40px" height="40px"></div>
+					<div class="icon d-flex align-items-center justify-content-center"><img src="/assets/sitePrincipal/images/icon/card.png" alt="" width="40px" height="40px"></div>
 					<div class="text pl-4">
 						<h4>Integração com o MercadoPago ou PagSeguro</h4>
 						<p>Em sua loja você poderá receber suas vendas através do PagSeguro ou Mercado Pago.</p>
@@ -127,7 +127,7 @@
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-7 d-flex align-items-center">
-				<h2 class="mb-3 mb-sm-0" style="color:rgb(255, 255, 255); font-size: 22px; font-weight: bolder;">Começe agora mesmo a criar sua loja informando seu e-mail para cadastro</h2>
+				<h2 class="mb-3 mb-sm-0" style="color:rgb(255, 255, 255); font-size: 22px; font-weight: bolder;">Comece agora mesmo a criar sua loja informando seu e-mail para cadastro</h2>
 			</div>
 			<div class="col-md-5 d-flex align-items-center">
 				<form action="#" class="subscribe-form">

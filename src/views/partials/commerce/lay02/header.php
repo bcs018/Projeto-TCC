@@ -1,4 +1,4 @@
-<?php  
+<?php
 use \src\models\commerce\Carrinho;
 use src\controllers\commerce\CategoriaController;
 
