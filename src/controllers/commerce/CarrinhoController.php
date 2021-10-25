@@ -13,13 +13,9 @@ class CarrinhoController extends Controller {
         $prod = new Produto;
         $carr = new Carrinho;
 
-        // unset($_SESSION['frete']);
-        // unset($_SESSION['login_cliente_ecommerce']);
-        
         $valores = $carr->somaValor();
 
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
-        //echo '<pre>'; print_r($dados);
 
         if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0){
             $carrinho = '<br><div class="alert alert-info" role="alert">
