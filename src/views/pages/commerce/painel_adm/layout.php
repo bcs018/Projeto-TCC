@@ -51,6 +51,20 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                     
                         <div class="card card-primary">
                             <div class="card-header">
+                                <h3 class="card-title"><b>Nome Fantasia</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="bd-example">
+                                        <label for="banner">Altere o nome fantasia de sua loja </label>
+                                        <input type="text" class="form-control" name="nomeFant" value="<?php echo $dados['nome_fantasia']; ?>">
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header">
                                 <h3 class="card-title"><b>Banner da pagina principal</b></h3>
                             </div>
                             <div class="card-body">

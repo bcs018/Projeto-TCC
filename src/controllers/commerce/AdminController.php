@@ -237,6 +237,10 @@ class AdminController extends Controller {
             $adm->addCorRodape(addslashes($_POST['corRodape']));
         }
 
+        if(isset($_POST['nomeFant']) || !empty($_POST['nomeFant'])){
+            $adm->ediNomeFantasia(addslashes($_POST['nomeFant']));
+        }
+
         
         header("Location: /admin/painel/layout");
     }

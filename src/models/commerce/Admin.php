@@ -306,6 +306,37 @@ class Admin extends Model{
 
     }
 
+    public function ediNomeFantasia($nomeFant){
+        if(!isset($nomeFant) || empty($nomeFant)){
+            $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                        Nome Fantasia em branco!
+                                    </div>';
+            return false;
+        }
+
+        $sql = "UPDATE ecommerce_usu SET nome_fantasia = ?
+                WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $nomeFant);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+        
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Nome Fantasia alterado com sucesso!
+                                    </div>';
+
+            $_SESSION['log_admin']['fantasia'] = $nomeFant;
+
+            return true;
+        }
+
+        $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                    Erro 001 ao alterar o Nome Fantasia!
+                                 </div>';
+
+        return false;
+    }
+
     public function addLogoAction($logo){
         $tpArq = explode('/', $logo['type']);
 
