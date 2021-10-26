@@ -60,7 +60,9 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meu
                                             <b><p style="margin-bottom: 0px; color: #f55a42;">Compra cancelada ou não aprovada</p></b>
                                         <?php endif; ?>
                                         <br>
-                                        <button id="r-<?php echo $compra['compra_id']; ?>" class="btn btn-success">Marcar como recebido</button>
+                                        <?php if($compra['status_pagamento'] != 'unpaid'): ?>
+                                            <button id="r-<?php echo $compra['compra_id']; ?>" class="btn btn-success">Marcar como recebido</button>
+                                        <?php endif; ?>
                                         <!-- <input type="hidden" value="<?php //echo $compra['compra_id']; ?>" id="idcompra"> -->
                                     </div>
                                 </div>
@@ -76,7 +78,7 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Meu
     </section>
 </div>
 
-<?php $render("commerce/footer_painel"); ?>
+<?php $render("commerce/footer_painel_c"); ?>
 
 <script>
 

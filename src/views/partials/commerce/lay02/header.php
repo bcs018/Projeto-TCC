@@ -327,6 +327,12 @@ $cats = $cat->listaCategorias();
 				<li>
 					<a href="">Contato</a>
 				</li>
+				<li>
+					<a href="/cliente/painel">Minha conta <?php echo(isset($_SESSION['log_admin_c']) && !empty($_SESSION['log_admin_c']))?'- '.$_SESSION['log_admin_c']['nome']:''; ?></a>
+				</li>
+				<li>
+					<a href="/login/c">Login</a>
+				</li>
 			</ul>
 		</div>
 

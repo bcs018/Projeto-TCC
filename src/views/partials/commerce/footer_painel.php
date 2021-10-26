@@ -5,7 +5,7 @@
       Anything you want
     </div> -->
     <!-- Default to the left -->
-    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="<?php echo BASE_URL; ?>"> <?php echo (isset($_SESSION['log_admin_c']))?$_SESSION['log_admin_c']['fantasia']:$_SESSION['log_admin']['fantasia'] ?></a>.</strong> Todos os direitos reservados.
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="/"> <?php echo (isset($_SESSION['log_admin_c']))?$_SESSION['log_admin_c']['fantasia']:$_SESSION['log_admin']['fantasia'] ?></a>.</strong> Todos os direitos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->

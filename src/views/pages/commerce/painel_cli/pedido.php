@@ -76,12 +76,24 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Ped
 
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Método de pagamento:</h5>
-                    <p><?php echo($p['tipo_pagamento']=='cartao')?'Cartão de crédito':'Boleto<br> <a target="_blank" href="'.$p['link_bol'].'">Clique aqui </a>para acessar o boleto' ?></p>
+                    <?php if($p['tipo_pagamento']=='cartao'): ?>
+                        <p>Cartão de crédito</p>
+                    <?php else: ?>
+                        <p>Boleto <?php echo($p['status_pagamento']!='unpaid')?'<br> <a target="_blank" href="'.$p['link_bol'].'">Clique aqui </a>para acessar o boleto':''; ?></p>
+                    <?php endif ?>
                 </div>
 
                 <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Envio:</h5>
-                    <p><?php echo($p['enviado']=='0')?'O vendedor está preparando seu produto':'Enviado' ?></p>
+                    <?php if($p['enviado']=='0' && $p['status_pagamento'] == 'paid'): ?>
+                        <p>O vendedor está preparando seu produto</p>
+                    <?php elseif($p['enviado']=='1' && $p['status_pagamento'] == 'paid'): ?>
+                        <p>Enviado</p>
+                    <?php elseif($p['status_pagamento'] == 'unpaid'): ?>
+                        <p>Compra cancelada</p>
+                    <?php else: ?>
+                        <p>Aguardando pagamento</p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col-md-6">
