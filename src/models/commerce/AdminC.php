@@ -12,10 +12,11 @@ class AdminC extends Model{
                 ON eu.ecommerce_id = ecu.ecommerce_id
                 JOIN usuario_ecommerce ue 
                 ON ue.ue_id = ecu.usuario_id
-                WHERE eu.sub_dominio = ? AND ue.login_ue = ?";
+                WHERE eu.sub_dominio = ? AND (ue.login_ue = ? OR ue.email_ue = ?)";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $sub);
         $sql->bindValue(2, $_SESSION['credencial_c']);
+        $sql->bindValue(3, $_SESSION['credencial_c']);
         $sql->execute();
         //echo $_SERVER['REQUEST_URI']; exit;
 
