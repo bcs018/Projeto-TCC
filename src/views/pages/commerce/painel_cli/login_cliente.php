@@ -71,12 +71,13 @@
           ?>
         </form>
 
+        <p class="mb-0">
+          Ainda não tem uma conta? <br>Então <a href="/cadastrar" class="text-center">cadastre-se aqui</a>
+        </p><br>
         <p class="mb-1">
           <a href="">Esqueci minha senha</a>
         </p>
-        <p class="mb-0">
-          <a href="/cadastrar" class="text-center">Cadastre-se</a>
-        </p>
+        
       </div>
       <!-- /.login-card-body -->
     </div>
