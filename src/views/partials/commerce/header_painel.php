@@ -160,7 +160,13 @@ if($notifi == 0){
               </p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
-            <li class="nav-item">
+              <li class="nav-item">
+                <a href="/admin/painel/questionario" class="nav-link">
+                <i class="fas fa-question nav-icon"></i>
+                  <p>Questionário</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/admin/painel/categorias" class="nav-link">
                 <i class="far fa-clipboard nav-icon"></i>
                   <p>Categorias</p>

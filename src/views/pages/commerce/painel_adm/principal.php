@@ -69,25 +69,19 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Principal']
               <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-
-          <!-- ./col -->
-          <!-- <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div> -->
-          <!-- ./col -->
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
+       
+        <div class="row">
+          <div class="col">
+            <br><br>
+            <h3>Aviso!</h3>
+            <h5>Se você já usou a plataforma por completo, clique na opção "Questionário" no MENU 
+              e responda o questionário.
+            </h5>
+            <h5>Sua resposta é de extrema importância para nós!</h5>
+            <h5>Obrigado!</h5><br><br><br>
+          </div>
+        </div>
         
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->

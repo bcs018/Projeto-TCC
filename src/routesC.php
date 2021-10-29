@@ -27,6 +27,7 @@ $router->post('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAct
 $router->get('/admin/painel/relatorio-intervalo', 'AdminController@relVendasAction');
 $router->get('/admin/painel/vendas-pendentes', 'VendaController@vendasPendendes');
 $router->get('/admin/painel/venda/{id}', 'VendaController@vendaPendente');
+$router->get('/admin/painel/questionario', 'AdminController@questionario');
 $router->post('/admin/painel/marcar-enviado', 'VendaController@marcarEnviado');
 $router->post('/admin/painel/marcar-nao-enviado', 'VendaController@marcarNEnviado');
 $router->post('/admin/painel/ler-notificacao', 'NotificacaoController@lerNotificacao');

@@ -188,6 +188,12 @@ class AdminController extends Controller {
         exit;
     }
 
+    public function questionario(){
+        $dados = $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_adm/questionario', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+    }
+
     public function cadDadosRecebimentoAction(){
         $pix   = addslashes($_POST['pix']);
         // $emailpagseguro = addslashes($_POST['emailpagseguro']);
