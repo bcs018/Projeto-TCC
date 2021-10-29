@@ -88,6 +88,12 @@ class AdminCController extends Controller {
         $this->render('commerce/painel_cli/pedido', ['dados'=>$dados, 'pedido'=>$pedido]);
     }
 
+    public function questionario(){
+        $dados = $this->listaDadosEcommerce();
+
+        $this->render('commerce/painel_cli/questionario', ['dados'=>$dados]);
+    }
+
     public function marcarRecebido(){
         $adm = new AdminC;
 

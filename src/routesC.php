@@ -46,6 +46,7 @@ $router->get('/cliente/painel/contato', 'AdminCController@contato');
 $router->get('/cliente/painel/meus-pedidos', 'AdminCController@pedidos');
 $router->get('/cliente/painel/meus-pedidos/{id}', 'AdminCController@pedido');
 $router->post('/cliente/painel/marcar-recebido', 'AdminCController@marcarRecebido');
+$router->get('/cliente/painel/questionario', 'AdminCController@questionario');
 
 // -- Produtos
 $router->get('/admin/painel/produtos', 'ProdutoController@conProduto');
