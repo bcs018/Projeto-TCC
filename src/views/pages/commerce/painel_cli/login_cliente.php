@@ -35,7 +35,7 @@
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Informe suas credênciais</p>
+        <p class="login-box-msg">Informe suas credenciais</p>
 
         <form id="login_cliente">
           <div id="message"></div>

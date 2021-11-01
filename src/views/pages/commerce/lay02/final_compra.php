@@ -11,7 +11,7 @@ if (!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false) {
         <div class="col-md-12">
             <br><br><br>
             <center>
-                <h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradeçe a sua compra!</h1>
+                <h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradece a sua compra!</h1>
             </center> <br><br><br><br>
         </div>
     </div>

@@ -22,7 +22,7 @@ if(!isset($_SESSION['login_cliente_ecommerce']) || $produtos == false){
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <center><h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradeçe a sua compra!</h1></center> <br><br>
+                <center><h1><?php echo $_SESSION['log_admin_c']['fantasia']; ?> agradece a sua compra!</h1></center> <br><br>
             </div>
         </div>
         
