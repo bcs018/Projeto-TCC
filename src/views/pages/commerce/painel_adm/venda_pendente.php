@@ -30,9 +30,12 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
             <div class="row">
                 <div class="col"> 
                   <br>
-                  <h5>Caso tenha enviado a encomenda, clique em ENVIADO para seu cliente saber que o produto ja foi enviado.</h5>
+                  <h5>Caso tenha enviado a encomenda, informe o código de rastreio dos Correios e clique em ENVIADO para seu cliente saber que o produto ja foi enviado
+                      e possa consultar o rastrreio.</h5>
                   <br>
                   <hr>
+                  <label for="cd_rastreio">Informe o código de rastreio informado pelos Correios</label>
+                  <input class="form-control" type="text" id="cd_rastreio" name="cd_rastreio" style="text-transform:uppercase" >
                   <br>
                   <?php if($venda != 0): ?>
                     <?php if($venda[0]['transferido']=='0'): ?>
@@ -52,6 +55,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                       </div>
                   </div>
                   <br><br>
+                  <div id="loading"></div><br>
+                  <hr>
                   <?php if($venda != 0): ?>
                     <h4>Dados da compra</h4><br>
                     <div class="row">
@@ -85,14 +90,16 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                 </div>
                 <div class="col">
                     <p style="margin-bottom: 0px;"><strong>Estado: </strong><?php echo $venda[0]['estado_entrega']; ?> </p>
-                    <p style="margin-bottom: 0px;"><strong>CEP: </strong><?php echo $venda[0]['cep_entrega']; ?> </p>                    <p style="margin-bottom: 0px;"><strong>Complemento: </strong><?php echo $venda[0]['complemento_entrega']; ?> </p> <br>
+                    <p style="margin-bottom: 0px;"><strong>CEP: </strong><?php echo $venda[0]['cep_entrega']; ?> </p>                    
+                    <p style="margin-bottom: 0px;"><strong>Complemento: </strong><?php echo $venda[0]['complemento_entrega']; ?> </p> <br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5">
                     <p style="margin-bottom: 0px;"><strong>Quem recebe: </strong><?php echo $venda[0]['nome_usu_ue'].' '.$venda[0]['sobrenome']; ?> </p>
                     <p style="margin-bottom: 0px;"><strong>E-mail: </strong><?php echo $venda[0]['email_ue']; ?> </p>
-                    <p style="margin-bottom: 0px;"><strong>Celular: </strong><?php echo $venda[0]['celular_ue']; ?> </p>
+                    <p style="margin-bottom: 0px;"><strong>Celular: </strong><?php echo $venda[0]['celular_ue']; ?> </p> <br>
+                    <p style="margin-bottom: 0px;"><strong>Cód. rastreio: </strong><?php echo ($venda[0]['cod_rastreio']=='0')?'Não informado':$venda[0]['cod_rastreio']; ?> </p>
                 </div>
             </div>
             <br>
@@ -103,10 +110,9 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                 <div class="row">
                     <div class="col-5">
                         <p style="margin-bottom: 0px;"><strong>Nome: </strong><?php echo $v['nome_pro']; ?> </p>
-                        <p style="margin-bottom: 0px;"><strong>Descricao do produto: </strong><?php echo $v['descricao']; ?> </p>
+                        <p style="margin-bottom: 0px;"><strong>Preço: </strong>R$<?php echo number_format($v['preco'],2,',','.'); ?></p>
                     </div>
                     <div class="col">
-                        <p style="margin-bottom: 0px;"><strong>Preço: </strong>R$<?php echo number_format($v['preco'],2,',','.'); ?></p>
                         <p style="margin-bottom: 0px;"><strong>Quantidade: </strong><?php echo $v['quantidade']; ?></p>
                     </div>
                 </div> <br>

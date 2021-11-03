@@ -40,12 +40,13 @@ class VendaController extends Controller {
 
     public function marcarEnviado(){
         $id = addslashes($_POST['id']);
+        $cd_rastreio = addslashes($_POST['cd_ras']);
 
         $ven = new Venda;
         $com = new Compra;
         $noti  = new Notificacao;
 
-        $ven->marcarEnviado($id, '1');
+        $ven->marcarEnviado($id, '1', strtoupper($cd_rastreio));
         $id_usu = $com->listaCompraNotify($id);
         $noti->gravaNotificacao($_SESSION['id_sub_dom'], 'Sua compra foi despachada pelo vendedor!', '/cliente/painel/meus-pedidos/'.$id, $id_usu['usuario_id']);
 
@@ -57,7 +58,7 @@ class VendaController extends Controller {
 
         $ven = new Venda;
 
-        $ven->marcarEnviado($id, '0');
+        $ven->marcarEnviado($id, '0', '0');
 
         echo json_encode(['ret'=>true]);
 

@@ -55,12 +55,13 @@ class Venda extends Model{
         return 0;
     }
 
-    public function marcarEnviado($id, $enviado){
-        $sql = "UPDATE compra SET enviado = ? WHERE compra_id = ? AND ecommerce_id = ?";
+    public function marcarEnviado($id, $enviado, $cod_ras){
+        $sql = "UPDATE compra SET enviado = ?, cod_rastreio = ? WHERE compra_id = ? AND ecommerce_id = ?";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(1, $enviado);
-        $sql->bindValue(2, $id);
-        $sql->bindValue(3, $_SESSION['id_sub_dom']);
+        $sql->bindValue(2, $cod_ras);
+        $sql->bindValue(3, $id);
+        $sql->bindValue(4, $_SESSION['id_sub_dom']);
         $sql->execute();
 
         $sql = "SELECT * FROM compra c
