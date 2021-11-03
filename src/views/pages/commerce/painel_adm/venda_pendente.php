@@ -35,7 +35,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                   <br>
                   <hr>
                   <label for="cd_rastreio">Informe o código de rastreio informado pelos Correios</label>
-                  <input class="form-control" type="text" id="cd_rastreio" name="cd_rastreio" style="text-transform:uppercase" >
+                  <input class="form-control" type="text" id="cd_rastreio" name="cd_rastreio" placeholder="Informe o código de rastreio" style="text-transform:uppercase">
                   <br>
                   <?php if($venda != 0): ?>
                     <?php if($venda[0]['transferido']=='0'): ?>

@@ -113,6 +113,11 @@ $render("commerce/header_painel_cliente", ['title'=>'Painel administrativo | Ped
                 </div>
 
                 <div class="col-md-6">
+                    <h5 style="margin-bottom: 0px;">Código de Rastreio (Correios):</h5>
+                    <p><?php echo ($p['cod_rastreio']=='0')?'Não informado':$p['cod_rastreio']; ?></p>
+                </div>
+
+                <div class="col-md-6">
                     <h5 style="margin-bottom: 0px;">Endereço de entrega:</h5>
                     <p><?php echo 'CEP '.$p['cep_entrega']; ?> <br>
                         <?php echo $p['rua_entrega'].', N° '.$p['numero_entrega']; ?><br>
