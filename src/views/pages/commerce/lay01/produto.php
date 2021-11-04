@@ -35,7 +35,7 @@
                 <div class="product-content-right">
                     <div class="product-inner-category">
                         <p>Categoria: <?php foreach ($categoria as $c) : ?>
-                                <a href=""><?php echo $c['nome_cat'] ?></a> /
+                                <a href="/produtos/categoria/<?php echo $c[0]; ?>"><?php echo $c['nome_cat'] ?></a> /
                                 <?php endforeach; ?>.
                         </p>
                     </div>
