@@ -198,7 +198,8 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                         <!-- /.card-header -->
                         <!-- form start -->
                             <div class="card-body">
-                                <h4>Caso o produto seja menor que 15 cm em Altura, Largura, Comprimento e Diâmetro, informe 15 cm nesses campos para o cálculo do Correios</h4>
+                                <h3>Atenção Leia!</h3>
+                                <h4>Caso o produto seja <b>menor</b> que 15 cm em Altura, Largura, Comprimento e Diâmetro, <b>informe 15 cm nesses campos</b> para o cálculo do Correios</h4>
                                 <br>
 
                                 <div class="form-group">
