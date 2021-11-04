@@ -81,7 +81,7 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Cadastrar P
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
                                     <label for="estoque">Estoque</label>
                                     <input type="number" class="form-control" id="estoque" name="estoque"
-                                        placeholder="Insira o nome do produto" value="<?php if(isset($_POST['estoque'])){ echo $_POST['estoque']; } ?>">
+                                        placeholder="Insira a qtd de estoque do produto" value="<?php if(isset($_POST['estoque'])){ echo $_POST['estoque']; } ?>">
                                 </div>
                                 <div class="form-group">
                                     <div style="float: left;color: red;font-weight: bold;">*&nbsp;</div>
