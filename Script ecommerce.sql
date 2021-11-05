@@ -284,6 +284,7 @@ create table compra(
     recebido tinyint default 0,
     data_recebimento date not null,
     transferido tinyint default 0,
+    cod_rastreio varchar(100) default '0',
 
     primary key(compra_id),
 	foreign key(usuario_id) references usuario_ecommerce(ue_id),
