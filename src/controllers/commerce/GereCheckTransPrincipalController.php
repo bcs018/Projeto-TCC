@@ -87,10 +87,10 @@ class GereCheckTransPrincipalController extends Controller {
             'state' => 'MG'
         ];
 
-        $discount = [
-            'type' => 'currency',
-            'value' => 1
-        ];
+        // $discount = [
+        //     'type' => 'currency',
+        //     'value' => 1
+        // ];
 
         // $configurations = [
         //     'fine' => 200,
@@ -101,7 +101,7 @@ class GereCheckTransPrincipalController extends Controller {
         $credit_card = [
             'customer' => $customer,
             'installments' => intval($parcela[0]), // número de parcelas em que o pagamento deve ser dividido
-            'discount' =>$discount,
+            //'discount' =>$discount,
             'billing_address' => $billingAddress,
             'payment_token' => $paymentToken,
             'message' => 'Cobrança de teste'
@@ -221,7 +221,7 @@ class GereCheckTransPrincipalController extends Controller {
 
         $shippings[] = [
             "name"=>'FRETE',
-            "value"=>$frete*100
+            "value"=>intval($frete*100)
         ];
 
         // $items = [
@@ -249,28 +249,28 @@ class GereCheckTransPrincipalController extends Controller {
         //     'phone_number' => '5144916523', // telefone do cliente
         // ];
 
-        $discount = [ // configuração de descontos
-            'type' => 'currency', // tipo de desconto a ser aplicado
-            'value' => 1 // valor de desconto 
-        ];
+        // $discount = [ // configuração de descontos
+        //     'type' => 'currency', // tipo de desconto a ser aplicado
+        //     'value' => 1 // valor de desconto 
+        // ];
 
         // $configurations = [ // configurações de juros e mora
         //     'fine' => 200, // porcentagem de multa
         //     'interest' => 33 // porcentagem de juros
         // ];
 
-        $conditional_discount = [ // configurações de desconto condicional
-            'type' => 'currency', // seleção do tipo de desconto 
-            'value' => 1, // porcentagem de desconto
-            'until_date' => date('Y-m-d',strtotime('+1 days')) // data máxima para aplicação do desconto
-        ];
+        // $conditional_discount = [ // configurações de desconto condicional
+        //     'type' => 'currency', // seleção do tipo de desconto 
+        //     'value' => 1, // porcentagem de desconto
+        //     'until_date' => date('Y-m-d',strtotime('+1 days')) // data máxima para aplicação do desconto
+        // ];
 
         $bankingBillet = [
             'expire_at' => date("Y-m-d", strtotime('+4 days')), // data de vencimento do titulo
             'message' => '', // mensagem a ser exibida no boleto
             'customer' => $customer,
-            'discount' =>$discount,
-            'conditional_discount' => $conditional_discount
+            //'discount' =>$discount,
+            //'conditional_discount' => $conditional_discount
         ];
 
         $payment = [
