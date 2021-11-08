@@ -59,7 +59,7 @@ class GereCheckTransPrincipalController extends Controller {
 
         $shippings[] = [
             "name"=>'FRETE',
-            "value"=>$frete*100
+            "value"=>intval($frete*100)
         ];
 
         $metadata = array(
@@ -121,13 +121,19 @@ class GereCheckTransPrincipalController extends Controller {
         try {
             $api = new Gerencianet($options);
             $pay_charge = $api->oneStep([],$body);
-            // //echo '<pre>';
+            // echo '<pre>';
             // print_r($pay_charge);
             // exit;
 
             if(!isset($pay_charge['data'])){
                 $comp->delCompra($id_compra);
-                echo json_encode(array('error'=>true, 'msg'=>'<br>Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'));
+                echo json_encode(array(
+                                        'error' => true, 
+                                        'msg'   => '<br>'.$pay_charge['error_description']['message'].
+                                                   '<br>Property: '.$pay_charge['error_description']['property'].
+                                                   '<br><br>Falha na comunicação com o servidor, verifique se você tem acesso a internet ou atualize a página!'
+                                      )
+                                );
                 exit;
             }
 
