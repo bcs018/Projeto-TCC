@@ -73,6 +73,20 @@ class AdminController extends Controller {
         $this->render('commerce/painel_adm/layout', ['control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
     }
 
+    public function layout_dois(){
+        $dados = AdminController::listaDadosEcommerce();
+
+        $pro = new Produto;
+        $mar = new Marca;
+        $inf = new Info;
+
+        $dados    = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
+        $produtos = $pro->listaProdutos();
+        $marcas   = $mar->listaMarcas();
+
+        $this->render('commerce/painel_adm/layout_2', ['control_rec'=>$dados['tp_recebimento'], 'produtos'=>$produtos, 'marcas'=>$marcas, 'dados'=>$dados]);
+    }
+
     public function cadDadosRecebimento(){
         $dados = AdminController::listaDadosEcommerce();
 

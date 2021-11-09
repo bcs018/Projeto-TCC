@@ -14,9 +14,9 @@ $cats = $cat->listaCategorias();
                 </h4>
 
                 <ul>
-                    <?php foreach($cats as $dado): ?>                               
-                        <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
-                        <?php 
+                    <?php foreach($cats as $dado): ?>
+                    <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+                    <?php 
                         if(count($dado['subs'])>0){
                             $render("commerce/lay01/subcategoria_footer", array(
                                 'subs' => $dado['subs'],
@@ -25,7 +25,7 @@ $cats = $cat->listaCategorias();
                         }
                         ?>
                     <?php endforeach; ?>
-					</ul>
+                </ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
@@ -34,82 +34,88 @@ $cats = $cat->listaCategorias();
                 </h4>
 
                 <ul>
-						<li class="p-b-10">
-							<a href="/cliente/painel">
-								Minha conta
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="/cliente/painel">
+                            Minha conta
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="/carrinho">
-								Carrinho 
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="/carrinho">
+                            Carrinho
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="/produtos">
-                                Produtos
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="/produtos">
+                            Produtos
+                        </a>
+                    </li>
 
-						<li class="p-b-10">
-							<a href="#">
-                                Sobre
-							</a>
-						</li>
+                    <li class="p-b-10">
+                        <a href="#">
+                            Sobre
+                        </a>
+                    </li>
 
-                        <li class="p-b-10">
-							<a href="/login/c">
-                                Login
-							</a>
-						</li>
-					</ul>
+                    <li class="p-b-10">
+                        <a href="/login/c">
+                            Login
+                        </a>
+                    </li>
+                </ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
-                <div class="p-t-27">
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-facebook"></i>
-                    </a>
+                <h4 class="stext-301 cl0 p-b-30">
+                    Redes sociais
+                </h4>
+                <ul>
+                    <li class="p-b-10">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-instagram"></i>
-                    </a>
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-pinterest-p"></i>
-                    </a>
-                </div>
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
-        <div class="p-t-40">
-            <div class="flex-c-m flex-w p-b-18">
-                <a href="#" class="m-all-1">
-                    <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-01.png" alt="ICON-PAY">
-                </a>
+    <div class="p-t-40">
+        <div class="flex-c-m flex-w p-b-18">
+            <a href="#" class="m-all-1">
+                <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-01.png" alt="ICON-PAY">
+            </a>
 
-                <a href="#" class="m-all-1">
-                    <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-02.png" alt="ICON-PAY">
-                </a>
+            <a href="#" class="m-all-1">
+                <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-02.png" alt="ICON-PAY">
+            </a>
 
-                <a href="#" class="m-all-1">
-                    <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-03.png" alt="ICON-PAY">
-                </a>
+            <a href="#" class="m-all-1">
+                <img src="<?php echo BASE_ASS_C; ?>lay02/images/icons/icon-pay-03.png" alt="ICON-PAY">
+            </a>
 
-            </div>
-
-            <p class="stext-107 cl6 txt-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>
-                    document.write(new Date().getFullYear());
-                </script> <?php echo $dados['nome_fantasia']; ?> | Made with by <a href="https://colorlib.com"
-                    target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
-                    target="_blank">ThemeWagon</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-            </p>
         </div>
+
+        <p class="stext-107 cl6 txt-center">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>
+                document.write(new Date().getFullYear());
+            </script> <?php echo $dados['nome_fantasia']; ?> | Made with by <a href="https://colorlib.com"
+                target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
+                target="_blank">ThemeWagon</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+        </p>
+    </div>
     </div>
 </footer>
 

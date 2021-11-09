@@ -185,9 +185,24 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             </div>
                         </div>
 
-                        <div class="card-footer">
+                        <div>
                             <button type="submit" class="btn btn-success">Editar</button>
                         </div>
+                        
+                        <br><br>
+
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="/admin/painel/layout">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="/admin/painel/layout/2">2</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <br><br>
                     </form>
                 </div>
             </div>

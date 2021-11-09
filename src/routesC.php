@@ -19,6 +19,7 @@ $router->post('/consulta-cep', 'AdminController@consultarCep');
 $router->get('/admin/painel/add-novo-usuario', 'AdminController@addNovoUsu');
 $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAction');
 $router->get('/admin/painel/layout', 'AdminController@layout');
+$router->get('/admin/painel/layout/2', 'AdminController@layout_dois');
 $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
 $router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDadosRecebimento');
 $router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminController@cadDadosRecebimentoAction');
