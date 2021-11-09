@@ -74,7 +74,7 @@
                   
                   <div class="col-12">
                     <label style="color: #525252;font-weight: bold;margin-bottom: 0;"><b>TOTAL A SER TRANSFERIDO</b></label>
-                    <p><b><?php echo 'R$'.number_format($venda['total_compra']-$juros, 2, ',','.'); ?></b></p>
+                    <p><b><?php echo 'R$'.number_format(($venda['total_compra']-$juros)-5, 2, ',','.'); ?></b></p>
                   </div>
 
                   <div class="col-2">

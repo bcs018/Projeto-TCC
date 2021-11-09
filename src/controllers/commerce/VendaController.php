@@ -70,4 +70,10 @@ class VendaController extends Controller {
         echo json_encode(['ret'=>true]);
 
     }
+
+    public function juros(){
+        $dados = AdminController::listaDadosEcommerce();
+        
+        $this->render('commerce/painel_adm/valor_juros', ['control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+    }
 }
