@@ -109,7 +109,7 @@
                                     </p>
                                     <p>
                                         Considere tambem o valor de "Outras tarifas e prazos", pois para que nós possamos transferir o dinheiro
-                                        é cobrado um valor de $5,00 paras qualquer contas de terceiros.
+                                        é cobrado um valor de R$5,00 para qualquer conta de terceiros.
                                     </p>
                                     <p>
                                         Futuramente iremos trocar a operadora com para que essas taxas possam ser menores.

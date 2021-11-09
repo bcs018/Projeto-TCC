@@ -71,10 +71,17 @@
                     <label style="color: #525252;font-weight: bold;margin-bottom: 0;">Transferido?</label>
                     <p id="transferido"><?php echo ($venda['transferido']==1)?'SIM':'NÃO' ?></p>
                   </div>
+
+                  <div class="col-12">
+                    <p><strong>Valor do juros:</strong> <?php echo 'R$'. number_format($juros,2,',','.'); ?></p>
+                    <p><strong>Taxa transferência:</strong> R$ 5,00</p>
+                  </div>
                   
                   <div class="col-12">
+                    <br><hr><br>
                     <label style="color: #525252;font-weight: bold;margin-bottom: 0;"><b>TOTAL A SER TRANSFERIDO</b></label>
-                    <p><b><?php echo 'R$'.number_format(($venda['total_compra']-$juros)-5, 2, ',','.'); ?></b></p>
+                    <p><b><?php echo 'R$'.number_format($venda['total_compra']-$juros-5, 2, ',','.'); ?></b></p>
+                    <br><br>
                   </div>
 
                   <div class="col-2">
