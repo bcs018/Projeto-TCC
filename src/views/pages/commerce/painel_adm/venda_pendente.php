@@ -74,6 +74,16 @@ $render("commerce/header_painel", ['title'=>'Painel administrativo | Venda n° '
                             <p style="margin-bottom: 0px;"><strong>Cod. Transação:  </strong><?php echo $venda[0]['cod_transacao']; ?> </p>
                             <p style="margin-bottom: 0px;"><strong>Pagamento:  </strong><?php echo $venda[0]['parcela']; ?> </p>
                         </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <p style="margin-bottom: 0px;"><strong>Você recebera por essa venda:</strong> <?php echo 'R$'. number_format($venda[0]['total_compra']-$juros,2,',','.'); ?></p>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <a href="">Entenda o valor dos juros do valor a receber</a>
+                        </div>
                     </div>
                   <?php endif; ?>
                 </div>

@@ -27,15 +27,22 @@ class VendaController extends Controller {
 
         $inf   = new Info;
         $ven   = new Venda;
-        $dados     = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
-        $venda     = $ven->listaVendaPendente($id['id']);
+        $dados = $inf->pegaDadosCommerce($_SESSION['sub_dom']);
+        $venda = $ven->listaVendaPendente($id['id']);
+        
+        // Valor do juros p/ subtrair no total da venda a receber
+        if($venda[0]['tipo_pagamento'] == 'cartao'){
+            $juros_receb = ($venda[0]['total_compra']*0.0499)+0.29;
+        }else{
+            $juros_receb = 2.99;
+        }
 
         if($venda == 0){
             header("Location: /admin/painel/vendas-pendentes");
             exit;
         }
 
-        $this->render('commerce/painel_adm/venda_pendente', ['venda'=>$venda, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
+        $this->render('commerce/painel_adm/venda_pendente', ['juros'=>$juros_receb, 'venda'=>$venda, 'control_rec'=>$dados['tp_recebimento'],'dados'=>$dados]);
     }
 
     public function marcarEnviado(){
