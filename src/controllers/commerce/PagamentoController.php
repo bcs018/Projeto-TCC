@@ -25,6 +25,12 @@ class PagamentoController extends Controller {
             $carrinho = false;
         }
 
+        /**
+         * 
+         *   Não deixar avançar se o carrinho estiver vazio
+         *  
+         **/
+
         //echo '<pre>';print_r($estados);
         
         $this->render('commerce/'.$dados['layout'].'/pagamento1',['dados'=>$dados,'produtos'=>$produtos, 'estados'=>$estados, 'carrinho'=>$carrinho]);
