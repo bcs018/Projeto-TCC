@@ -123,7 +123,7 @@
                     tran:1,
                     id:id,
                     idEco:'<?php echo $venda['ecommerce_id']; ?>',
-                    valor:'<?php echo 'R$'.number_format($venda['total_compra'], 2, ',','.');?>'
+                    valor:'<?php echo 'R$'.number_format($venda['total_compra']-$juros-5, 2, ',','.');?>'
                   },
                   success:function(r){
                     if(r.ret == true){
