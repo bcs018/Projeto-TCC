@@ -74,8 +74,14 @@ class PainelController extends Controller {
 
         $venda = $ven->vendaPagar($id['id']);
 
-        $this->render('sitePrincipal/painel_adm/venda_pagar', ['venda'=>$venda]);
-
+        // Valor do juros p/ subtrair no total da venda a receber
+        if($venda['tipo_pagamento'] == 'cartao'){
+            $juros_receb = ($venda['total_compra']*0.0499)+0.29;
+        }else{
+            $juros_receb = 2.99;
+        }
+        
+        $this->render('sitePrincipal/painel_adm/venda_pagar', ['juros'=>$juros_receb, 'venda'=>$venda]);
     }
 
     public function transferirVenda(){
