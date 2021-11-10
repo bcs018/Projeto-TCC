@@ -85,6 +85,9 @@ create table ecommerce_usu(
     -- mp_public_key varchar(300) default 0 not null,
     -- mp_access_token varchar(300) default 0 not null,
     chave_pix varchar(100) default '0',
+    facebook varchar(100) default '0',
+    instagram varchar(100) default '0',
+    linkedin varchar(100) default '0',
 
     primary key(ecommerce_id),
     /*foreign key(usuario_id) references usuario(usuario_id),*/
