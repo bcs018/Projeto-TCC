@@ -1,6 +1,6 @@
 <?php foreach($subs as $sub): ?>
     <li>
-        <a href="/produtos/categoria/<?php echo $sub['categoria_id'] ?>">
+        <a class="cor_letra_rodape" href="/produtos/categoria/<?php echo $sub['categoria_id'] ?>">
             <?php
             //for($q=0; $q<$level; $q++) echo "";
 

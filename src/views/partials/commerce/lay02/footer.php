@@ -15,10 +15,10 @@ $cats = $cat->listaCategorias();
 
                 <ul>
                     <?php foreach($cats as $dado): ?>
-                    <?php echo '<li><a href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
+                    <?php echo '<li><a class="cor_letra_rodape" href="/produtos/categoria/'.$dado['categoria_id'].'">'.$dado['nome_cat'].'</a></li>'; ?>
                     <?php 
                         if(count($dado['subs'])>0){
-                            $render("commerce/lay01/subcategoria_footer", array(
+                            $render("commerce/lay02/subcategoria_footer", array(
                                 'subs' => $dado['subs'],
                                 'level' => 1
                             ));
@@ -35,31 +35,31 @@ $cats = $cat->listaCategorias();
 
                 <ul>
                     <li class="p-b-10">
-                        <a href="/cliente/painel">
+                        <a class="cor_letra_rodape" href="/cliente/painel">
                             Minha conta
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="/carrinho">
+                        <a class="cor_letra_rodape" href="/carrinho">
                             Carrinho
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="/produtos">
+                        <a class="cor_letra_rodape" href="/produtos">
                             Produtos
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#">
+                        <a class="cor_letra_rodape" href="#">
                             Sobre
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="/login/c">
+                        <a class="cor_letra_rodape" href="/login/c">
                             Login
                         </a>
                     </li>
@@ -96,7 +96,7 @@ $cats = $cat->listaCategorias();
                 </ul>
             </div>
             <div class="col-sm-6 col-lg-3 p-b-50">
-                <h1>
+                <h1 class="cor_letra_rodape">
                     <?php echo $dados['nome_fantasia']; ?>
                 </h1>
             </div>

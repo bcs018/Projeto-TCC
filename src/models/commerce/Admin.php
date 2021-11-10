@@ -440,6 +440,21 @@ class Admin extends Model{
         }
     }
 
+    public function addCorLetraRodape($cor){
+        $sql = "UPDATE ecommerce_usu SET cor_letra_rodape = ? WHERE ecommerce_id = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, $cor);
+        $sql->bindValue(2, $_SESSION['id_sub_dom']);
+
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                        Cor da letra do rodapé adicionado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+    }
+
     public function ediLayout($layout){
         if(($layout != 'lay01') && ($layout != 'lay02')){
             $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">

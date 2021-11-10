@@ -48,6 +48,8 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                 </div>
                             </div>
                         </div>
+
+                        <?php //echo '<pre>'; print_r($dados); ?>
                     
                         <div class="card card-primary">
                             <div class="card-header">
@@ -181,6 +183,19 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                     <div class="bd-example">
                                     <label for="corRodape" class="form-label">Selecione a cor</label>
                                     <input type="color" name="corRodape" class="form-control form-control-color" value="<?php echo $dados['cor_rodape']; ?>" title="Escolha sua cor">                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title"><b>Cor das letras do rodapé</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="bd-example">
+                                    <label for="corLetraRodape" class="form-label">Selecione a cor</label>
+                                    <input type="color" name="corLetraRodape" class="form-control form-control-color" value="<?php echo $dados['cor_letra_rodape']; ?>" title="Escolha sua cor">                                    </div>
                                 </div>
                             </div>
                         </div>

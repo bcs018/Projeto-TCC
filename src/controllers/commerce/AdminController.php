@@ -229,6 +229,10 @@ class AdminController extends Controller {
         $ban = new Produto;
         $mar = new Marca;
 
+        /**
+         * Otimizar essa parte!!
+         */
+
         if(isset($_POST['escolhaLay']) && !empty($_POST['escolhaLay'])){
             $adm->ediLayout(addslashes($_POST['escolhaLay']));
         }
@@ -255,6 +259,10 @@ class AdminController extends Controller {
 
         if(isset($_POST['corRodape']) || !empty($_POST['corRodape'])){
             $adm->addCorRodape(addslashes($_POST['corRodape']));
+        }
+
+        if(isset($_POST['corLetraRodape']) || !empty($_POST['corLetraRodape'])){
+            $adm->addCorLetraRodape(addslashes($_POST['corLetraRodape']));
         }
 
         if(isset($_POST['nomeFant']) || !empty($_POST['nomeFant'])){

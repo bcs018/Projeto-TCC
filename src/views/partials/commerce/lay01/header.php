@@ -135,10 +135,10 @@ $cats = $cat->listaCategorias();
             text-decoration: none;
         }
         .footer-about-us span {
-            color: <?php echo $layout['cor']; ?>;
+            color: <?php echo $layout['cor_letra_rodape']; ?>;
         }
         .footer-social a {
-            background: none repeat scroll 0 0 <?php echo $layout['cor']; ?>;
+            background: none repeat scroll 0 0 <?php echo $layout['cor_letra_rodape']; ?>;
             color: #fff;
             display: inline-block;
             font-size: 20px;
@@ -147,8 +147,8 @@ $cats = $cat->listaCategorias();
             margin-right: 10px;
             padding-top: 5px;
             text-align: center;
-            width: 40px;border: 1px solid <?php echo $layout['cor']; ?>;
-            }    
+            width: 40px;border: 1px solid <?php echo $layout['cor_letra_rodape']; ?>;
+        }    
         .footer-top-area {
             background: none repeat scroll 0 0 <?php echo $layout['cor_rodape']; ?>;
             color: #999;
@@ -194,8 +194,10 @@ $cats = $cat->listaCategorias();
         .mainmenu-area ul.navbar-nav li a:hover{
             color: gray;
         }
-
-       
+        .footer-menu a {
+            display: block;
+            padding: 5px 0;color: <?php echo $layout['cor_letra_rodape']; ?>
+        }       
     </style>
 
 </head>

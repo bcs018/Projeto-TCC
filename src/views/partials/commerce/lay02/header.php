@@ -161,6 +161,9 @@ $cats = $cat->listaCategorias();
 			text-decoration: none;
 			color: <?php echo $layout['cor']; ?>;
 		}
+		.cor_letra_rodape{
+			color: <?php echo $layout['cor_letra_rodape']; ?>;
+		}
 	</style>
 </head>
 <body class="animsition">

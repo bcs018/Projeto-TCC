@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
-                    <h2><span><?php echo $dados['nome_fantasia']; ?></span></h2>
+                    <h2 class="cor_letra_rodape"><span><?php echo $dados['nome_fantasia']; ?></span></h2>
                     <br>
                     <div class="footer-social">
                         <?php if($dados['facebook']!='0'): ?>
