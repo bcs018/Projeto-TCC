@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['carrinho']) || count($_SESSION['carrinho']) == 0 || !isset($_SESSION['login_cliente_ecommerce'])){
+if(!isset($_SESSION['login_cliente_ecommerce'])){
     header("Location: /");
 }
 ?> 

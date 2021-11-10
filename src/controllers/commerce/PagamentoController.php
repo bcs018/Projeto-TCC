@@ -19,10 +19,17 @@ class PagamentoController extends Controller {
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        if(isset($_SESSION['carrinho'])){
+        if(isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0){
             $carrinho = $carr->listaItens($_SESSION['carrinho']);
         }else{
             $carrinho = false;
+
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Para finalizar uma compra você deve ter itens em seu carrinho!
+                                    </div>';
+
+            header("Location: /carrinho");
+            exit;
         }
 
         /**
@@ -228,10 +235,17 @@ class PagamentoController extends Controller {
         $produtos = $carr->listaItens($_SESSION['carrinho']);
         $dados = $info->pegaDadosCommerce($_SESSION['sub_dom']);
 
-        if(isset($_SESSION['carrinho'])){
+        if(isset($_SESSION['carrinho']) && count($_SESSION['carrinho']) > 0){
             $carrinho = $carr->listaItens($_SESSION['carrinho']);
         }else{
             $carrinho = false;
+
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">
+                                        Para finalizar uma compra você deve ter itens em seu carrinho!
+                                    </div>';
+
+            header("Location: /carrinho");
+            exit;
         }
 
         //echo '<pre>';print_r($estados);

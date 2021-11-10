@@ -34,58 +34,64 @@
                             </thead>
                             <tbody>
                                 <?php if($control): ?>
-                                <?php echo $carrinho; ?>
+                                    <?php
+                                        if(isset($_SESSION['message'])){
+                                            echo $_SESSION['message'];
+                                            unset($_SESSION['message']);
+                                        }
+                                    ?>
+                                    <?php echo $carrinho; ?>
                                 <?php else: ?>
-                                <?php foreach($carrinho as $c): ?>
-                                <tr class="cart_item">
-                                    <td class="product-remove">
-                                        <center><a title="Remover" class="remove"
-                                                href="/deletar/item/carrinho/<?php echo $c[0] ?>">X</a></center>
-                                    </td>
+                                    <?php foreach($carrinho as $c): ?>
+                                        <tr class="cart_item">
+                                            <td class="product-remove">
+                                                <center><a title="Remover" class="remove"
+                                                        href="/deletar/item/carrinho/<?php echo $c[0] ?>">X</a></center>
+                                            </td>
 
-                                    <td class="product-thumbnail">
-                                        <a href="/visualizar/produto/<?php echo $c[0]; ?>">
-                                            <center><img width="145" height="145" alt="poster_1_up"
-                                                    class="shop_thumbnail"
-                                                    src="<?php if ($c['url'] == null) : ?>
-                                                            <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
-                                                         <?php else : ?>
-                                                                <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
-                                                         <?php endif; ?>">
-                                            </center>      
-                                        </a>
-                                    </td>
+                                            <td class="product-thumbnail">
+                                                <a href="/visualizar/produto/<?php echo $c[0]; ?>">
+                                                    <center><img width="145" height="145" alt="poster_1_up"
+                                                            class="shop_thumbnail"
+                                                            src="<?php if ($c['url'] == null) : ?>
+                                                                    <?php echo BASE_ASS_C; ?>/images/semfoto.jpg
+                                                                <?php else : ?>
+                                                                        <?php echo BASE_ASS_C; ?>/images_commerce/<?php echo $c['url']; ?>
+                                                                <?php endif; ?>">
+                                                    </center>      
+                                                </a>
+                                            </td>
 
-                                    <td class="product-name">
-                                        <a href="/visualizar/produto/<?php echo $c[0]; ?>"><?php echo $c['nome_pro']; ?></a>
-                                    </td>
+                                            <td class="product-name">
+                                                <a href="/visualizar/produto/<?php echo $c[0]; ?>"><?php echo $c['nome_pro']; ?></a>
+                                            </td>
 
-                                    <td class="product-price">
-                                        <span class="amount"><?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?></span>
-                                    </td>
+                                            <td class="product-price">
+                                                <span class="amount"><?php echo 'R$ ' . number_format($c['preco'], 2, ',', '.'); ?></span>
+                                            </td>
 
-                                    <td class="product-quantity">
-                                        <div class="quantity buttons_added">
-                                            <input type="number" id="<?php echo $c[0]; ?>" size="4" name="qtd"
-                                                class="input-text qty text" title="Quantidade"
-                                                value="<?php echo $_SESSION['carrinho'][$c[0]]; ?>" min="1" step="1">
-                                        </div>
-                                    </td>
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input type="number" id="<?php echo $c[0]; ?>" size="4" name="qtd"
+                                                        class="input-text qty text" title="Quantidade"
+                                                        value="<?php echo $_SESSION['carrinho'][$c[0]]; ?>" min="1" step="1">
+                                                </div>
+                                            </td>
 
-                                    <td class="product-quantity">
-                                        <div class="quantity buttons_added">
-                                            <center><p><?php echo $c['estoque']; ?></p></center>
-                                        </div>
-                                    </td>
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <center><p><?php echo $c['estoque']; ?></p></center>
+                                                </div>
+                                            </td>
 
-                                    <td class="product-subtotal">
-                                        <div id="v<?php echo $c[0]; ?>">
-                                            <?php echo 'R$ ' . number_format($c['preco'] * $_SESSION['carrinho'][$c[0]], 2, ',', '.'); ?>
-                                        </div>
-                                    </td>
+                                            <td class="product-subtotal">
+                                                <div id="v<?php echo $c[0]; ?>">
+                                                    <?php echo 'R$ ' . number_format($c['preco'] * $_SESSION['carrinho'][$c[0]], 2, ',', '.'); ?>
+                                                </div>
+                                            </td>
 
-                                </tr>
-                                <?php endforeach; ?>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 <?php endif; ?>
                                 <tr>
                                     <td class="actions" colspan="7" style="text-align: right;">
