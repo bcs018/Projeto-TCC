@@ -29,7 +29,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <form role="form" name="detalheProduto" method="POST" enctype="multipart/form-data" action="/admin/painel/edi-layout">
+                    <form role="form" name="detalheProduto" method="POST" action="/admin/painel/edi-layout2">
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title"><b>Redes sociais</b></h3>
@@ -38,19 +38,19 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                 <div class="form-group">
                                     <div class="bd-example">
                                         <label for="banner">Instagram</label>
-                                        <input type="text" class="form-control" placeholder="Informe o link do Instagram de sua loja" name="insta" value="<?php //echo $dados['nome_fantasia']; ?>">
+                                        <input type="text" class="form-control" placeholder="Informe o link do Instagram de sua loja" name="insta" value="<?php echo ($dados['instagram']=='0')?'':$dados['instagram']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="bd-example">
                                         <label for="banner">Facebook</label>
-                                        <input type="text" class="form-control" placeholder="Informe o link do Facebook de sua loja" name="face" value="<?php //echo $dados['nome_fantasia']; ?>">
+                                        <input type="text" class="form-control" placeholder="Informe o link do Facebook de sua loja" name="face" value="<?php echo ($dados['facebook']=='0')?'':$dados['facebook']; ?>">
                                     </div>
                                 </div>   
                                 <div class="form-group">
                                     <div class="bd-example">
                                         <label for="banner">LinkedIn</label>
-                                        <input type="text" class="form-control" placeholder="Informe o link LinkedIn de sua loja" name="linke" value="<?php //echo $dados['nome_fantasia']; ?>">
+                                        <input type="text" class="form-control" placeholder="Informe o link LinkedIn de sua loja" name="linke" value="<?php echo ($dados['linkedin']=='0')?'':$dados['linkedin']; ?>">
                                     </div>
                                 </div>   
                                 <div class="form-group">
@@ -58,13 +58,17 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                                         Informe somente os campos em que você tenha conta na rede social. <br>
                                         As redes sociais serão mostradas no final da página.
                                     </h5>
-                                </div>                             
+                                </div>
+                                <div class="form-group">
+                                    <h5>Exemplo das Redes sociais:</h5>
+                                    <img src="<?php echo BASE_ASS_C; ?>images/redes.jpg" class="img-fluid" width="900px" height="350px" alt="Exemplo de banner">
+                                </div>                      
                             </div>
                         </div>
 
                         
 
-                        <div>
+                        <div class="text-right"><br>
                             <button type="submit" class="btn btn-success">Editar</button>
                         </div>
                         
@@ -98,15 +102,6 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
     $(function() {
         $('.select2').select2()
     })
-</script>
-
-<script type="text/javascript">
-    $('#preco').mask("# ##0,00", {
-        reverse: true
-    });
-    $('#precoAnt').mask("# ##0,00", {
-        reverse: true
-    });
 </script>
 
 <script>

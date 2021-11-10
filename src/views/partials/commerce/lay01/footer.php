@@ -7,10 +7,15 @@
                     <h2><span><?php echo $dados['nome_fantasia']; ?></span></h2>
                     <br>
                     <div class="footer-social">
-                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <?php if($dados['facebook']!='0'): ?>
+                            <a href="<?php echo $dados['facebook']; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <?php endif; ?>
+                        <?php if($dados['instagram']!='0'): ?>
+                            <a href="<?php echo ($dados['instagram']=='0')?'#':$dados['instagram']; ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <?php endif; ?>
+                        <?php if($dados['linkedin']!='0'): ?>
+                            <a href="<?php echo ($dados['linkedin']=='0')?'#':$dados['linkedin']; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

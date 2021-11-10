@@ -470,6 +470,30 @@ class Admin extends Model{
         return false;
     }
 
+    public function addRedeSocial($insta, $face, $linke){
+        $sql = 'UPDATE ecommerce_usu SET facebook = ?, instagram = ?, linkedin = ?
+                WHERE ecommerce_id = ?';
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(1, ($face=='')?'0':$face);
+        $sql->bindValue(2, ($insta=='')?'0':$insta);
+        $sql->bindValue(3, ($linke=='')?'0':$linke);
+        $sql->bindValue(4, $_SESSION['id_sub_dom']);
+
+        if($sql->execute()){
+            $_SESSION['message'] .= '<div class="alert alert-success" role="alert">
+                                       Redes sociais alterado com sucesso!
+                                    </div>';
+
+            return true;
+        }
+
+        $_SESSION['message'] .= '<div class="alert alert-danger" role="alert">
+                                    Erro 007 ao atualizar redes sociais!
+                                </div>';
+
+        return false;
+    }
+
     public function cadDadosRecebimentoAction($pix){
         if(empty($pix)){
             

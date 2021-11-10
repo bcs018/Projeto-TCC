@@ -185,7 +185,7 @@ $render("commerce/header_painel", ['title' => 'Painel administrativo | Layout'])
                             </div>
                         </div>
 
-                        <div>
+                        <div class="text-right"><br>
                             <button type="submit" class="btn btn-success">Editar</button>
                         </div>
                         

@@ -67,24 +67,38 @@ $cats = $cat->listaCategorias();
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
-                <h4 class="stext-301 cl0 p-b-30">
-                    Redes sociais
-                </h4>
+                <?php if($dados['facebook']!='0' || $dados['instagram']!='0' || $dados['linkedin']!='0'): ?>
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Redes sociais
+                    </h4>
+                <?php endif; ?>
+
                 <ul>
                     <li class="p-b-10">
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-facebook"></i>
-                        </a>
+                        <?php if($dados['facebook']!='0'): ?>
+                            <a href="<?php echo $dados['facebook']; ?>" class="fs-35 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        <?php endif; ?>
 
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-instagram"></i>
-                        </a>
+                        <?php if($dados['instagram']!='0'): ?>
+                            <a href="<?php echo $dados['instagram']; ?>" class="fs-35 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        <?php endif; ?>
 
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
+                        <?php if($dados['linkedin']!='0'): ?>
+                            <a href="<?php echo $dados['linkedin']; ?>" class="fs-35 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        <?php endif; ?>
                     </li>
                 </ul>
+            </div>
+            <div class="col-sm-6 col-lg-3 p-b-50">
+                <h1>
+                    <?php echo $dados['nome_fantasia']; ?>
+                </h1>
             </div>
         </div>
     </div>

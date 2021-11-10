@@ -21,6 +21,7 @@ $router->post('/admin/painel/add-usuario/action', 'AdminController@addNovoUsuAct
 $router->get('/admin/painel/layout', 'AdminController@layout');
 $router->get('/admin/painel/layout/2', 'AdminController@layout_dois');
 $router->post('/admin/painel/edi-layout', 'AdminController@ediLayoutAction');
+$router->post('/admin/painel/edi-layout2', 'AdminController@ediLayoutAction2');
 $router->get('/admin/painel/cadastrar-dados-recebimento', 'AdminController@cadDadosRecebimento');
 $router->post('/admin/painel/cadastrar-dados-recebimento/action', 'AdminController@cadDadosRecebimentoAction');
 $router->get('/admin/painel/relatorio', 'AdminController@relVendas');

@@ -265,6 +265,15 @@ class AdminController extends Controller {
         header("Location: /admin/painel/layout");
     }
 
+    public function ediLayoutAction2(){
+        $adm = new Admin;
+
+        $adm->addRedeSocial(addslashes($_POST['insta']), addslashes($_POST['face']), addslashes($_POST['linke']));
+        
+        header("Location: /admin/painel/layout/2");
+        exit;
+    }
+
     public function addNovoUsuAction(){
         $nome        = addslashes($_POST['nome']);
         $sobrenome   = addslashes($_POST['sobrenome']);
