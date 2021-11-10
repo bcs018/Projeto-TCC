@@ -78,6 +78,7 @@ create table ecommerce_usu(
     ico varchar(50) not null default 0,
     cor varchar (50) default '#adadad',
     cor_rodape varchar (50) default '#adadad',
+    cor_letra_rodape varchar(50) default '#ababab',
     tp_recebimento varchar(50) default '0' not null,
     data_cad date not null,
     -- ps_token varchar(200) default 0 not null, 
