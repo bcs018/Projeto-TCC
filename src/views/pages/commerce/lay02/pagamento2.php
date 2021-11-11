@@ -127,6 +127,16 @@ if(isset($_SESSION['frete'])){
             checkout.getInstallments(<?php echo $_SESSION['total']*100; ?>, window.bandeira, function(error, response){
                 if(error) {
                     // Trata o erro ocorrido
+                    if(error.code == 3500006){
+                        $("#message").html('<div class="alert alert-danger" role="alert">'+error.error_description+' Entre em contato com o '+
+                                            'propritário da loja para mais informações, o valor total da compra deve ser menor ou igual a R$1.700,00!</div>')
+                        alert(error.error_description+ ' Entre em contato com o propritário da loja para mais informações, o valor total da compra deve ser menor ou igual a R$1.700,00!');
+                    }else{
+                        $("#message").html('<div class="alert alert-danger" role="alert">'+error.error_description+' Entre em contato com o '+
+                                            'propritário da loja para mais informações!</div>');
+                        alert(error.error_description+ ' Entre em contato com o propritário da loja para mais informações!');
+
+                    }
                     console.log(error);
                 } else {
                     html = '';
