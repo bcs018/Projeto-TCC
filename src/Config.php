@@ -1,9 +1,9 @@
 <?php
 namespace src;
 
-define('BASE_ASS', 'http://bw.com.br/assets/sitePrincipal/');
-define('BASE_ASS_C', 'http://bw.com.br/assets/commerce/');
-define('BASE_URL', 'http://bw.com.br');
+define('BASE_ASS', '/assets/sitePrincipal/');
+define('BASE_ASS_C', '/assets/commerce/');
+define('BASE_URL', 'http://potlid.com.br');
 
 //Configurações do paypal
 // $GLOBALS['pagseguro_seller'] = 'bwcommerce@outlook.com';
