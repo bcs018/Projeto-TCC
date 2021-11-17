@@ -66,7 +66,7 @@ class BoletoController extends Controller {
         //Id da compra no seu site e o endereço para notificação
         $metadata = [
             'custom_id' => $dados['id_assinatura'],
-            'notification_url' => 'http://bcnoticias.000webhostapp.com/boleto/notification'
+            'notification_url' => 'http://potlid.com.br/boleto/notification'
         ];
 
         //Caso for uma compra com frete, colocar isso abaixo para sair no boleto

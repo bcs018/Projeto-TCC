@@ -22,7 +22,7 @@ $router->post('/crie-sua-loja/escolha-pagamento', 'OpcaoPgmController@escolhaPag
 $router->get('/crie-sua-loja/obrigado', 'CadastroController@inserirCadastroFree');
 $router->post('/checkout', 'PgCheckTransPrincipalController@checkout');
 $router->post('/cartao/notification', 'PgCheckTransPrincipalController@notification');
-$router->get('/boleto/notification', 'BoletoController@notification');
+$router->post('/boleto/notification', 'BoletoController@notification');
 
 $router->post('/notificacao/gerencianet', 'NotificacaoClientesController@notificacaoGereCard');
 
